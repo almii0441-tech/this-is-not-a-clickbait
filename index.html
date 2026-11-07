@@ -1,203 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THIS IS NOT A CLICKBAIT</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THIS IS NOT A CLICKBAIT</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
 
-    body {
-      background: #101010;
-      color: #f3f0eb;
-      font-family: Georgia, serif;
-    }
+:root {
+  --black: #080808;
+  --white: #f3f0eb;
+  --red: #ff343f;
+  --blue: #00d9ff;
+  --green: #c8ff00;
+  --purple: #b58cff;
+}
 
-    header {
-      padding: 22px 6%;
-      border-bottom: 1px solid #444;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .issue {
-      color: #aaa;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .hero {
-      min-height: 75vh;
-      padding: 100px 7% 70px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+}
 
-    .eyebrow {
-      color: #ff4545;
-      font-family: Arial, sans-serif;
-      letter-spacing: 4px;
-      font-size: 11px;
-      margin-bottom: 28px;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
 
-    h1 {
-      color: #e84444;
-      font-size: clamp(48px, 10vw, 120px);
-      line-height: 0.92;
-      max-width: 1000px;
-      letter-spacing: -5px;
-    }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    .tagline {
-      margin-top: 35px;
-      font-size: 21px;
-      color: #d2d2d2;
-      font-style: italic;
-    }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 19px 6%;
+  border-bottom: 1px solid #292929;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
 
-    .intro {
-      padding: 35px 7%;
-      border-top: 1px solid #444;
-      border-bottom: 1px solid #444;
-      display: flex;
-      justify-content: space-between;
-      gap: 25px;
-      flex-wrap: wrap;
-      font-family: Arial, sans-serif;
-    }
+.status {
+  color: var(--green);
+}
 
-    .intro p {
-      max-width: 500px;
-      line-height: 1.7;
-      color: #c5c5c5;
-    }
+.status::before {
+  content: "●";
+  margin-right: 8px;
+  animation: blink 1.2s infinite;
+}
 
-    .section {
-      padding: 65px 7%;
-    }
+@keyframes blink {
+  50% { opacity: .2; }
+}
 
-    .section h2 {
-      color: #fff;
-      font-size: 38px;
-      margin-bottom: 30px;
-    }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 6%;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+}
 
-    .article {
-      border-top: 1px solid #555;
-      padding: 25px 0;
-    }
+.logo {
+  color: var(--red);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
 
-    .article small {
-      color: #ff5555;
-      font-family: Arial, sans-serif;
-      letter-spacing: 2px;
-    }
+.navlinks {
+  display: flex;
+  gap: 25px;
+  color: #aaa;
+}
 
-    .article h3 {
-      font-size: 30px;
-      margin: 12px 0;
-    }
+.navlinks a:hover {
+  color: var(--blue);
+}
 
-    .article p {
-      color: #aaa;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
+.hero {
+  min-height: 83vh;
+  padding: 90px 7% 65px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
 
-    footer {
-      padding: 35px 7%;
-      border-top: 1px solid #444;
-      color: #888;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
+.hero::after {
+  content: "ERROR 404 / REALITY NOT FOUND";
+  position: absolute;
+  right: -30px;
+  top: 42%;
+  transform: rotate(90deg);
+  color: #292929;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+}
 
-    @media (max-width: 600px) {
-      .hero {
-        min-height: 65vh;
-        padding-top: 70px;
-      }
+.eyebrow {
+  color: var(--blue);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+}
 
-      h1 {
-        letter-spacing: -2px;
-      }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(55px, 10.5vw, 145px);
+  line-height: .86;
+  letter-spacing: -7px;
+  color: var(--white);
+  max-width: 1100px;
+  position: relative;
+  z-index: 1;
+}
 
-      .tagline {
-        font-size: 17px;
-      }
-    }
-  </style>
+h1 span {
+  color: var(--red);
+  display: block;
+  text-shadow: 4px 0 var(--blue), -3px 0 var(--purple);
+  animation: glitch 4s infinite;
+}
+
+@keyframes glitch {
+  0%, 90%, 100% { transform: translate(0); }
+  92% { transform: translate(4px, -2px); }
+  94% { transform: translate(-3px, 2px); }
+  96% { transform: translate(2px, 0); }
+}
+
+.tagline {
+  margin-top: 38px;
+  font-size: 17px;
+  color: #aaa;
+  font-style: italic;
+}
+
+.hero-bottom {
+  margin-top: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 700px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.scroll {
+  color: var(--green);
+}
+
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 15px 0;
+  color: var(--green);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.ticker-track {
+  display: inline-block;
+  animation: move 25s linear infinite;
+}
+
+@keyframes move {
+  to { transform: translateX(-50%); }
+}
+
+.intro {
+  padding: 100px 7%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  border-bottom: 1px solid #292929;
+}
+
+.label {
+  color: var(--red);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
+}
+
+.intro h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(35px, 5vw, 65px);
+  line-height: 1;
+}
+
+.intro p {
+  color: #aaa;
+  font-size: 17px;
+  line-height: 1.9;
+  align-self: center;
+}
+
+.archive {
+  padding: 90px 7%;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 45px;
+}
+
+.section-heading h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 75px);
+}
+
+.section-heading span {
+  color: var(--blue);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+}
+
+.article {
+  border-top: 1px solid #444;
+  padding: 32px 0;
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 25px;
+  align-items: center;
+  transition: .3s;
+}
+
+.article:hover {
+  padding-left: 15px;
+  border-color: var(--red);
+}
+
+.article-number {
+  color: var(--red);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+}
+
+.article h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 4vw, 42px);
+  margin-bottom: 8px;
+}
+
+.article p {
+  color: #888;
+  font-size: 14px;
+}
+
+.article-type {
+  color: var(--blue);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  text-align: right;
+}
+
+.game {
+  margin: 20px 7% 90px;
+  padding: 55px;
+  border: 1px solid #444;
+  background: linear-gradient(120deg, #171717, #101010);
+  position: relative;
+  overflow: hidden;
+}
+
+.game::after {
+  content: "07";
+  position: absolute;
+  right: 30px;
+  top: -35px;
+  font-size: 200px;
+  font-weight: bold;
+  color: #202020;
+}
+
+.game h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(35px, 5vw, 65px);
+  position: relative;
+  z-index: 1;
+}
+
+.game p {
+  color: #aaa;
+  margin: 15px 0 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.game a {
+  display: inline-block;
+  padding: 14px 22px;
+  background: var(--red);
+  color: #080808;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+footer {
+  border-top: 1px solid #333;
+  padding: 35px 7%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  color: #777;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+@media(max-width: 700px) {
+  .topbar {
+    font-size: 8px;
+  }
+
+  nav {
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .navlinks {
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 10px;
+  }
+
+  .hero {
+    min-height: 75vh;
+    padding-top: 70px;
+  }
+
+  h1 {
+    letter-spacing: -3px;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    padding: 65px 7%;
+  }
+
+  .article {
+    grid-template-columns: 45px 1fr;
+    gap: 12px;
+  }
+
+  .article-type {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .game {
+    padding: 35px 25px;
+  }
+
+  .game::after {
+    font-size: 130px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <span>INDEPENDENT DIGITAL MAGAZINE</span>
-    <span class="issue">ISSUE 01 · 2026</span>
-  </header>
+<div class="topbar">
+  <span>INDEPENDENT DIGITAL PUBLICATION</span>
+  <span class="status">SYSTEM ONLINE</span>
+  <span>ISSUE 01 / 2026</span>
+</div>
 
-  <main>
-    <section class="hero">
-      <p class="eyebrow">A PUBLICATION ABOUT THE HUMAN CONDITION</p>
+<nav>
+  <a href="#" class="logo">TINAC / 001</a>
+  <div class="navlinks">
+    <a href="#archive">ARCHIVE</a>
+    <a href="#game">THE GAME</a>
+    <a href="#about">ABOUT</a>
+  </div>
+</nav>
 
-      <h1>
-        THIS IS<br>
-        NOT A<br>
-        CLICKBAIT.
-      </h1>
+<main>
+  <section class="hero">
+    <p class="eyebrow">WELCOME TO THE GLITCH // HUMANITY.EXE</p>
 
-      <p class="tagline">
-        Humanity currently experiencing technical difficulties.
-      </p>
-    </section>
+    <h1>
+      THIS IS<br>
+      NOT A<br>
+      <span>CLICKBAIT.</span>
+    </h1>
 
-    <section class="intro">
-      <p>
-        Seven writers. Seven perspectives. One increasingly
-        confusing world. An exploration of people, culture,
-        technology and everything in between.
-      </p>
+    <p class="tagline">
+      Humanity currently experiencing technical difficulties.
+    </p>
 
-      <p>SCROLL TO EXPLORE ↓</p>
-    </section>
+    <div class="hero-bottom">
+      <span>SEVEN VOICES. ONE UNSTABLE WORLD.</span>
+      <span class="scroll">SCROLL TO EXPLORE ↓</span>
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>THE ARCHIVE</h2>
+  <div class="ticker">
+    <div class="ticker-track">
+      SYSTEM FAILURE // HUMAN ERROR // DIGITAL CULTURE //
+      REALITY LOADING // SYSTEM FAILURE // HUMAN ERROR //
+      DIGITAL CULTURE // REALITY LOADING //
+    </div>
+  </div>
 
-      <div class="article">
-        <small>001 / DIGITAL CULTURE</small>
+  <section class="intro" id="about">
+    <div>
+      <p class="label">01 / WHAT IS THIS?</p>
+      <h2>A little noise in an increasingly loud world.</h2>
+    </div>
+    <p>
+      Seven writers. Seven perspectives. A collection of thoughts
+      about people, culture, technology and the strange little
+      things that make up being human. No perfect answers.
+      No particularly stable systems.
+    </p>
+  </section>
+
+  <section class="archive" id="archive">
+    <div class="section-heading">
+      <div>
+        <p class="label">02 / THE ARCHIVE</p>
+        <h2>Latest transmissions.</h2>
+      </div>
+      <span>ISSUE 001 / 2026</span>
+    </div>
+
+    <article class="article">
+      <span class="article-number">001</span>
+      <div>
         <h3>Where One Click Leads</h3>
-        <p>
-          A single click can send you down an endless digital rabbit hole.
-        </p>
+        <p>A single click can send you down an endless digital rabbit hole.</p>
         <p>BY LEKHAA MEENAKSHISUNDARAM</p>
       </div>
+      <span class="article-type">DIGITAL CULTURE ↗</span>
+    </article>
 
-      <div class="article">
-        <small>002 / COMING SOON</small>
-        <h3>Article loading...</h3>
+    <article class="article">
+      <span class="article-number">002</span>
+      <div>
+        <h3>Transmission pending...</h3>
+        <p>Another perspective is entering the system.</p>
       </div>
+      <span class="article-type">COMING SOON</span>
+    </article>
 
-      <div class="article">
-        <small>003 / COMING SOON</small>
-        <h3>Article loading...</h3>
+    <article class="article">
+      <span class="article-number">003</span>
+      <div>
+        <h3>Transmission pending...</h3>
+        <p>More thoughts. More interruptions.</p>
       </div>
-    </section>
-  </main>
+      <span class="article-type">COMING SOON</span>
+    </article>
+  </section>
 
-  <footer>
-    THIS IS NOT A CLICKBAIT · ISSUE 01 · 2026
-  </footer>
+  <section class="game" id="game">
+    <p class="label">03 / INTERACTIVE ZONE</p>
+    <h2>SEVEN SYMBOLS.</h2>
+    <p>Seven pairs. Fourteen cards. How good is your memory?</p>
+    <a href="game.html">ENTER THE GAME ↗</a>
+  </section>
+</main>
+
+<footer>
+  <span>THIS IS NOT A CLICKBAIT © 2026</span>
+  <span>HUMANITY.EXE / STILL RUNNING</span>
+  <span>END OF TRANSMISSION.</span>
+</footer>
 
 </body>
 </html>
