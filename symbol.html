@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEVEN SYMBOLS // TINAC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black: #090909;
+  --white: #f4f0e9;
+  --red: #ff3434;
+  --blue: #4b9cff;
+  --green: #b6ff4a;
+  --purple: #b58aff;
+  --pink: #ff70b8;
+  --yellow: #ffe45c;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .08;
+  z-index: 5;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+header {
+  padding: 20px 7%;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 11px 'Space Mono', monospace;
+  color: #aaa;
+  letter-spacing: 2px;
+}
+
+header a {
+  color: var(--red);
+  text-decoration: none;
+}
+
+main {
+  max-width: 950px;
+  margin: auto;
+  padding: 65px 22px 80px;
+}
+
+.eyebrow {
+  color: var(--green);
+  font: 11px 'Space Mono', monospace;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(48px, 10vw, 105px);
+  line-height: .9;
+  letter-spacing: -6px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+h1 span {
+  color: var(--red);
+  text-shadow: 3px 3px var(--blue);
+}
+
+.subtitle {
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 540px;
+}
+
+.instruction {
+  margin-top: 35px;
+  padding: 15px;
+  border-left: 3px solid var(--red);
+  background: #151515;
+  font: 12px 'Space Mono', monospace;
+  color: #ccc;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 32px 0 24px;
+}
+
+.stat {
+  border: 1px solid #333;
+  padding: 16px;
+  background: #111;
+}
+
+.stat small {
+  display: block;
+  font: 10px 'Space Mono', monospace;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.stat strong {
+  font-size: 27px;
+  color: var(--green);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.card {
+  aspect-ratio: 1 / 1;
+  border: 1px solid #393939;
+  background: #151515;
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(30px, 6vw, 55px);
+  transition: transform .2s, background .2s, border .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover:not(.matched):not(.revealed) {
+  border-color: var(--red);
+  transform: translateY(-3px);
+}
+
+.card .symbol {
+  display: none;
+}
+
+.card::after {
+  content: "??";
+  color: #555;
+  font: 20px 'Space Mono', monospace;
+}
+
+.card.revealed::after,
+.card.matched::after {
+  display: none;
+}
+
+.card.revealed .symbol,
+.card.matched .symbol {
+  display: block;
+}
+
+.card.revealed {
+  background: #202020;
+  border-color: var(--blue);
+}
+
+.card.matched {
+  background: #182016;
+  border-color: var(--green);
+  cursor: default;
+  animation: pop .3s ease;
+}
+
+.card.matched .symbol {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+@keyframes pop {
+  50% { transform: scale(1.06); }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+button.action {
+  border: 0;
+  background: var(--red);
+  color: white;
+  padding: 14px 22px;
+  font: 12px 'Space Mono', monospace;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: .2s;
+}
+
+button.action:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.status {
+  font: 11px 'Space Mono', monospace;
+  color: #999;
+}
+
+#victory {
+  display: none;
+  text-align: center;
+  border: 1px solid var(--green);
+  padding: 35px 20px;
+  margin-top: 28px;
+  background: #11180e;
+}
+
+#victory h2 {
+  color: var(--green);
+  font-size: clamp(28px, 6vw, 48px);
+  margin-bottom: 12px;
+}
+
+#victory p {
+  color: #ccc;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+footer {
+  border-top: 1px solid #333;
+  padding: 22px;
+  text-align: center;
+  color: #666;
+  font: 10px 'Space Mono', monospace;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 520px) {
+  main { padding-top: 45px; }
+  h1 { letter-spacing: -3px; }
+  .board { gap: 8px; }
+  .card { min-width: 0; }
+  .stat { padding: 11px; }
+  .stat strong { font-size: 21px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← BACK TO TINAC</a>
+  <span>INTERACTIVE EXPERIMENT // 001</span>
+</header>
+
+<main>
+  <div class="eyebrow">SYSTEM TEST // MEMORY PROTOCOL</div>
+
+  <h1>SEVEN<br><span>SYMBOLS.</span></h1>
+
+  <p class="subtitle">
+    Fourteen cards. Seven pairs. One questionable memory.
+    Find every matching symbol before your attention span files a complaint.
+  </p>
+
+  <div class="instruction">
+    INSTRUCTIONS: FLIP TWO CARDS. FIND A MATCH. REMEMBER WHERE EVERYTHING IS.
+    NO PRESSURE. YOUR BRAIN IS BEING OBSERVED.
+  </div>
+
+  <section class="stats">
+    <div class="stat">
+      <small>MOVES</small>
+      <strong id="moves">0</strong>
+    </div>
+    <div class="stat">
+      <small>PAIRS FOUND</small>
+      <strong id="pairs">0 / 7</strong>
+    </div>
+    <div class="stat">
+      <small>TIME</small>
+      <strong id="timer">00:00</strong>
+    </div>
+  </section>
+
+  <section class="board" id="board" aria-label="Memory matching game"></section>
+
+  <div class="controls">
+    <span class="status" id="status">SYSTEM READY // FIND THE PAIRS</span>
+    <button class="action" onclick="startGame()">RESTART GAME ↻</button>
+  </div>
+
+  <section id="victory">
+    <div class="eyebrow">SYSTEM COMPLETE // 007</div>
+    <h2>MEMORY RESTORED.</h2>
+    <p id="result"></p>
+    <button class="action" onclick="startGame()">PLAY AGAIN ↻</button>
+  </section>
+</main>
+
+<footer>
+  THIS IS NOT A CLICKBAIT // HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+</footer>
+
+<script>
+const symbols = [
+  { icon: "👁", color: "#ff3434", name: "THE EYE" },
+  { icon: "⌘", color: "#4b9cff", name: "THE SYSTEM" },
+  { icon: "⌁", color: "#b6ff4a", name: "THE GLITCH" },
+  { icon: "♡", color: "#ff70b8", name: "THE HUMAN" },
+  { icon: "◉", color: "#ffe45c", name: "THE LOOP" },
+  { icon: "✳", color: "#b58aff", name: "THE SIGNAL" },
+  { icon: "☠", color: "#ff8b4b", name: "THE ERROR" }
+];
+
+let deck = [];
+let firstCard = null;
+let secondCard = null;
+let locked = false;
+let moves = 0;
+let pairs = 0;
+let seconds = 0;
+let timerInterval = null;
+let started = false;
+
+const board = document.getElementById("board");
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function startGame() {
+  clearInterval(timerInterval);
+
+  deck = shuffle([
+    ...symbols.map((s, i) => ({ ...s, id: i })),
+    ...symbols.map((s, i) => ({ ...s, id: i }))
+  ]);
+
+  firstCard = null;
+  secondCard = null;
+  locked = false;
+  moves = 0;
+  pairs = 0;
+  seconds = 0;
+  started = false;
+
+  document.getElementById("moves").textContent = "0";
+  document.getElementById("pairs").textContent = "0 / 7";
+  document.getElementById("timer").textContent = "00:00";
+  document.getElementById("status").textContent = "SYSTEM READY // FIND THE PAIRS";
+  document.getElementById("victory").style.display = "none";
+
+  board.innerHTML = "";
+
+  deck.forEach((item, index) => {
+    const card = document.createElement("button");
+    card.className = "card";
+    card.type = "button";
+    card.setAttribute("aria-label", "Hidden card");
+    card.innerHTML = `<span class="symbol" style="color:${item.color}">${item.icon}</span>`;
+    card.dataset.id = item.id;
+    card.dataset.index = index;
+    card.addEventListener("click", () => flipCard(card, item));
+    board.appendChild(card);
+  });
+}
+
+function startTimer() {
+  if (started) return;
+  started = true;
+
+  timerInterval = setInterval(() => {
+    seconds++;
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+
+    document.getElementById("timer").textContent =
+      String(mins).padStart(2, "0") + ":" +
+      String(secs).padStart(2, "0");
+  }, 1000);
+}
+
+function flipCard(card, item) {
+  if (locked || card.classList.contains("revealed") ||
+      card.classList.contains("matched")) return;
+
+  startTimer();
+
+  card.classList.add("revealed");
+  card.setAttribute("aria-label", item.name);
+
+  if (!firstCard) {
+    firstCard = { card, item };
+    document.getElementById("status").textContent = "ONE CARD OPEN // FIND ITS MATCH";
+    return;
+  }
+
+  secondCard = { card, item };
+  moves++;
+  document.getElementById("moves").textContent = moves;
+
+  if (firstCard.item.id === secondCard.item.id) {
+    firstCard.card.classList.add("matched");
+    secondCard.card.classList.add("matched");
+
+    firstCard.card.setAttribute("aria-label", "Matched " + item.name);
+    secondCard.card.setAttribute("aria-label", "Matched " + item.name);
+
+    pairs++;
+    document.getElementById("pairs").textContent = pairs + " / 7";
+    document.getElementById("status").textContent = "MATCH FOUND // NICE WORK";
+
+    firstCard = null;
+    secondCard = null;
+
+    if (pairs === 7) finishGame();
+  } else {
+    locked = true;
+    document.getElementById("status").textContent = "NO MATCH // MEMORY TEST FAILED";
+
+    setTimeout(() => {
+      firstCard.card.classList.remove("revealed");
+      secondCard.card.classList.remove("revealed");
+      firstCard.card.setAttribute("aria-label", "Hidden card");
+      secondCard.card.setAttribute("aria-label", "Hidden card");
+
+      firstCard = null;
+      secondCard = null;
+      locked = false;
+      document.getElementById("status").textContent = "SYSTEM RUNNING // KEEP LOOKING";
+    }, 850);
+  }
+}
+
+function finishGame() {
+  clearInterval(timerInterval);
+
+  document.getElementById("status").textContent = "ALL SYMBOLS RECOVERED";
+  document.getElementById("victory").style.display = "block";
+
+  document.getElementById("result").textContent =
+    `You found all seven pairs in ${moves} moves and ${document.getElementById("timer").textContent}. Your memory survived the experiment. For now.`;
+
+  document.getElementById("victory").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+startGame();
+</script>
+
+</body>
+</html>
