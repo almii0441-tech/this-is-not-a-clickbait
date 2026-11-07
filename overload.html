@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INTERNET OVERLOAD | TINAC</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#090a0f;--red:#ff3b4e;--blue:#50aaff;--green:#baff54;--purple:#bd8aff;--white:#f4f0e9}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,sans-serif;min-height:100vh}
+header{display:flex;justify-content:space-between;gap:12px;padding:19px 6%;border-bottom:1px solid #30313b;font:11px monospace;letter-spacing:2px;color:#aaa}
+a{color:var(--red);text-decoration:none}
+main{width:min(850px,92%);margin:50px auto 70px}
+.tag{font:11px monospace;color:var(--green);letter-spacing:3px}
+h1{font-size:clamp(45px,10vw,95px);line-height:.88;letter-spacing:-5px;margin:22px 0}
+h1 span{color:var(--red);text-shadow:4px 4px var(--blue)}
+.description{color:#aaa;max-width:550px;line-height:1.7;font-size:15px}
+.warning{margin:25px 0;padding:15px;background:#15151c;border-left:3px solid var(--red);color:#ccc;font:12px monospace;line-height:1.8}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
+.stat{background:#15151c;border:1px solid #34343d;padding:14px}
+.stat small{display:block;font:10px monospace;color:#888;margin-bottom:8px}
+.stat strong{font-size:25px;color:var(--green)}
+.game-wrap{position:relative;border:1px solid #393946;background:#0d0e15;overflow:hidden}
+canvas{display:block;width:100%;height:auto;touch-action:none}
+.overlay{position:absolute;inset:0;background:rgba(5,6,11,.93);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+.overlay h2{font-size:clamp(28px,6vw,48px);color:var(--red);margin:10px 0}
+.overlay p{color:#bbb;line-height:1.7;max-width:430px;font-size:14px}
+.action{border:0;background:var(--red);color:white;padding:14px 22px;font:12px monospace;letter-spacing:1px;cursor:pointer}
+.action:hover{background:white;color:black}
+.controls{display:flex;justify-content:center;gap:12px;margin:15px 0;flex-wrap:wrap}
+.move{width:90px;height:48px;background:#191a23;color:white;border:1px solid #444;font-size:22px;cursor:pointer;touch-action:manipulation}
+.move:active{background:var(--red)}
+.hint{text-align:center;color:#777;font:11px monospace;line-height:1.8}
+footer{text-align:center;border-top:1px solid #333;padding:24px 10px;color:#777;font:10px monospace;letter-spacing:1px}
+@media(max-width:480px){main{margin-top:35px}h1{letter-spacing:-3px}.stat{padding:10px}.stat strong{font-size:21px}}
+</style>
+</head>
+<body>
+
+<header>
+<a href="index.html">← BACK TO MAGAZINE</a>
+<span>INTERACTIVE ZONE / 003</span>
+</header>
+
+<main>
+<div class="tag">SYSTEM ALERT // ATTENTION CRITICAL</div>
+<h1>INTERNET<br><span>OVERLOAD.</span></h1>
+
+<p class="description">
+Your screen is no longer under your control. Notifications are multiplying.
+Ads are everywhere. Your attention is the currency.
+Survive the feed.
+</p>
+
+<div class="warning">
+MISSION: DODGE THE DIGITAL NOISE. COLLECT USEFUL INFORMATION.
+SURVIVE FOR 45 SECONDS. TRY NOT TO OPEN ANOTHER TAB.
+</div>
+
+<section class="stats">
+<div class="stat"><small>SCORE</small><strong id="score">0</strong></div>
+<div class="stat"><small>TIME LEFT</small><strong id="time">45</strong></div>
+<div class="stat"><small>ATTENTION</small><strong id="lives">3 / 3</strong></div>
+</section>
+
+<div class="game-wrap">
+<canvas id="game" width="700" height="430"></canvas>
+
+<div class="overlay" id="startScreen">
+<div class="tag">USER AGREEMENT // PLEASE IGNORE</div>
+<h2>YOUR ATTENTION<br>IS REQUESTED.</h2>
+<p>
+Move your cursor or use the arrow keys to dodge notifications,
+pop-ups and advertisements. Collect green data packets to earn points.
+You have three lives. The internet has unlimited distractions.
+</p>
+<button class="action" id="startBtn">ENTER THE FEED →</button>
+</div>
+
+<div class="overlay" id="endScreen" style="display:none">
+<div class="tag">SESSION TERMINATED</div>
+<h2 id="endTitle">FEED COMPLETE.</h2>
+<p id="endText"></p>
+<button class="action" id="replayBtn">REBOOT SYSTEM ↻</button>
+</div>
+</div>
+
+<div class="controls">
+<button class="move" id="leftBtn" aria-label="Move left">←</button>
+<button class="move" id="rightBtn" aria-label="Move right">→</button>
+</div>
+
+<p class="hint">
+DESKTOP: USE ← → ARROW KEYS OR A / D<br>
+MOBILE: HOLD THE ARROW BUTTONS OR TOUCH THE GAME AREA<br>
+GREEN = USEFUL DATA // RED / PURPLE = DISTRACTIONS
+</p>
+</main>
+
+<footer>
+THIS IS NOT A CLICKBAIT // HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+</footer>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const W = canvas.width;
+const H = canvas.height;
+
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+const livesEl = document.getElementById("lives");
+const startScreen = document.getElementById("startScreen");
+const endScreen = document.getElementById("endScreen");
+
+let player, objects, particles;
+let score = 0;
+let lives = 3;
+let remaining = 45;
+let running = false;
+let lastTime = 0;
+let spawnTimer = 0;
+let elapsed = 0;
+let animationId = null;
+let keys = {};
+let touchDirection = 0;
+let flash = 0;
+
+const distractions = [
+  "NEW MESSAGE!",
+  "SALE 90% OFF",
+  "WATCH THIS",
+  "BREAKING NEWS",
+  "FOLLOW NOW",
+  "FREE TRIAL",
+  "TREND ALERT",
+  "ONE MORE VIDEO",
+  "LIMITED OFFER",
+  "NEW NOTIFICATION"
+];
+
+const collectibles = [
+  "FACT +10",
+  "FOCUS +10",
+  "KNOWLEDGE",
+  "GOOD READ",
+  "USEFUL DATA"
+];
+
+function resetGame() {
+  if (animationId) cancelAnimationFrame(animationId);
+
+  player = { x: W / 2, y: H - 48, w: 42, h: 35, speed: 360 };
+  objects = [];
+  particles = [];
+  score = 0;
+  lives = 3;
+  remaining = 45;
+  elapsed = 0;
+  spawnTimer = 0;
+  flash = 0;
+  running = false;
+  lastTime = 0;
+
+  scoreEl.textContent = "0";
+  timeEl.textContent = "45";
+  livesEl.textContent = "3 / 3";
+
+  drawScene();
+}
+
+function startGame() {
+  resetGame();
+  startScreen.style.display = "none";
+  endScreen.style.display = "none";
+  running = true;
+  lastTime = performance.now();
+  animationId = requestAnimationFrame(loop);
+}
+
+function spawnObject() {
+  const useful = Math.random() < 0.34;
+  const size = useful ? 30 : 36 + Math.random() * 12;
+  const difficulty = Math.min(1.8, 1 + elapsed / 55);
+
+  objects.push({
+    x: 20 + Math.random() * (W - 40),
+    y: -size,
+    size,
+    useful,
+    speed: (useful ? 130 : 155) * difficulty + Math.random() * 65,
+    text: useful
+      ? collectibles[Math.floor(Math.random() * collectibles.length)]
+      : distractions[Math.floor(Math.random() * distractions.length)],
+    rotation: (Math.random() - 0.5) * 0.08
+  });
+}
+
+function drawPlayer() {
+  ctx.save();
+  ctx.shadowBlur = 18;
+  ctx.shadowColor = "#50aaff";
+  ctx.fillStyle = "#50aaff";
+
+  ctx.beginPath();
+  ctx.moveTo(player.x, player.y - player.h / 2);
+  ctx.lineTo(player.x - player.w / 2, player.y + player.h / 2);
+  ctx.lineTo(player.x + player.w / 2, player.y + player.h / 2);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = "#090a0f";
+  ctx.fillRect(player.x - 3, player.y + 3, 6, 8);
+
+  ctx.restore();
+}
+
+function drawObject(o) {
+  ctx.save();
+  ctx.translate(o.x, o.y);
+  ctx.rotate(o.rotation);
+
+  if (o.useful) {
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = "#baff54";
+    ctx.fillStyle = "#baff54";
+  } else {
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = "#ff3b4e";
+    ctx.fillStyle = "#ff3b4e";
+  }
+
+  const width = Math.max(o.size, o.text.length * 6.2 + 16);
+  const height = o.useful ? 29 : 32;
+
+  ctx.fillRect(-width / 2, -height / 2, width, height);
+
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = "#090a0f";
+  ctx.font = "bold 10px monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(o.text, 0, 0);
+
+  ctx.restore();
+}
+
+function drawScene() {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = "#0d0e15";
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.strokeStyle = "rgba(90,110,150,.12)";
+  ctx.lineWidth = 1;
+
+  for (let x = 0; x < W; x += 35) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, H);
+    ctx.stroke();
+  }
+
+  for (let y = 0; y < H; y += 35) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(W, y);
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = "#777";
+  ctx.font = "10px monospace";
+  ctx.textAlign = "left";
+  ctx.fillText("INCOMING DATA // " + Math.floor(elapsed), 15, 20);
+
+  objects.forEach(drawObject);
+  drawPlayer();
+
+  if (flash > 0) {
+    ctx.fillStyle = "rgba(255,59,78," + flash + ")";
+    ctx.fillRect(0, 0, W, H);
+  }
+}
+
+function update(dt) {
+  elapsed += dt;
+  remaining = Math.max(0, 45 - elapsed);
+
+  timeEl.textContent = Math.ceil(remaining);
+
+  let direction = 0;
+
+  if (keys.ArrowLeft || keys.a || touchDirection === -1) direction--;
+  if (keys.ArrowRight || keys.d || touchDirection === 1) direction++;
+
+  player.x += direction * player.speed * dt;
+  player.x = Math.max(25, Math.min(W - 25, player.x));
+
+  const spawnEvery = Math.max(0.32, 0.85 - elapsed / 100);
+  spawnTimer += dt;
+
+  while (spawnTimer >= spawnEvery) {
+    spawnTimer -= spawnEvery;
+    spawnObject();
+  }
+
+  for (let i = objects.length - 1; i >= 0; i--) {
+    const o = objects[i];
+    o.y += o.speed * dt;
+
+    const hitX = Math.abs(o.x - player.x) < (o.size + player.w) / 2;
+    const hitY = Math.abs(o.y - player.y) < (o.size + player.h) / 2;
+
+    if (hitX && hitY) {
+      if (o.useful) {
+        score += 10;
+        scoreEl.textContent = score;
+      } else {
+        lives--;
+        livesEl.textContent = lives + " / 3";
+        flash = 0.22;
+        if (lives <= 0) {
+          objects.splice(i, 1);
+          finishGame(false);
+          return;
+        }
+      }
+
+      objects.splice(i, 1);
+      continue;
+    }
+
+    if (o.y > H + 60) {
+      objects.splice(i, 1);
+    }
+  }
+
+  flash = Math.max(0, flash - dt * 0.8);
+
+  if (remaining <= 0) finishGame(true);
+}
+
+function loop(now) {
+  if (!running) return;
+
+  const dt = Math.min((now - lastTime) / 1000, 0.04);
+  lastTime = now;
+
+  update(dt);
+  drawScene();
+
+  if (running) animationId = requestAnimationFrame(loop);
+}
+
+function finishGame(survived) {
+  running = false;
+
+  if (animationId) cancelAnimationFrame(animationId);
+
+  document.getElementById("endTitle").textContent =
+    survived ? "YOU SURVIVED." : "ATTENTION LOST.";
+
+  let verdict;
+
+  if (score >= 150) {
+    verdict = "The feed tried everything. You collected useful information and kept your focus. Suspiciously impressive.";
+  } else if (score >= 70) {
+    verdict = "You made it through the digital noise. Some distractions won, but you collected a respectable amount of useful data.";
+  } else {
+    verdict = "The internet won this round. Consider closing a few tabs. Including the imaginary ones in your head.";
+  }
+
+  document.getElementById("endText").textContent =
+    (survived ? "You survived all 45 seconds. " : "Your three attention shields were exhausted. ") +
+    "Final score: " + score + ". " + verdict;
+
+  endScreen.style.display = "flex";
+  drawScene();
+}
+
+function setDirection(direction) {
+  touchDirection = direction;
+}
+
+document.addEventListener("keydown", e => {
+  if (["ArrowLeft", "ArrowRight", " "].includes(e.key)) e.preventDefault();
+  keys[e.key] = true;
+});
+
+document.addEventListener("keyup", e => {
+  keys[e.key] = false;
+});
+
+function bindHold(id, direction) {
+  const button = document.getElementById(id);
+
+  button.addEventListener("pointerdown", e => {
+    e.preventDefault();
+    setDirection(direction);
+  });
+
+  ["pointerup", "pointerleave", "pointercancel"].forEach(event => {
+    button.addEventListener(event, () => setDirection(0));
+  });
+}
+
+bindHold("leftBtn", -1);
+bindHold("rightBtn", 1);
+
+canvas.addEventListener("pointerdown", e => {
+  if (!running) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width * W;
+  player.x = Math.max(25, Math.min(W - 25, x));
+});
+
+canvas.addEventListener("pointermove", e => {
+  if (!running || e.buttons === 0) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width * W;
+  player.x = Math.max(25, Math.min(W - 25, x));
+});
+
+document.getElementById("startBtn").addEventListener("click", startGame);
+document.getElementById("replayBtn").addEventListener("click", startGame);
+
+resetGame();
+</script>
+
+</body>
+</html>
