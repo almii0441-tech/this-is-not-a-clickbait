@@ -40,7 +40,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 10;
-  opacity: 0.12;
+  opacity: .12;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
 }
 
@@ -48,6 +48,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* TOP BAR */
 
 .topbar {
   display: flex;
@@ -74,6 +76,8 @@ a {
   50% { opacity: .2; }
 }
 
+/* NAVIGATION */
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -98,6 +102,8 @@ nav {
 .navlinks a:hover {
   color: var(--blue);
 }
+
+/* HERO */
 
 .hero {
   min-height: 83vh;
@@ -177,6 +183,8 @@ h1 span {
   color: var(--green);
 }
 
+/* TICKER */
+
 .ticker {
   overflow: hidden;
   white-space: nowrap;
@@ -197,6 +205,8 @@ h1 span {
 @keyframes move {
   to { transform: translateX(-50%); }
 }
+
+/* INTRODUCTION */
 
 .intro {
   padding: 100px 7%;
@@ -226,6 +236,8 @@ h1 span {
   line-height: 1.9;
   align-self: center;
 }
+
+/* ARTICLE ARCHIVE */
 
 .archive {
   padding: 90px 7%;
@@ -279,6 +291,7 @@ h1 span {
 .article p {
   color: #888;
   font-size: 14px;
+  margin-top: 5px;
 }
 
 .article-type {
@@ -288,51 +301,171 @@ h1 span {
   text-align: right;
 }
 
-.game {
-  margin: 20px 7% 90px;
-  padding: 55px;
-  border: 1px solid #444;
-  background: linear-gradient(120deg, #171717, #101010);
-  position: relative;
-  overflow: hidden;
+/* INTERACTIVE ARCADE */
+
+.arcade-zone {
+  padding: 90px 7%;
+  border-top: 1px solid #292929;
+  border-bottom: 1px solid #292929;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(255,52,63,.08), transparent 35%),
+    radial-gradient(ellipse at 90% 80%, rgba(0,217,255,.07), transparent 35%),
+    #0b0b0b;
 }
 
-.game::after {
-  content: "07";
-  position: absolute;
-  right: 30px;
-  top: -35px;
-  font-size: 200px;
-  font-weight: bold;
-  color: #202020;
+.arcade-inner {
+  max-width: 1250px;
+  margin: auto;
 }
 
-.game h2 {
+.arcade-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.arcade-status {
+  color: var(--green);
+}
+
+.arcade-heading {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(35px, 5vw, 65px);
-  position: relative;
-  z-index: 1;
+  font-size: clamp(48px, 8vw, 100px);
+  line-height: .95;
+  margin-bottom: 22px;
 }
 
-.game p {
+.arcade-heading span {
+  color: var(--red);
+  text-shadow: 3px 0 var(--blue);
+}
+
+.arcade-description {
+  max-width: 600px;
   color: #aaa;
-  margin: 15px 0 30px;
-  position: relative;
-  z-index: 1;
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 35px;
 }
 
-.game a {
+.arcade-warning {
   display: inline-block;
-  padding: 14px 22px;
-  background: var(--red);
-  color: #080808;
+  border: 1px solid #4b3333;
+  color: var(--red);
+  padding: 11px 15px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 45px;
+}
+
+.arcade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.arcade-card {
+  --accent: var(--red);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 275px;
+  padding: 28px;
+  background: #111;
+  border: 1px solid #333;
+  overflow: hidden;
+  transition: .3s ease;
+}
+
+.arcade-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  background: #171717;
+  box-shadow: 0 10px 35px rgba(0,0,0,.35);
+}
+
+.arcade-card.blue { --accent: var(--blue); }
+.arcade-card.green { --accent: var(--green); }
+.arcade-card.purple { --accent: var(--purple); }
+
+.arcade-number {
   font-family: 'Space Mono', monospace;
   font-size: 11px;
-  font-weight: bold;
+  color: var(--accent);
   letter-spacing: 2px;
-  position: relative;
-  z-index: 1;
 }
+
+.arcade-icon {
+  font-size: 42px;
+  margin: 22px 0;
+  display: block;
+}
+
+.arcade-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(27px, 4vw, 42px);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.arcade-card p {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 390px;
+}
+
+.arcade-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 17px;
+  border-top: 1px solid #333;
+}
+
+.arcade-tag {
+  color: var(--accent);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.arcade-enter {
+  color: var(--white);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  transition: .2s;
+}
+
+.arcade-card:hover .arcade-enter {
+  color: var(--accent);
+}
+
+.arcade-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 35px;
+  color: #666;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  line-height: 1.8;
+}
+
+/* FOOTER */
 
 footer {
   border-top: 1px solid #333;
@@ -347,9 +480,12 @@ footer {
   letter-spacing: 1px;
 }
 
+/* MOBILE RESPONSIVE */
+
 @media(max-width: 700px) {
   .topbar {
     font-size: 8px;
+    gap: 8px;
   }
 
   nav {
@@ -388,12 +524,27 @@ footer {
     text-align: left;
   }
 
-  .game {
-    padding: 35px 25px;
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
   }
 
-  .game::after {
-    font-size: 130px;
+  .arcade-zone {
+    padding: 65px 6%;
+  }
+
+  .arcade-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .arcade-card {
+    min-height: 250px;
+    padding: 24px;
+  }
+
+  .arcade-footer {
+    line-height: 1.8;
   }
 }
 </style>
@@ -401,22 +552,30 @@ footer {
 
 <body>
 
+<!-- TOP BAR -->
+
 <div class="topbar">
   <span>INDEPENDENT DIGITAL PUBLICATION</span>
   <span class="status">SYSTEM ONLINE</span>
   <span>ISSUE 01 / 2026</span>
 </div>
 
+<!-- NAVIGATION -->
+
 <nav>
   <a href="#" class="logo">TINAC / 001</a>
+
   <div class="navlinks">
     <a href="#archive">ARCHIVE</a>
-    <a href="#game">THE GAME</a>
+    <a href="#arcade">THE ARCADE</a>
     <a href="#about">ABOUT</a>
   </div>
 </nav>
 
 <main>
+
+  <!-- HERO -->
+
   <section class="hero">
     <p class="eyebrow">WELCOME TO THE GLITCH // HUMANITY.EXE</p>
 
@@ -436,6 +595,8 @@ footer {
     </div>
   </section>
 
+  <!-- TICKER -->
+
   <div class="ticker">
     <div class="ticker-track">
       SYSTEM FAILURE // HUMAN ERROR // DIGITAL CULTURE //
@@ -444,11 +605,14 @@ footer {
     </div>
   </div>
 
+  <!-- ABOUT -->
+
   <section class="intro" id="about">
     <div>
       <p class="label">01 / WHAT IS THIS?</p>
       <h2>A little noise in an increasingly loud world.</h2>
     </div>
+
     <p>
       Seven writers. Seven perspectives. A collection of thoughts
       about people, culture, technology and the strange little
@@ -457,51 +621,190 @@ footer {
     </p>
   </section>
 
+  <!-- ARCHIVE -->
+
   <section class="archive" id="archive">
     <div class="section-heading">
       <div>
         <p class="label">02 / THE ARCHIVE</p>
         <h2>Latest transmissions.</h2>
       </div>
+
       <span>ISSUE 001 / 2026</span>
     </div>
 
     <article class="article">
       <span class="article-number">001</span>
+
       <div>
         <h3>Where One Click Leads</h3>
         <p>A single click can send you down an endless digital rabbit hole.</p>
         <p>BY LEKHAA MEENAKSHISUNDARAM</p>
       </div>
+
       <span class="article-type">DIGITAL CULTURE ↗</span>
     </article>
 
     <article class="article">
       <span class="article-number">002</span>
+
       <div>
         <h3>Transmission pending...</h3>
         <p>Another perspective is entering the system.</p>
       </div>
+
       <span class="article-type">COMING SOON</span>
     </article>
 
     <article class="article">
       <span class="article-number">003</span>
+
       <div>
         <h3>Transmission pending...</h3>
         <p>More thoughts. More interruptions.</p>
       </div>
+
       <span class="article-type">COMING SOON</span>
     </article>
   </section>
 
-  <section class="game" id="game">
-    <p class="label">03 / INTERACTIVE ZONE</p>
-    <h2>SEVEN SYMBOLS.</h2>
-    <p>Seven pairs. Fourteen cards. How good is your memory?</p>
-    <a href="game.html">ENTER THE GAME ↗</a>
+  <!-- INTERACTIVE ARCADE -->
+
+  <section class="arcade-zone" id="arcade">
+
+    <div class="arcade-inner">
+
+      <div class="arcade-topline">
+        <span>03 / INTERACTIVE ZONE</span>
+        <span class="arcade-status">● ALL SYSTEMS QUESTIONABLE</span>
+      </div>
+
+      <h2 class="arcade-heading">
+        ENTER THE<br>
+        <span>ARCADE.</span>
+      </h2>
+
+      <p class="arcade-description">
+        Congratulations. You have reached the least productive
+        section of this publication. Four games. Four questionable
+        decisions. Absolutely no productive use of your time.
+      </p>
+
+      <div class="arcade-warning">
+        WARNING: YOU MAY FORGET WHY YOU OPENED THIS WEBSITE.
+      </div>
+
+      <div class="arcade-grid">
+
+        <!-- GAME 001: SEVEN SYMBOLS -->
+
+        <a href="symbols.html" class="arcade-card">
+
+          <div>
+            <span class="arcade-number">GAME 001 / MEMORY</span>
+
+            <span class="arcade-icon">👁</span>
+
+            <h3>SEVEN SYMBOLS.</h3>
+
+            <p>
+              Fourteen cards. Seven matching pairs.
+              Your memory has been summoned for questioning.
+            </p>
+          </div>
+
+          <div class="arcade-card-bottom">
+            <span class="arcade-tag">MEMORY TEST</span>
+            <span class="arcade-enter">PLAY NOW ↗</span>
+          </div>
+
+        </a>
+
+        <!-- GAME 002: HUMANITY.EXE -->
+
+        <a href="game.html" class="arcade-card blue">
+
+          <div>
+            <span class="arcade-number">GAME 002 / HUMAN BEHAVIOUR</span>
+
+            <span class="arcade-icon">🧠</span>
+
+            <h3>HUMANITY.EXE</h3>
+
+            <p>
+              A small investigation into the strange creature
+              known as the human. Results may be concerning.
+            </p>
+          </div>
+
+          <div class="arcade-card-bottom">
+            <span class="arcade-tag">SYSTEM ANALYSIS</span>
+            <span class="arcade-enter">PLAY NOW ↗</span>
+          </div>
+
+        </a>
+
+        <!-- GAME 003: INTERNET OVERLOAD -->
+
+        <a href="overload.html" class="arcade-card green">
+
+          <div>
+            <span class="arcade-number">GAME 003 / SURVIVAL</span>
+
+            <span class="arcade-icon">📱</span>
+
+            <h3>INTERNET OVERLOAD.</h3>
+
+            <p>
+              Notifications. Pop-ups. Ads.
+              Try surviving the internet without losing your mind.
+            </p>
+          </div>
+
+          <div class="arcade-card-bottom">
+            <span class="arcade-tag">DIGITAL SURVIVAL</span>
+            <span class="arcade-enter">PLAY NOW ↗</span>
+          </div>
+
+        </a>
+
+        <!-- GAME 004: MAZE.EXE -->
+
+        <a href="maze.html" class="arcade-card purple">
+
+          <div>
+            <span class="arcade-number">GAME 004 / MAZE</span>
+
+            <span class="arcade-icon">🌀</span>
+
+            <h3>MAZE.EXE</h3>
+
+            <p>
+              Get lost. Find the fragments. Escape the maze.
+              Crumb is already having a difficult day.
+            </p>
+          </div>
+
+          <div class="arcade-card-bottom">
+            <span class="arcade-tag">LEVELS DETECTED</span>
+            <span class="arcade-enter">PLAY NOW ↗</span>
+          </div>
+
+        </a>
+
+      </div>
+
+      <div class="arcade-footer">
+        <span>FOUR GAMES. ZERO PRODUCTIVITY.</span>
+        <span>HAVE FUN. OR DON'T. WE'RE NOT YOUR PARENTS.</span>
+      </div>
+
+    </div>
   </section>
+
 </main>
+
+<!-- FOOTER -->
 
 <footer>
   <span>THIS IS NOT A CLICKBAIT © 2026</span>
@@ -510,4 +813,4 @@ footer {
 </footer>
 
 </body>
-</html>.
+</html>
