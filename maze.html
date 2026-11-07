@@ -90,6 +90,7 @@ function makeMaze(){
     }
   }
   carve(1,1);
+  // Guaranteed route down the right edge to the exit.
   for(let x=1;x<N-1;x++)maze[1][x]=0;
   for(let y=1;y<N-1;y++)maze[y][N-2]=0;
   exit={x:N-2,y:N-2};maze[exit.y][exit.x]=0;
@@ -171,6 +172,7 @@ function loseLife(){
 function dangerCheck(){
   if(same(player,error)||(level===3&&same(player,watcher)))loseLife();
 }
+// Breadth-first search: ERROR follows a legal shortest path through corridors.
 function nextStepToward(from,target){
   const q=[{x:from.x,y:from.y,first:null}],seen=new Set([from.x+","+from.y]);
   const dirs=[[1,0],[-1,0],[0,1],[0,-1]];
@@ -191,6 +193,7 @@ function enemyAI(now){
   if(now-lastError>delay){
     lastError=now;
     if(level===1){
+      // Crumb's first-level pursuer patrols randomly, but remains a real threat.
       const ds=[[1,0],[-1,0],[0,1],[0,-1]].sort(()=>Math.random()-.5);
       for(const [dx,dy] of ds){if(!wall(error.x+dx,error.y+dy)){error={x:error.x+dx,y:error.y+dy};break}}
     }else moveChaser(error,player);
