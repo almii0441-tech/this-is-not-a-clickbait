@@ -3,721 +3,884 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAZE.EXE | Find Your Way Out</title>
+<title>MAZE.EXE // THIS IS NOT A CLICKBAIT</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;600;700&family=Press+Start+2P&display=swap');
 
 :root {
-  --bg:#08090d;
-  --panel:#12141c;
-  --red:#ff3158;
-  --cyan:#49f2e2;
-  --purple:#b16aff;
-  --green:#c5ff55;
-  --white:#f5f3f5;
-  --muted:#858997;
+  --bg: #080808;
+  --panel: #111;
+  --white: #f3f0eb;
+  --red: #ff343f;
+  --blue: #00d9ff;
+  --green: #c8ff00;
+  --purple: #b58cff;
+  --muted: #888;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--white);
-  font-family:'Space Grotesk',sans-serif;
-  min-height:100vh;
-  overflow-x:hidden;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:10;
-  opacity:.10;
-  background:repeating-linear-gradient(
-    transparent 0px,transparent 3px,rgba(255,255,255,.12) 4px
-  );
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-header{
-  padding:17px 6%;border-bottom:1px solid #292b37;
-  display:flex;justify-content:space-between;align-items:center;
-  font:11px 'Space Mono',monospace;letter-spacing:2px;
+
+button {
+  font: inherit;
+  cursor: pointer;
 }
-header strong{color:var(--red)}
-header span{color:var(--muted)}
-main{width:min(900px,94%);margin:35px auto 55px}
-.eyebrow{
-  color:var(--cyan);text-align:center;
-  font:11px 'Space Mono',monospace;letter-spacing:3px;
+
+.topbar {
+  padding: 17px 6%;
+  border-bottom: 1px solid #292929;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #888;
+  font: 10px 'Space Mono', monospace;
+  letter-spacing: 2px;
 }
-h1{
-  text-align:center;font-size:clamp(45px,10vw,82px);
-  line-height:1;margin:12px 0;letter-spacing:-4px;
-  text-shadow:3px 0 var(--red),-3px 0 var(--cyan);
+
+.topbar span:last-child {
+  color: var(--green);
 }
-.subtitle{text-align:center;color:var(--muted);font-size:14px}
-.panel{
-  background:var(--panel);border:1px solid #292c39;
-  border-radius:9px;padding:18px;margin-top:22px;
+
+header {
+  padding: 30px 6% 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
 }
-.section-label{
-  font:10px 'Space Mono',monospace;letter-spacing:2px;
-  color:var(--muted);margin-bottom:12px;
+
+.logo {
+  color: var(--red);
+  font: bold 13px 'Space Mono', monospace;
+  letter-spacing: 2px;
 }
-.characters{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+
+.back {
+  color: #999;
+  font: 10px 'Space Mono', monospace;
+  text-decoration: none;
 }
-.character{
-  border:1px solid #343746;background:#0a0b11;
-  color:white;border-radius:7px;padding:12px;
-  cursor:pointer;text-align:left;transition:.2s;
+
+.back:hover {
+  color: var(--blue);
 }
-.character.selected{border:1px solid var(--cyan);background:#102021}
-.character .face{
-  font-size:35px;display:block;margin-bottom:7px;
+
+main {
+  width: min(950px, 92%);
+  margin: 20px auto 60px;
 }
-.character strong{font:12px 'Space Mono',monospace}
-.character small{display:block;color:var(--muted);margin-top:5px;font-size:11px;line-height:1.5}
-.character .default{color:var(--green);font-size:9px}
-.stats{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
-  margin-bottom:12px;
+
+.heading {
+  text-align: center;
+  margin: 20px 0 35px;
 }
-.stat{
-  background:#090a10;border:1px solid #292c39;
-  border-radius:5px;padding:10px;text-align:center;
+
+.eyebrow {
+  color: var(--blue);
+  font: 10px 'Space Mono', monospace;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
 }
-.stat span{
-  display:block;font:9px 'Space Mono',monospace;
-  color:var(--muted);margin-bottom:5px;
+
+h1 {
+  font: clamp(34px, 7vw, 66px) 'Press Start 2P', monospace;
+  color: var(--white);
+  line-height: 1.5;
+  text-shadow: 4px 0 var(--red), -3px 0 var(--blue);
 }
-.stat strong{font:17px 'Space Mono',monospace;color:var(--cyan)}
-.stat.danger strong{color:var(--red)}
-.game-status{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:10px;margin:12px 0;
+
+.heading p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 15px;
 }
-#message{
-  color:var(--green);font:11px 'Space Mono',monospace;
-  min-height:18px;
+
+.game-shell {
+  border: 1px solid #333;
+  background: var(--panel);
+  padding: 20px;
+  position: relative;
 }
-#characterName{
-  font:10px 'Space Mono',monospace;color:var(--purple);
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
 }
-.canvas-wrap{
-  background:#06070b;border:1px solid #343746;
-  padding:8px;border-radius:6px;position:relative;
+
+.stat {
+  background: #080808;
+  border: 1px solid #292929;
+  padding: 12px;
+  text-align: center;
 }
-canvas{
-  width:100%;display:block;image-rendering:pixelated;
-  touch-action:none;
+
+.stat small {
+  display: block;
+  color: #777;
+  font: 9px 'Space Mono', monospace;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
 }
-.controls{
-  display:grid;grid-template-columns:repeat(3,58px);
-  grid-template-rows:repeat(2,48px);gap:6px;
-  justify-content:center;margin:17px auto 5px;
+
+.stat strong {
+  font: bold 17px 'Space Mono', monospace;
+  color: var(--green);
 }
-.controls button{
-  background:#202330;border:1px solid #44485a;
-  color:white;border-radius:7px;font-size:20px;
-  touch-action:none;
+
+.game-area {
+  position: relative;
+  width: 100%;
+  background: #050505;
+  border: 1px solid #444;
+  overflow: hidden;
 }
-.controls button:active{background:#45305e}
-#up{grid-column:2;grid-row:1}
-#left{grid-column:1;grid-row:2}
-#down{grid-column:2;grid-row:2}
-#right{grid-column:3;grid-row:2}
-.actions{
-  display:flex;justify-content:center;flex-wrap:wrap;gap:10px;
-  margin-top:16px;
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
 }
-button.primary,.actions button{
-  border:0;border-radius:5px;padding:12px 18px;
-  background:var(--red);color:white;
-  font:11px 'Space Mono',monospace;cursor:pointer;
+
+.character-panel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #090909;
+  border: 1px solid #292929;
+  padding: 15px;
+  margin-top: 15px;
 }
-button.secondary{
-  background:#252735!important;border:1px solid #414455!important;
+
+.avatar {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #181818;
+  border: 1px solid var(--purple);
+  font-size: 32px;
 }
-button:disabled{opacity:.4;cursor:not-allowed}
-.overlay{
-  position:absolute;inset:8px;background:rgba(5,6,11,.94);
-  display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:20px;z-index:2;
+
+.character-info small {
+  display: block;
+  color: var(--purple);
+  font: 9px 'Space Mono', monospace;
+  margin-bottom: 6px;
 }
-.overlay-content{max-width:420px}
-.overlay h2{
-  font-size:clamp(28px,6vw,45px);color:var(--red);
-  margin:8px 0;text-shadow:2px 0 var(--cyan);
+
+.character-info p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #bbb;
 }
-.overlay p{font-size:13px;line-height:1.7;color:#c3c4ce}
-.overlay .small{
-  font:10px 'Space Mono',monospace;color:var(--cyan);
-  letter-spacing:2px;
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(3, 58px);
+  justify-content: center;
+  gap: 7px;
+  margin: 22px auto 10px;
 }
-#overlay{display:flex}
-.hidden{display:none!important}
-.legend{
-  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;
-  color:var(--muted);font:10px 'Space Mono',monospace;
-  margin-top:13px;
+
+.controls button {
+  height: 52px;
+  background: #1a1a1a;
+  color: var(--blue);
+  border: 1px solid #444;
+  font-size: 21px;
+  border-radius: 4px;
+  touch-action: manipulation;
+  user-select: none;
 }
-.legend span{color:var(--cyan)}
-footer{
-  text-align:center;color:#626572;font:10px 'Space Mono',monospace;
-  padding:20px;border-top:1px solid #242630;
+
+.controls button:active {
+  background: #303030;
+  border-color: var(--blue);
 }
-@media(max-width:500px){
-  header{padding:14px 4%;font-size:9px}
-  main{margin-top:25px}
-  .panel{padding:12px}
-  .stats{gap:5px}
-  .stat{padding:8px 3px}
-  .stat strong{font-size:14px}
-  .stat span{font-size:8px}
+
+.controls .empty {
+  visibility: hidden;
+}
+
+.help {
+  color: #777;
+  text-align: center;
+  font: 9px 'Space Mono', monospace;
+  line-height: 1.8;
+  margin-top: 12px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: rgba(5,5,5,.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.overlay-content {
+  width: min(460px, 100%);
+}
+
+.overlay-tag {
+  color: var(--green);
+  font: 10px 'Space Mono', monospace;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.overlay h2 {
+  font: clamp(21px, 4vw, 32px) 'Press Start 2P', monospace;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.overlay p {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.overlay button {
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 15px 23px;
+  font: bold 11px 'Space Mono', monospace;
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.overlay button:hover {
+  background: var(--blue);
+  color: #080808;
+}
+
+.character-select {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.character-choice {
+  background: #151515;
+  color: white;
+  border: 1px solid #444;
+  padding: 13px;
+  min-width: 125px;
+}
+
+.character-choice.selected {
+  border: 2px solid var(--purple);
+  background: #24202d;
+}
+
+.character-choice span {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 9px;
+}
+
+.character-choice small {
+  font: 9px 'Space Mono', monospace;
+}
+
+footer {
+  border-top: 1px solid #292929;
+  padding: 25px 6%;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font: 9px 'Space Mono', monospace;
+  letter-spacing: 1px;
+}
+
+@media(max-width:600px) {
+  .game-shell {
+    padding: 10px;
+  }
+
+  .hud {
+    gap: 5px;
+  }
+
+  .stat {
+    padding: 9px 3px;
+  }
+
+  .stat small {
+    font-size: 8px;
+  }
+
+  .stat strong {
+    font-size: 13px;
+  }
+
+  .character-panel {
+    padding: 10px;
+  }
+
+  .controls button {
+    height: 48px;
+  }
+
+  .topbar {
+    font-size: 8px;
+  }
 }
 </style>
 </head>
+
 <body>
 
+<div class="topbar">
+  <span>INDEPENDENT DIGITAL PUBLICATION</span>
+  <span>GAME 004 / INTERACTIVE ZONE</span>
+  <span>STATUS: QUESTIONABLE</span>
+</div>
+
 <header>
-  <strong>THIS IS NOT A CLICKBAIT</strong>
-  <span>ARCADE // 004</span>
+  <a class="logo" href="index.html">TINAC / 001</a>
+  <a class="back" href="index.html">← BACK TO MAGAZINE</a>
 </header>
 
 <main>
-  <div class="eyebrow">SYSTEM ERROR // EXIT NOT FOUND</div>
-  <h1>MAZE.EXE</h1>
-  <p class="subtitle">Getting lost is easy. Getting out is another matter.</p>
 
-  <section class="panel">
-    <div class="section-label">// CHOOSE YOUR PROBLEM</div>
-    <div class="characters">
-      <button class="character selected" id="crumbChoice">
-        <span class="face">📺</span>
-        <strong>CRUMB</strong>
-        <small>The overconfident television creature. Easily distracted. Dramatic about walls.</small>
-        <span class="default">★ DEFAULT CHARACTER</span>
-      </button>
-      <button class="character" id="windowsChoice">
-        <span class="face">🪟</span>
-        <strong>WINDOWS.EXE</strong>
-        <small>A sarcastic walking popup. Permanently one inconvenience away from NOT RESPONDING.</small>
-      </button>
-    </div>
+  <section class="heading">
+    <p class="eyebrow">SYSTEM 04 // NAVIGATION FAILURE</p>
+    <h1>MAZE.EXE</h1>
+    <p>Somewhere between lost and absolutely not supposed to be here.</p>
   </section>
 
-  <section class="panel">
-    <div class="stats">
-      <div class="stat"><span>LEVEL</span><strong id="level">01 / 03</strong></div>
-      <div class="stat"><span>TIME LEFT</span><strong id="timer">60</strong></div>
-      <div class="stat"><span>DATA</span><strong id="data">0 / 3</strong></div>
-      <div class="stat"><span>SCORE</span><strong id="score">000</strong></div>
-    </div>
+  <section class="game-shell">
 
-    <div class="game-status">
-      <span id="characterName">CRUMB // NORMAL</span>
-      <span id="message">Waiting for player...</span>
-    </div>
-
-    <div class="canvas-wrap">
-      <canvas id="maze" width="520" height="520"></canvas>
-
-      <div class="overlay" id="overlay">
-        <div class="overlay-content">
-          <div class="small" id="overlayTag">WELCOME, UNFORTUNATE USER</div>
-          <h2 id="overlayTitle">MAZE.EXE</h2>
-          <p id="overlayText">
-            Your character has entered a maze.<br>
-            Your character has no idea what it is doing.<br><br>
-            Collect 3 data fragments and find the exit.<br>
-            Try not to embarrass yourself.
-          </p>
-          <button class="primary" id="startButton">START THE DISASTER</button>
-        </div>
+    <div class="hud">
+      <div class="stat">
+        <small>LEVEL</small>
+        <strong id="level">01 / 03</strong>
+      </div>
+      <div class="stat">
+        <small>FRAGMENTS</small>
+        <strong id="fragments">0 / 3</strong>
+      </div>
+      <div class="stat">
+        <small>SCORE</small>
+        <strong id="score">000</strong>
       </div>
     </div>
 
-    <div class="legend">
-      <div><span>■</span> WALL</div>
-      <div><span>◆</span> DATA FRAGMENT</div>
-      <div><span>EXIT</span> FIND THE EXIT</div>
+    <div class="game-area">
+
+      <canvas id="mazeCanvas" width="600" height="600"></canvas>
+
+      <div class="overlay" id="overlay">
+        <div class="overlay-content">
+
+          <div class="overlay-tag" id="overlayTag">
+            SYSTEM STATUS // OFFLINE
+          </div>
+
+          <h2 id="overlayTitle">WELCOME TO THE MAZE.</h2>
+
+          <p id="overlayText">
+            Collect all three digital fragments.
+            Find the exit. Try not to become part of the furniture.
+          </p>
+
+          <div class="character-select">
+            <button class="character-choice selected" id="crumbChoice"
+              type="button" onclick="chooseCharacter('crumb')">
+              <span>👾</span>
+              <small>CRUMB</small>
+            </button>
+
+            <button class="character-choice" id="windowsChoice"
+              type="button" onclick="chooseCharacter('windows')">
+              <span>🖥️</span>
+              <small>WINDOWS.EXE</small>
+            </button>
+          </div>
+
+          <button id="startButton" type="button">START GAME ↗</button>
+
+        </div>
+      </div>
+
     </div>
 
-    <div class="controls" aria-label="Movement controls">
-      <button id="up" aria-label="Move up">↑</button>
-      <button id="left" aria-label="Move left">←</button>
-      <button id="down" aria-label="Move down">↓</button>
-      <button id="right" aria-label="Move right">→</button>
+    <div class="character-panel">
+      <div class="avatar" id="avatar">👾</div>
+      <div class="character-info">
+        <small id="characterName">CRUMB // CURRENT STATUS</small>
+        <p id="dialogue">I have absolutely no idea where we are.</p>
+      </div>
     </div>
 
-    <div class="actions">
-      <button class="secondary" id="restartButton">RESTART LEVEL</button>
-      <button class="secondary" id="soundButton">SOUND: OFF</button>
-    </div>
-  </section>
+    <div class="controls">
+      <button class="empty" type="button" tabindex="-1"> </button>
+      <button type="button" data-direction="up" aria-label="Move up">↑</button>
+      <button class="empty" type="button" tabindex="-1"> </button>
 
-  <section class="panel">
-    <div class="section-label">// CHARACTER DIAGNOSTICS</div>
-    <p id="personality" style="font-size:13px;line-height:1.8;color:#c1c2ce;margin:0">
-      CRUMB: "I know exactly where I'm going." He does not.
+      <button type="button" data-direction="left" aria-label="Move left">←</button>
+      <button type="button" data-direction="down" aria-label="Move down">↓</button>
+      <button type="button" data-direction="right" aria-label="Move right">→</button>
+    </div>
+
+    <p class="help">
+      KEYBOARD: ARROW KEYS / WASD<br>
+      MOBILE: USE THE DIRECTION BUTTONS
     </p>
+
   </section>
+
 </main>
 
 <footer>
-  HUMANITY.EXE // MAZE.EXE // STILL RUNNING, SOMEHOW
+  <span>MAZE.EXE // VERSION 1.0</span>
+  <span>HUMANITY.EXE / STILL RUNNING</span>
 </footer>
 
 <script>
-const canvas = document.getElementById("maze");
-const ctx = canvas.getContext("2d");
+"use strict";
+
+/* ELEMENTS */
 
 const $ = id => document.getElementById(id);
 
-const settings = [
-  {size:11,time:65},
-  {size:15,time:85},
-  {size:19,time:110}
-];
+const canvas = $("mazeCanvas");
+const ctx = canvas.getContext("2d");
 
-let levelIndex=0;
-let maze=[],size=11;
-let player={x:1,y:1};
-let exit={x:9,y:9};
-let fragments=[];
-let collected=0;
-let score=0;
-let timeLeft=65;
-let playing=false;
-let character="crumb";
-let expression="normal";
-let messageTimer=0;
-let lastMove=0;
-let soundOn=false;
-let audioContext=null;
-let gameTimer=null;
-let animationFrame=null;
-let wallBump=0;
-let steps=0;
-let mazeSeed=0;
+const TILE = 40;
+const SIZE = 15;
 
-const messages={
-  crumb:{
-    normal:[
-      "I know exactly where I'm going.",
-      "This is probably fine.",
-      "A very professional adventure."
-    ],
-    happy:[
-      "SHINY THING. MINE.",
-      "I have collected a rectangle. Excellent.",
-      "I am basically a genius."
-    ],
-    angry:[
-      "WHO PUT THAT WALL THERE?",
-      "The wall started it.",
-      "I would like to speak to the architect."
-    ],
-    scared:[
-      "I suddenly miss the outside.",
-      "Is that wall getting closer?",
-      "I have made a terrible career choice."
-    ],
-    win:[
-      "I MEANT TO DO THAT.",
-      "Somebody give me a trophy.",
-      "I am accepting congratulations."
-    ],
-    lose:[
-      "I blame the maze.",
-      "This was a very unfair rectangle.",
-      "Let's never discuss this."
+const characters = {
+  crumb: {
+    name: "CRUMB",
+    emoji: "👾",
+    happy: "😎",
+    sad: "🥴",
+    lines: [
+      "I have absolutely no idea where we are.",
+      "Was that a wall? I blame the architecture.",
+      "A fragment! Something useful finally.",
+      "I am beginning to question our life choices.",
+      "The exit. A concept I deeply support."
     ]
   },
-  windows:{
-    normal:[
-      "Loading common sense... failed.",
-      "Please stop touching things.",
-      "I have opened 17 unnecessary tabs."
-    ],
-    happy:[
-      "DATA ACQUIRED. DON'T ASK HOW.",
-      "I am functioning beautifully.",
-      "Achievement unlocked: basic competence."
-    ],
-    angry:[
-      "WALL DETECTED. UNINSTALL WALL.",
-      "This maze needs an update.",
-      "NOT RESPONDING."
-    ],
-    scared:[
-      "Unexpected error. Unexpected everything.",
-      "I would like to close this application.",
-      "WHY IS THE EXIT SO FAR?"
-    ],
-    win:[
-      "Task completed. Please don't restart me.",
-      "I demand administrative privileges.",
-      "Exit found. Ego restored."
-    ],
-    lose:[
-      "Application has stopped responding.",
-      "Please contact your nearest technician.",
-      "Error 404: dignity not found."
+  windows: {
+    name: "WINDOWS.EXE",
+    emoji: "🖥️",
+    happy: "🤖",
+    sad: "😵",
+    lines: [
+      "Navigation protocol initiated. Confidence unavailable.",
+      "Unexpected wall detected. Naturally.",
+      "Data fragment recovered. Productivity achieved.",
+      "My internal compass is filing a complaint.",
+      "Exit located. Please pretend this was intentional."
     ]
   }
 };
 
-function say(type){
-  const list=messages[character][type];
-  $("message").textContent=list[Math.floor(Math.random()*list.length)];
-  expression=type;
-  $("characterName").textContent=
-    character==="crumb"?"CRUMB // "+type.toUpperCase():
-    "WINDOWS.EXE // "+type.toUpperCase();
-  $("personality").textContent=
-    (character==="crumb"?"CRUMB: ":"WINDOWS.EXE: ")+
-    '"'+$("message").textContent+'"';
-  messageTimer=180;
+let selectedCharacter = "crumb";
+let character = characters.crumb;
+
+let maze = [];
+let player = {x:1,y:1};
+let exit = {x:13,y:13};
+let fragments = [];
+let collected = 0;
+let score = 0;
+let levelIndex = 0;
+let running = false;
+let gameFinished = false;
+
+const levelSettings = [
+  {fragments:3, message:"THE FIRST DISAPPEARANCE"},
+  {fragments:4, message:"THE SYSTEM GETS WORSE"},
+  {fragments:5, message:"THERE IS NO REASONABLE EXIT"}
+];
+
+/* CHARACTER SELECTION */
+
+function chooseCharacter(name) {
+  if (running) return;
+
+  selectedCharacter = name;
+  character = characters[name];
+
+  $("crumbChoice").classList.toggle("selected", name === "crumb");
+  $("windowsChoice").classList.toggle("selected", name === "windows");
+
+  $("avatar").textContent = character.emoji;
+  $("characterName").textContent = character.name + " // CURRENT STATUS";
+  $("dialogue").textContent = character.lines[0];
 }
 
-function beep(freq=500,duration=.07){
-  if(!soundOn)return;
-  try{
-    audioContext=audioContext||new (window.AudioContext||window.webkitAudioContext)();
-    const osc=audioContext.createOscillator();
-    const gain=audioContext.createGain();
-    osc.frequency.value=freq;
-    osc.type="square";
-    gain.gain.value=.035;
-    osc.connect(gain);gain.connect(audioContext.destination);
-    osc.start();gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+duration);
-    osc.stop(audioContext.currentTime+duration);
-  }catch(e){}
-}
+/* MAZE GENERATION */
 
-function makeMaze(n){
-  size=n;
-  maze=Array.from({length:n},()=>Array.from({length:n},()=>1));
-  const stack=[[1,1]];
-  maze[1][1]=0;
-  const dirs=[[0,-2],[0,2],[-2,0],[2,0]];
+function generateMaze() {
+  maze = Array.from({length:SIZE}, () => Array(SIZE).fill(1));
 
-  while(stack.length){
-    const [x,y]=stack[stack.length-1];
-    const options=dirs
-      .map(([dx,dy])=>[x+dx,y+dy,dx,dy])
-      .filter(([nx,ny])=>nx>0&&ny>0&&nx<n-1&&ny<n-1&&maze[ny][nx]===1);
+  function carve(x,y) {
+    maze[y][x] = 0;
 
-    if(!options.length){stack.pop();continue;}
-    const [nx,ny,dx,dy]=options[Math.floor(Math.random()*options.length)];
-    maze[y+dy/2][x+dx/2]=0;
-    maze[ny][nx]=0;
-    stack.push([nx,ny]);
-  }
+    const directions = [
+      [0,-2],[0,2],[-2,0],[2,0]
+    ].sort(() => Math.random() - 0.5);
 
-  player={x:1,y:1};
-  exit={x:n-2,y:n-2};
-  maze[exit.y][exit.x]=0;
-  fragments=[];
-  collected=0;
+    for (const [dx,dy] of directions) {
+      const nx = x + dx;
+      const ny = y + dy;
 
-  let possible=[];
-  for(let y=1;y<n-1;y++){
-    for(let x=1;x<n-1;x++){
-      if(maze[y][x]===0&&!(x===1&&y===1)&&!(x===exit.x&&y===exit.y)){
-        possible.push({x,y});
+      if (
+        nx > 0 && nx < SIZE-1 &&
+        ny > 0 && ny < SIZE-1 &&
+        maze[ny][nx] === 1
+      ) {
+        maze[y + dy/2][x + dx/2] = 0;
+        carve(nx,ny);
       }
     }
   }
 
-  for(let i=0;i<3&&possible.length;i++){
-    const index=Math.floor(Math.random()*possible.length);
-    fragments.push({...possible.splice(index,1)[0],got:false});
+  carve(1,1);
+
+  /* Ensure the exit is reachable and open. */
+  maze[SIZE-2][SIZE-2] = 0;
+
+  /* Open a route to the exit if needed. */
+  for (let x=SIZE-2; x>1; x--) {
+    maze[SIZE-2][x] = 0;
   }
 
-  draw();
+  for (let y=SIZE-2; y>1; y--) {
+    maze[y][SIZE-2] = 0;
+  }
+
+  player = {x:1,y:1};
+  exit = {x:SIZE-2,y:SIZE-2};
+
+  createFragments(levelSettings[levelIndex].fragments);
 }
 
-function cellSize(){return canvas.width/size}
+function createFragments(count) {
+  fragments = [];
+  collected = 0;
 
-function roundedRect(x,y,w,h,r,color){
-  ctx.fillStyle=color;
-  ctx.beginPath();
-  ctx.roundRect(x,y,w,h,r);
-  ctx.fill();
-}
+  const available = [];
 
-function drawMaze(){
-  const t=cellSize();
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="#07080d";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  for(let y=0;y<size;y++){
-    for(let x=0;x<size;x++){
-      const px=x*t,py=y*t;
-      if(maze[y][x]===1){
-        ctx.fillStyle=(x+y)%2===0?"#29203e":"#201b32";
-        ctx.fillRect(px+1,py+1,t-2,t-2);
-        ctx.fillStyle="rgba(177,106,255,.12)";
-        ctx.fillRect(px+2,py+2,t-4,2);
-      }else{
-        ctx.fillStyle="#0c1119";
-        ctx.fillRect(px,py,t,t);
-        ctx.strokeStyle="rgba(73,242,226,.045)";
-        ctx.strokeRect(px,py,t,t);
+  for (let y=1; y<SIZE-1; y++) {
+    for (let x=1; x<SIZE-1; x++) {
+      if (
+        maze[y][x] === 0 &&
+        !(x === 1 && y === 1) &&
+        !(x === exit.x && y === exit.y)
+      ) {
+        available.push({x,y});
       }
     }
   }
 
-  // Exit
-  const ex=exit.x*t+t/2,ey=exit.y*t+t/2;
-  ctx.fillStyle="#c5ff55";
-  ctx.shadowColor="#c5ff55";ctx.shadowBlur=12;
-  ctx.fillRect(ex-t*.23,ey-t*.23,t*.46,t*.46);
-  ctx.shadowBlur=0;
-  ctx.fillStyle="#111";
-  ctx.font=`bold ${t*.34}px monospace`;
-  ctx.textAlign="center";ctx.textBaseline="middle";
-  ctx.fillText("E",ex,ey);
-
-  // Data fragments
-  fragments.forEach(f=>{
-    if(f.got)return;
-    const x=f.x*t+t/2,y=f.y*t+t/2;
-    ctx.save();
-    ctx.translate(x,y);
-    ctx.rotate(Math.PI/4);
-    ctx.fillStyle="#ff3158";
-    ctx.shadowColor="#ff3158";ctx.shadowBlur=13;
-    ctx.fillRect(-t*.16,-t*.16,t*.32,t*.32);
-    ctx.restore();
-    ctx.shadowBlur=0;
-  });
-}
-
-function drawCrumb(x,y,t){
-  const cx=x*t+t/2,cy=y*t+t/2;
-  const w=t*.78,h=t*.68;
-  ctx.save();
-  ctx.translate(cx,cy);
-
-  // Cable tail
-  ctx.strokeStyle="#49f2e2";ctx.lineWidth=Math.max(2,t*.08);
-  ctx.beginPath();ctx.moveTo(-w*.42,h*.3);
-  ctx.quadraticCurveTo(-w*.9,h*.75,-w*1.05,h*.25);
-  ctx.stroke();
-
-  // Shoes
-  roundedRect(-w*.42,h*.35,w*.42,t*.16,3,"#ff3158");
-  roundedRect(w*.04,h*.35,w*.42,t*.16,3,"#ff3158");
-
-  // TV body
-  roundedRect(-w/2,-h/2,w,h,Math.max(3,t*.09),"#b5a0c9");
-  roundedRect(-w*.42,-h*.40,w*.84,h*.75,3,"#292238");
-  roundedRect(-w*.36,-h*.34,w*.72,h*.63,2,"#080b14");
-
-  // Screen expressions
-  ctx.fillStyle="#f6f0ff";
-  const eyeY=-h*.06;
-  if(expression==="happy"||expression==="win"){
-    ctx.beginPath();
-    ctx.arc(-w*.15,eyeY,t*.12,Math.PI,0);
-    ctx.strokeStyle="#49f2e2";ctx.lineWidth=2;ctx.stroke();
-  }else{
-    ctx.beginPath();
-    ctx.ellipse(-w*.15,eyeY,t*.105,t*.15,0,0,Math.PI*2);
-    ctx.fill();
-    ctx.fillStyle="#111";
-    ctx.fillRect(-w*.17,eyeY-t*.06,t*.04,t*.1);
+  for (let i=available.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [available[i],available[j]] = [available[j],available[i]];
   }
 
-  ctx.strokeStyle="#ff3158";ctx.lineWidth=Math.max(2,t*.07);
-  ctx.beginPath();
-  if(expression==="angry"||expression==="lose"){
-    ctx.moveTo(w*.12,eyeY-t*.09);ctx.lineTo(w*.3,eyeY+t*.05);
-  }else{
-    ctx.moveTo(w*.12,eyeY);ctx.lineTo(w*.3,eyeY);
-  }
-  ctx.stroke();
-
-  ctx.fillStyle="#ff9bd7";
-  if(expression==="scared"){
-    ctx.beginPath();ctx.arc(w*.04,h*.22,t*.07,0,Math.PI*2);ctx.fill();
-  }else{
-    ctx.fillRect(-w*.03,h*.20,w*.12,t*.035);
-  }
-
-  // Crooked crown
-  ctx.fillStyle="#ffc84d";
-  ctx.beginPath();
-  ctx.moveTo(-w*.28,-h*.48);
-  ctx.lineTo(-w*.22,-h*.72);
-  ctx.lineTo(-w*.04,-h*.56);
-  ctx.lineTo(w*.06,-h*.77);
-  ctx.lineTo(w*.19,-h*.54);
-  ctx.lineTo(w*.30,-h*.65);
-  ctx.lineTo(w*.27,-h*.43);
-  ctx.closePath();ctx.fill();
-
-  ctx.restore();
+  fragments = available.slice(0,count).map(point => ({
+    ...point,
+    taken:false
+  }));
 }
 
-function drawWindows(x,y,t){
-  const cx=x*t+t/2,cy=y*t+t/2;
-  const w=t*.80,h=t*.68;
-  ctx.save();ctx.translate(cx,cy);
+/* GAME START */
 
-  // Cursor tail
-  ctx.fillStyle="#fff";
-  ctx.beginPath();
-  ctx.moveTo(-w*.55,h*.20);
-  ctx.lineTo(-w*.35,h*.35);
-  ctx.lineTo(-w*.27,h*.18);
-  ctx.lineTo(-w*.15,h*.38);
-  ctx.lineTo(-w*.03,h*.31);
-  ctx.lineTo(-w*.18,h*.08);
-  ctx.lineTo(-w*.02,h*.02);
-  ctx.closePath();ctx.fill();
-
-  // Noodle legs and shoes
-  ctx.strokeStyle="#c8b4d9";ctx.lineWidth=Math.max(2,t*.07);
-  ctx.beginPath();
-  ctx.moveTo(-w*.20,h*.35);ctx.lineTo(-w*.25,h*.51);
-  ctx.moveTo(w*.2,h*.35);ctx.lineTo(w*.26,h*.51);
-  ctx.stroke();
-  roundedRect(-w*.42,h*.45,w*.32,t*.12,3,"#49f2e2");
-  roundedRect(w*.12,h*.45,w*.32,t*.12,3,"#49f2e2");
-
-  // Window
-  roundedRect(-w/2,-h/2,w,h,3,"#e4cfe7");
-  roundedRect(-w*.48,-h*.48,w*.96,h*.2,2,"#6043ad");
-  ctx.fillStyle="#fff";
-  ctx.font=`bold ${t*.12}px monospace`;
-  ctx.textAlign="center";ctx.textBaseline="middle";
-  ctx.fillText("_  □  X",w*.05,-h*.38);
-
-  // Face
-  ctx.fillStyle="#14101d";
-  ctx.font=`bold ${t*.24}px monospace`;
-  ctx.fillText(expression==="happy"||expression==="win"?"^   X":
-    expression==="angry"?"¬   X":
-    expression==="scared"?"O   X":"O   X",0,h*.02);
-
-  ctx.font=`bold ${t*.19}px monospace`;
-  ctx.fillStyle="#ff3158";
-  ctx.fillText(expression==="scared"?"o":
-    expression==="angry"?"﹏":"w",0,h*.28);
-
-  // Sticky note
-  ctx.fillStyle="#ffe35a";
-  ctx.save();ctx.translate(w*.43,-h*.15);ctx.rotate(.16);
-  ctx.fillRect(-t*.12,-t*.11,t*.25,t*.22);
-  ctx.fillStyle="#181818";
-  ctx.font=`bold ${t*.09}px monospace`;
-  ctx.fillText("?",0,t*.02);
-  ctx.restore();
-
-  ctx.restore();
-}
-
-function drawPlayer(){
-  if(character==="crumb")drawCrumb(player.x,player.y,cellSize());
-  else drawWindows(player.x,player.y,cellSize());
-}
-
-function draw(){
-  drawMaze();
-  drawPlayer();
-}
-
-function updateStats(){
-  $("level").textContent=String(levelIndex+1).padStart(2,"0")+" / 03";
-  $("timer").textContent=timeLeft;
-  $("data").textContent=collected+" / 3";
-  $("score").textContent=String(score).padStart(3,"0");
-  $("timer").style.color=timeLeft<=10?"#ff3158":"#49f2e2";
-}
-
-function startLevel(){
-  clearInterval(gameTimer);
-  const config=settings[levelIndex];
-  timeLeft=config.time;
-  collected=0;
-  steps=0;
-  playing=true;
-  say("normal");
-  makeMaze(config.size);
-  updateStats();
-  $("overlay").classList.add("hidden");
-
-  gameTimer=setInterval(()=>{
-    if(!playing)return;
-    timeLeft--;
-    updateStats();
-    if(timeLeft<=10)say("scared");
-    if(timeLeft<=0)endGame(false);
-  },1000);
-}
-
-function startGame(){
-  levelIndex=0;score=0;
+function startGame() {
+  levelIndex = 0;
+  score = 0;
+  gameFinished = false;
   startLevel();
 }
 
-function move(dx,dy){
-  if(!playing)return;
-  const now=Date.now();
-  if(now-lastMove<95)return;
-  lastMove=now;
+function startLevel() {
+  generateMaze();
+  running = true;
 
-  const nx=player.x+dx,ny=player.y+dy;
-  if(nx<0||ny<0||nx>=size||ny>=size||maze[ny][nx]===1){
-    wallBump=12;
-    say("angry");
-    beep(120,.08);
-    draw();
+  $("level").textContent =
+    String(levelIndex+1).padStart(2,"0") + " / 03";
+
+  $("fragments").textContent =
+    "0 / " + fragments.length;
+
+  $("score").textContent = String(score).padStart(3,"0");
+
+  $("overlay").classList.add("hidden");
+
+  $("avatar").textContent = character.emoji;
+  $("characterName").textContent = character.name + " // LEVEL " + (levelIndex+1);
+  $("dialogue").textContent = levelSettings[levelIndex].message;
+
+  drawMaze();
+}
+
+function finishLevel() {
+  running = false;
+
+  if (levelIndex < 2) {
+    $("overlayTag").textContent = "SYSTEM STATUS // FRAGMENTS RECOVERED";
+    $("overlayTitle").textContent = "LEVEL COMPLETE.";
+    $("overlayText").textContent =
+      "Score: " + score +
+      ". You survived this section. Unfortunately, there is more.";
+
+    $("startButton").textContent = "ENTER NEXT MAZE ↗";
+    $("startButton").onclick = () => {
+      levelIndex++;
+      startLevel();
+      $("startButton").onclick = startGame;
+    };
+
+  } else {
+    gameFinished = true;
+
+    $("overlayTag").textContent = "SYSTEM STATUS // SUCCESS";
+    $("overlayTitle").textContent = "YOU ESCAPED.";
+    $("overlayText").textContent =
+      "All three mazes completed. Final score: " + score +
+      ". Crumb would like to retire. Windows.exe has stopped responding.";
+
+    $("startButton").textContent = "PLAY AGAIN ↗";
+    $("startButton").onclick = startGame;
+  }
+
+  $("avatar").textContent = character.happy;
+  $("dialogue").textContent = character.lines[4];
+
+  $("overlay").classList.remove("hidden");
+}
+
+/* DRAWING */
+
+function drawMaze() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  for (let y=0; y<SIZE; y++) {
+    for (let x=0; x<SIZE; x++) {
+      const px = x*TILE;
+      const py = y*TILE;
+
+      if (maze[y][x] === 1) {
+        ctx.fillStyle = "#24202d";
+        ctx.fillRect(px,py,TILE,TILE);
+
+        ctx.strokeStyle = "#393044";
+        ctx.strokeRect(px+2,py+2,TILE-4,TILE-4);
+
+      } else {
+        ctx.fillStyle = "#0b0b0b";
+        ctx.fillRect(px,py,TILE,TILE);
+      }
+    }
+  }
+
+  /* Exit */
+
+  ctx.fillStyle = collected === fragments.length
+    ? "#c8ff00" : "#444";
+
+  ctx.fillRect(exit.x*TILE+7,exit.y*TILE+7,26,26);
+
+  ctx.fillStyle = "#080808";
+  ctx.font = "bold 17px monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("E",exit.x*TILE+20,exit.y*TILE+21);
+
+  /* Fragments */
+
+  fragments.forEach(fragment => {
+    if (fragment.taken) return;
+
+    ctx.fillStyle = "#00d9ff";
+    ctx.beginPath();
+    ctx.arc(
+      fragment.x*TILE+20,
+      fragment.y*TILE+20,
+      8,
+      0,
+      Math.PI*2
+    );
+    ctx.fill();
+
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(fragment.x*TILE+18,fragment.y*TILE+15,4,10);
+  });
+
+  /* Player */
+
+  const px = player.x*TILE+20;
+  const py = player.y*TILE+20;
+
+  ctx.fillStyle = "#ff343f";
+  ctx.beginPath();
+  ctx.arc(px,py,14,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.fillStyle = "#fff";
+  ctx.beginPath();
+  ctx.arc(px-5,py-3,3,0,Math.PI*2);
+  ctx.arc(px+5,py-3,3,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.fillStyle = "#080808";
+  ctx.fillRect(px-4,py+5,8,3);
+
+  ctx.textAlign = "start";
+  ctx.textBaseline = "alphabetic";
+}
+
+/* MOVEMENT */
+
+function movePlayer(dx,dy) {
+  if (!running || gameFinished) return;
+
+  const nx = player.x + dx;
+  const ny = player.y + dy;
+
+  if (
+    nx < 0 || nx >= SIZE ||
+    ny < 0 || ny >= SIZE ||
+    maze[ny][nx] === 1
+  ) {
+    $("avatar").textContent = character.sad;
+    $("dialogue").textContent = "A wall. Again. This maze is getting personal.";
     return;
   }
 
-  player.x=nx;player.y=ny;steps++;
-  expression="normal";
-  beep(340+Math.random()*160,.04);
+  player.x = nx;
+  player.y = ny;
 
-  const fragment=fragments.find(f=>!f.got&&f.x===nx&&f.y===ny);
-  if(fragment){
-    fragment.got=true;collected++;
-    score+=100;
-    say("happy");beep(800,.12);
-  }
+  checkFragments();
+  checkExit();
 
-  updateStats();
-  draw();
+  drawMaze();
+}
 
-  if(nx===exit.x&&ny===exit.y){
-    if(collected===3){
-      levelComplete();
-    }else{
-      say("scared");
-      $("message").textContent="THE EXIT IS LOCKED. FIND ALL 3 FRAGMENTS.";
+function checkFragments() {
+  fragments.forEach(fragment => {
+    if (
+      !fragment.taken &&
+      fragment.x === player.x &&
+      fragment.y === player.y
+    ) {
+      fragment.taken = true;
+      collected++;
+      score += 100;
+
+      $("fragments").textContent =
+        collected + " / " + fragments.length;
+
+      $("score").textContent = String(score).padStart(3,"0");
+
+      $("avatar").textContent = character.happy;
+      $("dialogue").textContent = character.lines[2];
     }
+  });
+}
+
+function checkExit() {
+  if (player.x !== exit.x || player.y !== exit.y) return;
+
+  if (collected === fragments.length) {
+    score += 200;
+    $("score").textContent = String(score).padStart(3,"0");
+    finishLevel();
+  } else {
+    $("dialogue").textContent =
+      "The exit is locked. Collect every fragment first.";
   }
 }
 
-function levelComplete(){
-  playing=false;clearInterval(gameTimer);
-  score+=timeLeft*5;
-  updateStats();
-  say("win");beep(900,.2);
+/* KEYBOARD CONTROLS */
 
-  if(levelIndex<2){
-    $("overlayTag").textContent="LEVEL "+(levelIndex+1)+" CLEARED";
-    $("overlayTitle").textContent="YOU ESCAPED.";
-    $("overlayText").innerHTML=
-      "You found all the data fragments.<br>"+
-      "Your character is extremely pleased with itself.<br><br>"+
-      "Score: "+score+"<br>Next level: "+(levelIndex+2);
-    $("startButton").textContent="ENTER NEXT MAZE";
-    $("startButton").onclick=()=>{
-      levelIndex++;
-      startLevel();
-      $("startButton").onclick=startGame;
+document.addEventListener("keydown", event => {
+  const keys = {
+    ArrowUp:[0,-1],
+    w:[0,-1],
+    W:[0,-1],
+    ArrowDown:[0,1],
+    s:[0,1],
+    S:[0,1],
+    ArrowLeft:[-1,0],
+    a:[-1,0],
+    A:[-1,0],
+    ArrowRight:[1,0],
+    d:[1,0],
+    D:[1,0]
+  };
+
+  if (keys[event.key]) {
+    event.preventDefault();
+    movePlayer(...keys[event.key]);
+  }
+});
+
+/* MOBILE CONTROLS */
+
+document.querySelectorAll("[data-direction]").forEach(button => {
+  button.addEventListener("pointerdown", event => {
+    event.preventDefault();
+
+    const directions = {
+      up:[0,-1],
+      down:[0,1],
+      left:[-1,0],
+      right:[1,0]
     };
-  }else{
-    $("overlayTag").textContent="SYSTEM STATUS // SUCCESS";
-    $("overla
+
+    movePlayer(...directions[button.dataset.direction]);
+  });
+});
+
+/* INITIAL DISPLAY */
+
+$("startButton").onclick = startGame;
+$("avatar").textContent = character.emoji;
+$("characterName").textContent = character.name + " // CURRENT STATUS";
+$("dialogue").textContent = character.lines[0];
+
+drawMaze();
+
+</script>
+
+</body>
+</html>.
