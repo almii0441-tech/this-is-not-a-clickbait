@@ -1,0 +1,692 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Social Media Is Eavesdropping on Us | TINAC</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#0b0c10;
+  --panel:#12151d;
+  --paper:#f0eee8;
+  --muted:#a3a6b2;
+  --red:#ff4655;
+  --cyan:#00d9ff;
+  --purple:#b58cff;
+  --green:#c8ff45;
+  --line:#30333e;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--paper);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+a {color:inherit;text-decoration:none}
+button {font:inherit}
+::selection {background:var(--cyan);color:#090a0d}
+
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 5%;
+  border-bottom:1px solid var(--line);
+  color:var(--muted);
+  font:10px 'DM Mono',monospace;
+  letter-spacing:1px;
+}
+.status {color:var(--green)}
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 5%;
+  border-bottom:1px solid var(--line);
+}
+.logo {
+  font:500 13px 'DM Mono',monospace;
+  letter-spacing:1px;
+}
+.navlinks {display:flex;gap:24px}
+.navlinks a {
+  color:var(--muted);
+  font:10px 'DM Mono',monospace;
+}
+.navlinks a:hover {color:var(--cyan)}
+
+main {max-width:1100px;margin:auto;padding:0 6%}
+.hero {padding:90px 0 55px}
+.eyebrow,.label,.mono {
+  font:11px 'DM Mono',monospace;
+  letter-spacing:1.5px;
+  color:var(--cyan);
+}
+.hero h1 {
+  max-width:950px;
+  margin:22px 0;
+  font-size:clamp(48px,9vw,105px);
+  line-height:.91;
+  letter-spacing:-5px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.hero h1 span {
+  color:var(--red);
+  text-shadow:4px 0 var(--cyan);
+}
+.subtitle {
+  max-width:600px;
+  color:var(--muted);
+  font:italic clamp(19px,3vw,27px) 'Playfair Display',serif;
+}
+.byline {
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-top:35px;
+  color:var(--muted);
+  font:11px 'DM Mono',monospace;
+}
+.byline strong {color:var(--paper)}
+.hero-image {
+  position:relative;
+  margin-top:45px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:#171b28;
+}
+.hero-image img {
+  display:block;
+  width:100%;
+  max-height:440px;
+  object-fit:cover;
+  opacity:.78;
+  filter:saturate(.8);
+}
+.image-caption {
+  padding:10px 14px;
+  color:var(--muted);
+  font:10px 'DM Mono',monospace;
+  letter-spacing:1px;
+}
+
+.ticker {
+  margin:30px 0;
+  padding:13px 0;
+  overflow:hidden;
+  white-space:nowrap;
+  border-top:1px solid var(--red);
+  border-bottom:1px solid var(--red);
+  color:var(--red);
+  font:11px 'DM Mono',monospace;
+  letter-spacing:2px;
+}
+.ticker span {
+  display:inline-block;
+  animation:scroll 24s linear infinite;
+}
+@keyframes scroll {
+  from {transform:translateX(0)}
+  to {transform:translateX(-50%)}
+}
+
+.intro-note {
+  margin:60px 0 35px;
+  padding:22px 25px;
+  border-left:3px solid var(--purple);
+  background:var(--panel);
+}
+.intro-note p {
+  margin:0;
+  color:#d5d3dc;
+  font:italic 21px/1.5 'Playfair Display',serif;
+}
+.article-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 190px;
+  gap:55px;
+  align-items:start;
+}
+.article-copy {min-width:0}
+.article-copy p {
+  margin:0 0 25px;
+  color:#d0d0d4;
+  font-size:16px;
+  line-height:1.95;
+}
+.article-copy p:first-child::first-letter {
+  float:left;
+  padding:8px 10px 0 0;
+  color:var(--cyan);
+  font:700 58px/.8 'Playfair Display',serif;
+}
+.side-note {
+  position:sticky;
+  top:25px;
+  padding:18px;
+  border:1px solid var(--line);
+  background:var(--panel);
+}
+.side-note .number {
+  color:var(--red);
+  font:30px 'DM Mono',monospace;
+}
+.side-note p {
+  color:var(--muted);
+  font:12px/1.7 'DM Mono',monospace;
+}
+.pullquote {
+  margin:45px 0;
+  padding:25px 0 25px 24px;
+  border-left:3px solid var(--cyan);
+  color:var(--paper);
+  font:italic clamp(22px,4vw,34px)/1.35 'Playfair Display',serif;
+}
+.inline-image {
+  margin:35px 0;
+  border:1px solid var(--line);
+}
+.inline-image img {
+  width:100%;
+  display:block;
+  max-height:330px;
+  object-fit:cover;
+}
+.inline-image figcaption {
+  padding:9px 12px;
+  color:var(--muted);
+  font:10px 'DM Mono',monospace;
+}
+.section-marker {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:45px 0 20px;
+  color:var(--green);
+  font:11px 'DM Mono',monospace;
+  letter-spacing:1px;
+}
+.section-marker:after {
+  content:"";
+  height:1px;
+  background:var(--line);
+  flex:1;
+}
+.end-note {
+  margin:55px 0;
+  padding:30px;
+  background:var(--panel);
+  border:1px solid var(--line);
+}
+.end-note h2 {
+  margin:0 0 12px;
+  font-size:clamp(25px,5vw,42px);
+  text-transform:uppercase;
+}
+.end-note p {
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.phone-section {
+  margin:85px 0 70px;
+  padding:35px;
+  border:1px solid #393746;
+  background:
+    radial-gradient(circle at 50% 15%,#24203b 0,transparent 48%),
+    #101118;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.phone-section:before {
+  content:"INTERACTIVE UNIT // 005";
+  position:absolute;
+  top:15px;left:18px;
+  color:var(--purple);
+  font:10px 'DM Mono',monospace;
+  letter-spacing:1px;
+}
+.phone-section h2 {
+  margin:20px 0 8px;
+  font-size:clamp(27px,5vw,48px);
+  text-transform:uppercase;
+}
+.phone-section .description {
+  max-width:520px;
+  margin:0 auto 25px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+.phone-character {
+  width:165px;
+  height:220px;
+  margin:20px auto 25px;
+  position:relative;
+  border:5px solid #c8c5d5;
+  border-radius:32px;
+  background:linear-gradient(145deg,#7660b8,#292c65 65%,#171c3a);
+  box-shadow:0 0 35px #7c65c855, inset 0 0 20px #ffffff18;
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% {transform:translateY(0) rotate(-2deg)}
+  50% {transform:translateY(-9px) rotate(2deg)}
+}
+.phone-character:before {
+  content:"";
+  position:absolute;
+  top:9px;left:50%;
+  transform:translateX(-50%);
+  width:42px;height:5px;
+  border-radius:10px;
+  background:#171827;
+}
+.phone-eyes {
+  display:flex;
+  justify-content:center;
+  gap:23px;
+  margin-top:66px;
+}
+.eye {
+  width:25px;height:31px;
+  border-radius:50%;
+  background:#fff;
+  position:relative;
+}
+.eye:after {
+  content:"";
+  position:absolute;
+  width:10px;height:13px;
+  border-radius:50%;
+  background:#171827;
+  top:9px;left:9px;
+}
+.phone-mouth {
+  width:29px;height:12px;
+  margin:17px auto;
+  border-bottom:4px solid #ffb4c3;
+  border-radius:50%;
+}
+.phone-cheek {
+  position:absolute;
+  top:115px;
+  width:16px;height:8px;
+  border-radius:50%;
+  background:#ff7d9a88;
+}
+.phone-cheek.left {left:22px}
+.phone-cheek.right {right:22px}
+.phone-arm {
+  position:absolute;
+  top:115px;
+  width:35px;height:9px;
+  border-radius:10px;
+  background:#a99adf;
+}
+.phone-arm.left {left:-31px;transform:rotate(25deg)}
+.phone-arm.right {right:-31px;transform:rotate(-25deg)}
+.phone-leg {
+  position:absolute;
+  bottom:-24px;
+  width:9px;height:25px;
+  border-radius:10px;
+  background:#b8a8ee;
+}
+.phone-leg.left {left:42px}
+.phone-leg.right {right:42px}
+.phone-character.talking {animation:glitch .35s steps(2) 3}
+@keyframes glitch {
+  0% {transform:translate(0) skew(0)}
+  25% {transform:translate(5px,-2px) skew(3deg)}
+  50% {transform:translate(-4px,2px) skew(-3deg)}
+  75% {transform:translate(3px,1px)}
+  100% {transform:translate(0)}
+}
+.phone-character.talking .phone-mouth {
+  width:22px;height:19px;
+  border:3px solid #ffb4c3;
+  background:#311c40;
+}
+.phone-status {
+  max-width:550px;
+  min-height:76px;
+  margin:0 auto 24px;
+  padding:18px;
+  border:1px solid #464257;
+  background:#1a1b29;
+  color:#f4f0ff;
+  font:15px/1.6 'DM Mono',monospace;
+}
+.phone-status small {
+  display:block;
+  margin-bottom:7px;
+  color:var(--cyan);
+  font-size:9px;
+  letter-spacing:1.5px;
+}
+.phone-buttons {
+  max-width:560px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.phone-buttons button,.reset-button {
+  padding:14px 12px;
+  border:1px solid #55516d;
+  background:#1b1b2a;
+  color:var(--paper);
+  cursor:pointer;
+  font:11px 'DM Mono',monospace;
+  transition:.2s;
+}
+.phone-buttons button:hover,.reset-button:hover {
+  background:var(--purple);
+  color:#111;
+  transform:translateY(-2px);
+}
+.phone-final {
+  display:none;
+  max-width:560px;
+  margin:25px auto 0;
+  padding:22px;
+  border:1px solid var(--red);
+  background:#21151d;
+  text-align:left;
+}
+.phone-final.show {display:block;animation:appear .5s ease}
+@keyframes appear {
+  from {opacity:0;transform:translateY(12px)}
+  to {opacity:1;transform:translateY(0)}
+}
+.phone-final h3 {
+  color:var(--red);
+  font:18px 'DM Mono',monospace;
+}
+.phone-final p {
+  color:#ddd;
+  font:13px/1.8 'DM Mono',monospace;
+}
+.reset-button {margin-top:15px}
+
+.footer {
+  padding:35px 6%;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:var(--muted);
+  font:10px 'DM Mono',monospace;
+}
+.footer strong {color:var(--red)}
+
+@media(max-width:760px) {
+  .topbar span:last-child {display:none}
+  .navlinks {gap:12px}
+  .navlinks a {font-size:9px}
+  .hero {padding-top:65px}
+  .hero h1 {letter-spacing:-2px}
+  .article-layout {grid-template-columns:1fr}
+  .side-note {position:static;order:-1}
+  .phone-section {padding:28px 16px}
+  .footer {flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <span>INDEPENDENT DIGITAL PUBLICATION</span>
+  <span class="status">● SYSTEM ONLINE</span>
+  <span>ISSUE 01 / 2026</span>
+</div>
+
+<nav>
+  <a href="../index.html" class="logo">TINAC / 005</a>
+  <div class="navlinks">
+    <a href="../index.html#archive">ARCHIVE</a>
+    <a href="../index.html#arcade">ARCADE</a>
+    <a href="../index.html#about">ABOUT</a>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <p class="eyebrow">TRANSMISSION 005 // DIGITAL CULTURE</p>
+
+  <h1>
+    HOW SOCIAL MEDIA IS
+    <span>EAVESDROPPING</span>
+    ON US
+  </h1>
+
+  <p class="subtitle">Are Our Phones Listening?</p>
+
+  <div class="byline">
+    <span>WRITTEN BY <strong>ADYA MISHRA</strong></span>
+    <span>ISSUE 001 / 2026</span>
+    <span>READING TIME: 5 MIN</span>
+  </div>
+
+  <figure class="hero-image">
+    <img
+      src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1500&q=85"
+      alt="Person using a smartphone"
+    >
+    <figcaption>FIG. 01 // THE DEVICE THAT KNOWS A LITTLE TOO MUCH</figcaption>
+  </figure>
+</header>
+
+<div class="ticker">
+  <span>
+    YOUR FEED KNOWS // YOUR DATA TRAVELS // PRIVACY NOT FOUND //
+    YOUR FEED KNOWS // YOUR DATA TRAVELS // PRIVACY NOT FOUND //
+  </span>
+</div>
+
+<div class="intro-note">
+  <p>
+    "The issue is not whether technology listens to us, but rather,
+    how much of our data is out in the public domain."
+  </p>
+</div>
+
+<div class="article-layout">
+
+<article class="article-copy">
+
+<p>Have you ever said something to your friend about buying a pair of shoes and then continued seeing shoes on your Instagram feed? Have you discussed a vacation spot and then started watching videos about these places on YouTube? There are moments that make us wonder if our phone is listening to us all the time or if social media knows us better than we know ourselves. The truth is, social media has indeed become an all-encompassing and all-powerful entity in the 21st century.</p>
+
+<p>Instagram, Facebook, YouTube, Snapchat, TikTok, and many other social media applications are replete with information about their users. The likes, comments, searches, shares, scrolls, and clicks generate mountains of data telling the platforms what one likes and does not like. Even the videos that one does not watch or the articles one reads without clicking also inform the algorithms of what one is interested in and influence the content that starts showing up. Thus, it becomes increasingly apparent that social media is a spying entity, reading, listening, and watching everything one does online.</p>
+
+<div class="section-marker">01 / THE MICROPHONE QUESTION</div>
+
+<p>It is not that the phone in your pocket is listening to your conversations and feeding them to the algorithms. There may be a possibility that the applications can use your permission to access the microphone on your phone. However, the probability that every social media platform you use has access to your phone’s microphone and reads your chats or listens to your phone calls is highly unlikely. What really happens is that the algorithms guess what one wants to watch, read, or listen to by using the information one digitizes every day, such as location, browser history, cookies, and other data collected from third-party links and websites.</p>
+
+<figure class="inline-image">
+  <img
+    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=85"
+    alt="Digital network and data connections"
+    loading="lazy"
+  >
+  <figcaption>FIG. 02 // THE DATA TRAIL DOES NOT NEED A MICROPHONE</figcaption>
+</figure>
+
+<div class="pullquote">
+  "The algorithms guess what one wants to watch, read, or listen to."
+</div>
+
+<div class="section-marker">02 / THE RECOMMENDATION MACHINE</div>
+
+<p>When one searches for a product, say, a dress on an e-commerce website, the algorithms of social media platforms use the information to advise similar dresses based on what one searched. One can also see many ads that show what one searched on different websites. For example, Facebook and Instagram use the information about the items one searches for or the articles they read to recommend similar content or products. The algorithms power these recommendations, which make the platforms aware of what users are interested in. While one might think these platforms eavesdrop on their conversations, they do not need to. The data generated when one browses online, the location, the photos uploaded, and the friends or family one interacts with all contribute to generating information that the algorithms use to make guesses about the users’ preferences.</p>
+
+<div class="section-marker">03 / PREDICTING YOU</div>
+
+<p>There is a more frightening element to how social media knows us; it can predict who we are. The simple act of following a page or posting a comment is enough for the applications to guess what one is interested in based on the pages one follows. Therefore, it can predict what one would want to watch or read and suggest it to the user. The algorithms use one’s every move on the applications to influence the content that starts showing up. It is also essential to note that the longer one uses the application, the more data it collects, the better it gets at predicting what one may be interested in, and the more ads it can show to the user.</p>
+
+<figure class="inline-image">
+  <img
+    src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=1200&q=85"
+    alt="Social media applications on a phone"
+    loading="lazy"
+  >
+  <figcaption>FIG. 03 // EVERY CLICK ADDS ANOTHER CLUE</figcaption>
+</figure>
+
+<div class="section-marker">04 / THE PRIVACY PROBLEM</div>
+
+<p>There are privacy concerns associated with the extent of information that social media platforms collect about their users. Most applications ask the users to agree to their terms and conditions, which most people do without understanding what they are saying. Some users do not care about their privacy and post photographs that expose their location or sensitive personal information. However, data collection by social media platforms is an issue of concern since it affects everyone, irrespective of whether they value their privacy or not. It is important to note that the personal data of these users is not always safe. Some platforms may use this information for financial or malicious activities, such as selling it to third parties, cyber-espionage, cyber-surveillance, and data mining. The applications’ creators argue that collecting and selling data is necessary to fund the operations since their platforms do not charge the users for using their services. While their argument maybe valid, every individual must have a choice in giving away their data. It is also vital that the government keeps these entities in check.</p>
+
+<div class="pullquote">
+  "Every individual must have a choice in giving away their data."
+</div>
+
+<div class="section-marker">05 / TAKING BACK CONTROL</div>
+
+<p>Users can keep social media platforms in check in several ways. One can visit the settings of the applications and revoke the permissions given to the platforms. For example, one can disable access to the phone’s microphone or location. One can also limit ads or content that the applications recommend. Another way is ensuring that one does not give out sensitive information through the applications. Checking the accounts regularly and removing applications that one does not use is also a good way to protect personal data.</p>
+
+<div class="section-marker">06 / THE ACTUAL PROBLEM</div>
+
+<p>The biggest problem with the way phone listens to us is not that we are being overheard. However, it is that much of our personal data is available online, and it is too easy for social media platforms to access it. One does not have to ask permission to listen to someone, and therefore, social media platforms do not have to listen to what we say to know what we are interested in. Everything one does online generates data that feeds the algorithms of social media platforms, and therefore, one should be wary of what one puts online. The issue is not whether technology listens to us, but rather, how much of our data is out in the public domain, where it can be accessed by third parties.</p>
+
+</article>
+
+<aside class="side-note">
+  <div class="number">005</div>
+  <p>TRANSMISSION STATUS</p>
+  <p>SUBJECT: DIGITAL PRIVACY</p>
+  <p>THREAT LEVEL: QUESTIONABLE</p>
+  <p>MICROPHONE: NOT NECESSARY</p>
+  <p>ALGORITHM: VERY BUSY</p>
+</aside>
+
+</div>
+
+<section class="end-note">
+  <p class="label">END OF TRANSMISSION // BEGIN INTERROGATION</p>
+  <h2>Your phone would like to make a statement.</h2>
+  <p>
+    We asked the device in your pocket to respond to a few allegations.
+    It has requested legal representation. We declined.
+  </p>
+</section>
+
+<!-- PHONE.EXE INTERACTION -->
+
+<section class="phone-section" id="phone">
+  <p class="eyebrow">INTERACTIVE FEATURE // PHONE.EXE</p>
+  <h2>THE PHONE HAS AN ATTITUDE.</h2>
+  <p class="description">
+    Tap a setting. Ask a question. Accuse your phone of something.
+    It has a response for everything. Naturally.
+  </p>
+
+  <div class="phone-character" id="phoneCharacter" aria-label="Cartoon phone character">
+    <div class="phone-eyes">
+      <span class="eye"></span>
+      <span class="eye"></span>
+    </div>
+    <div class="phone-cheek left"></div>
+    <div class="phone-cheek right"></div>
+    <div class="phone-mouth"></div>
+    <div class="phone-arm left"></div>
+    <div class="phone-arm right"></div>
+    <div class="phone-leg left"></div>
+    <div class="phone-leg right"></div>
+  </div>
+
+  <div class="phone-status" aria-live="polite">
+    <small>PHONE.EXE SAYS:</small>
+    <span id="phoneResponse">I'm not listening. I'm literally just sitting here.</span>
+  </div>
+
+  <div class="phone-buttons">
+    <button data-reply="I didn't hear anything. Probably.">🎙 MICROPHONE</button>
+    <button data-reply="Going somewhere without telling me?">📍 LOCATION</button>
+    <button data-reply="We need to talk.">🔒 PRIVACY SETTINGS</button>
+    <button data-reply="Why are you pointing that at me?!">📷 CAMERA</button>
+    <button data-reply="You wanted attention. I delivered.">🔔 NOTIFICATIONS</button>
+    <button data-reply="Wow. After everything we've been through?">🗑 DELETE APP</button>
+    <button data-reply="We agreed never to discuss that.">⌕ SEARCH HISTORY</button>
+    <button data-reply="You didn't read those either, did you?">📄 TERMS & CONDITIONS</button>
+    <button data-reply="I know where you've been. Technically, the router does.">📶 WI-FI</button>
+    <button data-reply="You're making this relationship difficult.">🚫 TURN OFF TRACKING</button>
+  </div>
+
+  <div class="phone-final" id="phoneFinal">
+    <h3>PHONE.EXE // FINAL STATEMENT</h3>
+    <p>I WASN'T LISTENING.</p>
+    <p style="color:#00d9ff;font-size:20px">I WAS PAYING ATTENTION.</p>
+    <p>MICROPHONE ACCESS: NOT REQUIRED.</p>
+    <p>YOUR DIGITAL FOOTPRINT: RATHER IMPRESSIVE.</p>
+    <p>YOUR PRIVACY: LET'S NOT DISCUSS IT.</p>
+  </div>
+
+  <button class="reset-button" id="resetPhone">RESTART INTERROGATION ↻</button>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span>THIS IS NOT A CLICKBAIT. / ISSUE 001</span>
+  <span>TRANSMISSION 005 / <strong>END OF FILE.</strong></span>
+  <a href="../index.html">BACK TO THE ARCHIVE ↗</a>
+</footer>
+
+<script>
+const phone = document.getElementById("phoneCharacter");
+const response = document.getElementById("phoneResponse");
+const finalMessage = document.getElementById("phoneFinal");
+const buttons = document.querySelectorAll(".phone-buttons button");
+const reset = document.getElementById("resetPhone");
+
+let clicks = 0;
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    response.textContent = button.dataset.reply;
+
+    phone.classList.remove("talking");
+    void phone.offsetWidth;
+    phone.classList.add("talking");
+
+    clicks++;
+
+    if (clicks >= 5) {
+      finalMessage.classList.add("show");
+    }
+  });
+});
+
+reset.addEventListener("click", () => {
+  clicks = 0;
+  response.textContent =
+    "I'm not listening. I'm literally just sitting here.";
+  finalMessage.classList.remove("show");
+  phone.classList.remove("talking");
+});
+</script>
+
+</body>
+</html>
