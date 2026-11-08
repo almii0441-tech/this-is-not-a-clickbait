@@ -7,9 +7,9 @@
 <meta name="theme-color" content="#09090d">
 <title>Playlists First, Stories Next | This Is Not a Clickbait</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
+<style>
 :root {
   --bg:#09090d;
   --panel:#151017;
@@ -43,13 +43,15 @@ body::before {
   inset:0;
   pointer-events:none;
   z-index:20;
-  opacity:.12;
+  opacity:.09;
   background:repeating-linear-gradient(
     0deg,transparent 0 3px,rgba(255,255,255,.08) 4px
   );
 }
 
 a { color:inherit; }
+
+/* HEADER */
 
 .site-header {
   max-width:1100px;
@@ -70,21 +72,331 @@ a { color:inherit; }
 }
 
 .site-logo span { color:var(--pink); }
-
 .header-status { color:var(--green); }
 
+/* =================================
+   NAMITHA HERO / EDITORIAL GRID
+================================= */
+
 .article-wrap {
-  width:min(850px,88%);
+  width:min(1000px,90%);
   margin:auto;
   position:relative;
 }
+
+.namitha-hero {
+  min-height:600px;
+  margin:45px 0 65px;
+  padding:55px 6%;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  align-items:center;
+  gap:20px;
+
+  background:
+    radial-gradient(ellipse at 78% 38%,#c83d28 0%,transparent 48%),
+    radial-gradient(ellipse at 10% 100%,#71340f 0%,transparent 48%),
+    linear-gradient(130deg,#261015,#7b281e 60%,#b33a22);
+
+  border:1px solid #b85b39;
+  box-shadow:0 20px 70px #7c261b22;
+}
+
+.namitha-hero::before {
+  content:"004";
+  position:absolute;
+  z-index:-1;
+  right:-15px;
+  bottom:-90px;
+  font:900 clamp(200px,32vw,390px)/1 var(--sans);
+  color:#ffffff08;
+  letter-spacing:-25px;
+}
+
+.namitha-hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:5;
+  pointer-events:none;
+  opacity:.13;
+  background:repeating-linear-gradient(
+    0deg,transparent 0 3px,rgba(255,255,255,.15) 4px
+  );
+}
+
+.hero-copy {
+  position:relative;
+  z-index:6;
+}
+
+.hero-kicker {
+  color:var(--green);
+  font:11px var(--mono);
+  letter-spacing:2px;
+  margin-bottom:35px;
+}
+
+.hero-title {
+  font:700 clamp(48px,8vw,96px)/.92 var(--sans);
+  letter-spacing:-6px;
+  text-transform:uppercase;
+  margin:0;
+  color:var(--white);
+}
+
+.hero-title .glitch-word {
+  color:var(--pink);
+  text-shadow:5px 3px var(--green);
+}
+
+.hero-title .serif-word {
+  color:var(--green);
+  font-family:var(--serif);
+  font-style:italic;
+}
+
+.hero-subtitle {
+  color:#ffd2a2;
+  font:italic clamp(17px,2.5vw,22px) var(--serif);
+  margin:30px 0;
+  max-width:420px;
+  line-height:1.6;
+}
+
+.hero-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  padding-top:20px;
+  border-top:1px solid #ffffff40;
+  color:#ffe3ca;
+  font:10px var(--mono);
+  letter-spacing:1.5px;
+}
+
+.hero-meta .author { color:var(--green); }
+
+.hero-status {
+  display:inline-block;
+  margin-top:35px;
+  padding:10px 13px;
+  border:1px solid #ffdf4d66;
+  color:var(--green);
+  font:9px var(--mono);
+  letter-spacing:2px;
+}
+
+/* CHARACTER */
+
+.hero-character {
+  position:relative;
+  z-index:4;
+  min-height:390px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.character-orbit {
+  position:absolute;
+  width:min(330px,90%);
+  aspect-ratio:1;
+  border:1px dashed #ffdf4d99;
+  border-radius:50%;
+  animation:orbit 22s linear infinite;
+}
+
+.character-orbit::before,
+.character-orbit::after {
+  content:"✦";
+  position:absolute;
+  color:var(--green);
+  font-size:24px;
+}
+
+.character-orbit::before {
+  top:12%;
+  left:15%;
+}
+
+.character-orbit::after {
+  bottom:12%;
+  right:12%;
+}
+
+@keyframes orbit {
+  to { transform:rotate(360deg); }
+}
+
+.character-glow {
+  position:absolute;
+  width:230px;
+  height:230px;
+  background:#ffdf4d33;
+  filter:blur(55px);
+  border-radius:50%;
+}
+
+/* CSS BOOK CREATURE */
+
+.crumb {
+  position:relative;
+  width:190px;
+  height:220px;
+  background:linear-gradient(145deg,#ffe59b,#ffb344 70%,#ed8137);
+  border:5px solid #54261e;
+  border-radius:43% 49% 39% 46%;
+  box-shadow:
+    10px 12px 0 #ed3c52,
+    -6px -5px 0 #ffdf4d,
+    0 20px 55px #35110d66;
+  transform:rotate(-5deg);
+  animation:crumbFloat 3.2s ease-in-out infinite;
+}
+
+@keyframes crumbFloat {
+  0%,100% { transform:translateY(0) rotate(-5deg); }
+  50% { transform:translateY(-15px) rotate(4deg); }
+}
+
+.crumb::before {
+  content:"";
+  position:absolute;
+  width:64px;
+  height:52px;
+  top:-34px;
+  right:18px;
+  background:#ffdf4d;
+  border:4px solid #54261e;
+  border-radius:70% 15% 65% 20%;
+  transform:rotate(30deg);
+}
+
+.crumb::after {
+  content:"";
+  position:absolute;
+  width:65px;
+  height:24px;
+  left:60px;
+  bottom:46px;
+  border-bottom:5px solid #54261e;
+  border-radius:50%;
+}
+
+.crumb-eye {
+  position:absolute;
+  top:88px;
+  width:14px;
+  height:19px;
+  background:#54261e;
+  border-radius:50%;
+}
+
+.crumb-eye.left { left:48px; }
+.crumb-eye.right { right:48px; }
+
+.crumb-cheek {
+  position:absolute;
+  top:118px;
+  width:24px;
+  height:12px;
+  border-radius:50%;
+  background:#f36a60;
+  opacity:.8;
+}
+
+.crumb-cheek.left { left:25px; }
+.crumb-cheek.right { right:25px; }
+
+.crumb-book {
+  position:absolute;
+  right:-39px;
+  top:102px;
+  width:63px;
+  height:76px;
+  z-index:4;
+  background:#ff4c9b;
+  border:4px solid #fff5e8;
+  border-radius:3px 9px 9px 3px;
+  transform:rotate(14deg);
+  box-shadow:5px 5px 0 #54261e;
+}
+
+.crumb-book::before {
+  content:"";
+  position:absolute;
+  top:13px;
+  left:12px;
+  width:29px;
+  height:3px;
+  background:white;
+  box-shadow:0 10px white,0 20px white;
+}
+
+.crumb-foot {
+  position:absolute;
+  bottom:-15px;
+  width:35px;
+  height:20px;
+  background:#e85a3d;
+  border:3px solid #54261e;
+  border-radius:50%;
+}
+
+.crumb-foot.left { left:35px; }
+.crumb-foot.right { right:35px; }
+
+.crumb-label {
+  position:absolute;
+  bottom:-54px;
+  width:100%;
+  text-align:center;
+  color:var(--green);
+  font:10px var(--mono);
+  letter-spacing:2px;
+}
+
+.character-note {
+  position:absolute;
+  top:10%;
+  right:0;
+  color:#ffe5bc;
+  font:9px var(--mono);
+  letter-spacing:1px;
+  transform:rotate(8deg);
+}
+
+.character-note.bottom {
+  top:auto;
+  bottom:5%;
+  right:4%;
+  color:var(--green);
+  transform:rotate(-5deg);
+}
+
+.hero-scroll {
+  position:absolute;
+  bottom:20px;
+  left:6%;
+  color:#ffe0c3;
+  font:9px var(--mono);
+  letter-spacing:2px;
+  z-index:6;
+}
+
+/* ARTICLE INTRO META */
 
 .article-meta {
   display:flex;
   justify-content:space-between;
   gap:15px;
   flex-wrap:wrap;
-  margin-top:65px;
+  margin-top:45px;
   color:var(--blue);
   font:11px var(--mono);
   letter-spacing:1.5px;
@@ -94,7 +406,6 @@ a { color:inherit; }
   font:700 clamp(42px,8vw,86px)/.96 var(--sans);
   letter-spacing:-5px;
   margin:28px 0 20px;
-  max-width:850px;
   text-transform:uppercase;
 }
 
@@ -122,6 +433,8 @@ a { color:inherit; }
 }
 
 .byline strong { color:var(--green); }
+
+/* ARTWORK */
 
 .glitch-art { margin:36px 0; }
 
@@ -183,7 +496,6 @@ a { color:inherit; }
   padding-top:12px;
   color:var(--muted);
   font:10px var(--mono);
-  letter-spacing:.5px;
 }
 
 .glitch-art figcaption span { color:var(--pink); }
@@ -209,19 +521,15 @@ a { color:inherit; }
 }
 
 .book-one { left:13%; top:34%; }
-
 .book-two {
-  left:39%;
-  top:25%;
+  left:39%; top:25%;
   color:var(--green);
   border-color:var(--pink);
   transform:rotate(8deg);
   animation-delay:-1s;
 }
-
 .book-three {
-  right:11%;
-  top:43%;
+  right:11%; top:43%;
   border-color:var(--blue);
   transform:rotate(15deg);
   animation-delay:-2s;
@@ -238,10 +546,8 @@ a { color:inherit; }
   height:240px;
   border:1px dashed var(--green);
   border-radius:50%;
-  animation:orbitSpin 18s linear infinite;
+  animation:orbit 18s linear infinite;
 }
-
-@keyframes orbitSpin { to { transform:rotate(360deg); } }
 
 .art-cross {
   position:absolute;
@@ -256,9 +562,7 @@ a { color:inherit; }
 }
 
 .art-sound {
-  background:
-    radial-gradient(circle at 50%,#87352c,transparent 45%),
-    #160d12;
+  background:radial-gradient(circle at 50%,#87352c,transparent 45%),#160d12;
 }
 
 .sound-disc {
@@ -360,30 +664,24 @@ a { color:inherit; }
 }
 
 .merch-candle {
-  width:65px;
-  height:125px;
-  left:17%;
-  top:30%;
+  width:65px;height:125px;
+  left:17%;top:30%;
   background:#743a29;
   color:var(--green);
   font-size:35px;
 }
 
 .merch-perfume {
-  width:75px;
-  height:115px;
-  left:43%;
-  top:32%;
+  width:75px;height:115px;
+  left:43%;top:32%;
   background:#8a392e;
   border-color:var(--pink);
   font-size:35px;
 }
 
 .merch-book {
-  width:105px;
-  height:135px;
-  right:13%;
-  top:27%;
+  width:105px;height:135px;
+  right:13%;top:27%;
   background:#4c2524;
   border-color:var(--green);
   text-align:center;
@@ -407,6 +705,8 @@ a { color:inherit; }
   50% { transform:translateX(-3px); filter:hue-rotate(30deg); }
   75% { transform:translateX(2px); }
 }
+
+/* ARTICLE BODY */
 
 .article-body {
   max-width:690px;
@@ -432,24 +732,6 @@ a { color:inherit; }
   border-left:3px solid var(--green);
   font:italic 25px/1.5 var(--serif);
   color:var(--white);
-  text-shadow:2px 0 #ffdf4d33;
-}
-
-.article-divider {
-  display:flex;
-  align-items:center;
-  gap:15px;
-  margin:50px 0;
-  color:var(--green);
-  font:10px var(--mono);
-  letter-spacing:2px;
-}
-
-.article-divider::before,.article-divider::after {
-  content:"";
-  height:1px;
-  background:#514039;
-  flex:1;
 }
 
 .article-end {
@@ -460,7 +742,7 @@ a { color:inherit; }
   font:12px/1.8 var(--mono);
 }
 
-/* READER EXPERIENCE */
+/* READER.EXE */
 
 .reader-exe {
   margin:80px 0;
@@ -476,10 +758,8 @@ a { color:inherit; }
 .reader-exe::before {
   content:"";
   position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  height:3px;
+  left:0;top:0;
+  width:100%;height:3px;
   background:linear-gradient(90deg,var(--green),var(--pink),var(--blue));
 }
 
@@ -518,8 +798,6 @@ a { color:inherit; }
   position:relative;
 }
 
-/* CRUMB_004 MASCOT */
-
 .egg {
   width:100px;
   height:112px;
@@ -527,7 +805,7 @@ a { color:inherit; }
   position:relative;
   background:linear-gradient(145deg,#ffdc83,#ff9f42);
   border:3px solid #54261e;
-  border-radius:45% 48% 42% 48% / 45% 55% 42% 48%;
+  border-radius:45% 48% 42% 48%;
   box-shadow:5px 5px 0 var(--red),-4px -3px 0 var(--green);
   animation:eggIdle 2.8s ease-in-out infinite;
 }
@@ -535,26 +813,21 @@ a { color:inherit; }
 .egg::before {
   content:"";
   position:absolute;
-  width:35px;
-  height:35px;
+  width:35px;height:35px;
   border-radius:50%;
-  top:-16px;
-  right:8px;
+  top:-16px;right:8px;
   background:var(--green);
   border:3px solid #54261e;
-  transform:rotate(25deg);
 }
 
 .egg::after {
   content:"";
   position:absolute;
-  width:16px;
-  height:16px;
+  width:16px;height:16px;
   background:var(--pink);
   border:2px solid #54261e;
   border-radius:50%;
-  top:12px;
-  left:-10px;
+  top:12px;left:-10px;
 }
 
 @keyframes eggIdle {
@@ -591,8 +864,7 @@ a { color:inherit; }
 .egg-eye {
   position:absolute;
   top:43px;
-  width:9px;
-  height:12px;
+  width:9px;height:12px;
   background:#54261e;
   border-radius:50%;
 }
@@ -602,10 +874,8 @@ a { color:inherit; }
 
 .egg-mouth {
   position:absolute;
-  width:13px;
-  height:7px;
-  left:41px;
-  top:64px;
+  width:13px;height:7px;
+  left:41px;top:64px;
   border-bottom:3px solid #54261e;
   border-radius:50%;
 }
@@ -619,16 +889,14 @@ a { color:inherit; }
 }
 
 .egg-feet i {
-  width:12px;
-  height:9px;
+  width:12px;height:9px;
   background:#e85a3d;
   border:2px solid #54261e;
 }
 
 .egg-spark {
   position:absolute;
-  top:-20px;
-  right:-12px;
+  top:-20px;right:-12px;
   color:var(--green);
   font-size:23px;
   animation:sparkBlink 1.2s steps(2) infinite;
@@ -657,7 +925,9 @@ a { color:inherit; }
   color:var(--pink);
 }
 
-.egg[data-mood="excited"] { animation:eggBounce .45s ease-in-out 2; }
+.egg[data-mood="excited"] {
+  animation:eggBounce .45s ease-in-out 2;
+}
 
 .egg[data-mood="excited"] .egg-mouth {
   height:13px;
@@ -668,11 +938,12 @@ a { color:inherit; }
 .egg[data-mood="confused"] { transform:rotate(10deg); }
 .egg[data-mood="confused"] .egg-eye.right { height:5px; }
 
-.egg[data-mood="shocked"] { animation:eggShock .3s steps(2) 3; }
+.egg[data-mood="shocked"] {
+  animation:eggShock .3s steps(2) 3;
+}
 
 .egg[data-mood="shocked"] .egg-mouth {
-  width:13px;
-  height:15px;
+  width:13px;height:15px;
   border:2px solid #54261e;
   border-radius:50%;
 }
@@ -689,6 +960,8 @@ a { color:inherit; }
 @keyframes eggShock {
   50% { transform:translateX(7px) rotate(-8deg); }
 }
+
+/* QUIZ CONTROLS */
 
 .stage-indicator {
   display:flex;
@@ -787,7 +1060,11 @@ a { color:inherit; }
   cursor:not-allowed;
 }
 
-.exe-button:hover:not(:disabled) { filter:brightness(1.15); }
+.exe-button:hover:not(:disabled) {
+  filter:brightness(1.15);
+}
+
+/* RECEIPT */
 
 .receipt {
   display:none;
@@ -796,14 +1073,16 @@ a { color:inherit; }
   background:#fff0d9;
   color:#301c17;
   font-family:var(--mono);
-  position:relative;
 }
 
-.receipt.show { display:block; animation:receiptIn .6s ease; }
+.receipt.show {
+  display:block;
+  animation:receiptIn .6s ease;
+}
 
 @keyframes receiptIn {
-  from { opacity:0; transform:translateY(15px); }
-  to { opacity:1; transform:translateY(0); }
+  from { opacity:0;transform:translateY(15px); }
+  to { opacity:1;transform:translateY(0); }
 }
 
 .receipt h3 {
@@ -811,7 +1090,7 @@ a { color:inherit; }
   margin:0 0 5px;
 }
 
-.receipt p { font-size:11px; line-height:1.7; }
+.receipt p { font-size:11px;line-height:1.7; }
 
 .receipt-line {
   display:flex;
@@ -852,6 +1131,8 @@ a { color:inherit; }
   cursor:pointer;
 }
 
+/* FOOTER */
+
 .site-footer {
   margin-top:90px;
   border-top:1px solid #49352f;
@@ -864,20 +1145,49 @@ a { color:inherit; }
 
 .site-footer strong { color:var(--green); }
 
-@media(max-width:600px) {
+/* RESPONSIVE */
+
+@media(max-width:700px) {
+  .namitha-hero {
+    grid-template-columns:1fr;
+    padding:42px 7% 65px;
+    text-align:left;
+    gap:0;
+  }
+
+  .hero-copy { order:1; }
+
+  .hero-character {
+    order:2;
+    min-height:330px;
+    margin-top:15px;
+  }
+
+  .hero-title {
+    font-size:clamp(48px,12vw,76px);
+    letter-spacing:-3px;
+  }
+
+  .hero-kicker { font-size:9px; }
+  .hero-subtitle { margin:22px 0; }
+  .hero-scroll { display:none; }
+
   .article-title { letter-spacing:-2px; }
   .article-meta { margin-top:40px; }
+
   .article-body p { font-size:16px; }
   .art-canvas { min-height:250px; }
-  .egg-row { gap:10px; padding:12px; }
+
+  .egg-row { gap:10px;padding:12px; }
   .egg-stage { width:90px; }
-  .egg { width:75px; height:88px; }
-  .egg-eye { top:34px; width:7px; height:9px; }
+  .egg { width:75px;height:88px; }
+  .egg-eye { top:34px;width:7px;height:9px; }
   .egg-eye.left { left:20px; }
   .egg-eye.right { right:20px; }
-  .egg-mouth { top:51px; left:30px; }
-  .egg-feet { left:17px; gap:18px; }
+  .egg-mouth { top:51px;left:30px; }
+  .egg-feet { left:17px;gap:18px; }
   .egg-message { font-size:11px; }
+
   .reader-exe { padding:19px; }
   .choice-grid { grid-template-columns:1fr; }
   .pullquote { font-size:21px; }
@@ -896,230 +1206,382 @@ a { color:inherit; }
 <body>
 
 <header class="site-header">
-  <a class="site-logo" href="../index.html">THIS IS NOT A <span>CLICKBAIT.</span></a>
+  <a class="site-logo" href="../index.html">
+    THIS IS NOT A <span>CLICKBAIT.</span>
+  </a>
   <span class="header-status">● TRANSMISSION ONLINE</span>
 </header>
 
 <main class="article-wrap">
 
-  <div class="article-meta">
-    <span>TRANSMISSION 004</span>
-    <span>CULTURE.EXE / READING CULTURE</span>
-  </div>
+<!-- =================================
+     NAMITHA HERO
+================================== -->
 
-  <h1 class="article-title">
-    PLAYLISTS FIRST,<br>
-    <span class="accent">STORIES NEXT.</span>
-  </h1>
+<section class="namitha-hero">
 
-  <p class="article-subtitle">The book, the experience, and everything being sold in between.</p>
+  <div class="hero-copy">
 
-  <div class="byline">
-    <span>BY <strong>NAMITHA RAJEEV</strong></span>
-    <span>ARTICLE 004 / AVAILABLE</span>
-  </div>
-
-  <!-- GLITCH ART 001 -->
-
-  <figure class="glitch-art">
-    <div class="art-canvas art-library">
-      <span class="art-index">READING.EXE // 004</span>
-      <div class="art-orbit"></div>
-      <div class="floating-book book-one">STORY</div>
-      <div class="floating-book book-two">FEELING</div>
-      <div class="floating-book book-three">EXPERIENCE</div>
-      <div class="art-cross">✳</div>
-      <span class="art-bottom">THE STORY IS LOADING...</span>
+    <div class="hero-kicker">
+      CULTURE.EXE / READING CULTURE / 004
     </div>
-    <figcaption><span>FIG. 004-A</span> / A story, a soundtrack, and everything that comes with it.</figcaption>
-  </figure>
 
-  <article class="article-body">
+    <h1 class="hero-title">
+      PLAYLISTS<br>
+      FIRST,<br>
+      <span class="glitch-word">STORIES</span><br>
+      <span class="serif-word">NEXT.</span>
+    </h1>
 
-    <p>It began with a playlist.</p>
-
-    <p>‘Maula Mere’ was part of the official playlist for Ana Huang’s King of Gluttony. Its presence inside the book wasn’t accidental. It read less like a mood choice than a calculated one — a way of courting Indian readers specifically, rather than simply scoring a scene. That’s the thing about these playlists: they’re rarely just a bonus. An actual Spotify link, tucked near the acknowledgments, as if the novel wasn’t quite finished without a soundtrack. What looks like a gimmick at first turns out to be a pattern. Sarah J. Maas does it. Colleen Hoover does it. Half the romance shelf now comes with its own audio companion, and some authors have gone further. Taylor Jenkins Reid’s Daisy Jones & The Six produced an actual album for its fictional band, a soundtrack for a group that never existed.</p>
-
-    <p>The implication is hard to miss: readers no longer simply read books. They experience them, and the experience is what is being sold. Books used to be read. Now they are consumed, in the fuller sense of the word: listened to, eaten alongside, worn, displayed and visited.</p>
-
-    <div class="pullquote">“The story is the pitch. The experience is the product.”</div>
-
-    <p>For most of publishing history, a book’s job was simple — contain the words, put an attractive cover on it, send it into the world. The story was the pitch. Marketing stopped at the blurb and, occasionally, a review quote on the back. An author wrote the manuscript and then, largely, stepped away. Publicity was somebody else’s department, and reading was a solitary act: one person, one book, no audience.</p>
-
-    <p>None of that holds quite as true anymore, and the reason is the oldest one in commerce. A book is a single purchase. An experience can be bought again and again, and consumption runs on repeat.</p>
-
-    <p>Attention, not information, is now the limited resource, and a book competes with a feed rather than a bookshelf. A feed rewards what is visual, musical and shareable, which a static block of text cannot be on its own. So the object itself was redesigned. Sprayed edges, hidden art beneath the dust jacket, “BookTok edition” covers made for readers who found the book through a video rather than a shelf. Special editions are sold not as better copies, but as different experiences of the same story.</p>
-
-  </article>
-
-  <!-- GLITCH ART 002 -->
-
-  <figure class="glitch-art">
-    <div class="art-canvas art-sound">
-      <span class="art-index">AUDIO SIGNAL DETECTED</span>
-      <div class="sound-disc"></div>
-      <div class="sound-wave"></div>
-      <div class="sound-wave wave-two"></div>
-      <div class="sound-title">PRESS<br>PLAY<span>_</span></div>
-      <span class="art-bottom">FICTION HAS A SOUNDTRACK NOW</span>
-    </div>
-    <figcaption><span>FIG. 004-B</span> / The soundtrack has entered the reading room.</figcaption>
-  </figure>
-
-  <article class="article-body">
-
-    <p>When the object isn’t enough, the world around it gets stocked. There are official cookbooks for Bridgerton and A Song of Ice and Fire, candles named after specific characters, even a perfume designed to smell like a freshly printed book. Taste and smell, once the things a story could only describe, are now things a story can sell you.</p>
-
-    <p>Social media compounds the effect by turning reading into something to display. A shelf, colour-coded tabs, a carefully cultivated “reading aesthetic” — all of it folds reading into a performed identity rather than a private habit. Since performance wants an audience, reading has become communal : read-a-thons, buddy reads, Discord book clubs, BookTok reactions filmed mid-sob. Reading, once private, is now something people do together, in real time, on camera.</p>
-
-    <p>Authors, meanwhile, have become their own marketing departments. Self-publishing and TikTok put promotion directly into writers’ hands, so elements that once felt like bolted-on extras, like playlists, mood boards and bonus scenes, are now built into how a book is made in the first place.</p>
-
-  </article>
-
-  <!-- GLITCH ART 003 -->
-
-  <figure class="glitch-art">
-    <div class="art-canvas art-edition">
-      <span class="art-index">EDITION_002 // DUPLICATE?</span>
-      <div class="edition-shadow">SAME<br>STORY</div>
-      <div class="edition-book">SAME<br>STORY</div>
-      <div class="edition-stamp">LIMITED<br>EDITION</div>
-      <span class="art-bottom">NEW COVER. NEW PRICE. SAME PLOT.</span>
-    </div>
-    <figcaption><span>FIG. 004-C</span> / Same story. Different edition. New reasons to buy it.</figcaption>
-  </figure>
-
-  <article class="article-body">
-
-    <p>None of this is as new as it feels. Victorian readers waited on street corners for the next serialized chapter of Dickens. Illustrated editions, literary salons, fan letters — the impulse is old. Even place has long been part of the package: pilgrims have walked to Haworth and Jane Austen’s House for generations. What has changed is the scale. Now there are Harry Potter theme parks, hostels where guests sleep in bookshelf-shaped bunks, silent reading parties held in bars. And the experience is built into the book from the start, rather than added on after a story happens to succeed.</p>
-
-    <p>Readers have long described reading as “getting lost in a story” or “travelling the world from home.” Perhaps the playlists and limited-edition covers are simply noise. Or perhaps they are that same old instinct, rebranded for a generation that finds even a thirty-second reel too long.</p>
-
-    <div class="pullquote">“When the experience is the product, it never has to end.”</div>
-
-    <p>That is what consumption looks like here. When the story is the product, a reader’s appetite ends at the last page. When the experience is the product, it never has to.</p>
-
-    <p>The book, it turns out, was never just the book. The industry has simply stopped pretending otherwise.</p>
-
-  </article>
-
-  <!-- GLITCH ART 004 -->
-
-  <figure class="glitch-art">
-    <div class="art-canvas art-merch">
-      <span class="art-index">THE FICTIONAL MERCH DEPARTMENT</span>
-      <div class="merch-object merch-candle">✳</div>
-      <div class="merch-object merch-perfume">E</div>
-      <div class="merch-object merch-book">BOOK<br>WORLD</div>
-      <div class="merch-label">SMELL THE STORY.</div>
-      <span class="art-bottom">NOW AVAILABLE IN UNNECESSARY FORMATS</span>
-    </div>
-    <figcaption><span>FIG. 004-D</span> / Fictional worlds are now available in scented formats.</figcaption>
-  </figure>
-
-  <div class="article-end">
-    END OF TRANSMISSION_004<br>
-    YOU HAVE REACHED THE LAST PAGE.<br>
-    THE EXPERIENCE, HOWEVER, IS STILL LOADING...
-  </div>
-
-  <!-- READER EXPERIENCE BUILDER -->
-
-  <section class="reader-exe" id="reader-exe">
-
-    <span class="exe-label">READER.EXE / EXPERIENCE BUILDER</span>
-    <h2 class="exe-title">So, what kind of reader are you?</h2>
-
-    <p class="exe-intro">
-      You came for a book. We have prepared an unnecessarily elaborate experience.
-      Four steps. Several questionable purchases. One very invested employee.
+    <p class="hero-subtitle">
+      The book, the experience, and everything being sold in between.
     </p>
 
-    <div class="egg-row">
+    <div class="hero-meta">
+      <span class="author">NAMITHA RAJEEV</span>
+      <span>ARTICLE 004</span>
+      <span>BOOK CULTURE</span>
+    </div>
 
-      <div class="egg-stage">
+    <div class="hero-status">
+      ● TRANSMISSION 004 / ONLINE
+    </div>
 
-        <div class="egg" id="egg" data-mood="normal">
-          <div class="egg-glitch egg-glitch-one"></div>
-          <div class="egg-glitch egg-glitch-two"></div>
-          <span class="egg-eye left"></span>
-          <span class="egg-eye right"></span>
-          <span class="egg-mouth"></span>
-          <div class="egg-feet"><i></i><i></i></div>
-          <span class="egg-spark">✦</span>
-        </div>
+  </div>
 
-        <span class="egg-id">CRUMB_004 // BOOK CREATURE</span>
+  <div class="hero-character">
 
-      </div>
+    <div class="character-orbit"></div>
+    <div class="character-glow"></div>
 
-      <div class="egg-message" id="egg-message" aria-live="polite">
-        USER DETECTED. READING HABITS UNDER REVIEW.
-      </div>
+    <span class="character-note">A LITTLE BOOKISH.</span>
+
+    <div class="crumb">
+
+      <span class="crumb-eye left"></span>
+      <span class="crumb-eye right"></span>
+
+      <span class="crumb-cheek left"></span>
+      <span class="crumb-cheek right"></span>
+
+      <span class="crumb-book"></span>
+
+      <span class="crumb-foot left"></span>
+      <span class="crumb-foot right"></span>
+
+      <span class="crumb-label">CRUMB_004</span>
 
     </div>
 
-    <div class="stage-indicator" id="stage-indicator">
-      <span class="stage-dot active"></span>
-      <span class="stage-dot"></span>
-      <span class="stage-dot"></span>
-      <span class="stage-dot"></span>
+    <span class="character-note bottom">
+      READER / COLLECTOR / DAYDREAMER
+    </span>
+
+  </div>
+
+  <div class="hero-scroll">
+    ↓ SCROLL TO ENTER THE STORY
+  </div>
+
+</section>
+
+<!-- ARTICLE INFORMATION -->
+
+<div class="article-meta">
+  <span>TRANSMISSION 004</span>
+  <span>CULTURE.EXE / READING CULTURE</span>
+</div>
+
+<h2 class="article-title">
+  PLAYLISTS FIRST,<br>
+  <span class="accent">STORIES NEXT.</span>
+</h2>
+
+<p class="article-subtitle">
+  The book, the experience, and everything being sold in between.
+</p>
+
+<div class="byline">
+  <span>BY <strong>NAMITHA RAJEEV</strong></span>
+  <span>ARTICLE 004 / AVAILABLE</span>
+</div>
+
+<!-- GLITCH ART 001 -->
+
+<figure class="glitch-art">
+  <div class="art-canvas art-library">
+
+    <span class="art-index">READING.EXE // 004</span>
+
+    <div class="art-orbit"></div>
+
+    <div class="floating-book book-one">STORY</div>
+    <div class="floating-book book-two">FEELING</div>
+    <div class="floating-book book-three">EXPERIENCE</div>
+
+    <div class="art-cross">✳</div>
+
+    <span class="art-bottom">THE STORY IS LOADING...</span>
+
+  </div>
+
+  <figcaption>
+    <span>FIG. 004-A</span> / A story, a soundtrack, and everything that comes with it.
+  </figcaption>
+</figure>
+
+<!-- ARTICLE PART 001 -->
+
+<article class="article-body">
+
+  <p>It began with a playlist.</p>
+
+  <p>‘Maula Mere’ was part of the official playlist for Ana Huang’s King of Gluttony. Its presence inside the book wasn’t accidental. It read less like a mood choice than a calculated one — a way of courting Indian readers specifically, rather than simply scoring a scene. That’s the thing about these playlists: they’re rarely just a bonus. An actual Spotify link, tucked near the acknowledgments, as if the novel wasn’t quite finished without a soundtrack. What looks like a gimmick at first turns out to be a pattern. Sarah J. Maas does it. Colleen Hoover does it. Half the romance shelf now comes with its own audio companion, and some authors have gone further. Taylor Jenkins Reid’s Daisy Jones & The Six produced an actual album for its fictional band, a soundtrack for a group that never existed.</p>
+
+  <p>The implication is hard to miss: readers no longer simply read books. They experience them, and the experience is what is being sold. Books used to be read. Now they are consumed, in the fuller sense of the word: listened to, eaten alongside, worn, displayed and visited.</p>
+
+  <div class="pullquote">
+    “The story is the pitch. The experience is the product.”
+  </div>
+
+  <p>For most of publishing history, a book’s job was simple — contain the words, put an attractive cover on it, send it into the world. The story was the pitch. Marketing stopped at the blurb and, occasionally, a review quote on the back. An author wrote the manuscript and then, largely, stepped away. Publicity was somebody else’s department, and reading was a solitary act: one person, one book, no audience.</p>
+
+  <p>None of that holds quite as true anymore, and the reason is the oldest one in commerce. A book is a single purchase. An experience can be bought again and again, and consumption runs on repeat.</p>
+
+  <p>Attention, not information, is now the limited resource, and a book competes with a feed rather than a bookshelf. A feed rewards what is visual, musical and shareable, which a static block of text cannot be on its own. So the object itself was redesigned. Sprayed edges, hidden art beneath the dust jacket, “BookTok edition” covers made for readers who found the book through a video rather than a shelf. Special editions are sold not as better copies, but as different experiences of the same story.</p>
+
+</article>
+
+<!-- GLITCH ART 002 -->
+
+<figure class="glitch-art">
+  <div class="art-canvas art-sound">
+
+    <span class="art-index">AUDIO SIGNAL DETECTED</span>
+
+    <div class="sound-disc"></div>
+    <div class="sound-wave"></div>
+    <div class="sound-wave wave-two"></div>
+
+    <div class="sound-title">
+      PRESS<br>PLAY<span>_</span>
     </div>
 
-    <div class="stage-number" id="stage-number">STAGE 01 / 04</div>
+    <span class="art-bottom">FICTION HAS A SOUNDTRACK NOW</span>
 
-    <h3 class="stage-heading" id="stage-heading">Identify your reader type.</h3>
+  </div>
 
-    <p class="stage-description" id="stage-description">
-      We need to know what sort of reading experience we're dealing with.
-      This is apparently important.
+  <figcaption>
+    <span>FIG. 004-B</span> / The soundtrack has entered the reading room.
+  </figcaption>
+</figure>
+
+<!-- ARTICLE PART 002 -->
+
+<article class="article-body">
+
+  <p>When the object isn’t enough, the world around it gets stocked. There are official cookbooks for Bridgerton and A Song of Ice and Fire, candles named after specific characters, even a perfume designed to smell like a freshly printed book. Taste and smell, once the things a story could only describe, are now things a story can sell you.</p>
+
+  <p>Social media compounds the effect by turning reading into something to display. A shelf, colour-coded tabs, a carefully cultivated “reading aesthetic” — all of it folds reading into a performed identity rather than a private habit. Since performance wants an audience, reading has become communal : read-a-thons, buddy reads, Discord book clubs, BookTok reactions filmed mid-sob. Reading, once private, is now something people do together, in real time, on camera.</p>
+
+  <p>Authors, meanwhile, have become their own marketing departments. Self-publishing and TikTok put promotion directly into writers’ hands, so elements that once felt like bolted-on extras, like playlists, mood boards and bonus scenes, are now built into how a book is made in the first place.</p>
+
+</article>
+
+<!-- GLITCH ART 003 -->
+
+<figure class="glitch-art">
+  <div class="art-canvas art-edition">
+
+    <span class="art-index">EDITION_002 // DUPLICATE?</span>
+
+    <div class="edition-shadow">SAME<br>STORY</div>
+    <div class="edition-book">SAME<br>STORY</div>
+
+    <div class="edition-stamp">
+      LIMITED<br>EDITION
+    </div>
+
+    <span class="art-bottom">NEW COVER. NEW PRICE. SAME PLOT.</span>
+
+  </div>
+
+  <figcaption>
+    <span>FIG. 004-C</span> / Same story. Different edition. New reasons to buy it.
+  </figcaption>
+</figure>
+
+<!-- ARTICLE PART 003 -->
+
+<article class="article-body">
+
+  <p>None of this is as new as it feels. Victorian readers waited on street corners for the next serialized chapter of Dickens. Illustrated editions, literary salons, fan letters — the impulse is old. Even place has long been part of the package: pilgrims have walked to Haworth and Jane Austen’s House for generations. What has changed is the scale. Now there are Harry Potter theme parks, hostels where guests sleep in bookshelf-shaped bunks, silent reading parties held in bars. And the experience is built into the book from the start, rather than added on after a story happens to succeed.</p>
+
+  <p>Readers have long described reading as “getting lost in a story” or “travelling the world from home.” Perhaps the playlists and limited-edition covers are simply noise. Or perhaps they are that same old instinct, rebranded for a generation that finds even a thirty-second reel too long.</p>
+
+  <div class="pullquote">
+    “When the experience is the product, it never has to end.”
+  </div>
+
+  <p>That is what consumption looks like here. When the story is the product, a reader’s appetite ends at the last page. When the experience is the product, it never has to.</p>
+
+  <p>The book, it turns out, was never just the book. The industry has simply stopped pretending otherwise.</p>
+
+</article>
+
+<!-- GLITCH ART 004 -->
+
+<figure class="glitch-art">
+  <div class="art-canvas art-merch">
+
+    <span class="art-index">THE FICTIONAL MERCH DEPARTMENT</span>
+
+    <div class="merch-object merch-candle">✳</div>
+    <div class="merch-object merch-perfume">E</div>
+    <div class="merch-object merch-book">BOOK<br>WORLD</div>
+
+    <div class="merch-label">SMELL THE STORY.</div>
+
+    <span class="art-bottom">NOW AVAILABLE IN UNNECESSARY FORMATS</span>
+
+  </div>
+
+  <figcaption>
+    <span>FIG. 004-D</span> / Fictional worlds are now available in scented formats.
+  </figcaption>
+</figure>
+
+<div class="article-end">
+  END OF TRANSMISSION_004<br>
+  YOU HAVE REACHED THE LAST PAGE.<br>
+  THE EXPERIENCE, HOWEVER, IS STILL LOADING...
+</div>
+
+<!-- =================================
+     READER.EXE EXPERIENCE BUILDER
+================================== -->
+
+<section class="reader-exe" id="reader-exe">
+
+  <span class="exe-label">READER.EXE / EXPERIENCE BUILDER</span>
+
+  <h2 class="exe-title">So, what kind of reader are you?</h2>
+
+  <p class="exe-intro">
+    You came for a book. We have prepared an unnecessarily elaborate experience.
+    Four steps. Several questionable purchases. One very invested employee.
+  </p>
+
+  <div class="egg-row">
+
+    <div class="egg-stage">
+
+      <div class="egg" id="egg" data-mood="normal">
+
+        <div class="egg-glitch egg-glitch-one"></div>
+        <div class="egg-glitch egg-glitch-two"></div>
+
+        <span class="egg-eye left"></span>
+        <span class="egg-eye right"></span>
+        <span class="egg-mouth"></span>
+
+        <div class="egg-feet"><i></i><i></i></div>
+
+        <span class="egg-spark">✦</span>
+
+      </div>
+
+      <span class="egg-id">CRUMB_004 // BOOK CREATURE</span>
+
+    </div>
+
+    <div class="egg-message" id="egg-message" aria-live="polite">
+      USER DETECTED. READING HABITS UNDER REVIEW.
+    </div>
+
+  </div>
+
+  <div class="stage-indicator" id="stage-indicator">
+    <span class="stage-dot active"></span>
+    <span class="stage-dot"></span>
+    <span class="stage-dot"></span>
+    <span class="stage-dot"></span>
+  </div>
+
+  <div class="stage-number" id="stage-number">STAGE 01 / 04</div>
+
+  <h3 class="stage-heading" id="stage-heading">
+    Identify your reader type.
+  </h3>
+
+  <p class="stage-description" id="stage-description">
+    We need to know what sort of reading experience we're dealing with.
+    This is apparently important.
+  </p>
+
+  <div class="choice-grid" id="choice-grid"></div>
+
+  <div class="exe-controls">
+
+    <button class="exe-button secondary" id="back-button" disabled>
+      ← BACK
+    </button>
+
+    <button class="exe-button" id="next-button" disabled>
+      NEXT →
+    </button>
+
+  </div>
+
+  <div class="receipt" id="receipt">
+
+    <h3>THE READING EXPERIENCE RECEIPT</h3>
+
+    <p>THIS IS NOT A REAL PURCHASE. PLEASE DO NOT CONTACT YOUR BANK.</p>
+
+    <div id="receipt-content"></div>
+
+    <div class="receipt-total">
+      <span>FICTIONAL TOTAL</span>
+      <span id="receipt-total">₹0</span>
+    </div>
+
+    <p class="receipt-note">
+      All prices are fictional. All products are imaginary.
+      Your actual bank account remains blissfully uninvolved.
     </p>
 
-    <div class="choice-grid" id="choice-grid"></div>
+    <div class="receipt-actions">
 
-    <div class="exe-controls">
-      <button class="exe-button secondary" id="back-button" disabled>← BACK</button>
-      <button class="exe-button" id="next-button" disabled>NEXT →</button>
-    </div>
-
-    <div class="receipt" id="receipt">
-
-      <h3>THE READING EXPERIENCE RECEIPT</h3>
-
-      <p>THIS IS NOT A REAL PURCHASE. PLEASE DO NOT CONTACT YOUR BANK.</p>
-
-      <div id="receipt-content"></div>
-
-      <div class="receipt-total">
-        <span>FICTIONAL TOTAL</span>
-        <span id="receipt-total">₹0</span>
-      </div>
-
-      <p class="receipt-note">
-        All prices are fictional. All products are imaginary.
-        Your actual bank account remains blissfully uninvolved.
-      </p>
-
-      <div class="receipt-actions">
-        <button id="copy-receipt">COPY RECEIPT</button>
-        <button id="restart-button">START AGAIN ↻</button>
-      </div>
+      <button id="copy-receipt">COPY RECEIPT</button>
+      <button id="restart-button">START AGAIN ↻</button>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 </main>
 
 <footer class="site-footer">
+
   <strong>THIS IS NOT A CLICKBAIT.</strong><br>
+
   HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.<br>
+
   TRANSMISSION 004 / END OF FILE.
+
 </footer>
 
 <script>
 
+/* =================================
+   READER.EXE
+================================== */
+
 const stages = [
+
   {
     title:"Identify your reader type.",
     description:"We need to know what sort of reading experience we're dealing with. This is apparently important.",
@@ -1134,6 +1596,7 @@ const stages = [
     ],
     message:"A personality assessment. My favourite kind of paperwork."
   },
+
   {
     title:"Choose your reading atmosphere.",
     description:"The story is ready. The surroundings apparently need a production budget.",
@@ -1148,6 +1611,7 @@ const stages = [
     ],
     message:"Atmosphere selected. The production department is thrilled."
   },
+
   {
     title:"Choose your unnecessary extras.",
     description:"You can select more than one. Nobody here is qualified to stop you.",
@@ -1164,6 +1628,7 @@ const stages = [
     ],
     message:"EXTRAS DETECTED. I am opening the merchandise department."
   },
+
   {
     title:"One final thing. The soundtrack.",
     description:"Every experience needs a sound. Even this increasingly expensive one.",
@@ -1178,6 +1643,7 @@ const stages = [
     ],
     message:"Final soundtrack selection. Please hold while I process your identity."
   }
+
 ];
 
 const extras = [
@@ -1209,10 +1675,14 @@ function eggReact(message,mood="normal") {
 }
 
 function updateDots() {
+
   document.querySelectorAll(".stage-dot").forEach((dot,i)=>{
+
     dot.classList.toggle("active",i===currentStage);
     dot.classList.toggle("done",i<currentStage);
+
   });
+
 }
 
 function renderStage() {
@@ -1230,6 +1700,7 @@ function renderStage() {
   stage.choices.forEach((choice,index)=>{
 
     const button = document.createElement("button");
+
     button.type = "button";
     button.className = "choice";
 
@@ -1241,18 +1712,25 @@ function renderStage() {
 
     const title = document.createElement("span");
     title.textContent = choice[0];
+
     button.appendChild(title);
 
     if(choice[1]) {
+
       const small = document.createElement("small");
       small.textContent = choice[1];
+
       button.appendChild(small);
+
     }
 
     if(stage.multiple && choice[2]) {
+
       const extra = document.createElement("small");
       extra.textContent = choice[2];
+
       button.appendChild(extra);
+
     }
 
     button.addEventListener("click",()=>{
@@ -1277,7 +1755,8 @@ function renderStage() {
         selections[currentStage] = index;
 
         eggReact(
-          stage.choices[index][0] + "? Noted. I am filing this under your personality.",
+          stage.choices[index][0] +
+          "? Noted. I am filing this under your personality.",
           "proud"
         );
 
@@ -1313,6 +1792,7 @@ function showStage(index) {
   $("receipt").classList.remove("show");
 
   grid.style.display = "grid";
+
   $("stage-number").style.display = "";
   $("stage-heading").style.display = "";
   $("stage-description").style.display = "";
@@ -1345,6 +1825,7 @@ backButton.addEventListener("click",()=>{
 function generateReceipt() {
 
   grid.style.display = "none";
+
   $("stage-number").style.display = "none";
   $("stage-heading").style.display = "none";
   $("stage-description").style.display = "none";
@@ -1399,6 +1880,7 @@ function generateReceipt() {
     b.textContent = "₹"+item.price;
 
     row.append(a,b);
+
     content.appendChild(row);
 
   });
@@ -1471,11 +1953,36 @@ function receiptText() {
 
 }
 
+/* COPY RECEIPT */
+
 $("copy-receipt").addEventListener("click",async()=>{
 
   try {
 
-    await navigator.clipboard.writeText(receiptText());
+    if(navigator.clipboard && window.isSecureContext) {
+
+      await navigator.clipboard.writeText(receiptText());
+
+    } else {
+
+      const textarea = document.createElement("textarea");
+
+      textarea.value = receiptText();
+
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+
+      document.body.appendChild(textarea);
+
+      textarea.select();
+
+      const copied = document.execCommand("copy");
+
+      textarea.remove();
+
+      if(!copied) throw new Error("Copy unavailable");
+
+    }
 
     eggReact("Receipt copied. Evidence successfully exported.","proud");
 
@@ -1488,6 +1995,8 @@ $("copy-receipt").addEventListener("click",async()=>{
   }
 
 });
+
+/* RESTART */
 
 $("restart-button").addEventListener("click",()=>{
 
@@ -1511,6 +2020,8 @@ $("restart-button").addEventListener("click",()=>{
   });
 
 });
+
+/* START */
 
 renderStage();
 
