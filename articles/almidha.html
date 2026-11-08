@@ -789,5 +789,172 @@ document.querySelectorAll(".reveal").forEach(item => {
 });
 </script>
 
+  
+<section class="personality-loader">
+  <div class="loader-window">
+    <div class="loader-top">
+      <span>PERSONALITY.EXE</span>
+      <span class="loader-status">SYSTEM ACTIVE</span>
+    </div>
+
+    <h2>GENERATING YOUR PERSONALITY...</h2>
+
+    <div class="loader-info">
+      <span id="loader-message">Analysing your music taste...</span>
+      <span id="loader-percent">0%</span>
+    </div>
+
+    <div class="loader-track">
+      <div id="loader-bar"></div>
+    </div>
+
+    <div class="loader-log" id="loader-log">
+      <p>> Initialising personality scan...</p>
+    </div>
+
+    <button id="loader-start">ANALYSE ME ↗</button>
+
+    <div id="loader-result" hidden>
+      <h3>CONGRATULATIONS.</h3>
+      <h2>YOU ARE 100% UNDETERMINED.</h2>
+      <p>After extensive analysis, we have concluded that you are, unfortunately, a person.</p>
+      <strong>THANK YOU FOR WASTING YOUR TIME.</strong>
+      <p>Your next personality update is scheduled for December.</p>
+      <button id="loader-restart">RUN IT AGAIN ↻</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.personality-loader {
+  background: #09090f;
+  color: #f4f0e8;
+  padding: 65px 18px;
+  font-family: monospace;
+}
+.loader-window {
+  max-width: 650px;
+  margin: auto;
+  border: 1px solid #a42bff;
+  padding: 25px;
+  background: #111019;
+  box-shadow: 0 0 25px #a42bff22;
+}
+.loader-top, .loader-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 11px;
+  color: #c5ff57;
+}
+.loader-status { color: #ff477e; }
+.loader-window h2 {
+  font-size: clamp(23px, 5vw, 38px);
+  margin: 30px 0;
+  overflow-wrap: anywhere;
+}
+.loader-track {
+  height: 12px;
+  background: #393344;
+  margin: 14px 0 25px;
+  overflow: hidden;
+}
+#loader-bar {
+  width: 0%;
+  height: 100%;
+  background: #c5ff57;
+  transition: width .3s;
+}
+.loader-log {
+  color: #aaa3b8;
+  font-size: 12px;
+  min-height: 100px;
+  line-height: 1.8;
+}
+.loader-window button {
+  background: #c5ff57;
+  color: #09090f;
+  border: 0;
+  padding: 13px 20px;
+  font-weight: bold;
+  font-family: monospace;
+  cursor: pointer;
+  margin-top: 15px;
+}
+#loader-result {
+  border-top: 1px solid #a42bff;
+  margin-top: 25px;
+  padding-top: 20px;
+}
+#loader-result h3 { color: #c5ff57; }
+#loader-result h2 { color: #ff477e; }
+#loader-result strong { color: #c5ff57; }
+.loader-glitch { animation: loaderGlitch .18s 3; }
+@keyframes loaderGlitch {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(4px); }
+  50% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+</style>
+
+<script>
+(() => {
+  const start = document.getElementById("loader-start");
+  const restart = document.getElementById("loader-restart");
+  const bar = document.getElementById("loader-bar");
+  const percent = document.getElementById("loader-percent");
+  const message = document.getElementById("loader-message");
+  const log = document.getElementById("loader-log");
+  const result = document.getElementById("loader-result");
+  const windowBox = document.querySelector(".loader-window");
+
+  const stages = [
+    [12, "Analysing your top artist...", "Found 86 replays of the same song."],
+    [37, "Examining your playlist...", "Your playlist has requested privacy."],
+    [64, "Calculating emotional attachment...", "Professional help not included."],
+    [89, "Almost understanding you...", "Your top song has filed a complaint."],
+    [99, "Finalising personality...", "PLEASE STOP REFRESHING. WE ARE TRYING."],
+    [100, "PROCESS COMPLETE.", "ERROR 404: PERSONALITY NOT FOUND."]
+  ];
+
+  let running = false;
+
+  async function runScan() {
+    if (running) return;
+    running = true;
+
+    start.hidden = true;
+    result.hidden = true;
+    log.innerHTML = "<p>> Initialising personality scan...</p>";
+    bar.style.width = "0%";
+    percent.textContent = "0%";
+
+    for (const [amount, text, entry] of stages) {
+      await new Promise(resolve => setTimeout(resolve, 950));
+
+      if (amount === 99) {
+        bar.style.width = "3%";
+        percent.textContent = "3%";
+        windowBox.classList.add("loader-glitch");
+        await new Promise(resolve => setTimeout(resolve, 450));
+        windowBox.classList.remove("loader-glitch");
+      }
+
+      bar.style.width = amount + "%";
+      percent.textContent = amount + "%";
+      message.textContent = text;
+      log.innerHTML += `<p>> ${entry}</p>`;
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 800));
+    result.hidden = false;
+    running = false;
+  }
+
+  start.addEventListener("click", runScan);
+  restart.addEventListener("click", runScan);
+})();
+</script>
 </body>
 </html>
