@@ -10,7 +10,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600;1,700&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -41,7 +41,6 @@ body {
 img {max-width:100%;display:block}
 a {color:inherit;text-decoration:none}
 button {font:inherit}
-
 ::selection {background:var(--green);color:var(--black)}
 
 .noise {
@@ -376,8 +375,7 @@ button {font:inherit}
 .glitch-panel {
   margin:90px 0;
   padding:45px 35px;
-  background:
-    linear-gradient(120deg,#20152d,#10101b 60%,#1b1631);
+  background:linear-gradient(120deg,#20152d,#10101b 60%,#1b1631);
   border:1px solid var(--pink);
   box-shadow:9px 9px 0 var(--cyan);
   position:relative;
@@ -476,12 +474,26 @@ button {font:inherit}
 }
 .footer a {color:var(--cyan)}
 
+/* REVEAL ANIMATION - CORRECTED */
 .reveal {
   opacity:0;
   transform:translateY(35px);
   transition:opacity .8s ease,transform .8s ease;
 }
-.reveal.visible {opacity:1;transform:translateY(0)}
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Image loading fallback */
+img {
+  background-color:#171522;
+}
+img.image-error {
+  min-height:180px;
+  object-fit:contain;
+  border:1px solid var(--line);
+}
 
 @media(max-width:800px) {
   .hero {min-height:760px;padding:80px 7% 290px}
@@ -526,6 +538,7 @@ button {font:inherit}
 </head>
 
 <body>
+
 <div class="noise"></div>
 
 <header class="topbar">
@@ -577,11 +590,14 @@ button {font:inherit}
 <div class="ticker">
   <div class="ticker-track">
     YOUR PERSONALITY REPORT IS READY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳
+    YOUR PERSONALITY REPORT IS READY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳
   </div>
 </div>
 
 <figure class="hero-photo">
-  <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85" alt="A person listening to music through headphones">
+  <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85"
+       alt="A person listening to music through headphones"
+       loading="eager">
   <figcaption class="photo-caption mono">01 / THE ANNUAL IDENTITY CEREMONY</figcaption>
 </figure>
 
@@ -592,6 +608,7 @@ button {font:inherit}
 </div>
 
 <main class="article-wrap">
+
 <aside class="sidebar mono">
   <strong>FILE NO. 002</strong>
   <div class="side-rule"></div>
@@ -661,7 +678,9 @@ button {font:inherit}
 <p>A lot of what we listen to, nobody went looking for. Either it was just there or it found us. Netflix’s own engineers said their recommendations influence the choice for about 80% of the hours people stream. Influence, not control. Fine, but that means a lot of your “top playlist” was handed to you before you picked it.</p>
 
 <figure class="visual reveal">
-  <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1500&q=85" alt="Music studio equipment and instruments">
+  <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1500&q=85"
+       alt="Music studio equipment and instruments"
+       loading="lazy">
   <figcaption>THE SONG WAS THERE BEFORE YOU WENT LOOKING FOR IT.</figcaption>
 </figure>
 
@@ -724,7 +743,9 @@ button {font:inherit}
 <div class="section-marker mono"><span>04 /</span> THE THINGS THAT NEVER REACHED YOU</div>
 
 <figure class="visual reveal">
-  <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1500&q=85" alt="Books waiting to be discovered">
+  <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1500&q=85"
+       alt="Books waiting to be discovered"
+       loading="lazy">
   <figcaption>AN ENTIRE WORLD OF THINGS YOU HAVEN'T ENCOUNTERED.</figcaption>
 </figure>
 
@@ -772,11 +793,13 @@ button {font:inherit}
   <span>THIS IS NOT A CLICKBAIT © 2026</span>
   <span>CREATED BY ALMIDHA.M.A</span>
   <a href="#">BACK TO TOP ↑</a>
-  
 </footer>
 
+
 <!-- PERSONALITY.EXE: HUMAN CLASSIFICATION EXPERIMENT -->
+
 <section id="personality-exe">
+
 <style>
 #personality-exe {
   --pe-bg:#101018;
@@ -798,136 +821,204 @@ button {font:inherit}
 }
 #personality-exe * {box-sizing:border-box}
 #personality-exe button,
-#personality-exe input {
-  font:inherit;
-}
+#personality-exe input {font:inherit}
+
 #personality-exe .pe-top {
-  display:flex;justify-content:space-between;gap:10px;
-  flex-wrap:wrap;color:var(--pe-green);
-  font-size:10px;letter-spacing:1.5px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  color:var(--pe-green);
+  font-size:10px;
+  letter-spacing:1.5px;
 }
 #personality-exe .pe-title {
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(27px,6vw,45px);
-  line-height:1.05;margin:22px 0 8px;
+  line-height:1.05;
+  margin:22px 0 8px;
   letter-spacing:-1.5px;
 }
 #personality-exe .pe-sub {
-  color:#aaa5b5;font-size:12px;line-height:1.8;
+  color:#aaa5b5;
+  font-size:12px;
+  line-height:1.8;
 }
 #personality-exe .pe-screen {
   background:var(--pe-panel);
   border:1px solid #393443;
-  border-radius:9px;padding:17px;margin-top:20px;
+  border-radius:9px;
+  padding:17px;
+  margin-top:20px;
 }
 #personality-exe .pe-status {
-  color:var(--pe-green);font-size:10px;
-  letter-spacing:1px;margin-bottom:12px;
+  color:var(--pe-green);
+  font-size:10px;
+  letter-spacing:1px;
+  margin-bottom:12px;
 }
 #personality-exe .pe-characters {
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:8px;margin:18px 0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:18px 0;
 }
 #personality-exe .pe-character {
-  text-align:center;background:#22212d;
-  border:1px solid #393443;border-radius:8px;
-  padding:10px 4px;min-width:0;
+  text-align:center;
+  background:#22212d;
+  border:1px solid #393443;
+  border-radius:8px;
+  padding:10px 4px;
+  min-width:0;
 }
 #personality-exe .pe-sprite {
-  font-family:monospace;font-size:29px;
-  display:block;line-height:1.5;
+  font-family:monospace;
+  font-size:29px;
+  display:block;
+  line-height:1.5;
   image-rendering:pixelated;
   animation:pe-bob 1.8s steps(2,end) infinite;
 }
 #personality-exe .pe-character:nth-child(2) .pe-sprite {animation-delay:.3s}
 #personality-exe .pe-character:nth-child(3) .pe-sprite {animation-delay:.6s}
 #personality-exe .pe-character:nth-child(4) .pe-sprite {animation-delay:.9s}
+
 @keyframes pe-bob {
   0%,100% {transform:translateY(0)}
   50% {transform:translateY(-4px)}
 }
 #personality-exe .pe-character strong {
-  display:block;font-size:9px;margin-top:5px;
+  display:block;
+  font-size:9px;
+  margin-top:5px;
   color:var(--pe-green);
 }
 #personality-exe .pe-character small {
-  display:block;font-size:8px;color:#aaa5b5;
-  margin-top:4px;line-height:1.4;
+  display:block;
+  font-size:8px;
+  color:#aaa5b5;
+  margin-top:4px;
+  line-height:1.4;
 }
 #personality-exe .pe-dialogue {
-  background:#101018;border-left:3px solid var(--pe-pink);
-  padding:12px;font-size:11px;line-height:1.8;
-  min-height:56px;margin:12px 0;
+  background:#101018;
+  border-left:3px solid var(--pe-pink);
+  padding:12px;
+  font-size:11px;
+  line-height:1.8;
+  min-height:56px;
+  margin:12px 0;
 }
 #personality-exe .pe-dialogue b {color:var(--pe-pink)}
 #personality-exe .pe-question {
   font-family:'Space Grotesk',sans-serif;
-  font-size:19px;line-height:1.4;margin:10px 0 15px;
+  font-size:19px;
+  line-height:1.4;
+  margin:10px 0 15px;
 }
 #personality-exe .pe-options {
-  display:grid;gap:8px;
+  display:grid;
+  gap:8px;
 }
 #personality-exe .pe-btn {
-  background:#252431;color:#f5f1ed;
-  border:1px solid #494354;border-radius:6px;
-  padding:12px;text-align:left;font-size:11px;
-  cursor:pointer;transition:.2s;
+  background:#252431;
+  color:#f5f1ed;
+  border:1px solid #494354;
+  border-radius:6px;
+  padding:12px;
+  text-align:left;
+  font-size:11px;
+  cursor:pointer;
+  transition:.2s;
 }
 #personality-exe .pe-btn:hover {
   border-color:var(--pe-green);
-  background:#30303b;transform:translateX(3px);
+  background:#30303b;
+  transform:translateX(3px);
 }
 #personality-exe .pe-primary {
-  background:var(--pe-green);color:#101018;
-  border:0;border-radius:5px;padding:12px 17px;
-  font-weight:bold;font-size:11px;cursor:pointer;
+  background:var(--pe-green);
+  color:#101018;
+  border:0;
+  border-radius:5px;
+  padding:12px 17px;
+  font-weight:bold;
+  font-size:11px;
+  cursor:pointer;
 }
 #personality-exe .pe-primary:hover {filter:brightness(1.1)}
 #personality-exe .pe-secondary {
-  background:transparent;color:var(--pe-green);
-  border:1px solid var(--pe-green);border-radius:5px;
-  padding:11px 15px;font-size:10px;cursor:pointer;
+  background:transparent;
+  color:var(--pe-green);
+  border:1px solid var(--pe-green);
+  border-radius:5px;
+  padding:11px 15px;
+  font-size:10px;
+  cursor:pointer;
 }
 #personality-exe .pe-input {
-  display:block;width:100%;background:#101018;
-  color:white;border:1px solid #51485e;
-  border-radius:5px;padding:12px;margin:9px 0;
+  display:block;
+  width:100%;
+  background:#101018;
+  color:white;
+  border:1px solid #51485e;
+  border-radius:5px;
+  padding:12px;
+  margin:9px 0;
   font-size:12px;
 }
 #personality-exe .pe-label {
-  color:#aaa5b5;font-size:9px;letter-spacing:1px;
+  color:#aaa5b5;
+  font-size:9px;
+  letter-spacing:1px;
 }
 #personality-exe .pe-progress {
-  height:5px;background:#393443;border-radius:9px;
-  overflow:hidden;margin:14px 0;
+  height:5px;
+  background:#393443;
+  border-radius:9px;
+  overflow:hidden;
+  margin:14px 0;
 }
 #personality-exe .pe-progress span {
-  display:block;height:100%;width:0;
-  background:var(--pe-green);transition:width .4s;
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--pe-green);
+  transition:width .4s;
 }
 #personality-exe .pe-hidden {display:none!important}
 #personality-exe .pe-report {
   border:1px dashed var(--pe-green);
-  padding:16px;margin-top:12px;
+  padding:16px;
+  margin-top:12px;
 }
 #personality-exe .pe-report h3 {
   font-family:'Space Grotesk',sans-serif;
-  color:var(--pe-green);font-size:25px;
+  color:var(--pe-green);
+  font-size:25px;
   margin:10px 0;
 }
 #personality-exe .pe-report p {
-  font-size:11px;line-height:1.9;color:#d0cbd6;
+  font-size:11px;
+  line-height:1.9;
+  color:#d0cbd6;
 }
 #personality-exe .pe-report .pe-stamp {
-  display:inline-block;border:1px solid var(--pe-pink);
-  color:var(--pe-pink);padding:5px 9px;
-  font-size:9px;transform:rotate(-3deg);
+  display:inline-block;
+  border:1px solid var(--pe-pink);
+  color:var(--pe-pink);
+  padding:5px 9px;
+  font-size:9px;
+  transform:rotate(-3deg);
 }
 #personality-exe .pe-note {
-  color:#85808e;font-size:9px;line-height:1.7;
+  color:#85808e;
+  font-size:9px;
+  line-height:1.7;
   margin-top:14px;
 }
 #personality-exe .pe-glitch {animation:pe-glitch .3s steps(2,end) 2}
+
 @keyframes pe-glitch {
   0% {transform:translateX(0)}
   25% {transform:translateX(3px);filter:hue-rotate(70deg)}
@@ -935,7 +1026,9 @@ button {font:inherit}
   100% {transform:translateX(0)}
 }
 @media(max-width:420px) {
-  #personality-exe .pe-characters {grid-template-columns:repeat(2,1fr)}
+  #personality-exe .pe-characters {
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 </style>
 
@@ -945,32 +1038,39 @@ button {font:inherit}
 </div>
 
 <h2 class="pe-title">THE HUMAN<br>CLASSIFICATION DEPARTMENT</h2>
+
 <p class="pe-sub">A completely unnecessary investigation into the person currently operating this device.</p>
 
 <div class="pe-screen">
+
   <div class="pe-status">EMPLOYEE ROSTER // 04 ACTIVE</div>
 
   <div class="pe-characters">
+
     <div class="pe-character">
       <span class="pe-sprite">🤖</span>
       <strong>MR. LOGIC</strong>
       <small>Chief Analyst</small>
     </div>
+
     <div class="pe-character">
       <span class="pe-sprite">👾</span>
       <strong>404</strong>
       <small>System Error</small>
     </div>
+
     <div class="pe-character">
       <span class="pe-sprite">🕵️</span>
       <strong>INSPECTOR TASTE</strong>
       <small>Evidence Officer</small>
     </div>
+
     <div class="pe-character">
       <span class="pe-sprite">👩‍💻</span>
       <strong>JANET</strong>
       <small>Human Resources</small>
     </div>
+
   </div>
 
   <div class="pe-dialogue" id="pe-dialogue">
@@ -995,217 +1095,468 @@ button {font:inherit}
     <div class="pe-status">SPECIAL INVESTIGATION / SOUNDTRACK INCIDENT</div>
     <div class="pe-question">We need to discuss your musical decisions.</div>
     <p class="pe-sub">Enter a song that represents your current mood. This information will be handled with absolutely no professionalism.</p>
+
     <label class="pe-label" for="pe-song-title">SONG TITLE</label>
     <input class="pe-input" id="pe-song-title" maxlength="100" placeholder="Your current emotional soundtrack">
+
     <label class="pe-label" for="pe-song-artist">ARTIST</label>
     <input class="pe-input" id="pe-song-artist" maxlength="100" placeholder="Who is responsible?">
+
     <button class="pe-primary" id="pe-song-submit">SUBMIT EVIDENCE →</button>
+
     <div class="pe-dialogue pe-hidden" id="pe-song-reaction"></div>
   </div>
 
   <div id="pe-final" class="pe-hidden">
     <div class="pe-status">INVESTIGATION COMPLETE // REPORT GENERATED</div>
+
     <div class="pe-report">
       <span class="pe-stamp">OFFICIALLY UNOFFICIAL</span>
       <h3>HUMAN. PROBABLY.</h3>
       <p id="pe-summary"></p>
       <p id="pe-song-result"></p>
+
       <div class="pe-dialogue" id="pe-final-dialogue"></div>
     </div>
+
     <button class="pe-secondary" id="pe-restart">REOPEN INVESTIGATION ↻</button>
   </div>
 
   <p class="pe-note">DISCLAIMER: This is a fictional entertainment experiment. No actual personality assessment is being performed. Janet is not qualified to make medical claims.</p>
+
 </div>
+</section>
+
+<!-- END PERSONALITY.EXE -->
+
 
 <script>
-(function(){
-  const root=document.getElementById('personality-exe');
-  if(!root || root.dataset.ready) return;
-  root.dataset.ready='yes';
+/* ==========================================
+   ARTICLE 2: SCROLL REVEAL SYSTEM
+   FIX: Elements no longer remain invisible.
+========================================== */
 
-  const $=id=>root.querySelector('#'+id);
+document.addEventListener("DOMContentLoaded", function() {
 
-  const questions=[
-    {
-      stage:'TEST 001 / THE INFLUENCE CHECK',
-      question:'You discover that everyone around you suddenly loves something you once disliked. What happens?',
-      character:'INSPECTOR TASTE',
-      answers:[
-        ['I reconsider. Maybe I missed something.','Interesting. Public opinion has entered the building.'],
-        ['Still not interested.','A rare case of stubbornness. Janet, take notes.'],
-        ['I suddenly love it too.','MR. LOGIC: We shall not discuss this further.'],
-        ['I pretend I liked it first.','404: HA. We have found the witness.']
-      ]
-    },
-    {
-      stage:'TEST 002 / DECISION-MAKING',
-      question:'You have already decided what you want. Then someone asks if you are sure.',
-      character:'MR. LOGIC',
-      answers:[
-        ['Yes. I know what I want.','Confidence detected. Please do not scare the department.'],
-        ['Wait. Maybe I should reconsider.','The decision has left the premises.'],
-        ['I ask three more people.','A committee has been formed.'],
-        ['I change my mind.','MR. LOGIC: I would like to resign.']
-      ]
-    },
-    {
-      stage:'TEST 003 / THE CONTRADICTION TEST',
-      question:'You insist you do not care what people think. Someone disagrees with you. Now what?',
-      character:'404',
-      answers:[
-        ['I genuinely do not care.','404: Fascinating. We will verify this later.'],
-        ['I explain myself for 45 minutes.','JANET: That sounds like caring with extra steps.'],
-        ['I think about it for the next six business days.','Evidence collected. Sleep schedule compromised.'],
-        ['I pretend I did not hear them.','A strategic disappearance. Respectable.']
-      ]
-    }
-  ];
+  const elements = document.querySelectorAll(".reveal");
 
-  let answers=[];
-  let current=0;
-  let song='';
-
-  const reactions=[
-    '<b>404:</b> I have no idea what that means. I support it.',
-    '<b>JANET:</b> Can we please finish this before lunch?',
-    '<b>MR. LOGIC:</b> That answer has raised additional questions.',
-    '<b>INSPECTOR TASTE:</b> I am adding this to the evidence folder.',
-    '<b>404:</b> The human is doing human things again.'
-  ];
-
-  function say(html){
-    $('pe-dialogue').innerHTML=html;
-    $('pe-dialogue').classList.remove('pe-glitch');
-    void $('pe-dialogue').offsetWidth;
-    $('pe-dialogue').classList.add('pe-glitch');
-  }
-
-  function showQuestion(){
-    const q=questions[current];
-    $('pe-stage').textContent=q.stage;
-    $('pe-question').textContent=q.question;
-    $('pe-bar').style.width=((current)/4*100)+'%';
-    $('pe-feedback').textContent='Select an answer. The department is watching.';
-    $('pe-options').innerHTML='';
-
-    q.answers.forEach((answer,index)=>{
-      const button=document.createElement('button');
-      button.className='pe-btn';
-      button.textContent=answer[0];
-      button.addEventListener('click',()=>{
-        answers.push({question:q.question,answer:answer[0]});
-        $('pe-options').innerHTML='';
-        $('pe-feedback').textContent=answer[1];
-        say('<b>'+q.character+':</b> '+answer[1]);
-
-        const next=document.createElement('button');
-        next.className='pe-primary';
-        next.textContent=current===2?'PROCEED TO SOUNDTRACK →':'NEXT TEST →';
-        next.style.marginTop='14px';
-        next.addEventListener('click',()=>{
-          current++;
-          if(current<questions.length) showQuestion();
-          else {
-            $('pe-game').classList.add('pe-hidden');
-            $('pe-song').classList.remove('pe-hidden');
-            say('<b>INSPECTOR TASTE:</b> Enough about your behaviour. We need to inspect your soundtrack.');
-          }
-        });
-        $('pe-options').appendChild(next);
-      });
-      $('pe-options').appendChild(button);
+  if (!("IntersectionObserver" in window)) {
+    elements.forEach(element => {
+      element.classList.add("visible");
     });
+    return;
   }
 
-  $('pe-start').addEventListener('click',()=>{
-    $('pe-intro').classList.add('pe-hidden');
-    $('pe-game').classList.remove('pe-hidden');
-    showQuestion();
+  const observer = new IntersectionObserver((entries, observer) => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.classList.add("visible");
+
+        observer.unobserve(entry.target);
+
+      }
+
+    });
+
+  }, {
+    threshold: 0.08,
+    rootMargin: "0px 0px 40px 0px"
   });
 
-  $('pe-song-submit').addEventListener('click',()=>{
-    const title=$('pe-song-title').value.trim();
-    const artist=$('pe-song-artist').value.trim();
-    if(!title){
-      $('pe-song-title').focus();
-      $('pe-song-reaction').classList.remove('pe-hidden');
-      $('pe-song-reaction').innerHTML='<b>JANET:</b> You cannot submit absolutely nothing. We already have enough of that.';
-      return;
+  elements.forEach(element => {
+    observer.observe(element);
+  });
+
+});
+
+
+/* ==========================================
+   IMAGE ERROR HANDLING
+========================================== */
+
+document.querySelectorAll("img").forEach(img => {
+
+  img.addEventListener("error", function() {
+
+    this.classList.add("image-error");
+
+    console.warn("Image could not be loaded:", this.src);
+
+  });
+
+});
+
+
+/* ==========================================
+   PERSONALITY.EXE
+   INTERACTIVE EXPERIMENT
+========================================== */
+
+(function() {
+
+  const root = document.getElementById("personality-exe");
+
+  if (!root || root.dataset.ready) return;
+
+  root.dataset.ready = "yes";
+
+  const $ = id => root.querySelector("#" + id);
+
+  const questions = [
+
+    {
+      stage: "TEST 001 / THE INFLUENCE CHECK",
+
+      question: "You discover that everyone around you suddenly loves something you once disliked. What happens?",
+
+      character: "INSPECTOR TASTE",
+
+      answers: [
+
+        ["I reconsider. Maybe I missed something.", "Interesting. Public opinion has entered the building."],
+
+        ["Still not interested.", "A rare case of stubbornness. Janet, take notes."],
+
+        ["I suddenly love it too.", "MR. LOGIC: We shall not discuss this further."],
+
+        ["I pretend I liked it first.", "404: HA. We have found the witness."]
+
+      ]
+    },
+
+    {
+      stage: "TEST 002 / DECISION-MAKING",
+
+      question: "You have already decided what you want. Then someone asks if you are sure.",
+
+      character: "MR. LOGIC",
+
+      answers: [
+
+        ["Yes. I know what I want.", "Confidence detected. Please do not scare the department."],
+
+        ["Wait. Maybe I should reconsider.", "The decision has left the premises."],
+
+        ["I ask three more people.", "A committee has been formed."],
+
+        ["I change my mind.", "MR. LOGIC: I would like to resign."]
+
+      ]
+    },
+
+    {
+      stage: "TEST 003 / THE CONTRADICTION TEST",
+
+      question: "You insist you do not care what people think. Someone disagrees with you. Now what?",
+
+      character: "404",
+
+      answers: [
+
+        ["I genuinely do not care.", "404: Fascinating. We will verify this later."],
+
+        ["I explain myself for 45 minutes.", "JANET: That sounds like caring with extra steps."],
+
+        ["I think about it for the next six business days.", "Evidence collected. Sleep schedule compromised."],
+
+        ["I pretend I did not hear them.", "A strategic disappearance. Respectable."]
+
+      ]
     }
-    song=title+(artist?' by '+artist:'');
-    $('pe-song-reaction').classList.remove('pe-hidden');
-    const comments=[
-      '<b>INSPECTOR TASTE:</b> We have no idea what this says about you. We will pretend otherwise.',
-      '<b>404:</b> I recognise the emotional damage. Not the song.',
-      '<b>MR. LOGIC:</b> One song is insufficient evidence. I am requesting a bigger budget.',
-      '<b>JANET:</b> At least someone here has a soundtrack.'
-    ];
-    $('pe-song-reaction').innerHTML=comments[Math.floor(Math.random()*comments.length)];
-    $('pe-song-submit').textContent='CONTINUE TO FINAL REPORT →';
-    $('pe-song-submit').onclick=showFinal;
-  });
 
-  function showFinal(){
-    $('pe-song').classList.add('pe-hidden');
-    $('pe-final').classList.remove('pe-hidden');
-    $('pe-bar').style.width='100%';
+  ];
 
-    const types=[
-      'THE WALKING CONTRADICTION',
-      'THE PROFESSIONAL OVERTHINKER',
-      'THE UNLICENSED INDIVIDUAL',
-      'THE UNFINISHED UPDATE'
-    ];
-    const type=types[Math.floor(Math.random()*types.length)];
+  let answers = [];
+  let current = 0;
+  let song = "";
 
-    $('pe-summary').innerHTML=
-      '<strong>CLASSIFICATION:</strong> '+type+'<br><br>'+
-      '<strong>Evidence collected:</strong> '+answers.length+' responses.<br>'+
-      '<strong>Influence detected:</strong> Yes, probably.<br>'+
-      '<strong>Contradictions:</strong> Several.<br>'+
-      '<strong>Actual personality:</strong> Still under investigation.';
+  const reactions = [
+    "<b>404:</b> I have no idea what that means. I support it.",
+    "<b>JANET:</b> Can we please finish this before lunch?",
+    "<b>MR. LOGIC:</b> That answer has raised additional questions.",
+    "<b>INSPECTOR TASTE:</b> I am adding this to the evidence folder.",
+    "<b>404:</b> The human is doing human things again."
+  ];
 
-    $('pe-song-result').innerHTML=
-      '<strong>Soundtrack submitted:</strong> '+escapeHTML(song)+
-      '<br><br><em>Musical preferences cannot establish a complete human identity. The department has been asked to stop trying.</em>';
+  function say(html) {
 
-    $('pe-final-dialogue').innerHTML=
-      '<b>MR. LOGIC:</b> I have reached a conclusion.<br>'+
-      '<b>404:</b> You have reached a guess.<br>'+
-      '<b>INSPECTOR TASTE:</b> The evidence is inconclusive.<br>'+
-      '<b>JANET:</b> Finally. Can we go home now?';
+    $("pe-dialogue").innerHTML = html;
 
-    say('<b>JANET:</b> The report is ready. Please take it and leave.');
+    $("pe-dialogue").classList.remove("pe-glitch");
+
+    void $("pe-dialogue").offsetWidth;
+
+    $("pe-dialogue").classList.add("pe-glitch");
+
   }
 
-  function escapeHTML(str){
-    return str.replace(/[&<>"']/g,c=>({
-      '&':'&amp;','<':'&lt;','>':'&gt;',
-      '"':'&quot;',"'":'&#39;'
+
+  function showQuestion() {
+
+    const q = questions[current];
+
+    $("pe-stage").textContent = q.stage;
+
+    $("pe-question").textContent = q.question;
+
+    $("pe-bar").style.width = (current / 4 * 100) + "%";
+
+    $("pe-feedback").textContent =
+      "Select an answer. The department is watching.";
+
+    $("pe-options").innerHTML = "";
+
+    q.answers.forEach((answer, index) => {
+
+      const button = document.createElement("button");
+
+      button.className = "pe-btn";
+
+      button.textContent = answer[0];
+
+      button.addEventListener("click", () => {
+
+        answers.push({
+          question: q.question,
+          answer: answer[0]
+        });
+
+        $("pe-options").innerHTML = "";
+
+        $("pe-feedback").textContent = answer[1];
+
+        say("<b>" + q.character + ":</b> " + answer[1]);
+
+        const next = document.createElement("button");
+
+        next.className = "pe-primary";
+
+        next.textContent =
+          current === questions.length - 1
+            ? "PROCEED TO SOUNDTRACK →"
+            : "NEXT TEST →";
+
+        next.style.marginTop = "14px";
+
+        next.addEventListener("click", () => {
+
+          current++;
+
+          if (current < questions.length) {
+
+            showQuestion();
+
+          } else {
+
+            $("pe-game").classList.add("pe-hidden");
+
+            $("pe-song").classList.remove("pe-hidden");
+
+            say("<b>INSPECTOR TASTE:</b> Enough about your behaviour. We need to inspect your soundtrack.");
+
+          }
+
+        });
+
+        $("pe-options").appendChild(next);
+
+      });
+
+      $("pe-options").appendChild(button);
+
+    });
+
+  }
+
+
+  /* START INVESTIGATION */
+
+  $("pe-start").addEventListener("click", () => {
+
+    $("pe-intro").classList.add("pe-hidden");
+
+    $("pe-game").classList.remove("pe-hidden");
+
+    showQuestion();
+
+  });
+
+
+  /* SONG SUBMISSION */
+
+  $("pe-song-submit").addEventListener("click", function() {
+
+    const title = $("pe-song-title").value.trim();
+
+    const artist = $("pe-song-artist").value.trim();
+
+    if (!title) {
+
+      $("pe-song-title").focus();
+
+      $("pe-song-reaction").classList.remove("pe-hidden");
+
+      $("pe-song-reaction").innerHTML =
+        "<b>JANET:</b> You cannot submit absolutely nothing. We already have enough of that.";
+
+      return;
+
+    }
+
+    song = title + (artist ? " by " + artist : "");
+
+    $("pe-song-reaction").classList.remove("pe-hidden");
+
+    const comments = [
+
+      "<b>INSPECTOR TASTE:</b> We have no idea what this says about you. We will pretend otherwise.",
+
+      "<b>404:</b> I recognise the emotional damage. Not the song.",
+
+      "<b>MR. LOGIC:</b> One song is insufficient evidence. I am requesting a bigger budget.",
+
+      "<b>JANET:</b> At least someone here has a soundtrack."
+
+    ];
+
+    $("pe-song-reaction").innerHTML =
+      comments[Math.floor(Math.random() * comments.length)];
+
+    $("pe-song-submit").textContent =
+      "CONTINUE TO FINAL REPORT →";
+
+    $("pe-song-submit").onclick = showFinal;
+
+  });
+
+
+  /* FINAL REPORT */
+
+  function showFinal() {
+
+    $("pe-song").classList.add("pe-hidden");
+
+    $("pe-final").classList.remove("pe-hidden");
+
+    $("pe-bar").style.width = "100%";
+
+    const types = [
+
+      "THE WALKING CONTRADICTION",
+
+      "THE PROFESSIONAL OVERTHINKER",
+
+      "THE UNLICENSED INDIVIDUAL",
+
+      "THE UNFINISHED UPDATE"
+
+    ];
+
+    const type =
+      types[Math.floor(Math.random() * types.length)];
+
+    $("pe-summary").innerHTML =
+
+      "<strong>CLASSIFICATION:</strong> " + type +
+
+      "<br><br>" +
+
+      "<strong>Evidence collected:</strong> " +
+      answers.length + " responses." +
+
+      "<br>" +
+
+      "<strong>Influence detected:</strong> Yes, probably." +
+
+      "<br>" +
+
+      "<strong>Contradictions:</strong> Several." +
+
+      "<br>" +
+
+      "<strong>Actual personality:</strong> Still under investigation.";
+
+    $("pe-song-result").innerHTML =
+
+      "<strong>Soundtrack submitted:</strong> " +
+      escapeHTML(song) +
+
+      "<br><br>" +
+
+      "<em>Musical preferences cannot establish a complete human identity. The department has been asked to stop trying.</em>";
+
+    $("pe-final-dialogue").innerHTML =
+
+      "<b>MR. LOGIC:</b> I have reached a conclusion.<br>" +
+
+      "<b>404:</b> You have reached a guess.<br>" +
+
+      "<b>INSPECTOR TASTE:</b> The evidence is inconclusive.<br>" +
+
+      "<b>JANET:</b> Finally. Can we go home now?";
+
+    say("<b>JANET:</b> The report is ready. Please take it and leave.");
+
+  }
+
+
+  /* ESCAPE USER INPUT */
+
+  function escapeHTML(str) {
+
+    return str.replace(/[&<>"']/g, c => ({
+
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+
     }[c]));
+
   }
 
-  $('pe-restart').addEventListener('click',()=>{
-    answers=[];
-    current=0;
-    song='';
-    $('pe-final').classList.add('pe-hidden');
-    $('pe-game').classList.add('pe-hidden');
-    $('pe-song').classList.add('pe-hidden');
-    $('pe-intro').classList.remove('pe-hidden');
-    $('pe-song-title').value='';
-    $('pe-song-artist').value='';
-    $('pe-song-reaction').classList.add('pe-hidden');
-    $('pe-song-submit').textContent='SUBMIT EVIDENCE →';
-    $('pe-song-submit').onclick=null;
-    $('pe-bar').style.width='0';
-    say('<b>MR. LOGIC:</b> A fresh investigation. Surely this one will be conclusive.');
+
+  /* RESTART INVESTIGATION */
+
+  $("pe-restart").addEventListener("click", () => {
+
+    answers = [];
+
+    current = 0;
+
+    song = "";
+
+    $("pe-final").classList.add("pe-hidden");
+
+    $("pe-game").classList.add("pe-hidden");
+
+    $("pe-song").classList.add("pe-hidden");
+
+    $("pe-intro").classList.remove("pe-hidden");
+
+    $("pe-song-title").value = "";
+
+    $("pe-song-artist").value = "";
+
+    $("pe-song-reaction").classList.add("pe-hidden");
+
+    $("pe-song-submit").textContent = "SUBMIT EVIDENCE →";
+
+    $("pe-song-submit").onclick = null;
+
+    $("pe-bar").style.width = "0";
+
+    say("<b>MR. LOGIC:</b> A fresh investigation. Surely this one will be conclusive.");
+
   });
+
 })();
+
 </script>
-</section>
-<!-- END PERSONALITY.EXE -->
 
 </body>
 </html>
