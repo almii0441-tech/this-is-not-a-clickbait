@@ -31,6 +31,7 @@
 
 * {box-sizing:border-box}
 html {scroll-behavior:smooth}
+
 body {
   margin:0;
   background:var(--black);
@@ -38,6 +39,7 @@ body {
   font-family:var(--sans);
   overflow-x:hidden;
 }
+
 img {max-width:100%;display:block}
 a {color:inherit;text-decoration:none}
 button {font:inherit}
@@ -70,9 +72,12 @@ button {font:inherit}
   position:relative;
   z-index:3;
 }
+
 .brand {font-weight:900;letter-spacing:.04em;font-size:13px}
 .top-status {color:var(--green)}
 .home-link {color:var(--cyan)}
+
+/* HERO */
 
 .hero {
   min-height:760px;
@@ -84,6 +89,7 @@ button {font:inherit}
   justify-content:center;
   isolation:isolate;
 }
+
 .hero::before {
   content:"";
   position:absolute;
@@ -94,6 +100,7 @@ button {font:inherit}
     radial-gradient(ellipse at 15% 85%,#122c44 0,transparent 35%),
     var(--black);
 }
+
 .hero-grid {
   position:absolute;
   inset:0;
@@ -105,7 +112,9 @@ button {font:inherit}
   background-size:45px 45px;
   mask-image:linear-gradient(to bottom,black,transparent);
 }
+
 .hero-kicker {color:var(--green);margin-bottom:30px}
+
 .hero h1 {
   margin:0;
   max-width:1050px;
@@ -117,10 +126,12 @@ button {font:inherit}
   position:relative;
   z-index:2;
 }
+
 .hero h1 .pink {
   color:var(--pink);
   text-shadow:5px 4px 0 var(--cyan);
 }
+
 .hero h1 .serif {
   color:var(--green);
   font-family:var(--serif);
@@ -128,6 +139,7 @@ button {font:inherit}
   letter-spacing:-.075em;
   font-weight:600;
 }
+
 .hero-subtitle {
   color:var(--cyan);
   font-family:var(--serif);
@@ -137,6 +149,7 @@ button {font:inherit}
   position:relative;
   z-index:2;
 }
+
 .hero-meta {
   display:flex;
   gap:25px;
@@ -146,6 +159,7 @@ button {font:inherit}
   position:relative;
   z-index:2;
 }
+
 .hero-meta span:first-child {color:var(--pink)}
 
 .hero-art {
@@ -153,11 +167,12 @@ button {font:inherit}
   right:6%;
   bottom:65px;
   width:min(32vw,330px);
+  height:280px;
   z-index:1;
-  transform:rotate(5deg);
-  filter:drop-shadow(12px 12px 0 var(--pink));
+  display:grid;
+  place-items:center;
 }
-.hero-art svg {width:100%;height:auto;overflow:visible}
+
 .hero-side-note {
   position:absolute;
   right:4%;
@@ -166,6 +181,7 @@ button {font:inherit}
   transform:rotate(90deg);
   transform-origin:right;
 }
+
 .hero-stamp {
   position:absolute;
   right:7%;
@@ -176,6 +192,235 @@ button {font:inherit}
   transform:rotate(8deg);
 }
 
+/* PURPLE CREATURE */
+
+.purple-sprite {
+  --sprite-purple:#a78bfa;
+  --sprite-dark:#09090f;
+  --sprite-pink:#ff83c9;
+
+  width:190px;
+  height:175px;
+  position:relative;
+  animation:sprite-float 2.8s ease-in-out infinite;
+  filter:drop-shadow(8px 10px 0 #ff397e);
+}
+
+.sprite-head {
+  position:absolute;
+  width:145px;
+  height:132px;
+  left:22px;
+  top:27px;
+  background:var(--sprite-purple);
+  border:5px solid var(--sprite-dark);
+  border-radius:47% 48% 44% 46%;
+  box-shadow:0 0 35px #a78bfa55;
+  transform:rotate(-5deg);
+}
+
+.sprite-ear {
+  position:absolute;
+  top:-33px;
+  left:8px;
+  width:48px;
+  height:66px;
+  background:var(--sprite-purple);
+  border:5px solid var(--sprite-dark);
+  border-radius:80% 10% 60% 20%;
+  transform:rotate(-23deg);
+  z-index:-1;
+}
+
+.sprite-ear.right {
+  left:88px;
+  transform:rotate(23deg) scaleX(-1);
+}
+
+.sprite-ear::after {
+  content:"";
+  position:absolute;
+  width:15px;
+  height:37px;
+  top:12px;
+  left:14px;
+  background:var(--sprite-pink);
+  border-radius:50%;
+}
+
+.sprite-eyes {
+  position:absolute;
+  top:44px;
+  left:29px;
+  display:flex;
+  gap:35px;
+}
+
+.sprite-eye {
+  width:22px;
+  height:31px;
+  background:#171225;
+  border-radius:50%;
+  position:relative;
+  animation:sprite-blink 4.5s infinite;
+  transform-origin:center;
+}
+
+.sprite-eye::after {
+  content:"";
+  position:absolute;
+  width:7px;
+  height:8px;
+  top:5px;
+  left:5px;
+  background:white;
+  border-radius:50%;
+}
+
+.sprite-nose {
+  position:absolute;
+  top:81px;
+  left:65px;
+  width:13px;
+  height:10px;
+  background:var(--sprite-pink);
+  border-radius:50%;
+}
+
+.sprite-mouth {
+  position:absolute;
+  top:91px;
+  left:52px;
+  width:40px;
+  height:18px;
+  border-bottom:4px solid #171225;
+  border-radius:50%;
+}
+
+.sprite-mouth::before,
+.sprite-mouth::after {
+  content:"";
+  position:absolute;
+  top:10px;
+  width:8px;
+  height:11px;
+  background:white;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+}
+
+.sprite-mouth::before {left:5px}
+.sprite-mouth::after {right:5px}
+
+.sprite-blush {
+  position:absolute;
+  top:84px;
+  left:9px;
+  width:25px;
+  height:12px;
+  background:var(--sprite-pink);
+  opacity:.8;
+  border-radius:50%;
+}
+
+.sprite-blush.right {left:105px}
+
+@keyframes sprite-float {
+  0%,100% {transform:translateY(0) rotate(-3deg)}
+  50% {transform:translateY(-14px) rotate(4deg)}
+}
+
+@keyframes sprite-blink {
+  0%,44%,48%,100% {transform:scaleY(1)}
+  46% {transform:scaleY(.08)}
+}
+
+/* SMALL CREATURES */
+
+.mini-sprite {
+  width:100px;
+  height:105px;
+  position:relative;
+  animation:sprite-float 2.8s ease-in-out infinite;
+}
+
+.mini-sprite .sprite-head {
+  width:90px;
+  height:82px;
+  left:5px;
+  top:15px;
+  border-width:4px;
+}
+
+.mini-sprite .sprite-ear {
+  width:32px;
+  height:43px;
+  top:-22px;
+  left:3px;
+  border-width:3px;
+}
+
+.mini-sprite .sprite-ear.right {
+  left:51px;
+}
+
+.mini-sprite .sprite-ear::after {
+  width:10px;
+  height:24px;
+  top:8px;
+  left:9px;
+}
+
+.mini-sprite .sprite-eyes {
+  top:27px;
+  left:18px;
+  gap:22px;
+}
+
+.mini-sprite .sprite-eye {
+  width:13px;
+  height:19px;
+}
+
+.mini-sprite .sprite-eye::after {
+  width:4px;
+  height:5px;
+  top:3px;
+  left:3px;
+}
+
+.mini-sprite .sprite-nose {
+  top:50px;
+  left:40px;
+  width:8px;
+  height:6px;
+}
+
+.mini-sprite .sprite-mouth {
+  top:56px;
+  left:31px;
+  width:28px;
+  height:12px;
+  border-bottom-width:3px;
+}
+
+.mini-sprite .sprite-mouth::before,
+.mini-sprite .sprite-mouth::after {
+  top:7px;
+  width:5px;
+  height:7px;
+}
+
+.mini-sprite .sprite-blush {
+  top:51px;
+  left:5px;
+  width:15px;
+  height:8px;
+}
+
+.mini-sprite .sprite-blush.right {left:66px}
+
+/* TICKER */
+
 .ticker {
   overflow:hidden;
   border-top:1px solid var(--pink);
@@ -185,6 +430,7 @@ button {font:inherit}
   padding:12px 0;
   white-space:nowrap;
 }
+
 .ticker-track {
   display:inline-block;
   font:12px var(--mono);
@@ -192,10 +438,13 @@ button {font:inherit}
   letter-spacing:.1em;
   animation:marquee 28s linear infinite;
 }
+
 @keyframes marquee {
   from {transform:translateX(0)}
   to {transform:translateX(-50%)}
 }
+
+/* PHOTO */
 
 .hero-photo {
   margin:0;
@@ -204,6 +453,7 @@ button {font:inherit}
   overflow:hidden;
   border-bottom:1px solid var(--line);
 }
+
 .hero-photo img {
   width:100%;
   height:100%;
@@ -211,12 +461,14 @@ button {font:inherit}
   filter:saturate(1.25) contrast(1.1);
   opacity:.82;
 }
+
 .hero-photo::after {
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(90deg,#09090f88,transparent 60%),linear-gradient(0deg,#09090f99,transparent 45%);
 }
+
 .photo-caption {
   position:absolute;
   z-index:1;
@@ -235,7 +487,10 @@ button {font:inherit}
   border-bottom:1px solid var(--line);
   color:var(--grey);
 }
+
 .intro-strip strong {color:var(--cyan)}
+
+/* ARTICLE */
 
 .article-wrap {
   max-width:1200px;
@@ -246,18 +501,22 @@ button {font:inherit}
   gap:65px;
   align-items:start;
 }
+
 .sidebar {
   position:sticky;
   top:30px;
   color:var(--grey);
   line-height:2;
 }
+
 .sidebar strong {color:var(--pink)}
+
 .sidebar .side-rule {
   height:1px;
   background:var(--line);
   margin:18px 0;
 }
+
 .sidebar .side-green {color:var(--green)}
 .sidebar .side-cyan {color:var(--cyan)}
 
@@ -267,13 +526,16 @@ button {font:inherit}
   line-height:1.9;
   min-width:0;
 }
+
 .article p {margin:0 0 28px}
+
 .article .lead {
   color:var(--paper);
   font-family:var(--serif);
   font-size:clamp(25px,3.6vw,39px);
   line-height:1.38;
 }
+
 .article em {color:var(--cyan)}
 .article strong {color:var(--green);font-weight:700}
 
@@ -283,23 +545,28 @@ button {font:inherit}
   border-top:1px solid var(--line);
   color:var(--green);
 }
+
 .section-marker span {color:var(--pink)}
 
 .visual {
   margin:75px 0;
   position:relative;
 }
+
 .visual img {
   width:100%;
   max-height:480px;
   object-fit:cover;
 }
+
 .visual figcaption {
   margin-top:12px;
   font:10px var(--mono);
   color:var(--grey);
   letter-spacing:.1em;
 }
+
+/* QUOTE */
 
 .quote-card {
   margin:75px -25px;
@@ -309,6 +576,7 @@ button {font:inherit}
   transform:rotate(-1deg);
   box-shadow:10px 10px 0 var(--cyan);
 }
+
 .quote-card p {
   margin:0;
   font-size:clamp(30px,5vw,58px);
@@ -316,11 +584,14 @@ button {font:inherit}
   line-height:1;
   letter-spacing:-.07em;
 }
+
 .quote-card small {
   display:block;
   margin-top:22px;
   font:10px var(--mono);
 }
+
+/* STATS */
 
 .stats {
   margin:75px 0;
@@ -332,17 +603,21 @@ button {font:inherit}
   gap:25px;
   transform:rotate(1deg);
 }
+
 .stat-number {
   font-size:clamp(50px,8vw,92px);
   font-weight:900;
   letter-spacing:-.1em;
   line-height:1;
 }
+
 .stats small {
   display:block;
   font:10px var(--mono);
   margin-top:12px;
 }
+
+/* POSTERS */
 
 .poster {
   margin:85px 0;
@@ -357,6 +632,7 @@ button {font:inherit}
   background:var(--purple);
   color:var(--black);
 }
+
 .poster h2 {
   font-size:clamp(32px,5vw,65px);
   font-weight:900;
@@ -366,11 +642,23 @@ button {font:inherit}
   max-width:500px;
   margin:20px 0 0;
 }
+
 .poster .mono {position:relative;z-index:2}
-.poster svg {width:160px;flex-shrink:0;position:relative;z-index:1}
+
+.poster-creature {
+  width:190px;
+  flex-shrink:0;
+  display:grid;
+  place-items:center;
+  position:relative;
+  z-index:1;
+}
+
 .poster.pink {background:var(--pink)}
 .poster.green {background:var(--green)}
 .poster.orange {background:var(--orange)}
+
+/* GLITCH */
 
 .glitch-panel {
   margin:90px 0;
@@ -381,6 +669,7 @@ button {font:inherit}
   position:relative;
   overflow:hidden;
 }
+
 .glitch-panel::before {
   content:"";
   position:absolute;
@@ -389,6 +678,7 @@ button {font:inherit}
   background:repeating-linear-gradient(0deg,transparent 0 8px,#fff 9px,transparent 10px);
   pointer-events:none;
 }
+
 .glitch-panel h2 {
   position:relative;
   color:var(--cyan);
@@ -400,8 +690,11 @@ button {font:inherit}
   text-transform:uppercase;
   text-shadow:4px 3px var(--pink);
 }
+
 .glitch-panel .code {color:var(--green)}
 .glitch-panel .bottom-code {color:var(--pink)}
+
+/* CHARACTER STAGE */
 
 .character-stage {
   margin:85px 0;
@@ -415,9 +708,18 @@ button {font:inherit}
   padding:25px;
   overflow:hidden;
 }
-.character-stage svg {width:30%;max-width:170px}
-.character-stage svg:nth-child(2) {transform:translateY(-25px) rotate(8deg)}
-.character-stage svg:nth-child(3) {transform:translateY(20px) rotate(-7deg)}
+
+.character-stage .mini-sprite:nth-child(2) {
+  transform:translateY(-25px);
+  animation-delay:.5s;
+}
+
+.character-stage .mini-sprite:nth-child(3) {
+  transform:translateY(20px);
+  animation-delay:1s;
+}
+
+/* ENDING */
 
 .ending-question {
   margin:85px 0 30px;
@@ -426,17 +728,21 @@ button {font:inherit}
   background:radial-gradient(circle at center,#39234d,transparent 70%);
   border:1px solid #40384c;
 }
+
 .ending-question .eye {
   color:var(--green);
   font-size:100px;
   line-height:1;
   text-shadow:5px 4px var(--pink);
 }
+
 .ending-question p {
   font:10px var(--mono);
   color:var(--cyan);
   margin-top:20px;
 }
+
+/* FINAL */
 
 .final-screen {
   padding:125px 7%;
@@ -446,7 +752,9 @@ button {font:inherit}
   position:relative;
   overflow:hidden;
 }
+
 .final-screen .mono {margin-bottom:35px}
+
 .final-screen h2 {
   max-width:1000px;
   margin:auto;
@@ -455,10 +763,12 @@ button {font:inherit}
   line-height:.9;
   letter-spacing:-.09em;
 }
+
 .final-screen h2 em {
   font-family:var(--serif);
   color:var(--pink);
 }
+
 .final-screen p {
   font:italic 22px var(--serif);
   margin-top:35px;
@@ -472,6 +782,7 @@ button {font:inherit}
   flex-wrap:wrap;
   color:var(--grey);
 }
+
 .footer a {color:var(--cyan)}
 
 .reveal {
@@ -479,7 +790,11 @@ button {font:inherit}
   transform:translateY(35px);
   transition:opacity .8s ease,transform .8s ease;
 }
-.reveal.visible {opacity:1;transform:translateY(0)}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
 
 /* PERSONALITY EXPERIMENT */
 
@@ -490,6 +805,7 @@ button {font:inherit}
   --pe-pink:#ff75c8;
   --pe-blue:#77d9ff;
   --pe-purple:#b99aff;
+
   background:var(--pe-bg);
   color:#f5f1ed;
   border:1px solid #393443;
@@ -502,7 +818,9 @@ button {font:inherit}
   overflow:hidden;
   isolation:isolate;
 }
+
 #personality-exe * {box-sizing:border-box}
+
 #personality-exe button,
 #personality-exe input {font:inherit}
 
@@ -515,6 +833,7 @@ button {font:inherit}
   font-size:10px;
   letter-spacing:1.5px;
 }
+
 #personality-exe .pe-title {
   font-family:'Space Grotesk',sans-serif;
   font-size:clamp(27px,6vw,45px);
@@ -522,11 +841,13 @@ button {font:inherit}
   margin:22px 0 8px;
   letter-spacing:-1.5px;
 }
+
 #personality-exe .pe-sub {
   color:#aaa5b5;
   font-size:12px;
   line-height:1.8;
 }
+
 #personality-exe .pe-screen {
   background:var(--pe-panel);
   border:1px solid #393443;
@@ -534,18 +855,21 @@ button {font:inherit}
   padding:17px;
   margin-top:20px;
 }
+
 #personality-exe .pe-status {
   color:var(--pe-green);
   font-size:10px;
   letter-spacing:1px;
   margin-bottom:12px;
 }
+
 #personality-exe .pe-characters {
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:8px;
   margin:18px 0;
 }
+
 #personality-exe .pe-character {
   text-align:center;
   background:#22212d;
@@ -554,20 +878,30 @@ button {font:inherit}
   padding:10px 4px;
   min-width:0;
 }
-#personality-exe .pe-sprite {
-  font-family:monospace;
-  font-size:29px;
-  display:block;
-  line-height:1.5;
-  animation:pe-bob 1.8s steps(2,end) infinite;
-}
-#personality-exe .pe-character:nth-child(2) .pe-sprite {animation-delay:.3s}
-#personality-exe .pe-character:nth-child(3) .pe-sprite {animation-delay:.6s}
-#personality-exe .pe-character:nth-child(4) .pe-sprite {animation-delay:.9s}
 
-@keyframes pe-bob {
-  0%,100% {transform:translateY(0)}
-  50% {transform:translateY(-4px)}
+#personality-exe .pe-sprite {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:75px;
+}
+
+#personality-exe .pe-sprite .mini-sprite {
+  transform:scale(.55);
+  transform-origin:center;
+  animation:sprite-float 2.8s ease-in-out infinite;
+}
+
+#personality-exe .pe-character:nth-child(2) .mini-sprite {
+  animation-delay:.4s;
+}
+
+#personality-exe .pe-character:nth-child(3) .mini-sprite {
+  animation-delay:.8s;
+}
+
+#personality-exe .pe-character:nth-child(4) .mini-sprite {
+  animation-delay:1.2s;
 }
 
 #personality-exe .pe-character strong {
@@ -576,6 +910,7 @@ button {font:inherit}
   margin-top:5px;
   color:var(--pe-green);
 }
+
 #personality-exe .pe-character small {
   display:block;
   font-size:8px;
@@ -583,6 +918,7 @@ button {font:inherit}
   margin-top:4px;
   line-height:1.4;
 }
+
 #personality-exe .pe-dialogue {
   background:#101018;
   border-left:3px solid var(--pe-pink);
@@ -592,17 +928,21 @@ button {font:inherit}
   min-height:56px;
   margin:12px 0;
 }
+
 #personality-exe .pe-dialogue b {color:var(--pe-pink)}
+
 #personality-exe .pe-question {
   font-family:'Space Grotesk',sans-serif;
   font-size:19px;
   line-height:1.4;
   margin:10px 0 15px;
 }
+
 #personality-exe .pe-options {
   display:grid;
   gap:8px;
 }
+
 #personality-exe .pe-btn {
   background:#252431;
   color:#f5f1ed;
@@ -614,11 +954,13 @@ button {font:inherit}
   cursor:pointer;
   transition:.2s;
 }
+
 #personality-exe .pe-btn:hover {
   border-color:var(--pe-green);
   background:#30303b;
   transform:translateX(3px);
 }
+
 #personality-exe .pe-primary {
   background:var(--pe-green);
   color:#101018;
@@ -629,7 +971,9 @@ button {font:inherit}
   font-size:11px;
   cursor:pointer;
 }
+
 #personality-exe .pe-primary:hover {filter:brightness(1.1)}
+
 #personality-exe .pe-secondary {
   background:transparent;
   color:var(--pe-green);
@@ -639,6 +983,7 @@ button {font:inherit}
   font-size:10px;
   cursor:pointer;
 }
+
 #personality-exe .pe-input {
   display:block;
   width:100%;
@@ -650,11 +995,13 @@ button {font:inherit}
   margin:9px 0;
   font-size:12px;
 }
+
 #personality-exe .pe-label {
   color:#aaa5b5;
   font-size:9px;
   letter-spacing:1px;
 }
+
 #personality-exe .pe-progress {
   height:5px;
   background:#393443;
@@ -662,6 +1009,7 @@ button {font:inherit}
   overflow:hidden;
   margin:14px 0;
 }
+
 #personality-exe .pe-progress span {
   display:block;
   height:100%;
@@ -669,23 +1017,28 @@ button {font:inherit}
   background:var(--pe-green);
   transition:width .4s;
 }
+
 #personality-exe .pe-hidden {display:none!important}
+
 #personality-exe .pe-report {
   border:1px dashed var(--pe-green);
   padding:16px;
   margin-top:12px;
 }
+
 #personality-exe .pe-report h3 {
   font-family:'Space Grotesk',sans-serif;
   color:var(--pe-green);
   font-size:25px;
   margin:10px 0;
 }
+
 #personality-exe .pe-report p {
   font-size:11px;
   line-height:1.9;
   color:#d0cbd6;
 }
+
 #personality-exe .pe-report .pe-stamp {
   display:inline-block;
   border:1px solid var(--pe-pink);
@@ -694,13 +1047,16 @@ button {font:inherit}
   font-size:9px;
   transform:rotate(-3deg);
 }
+
 #personality-exe .pe-note {
   color:#85808e;
   font-size:9px;
   line-height:1.7;
   margin-top:14px;
 }
+
 #personality-exe .pe-glitch {animation:pe-glitch .3s steps(2,end) 2}
+
 @keyframes pe-glitch {
   0% {transform:translateX(0)}
   25% {transform:translateX(3px);filter:hue-rotate(70deg)}
@@ -708,24 +1064,47 @@ button {font:inherit}
   100% {transform:translateX(0)}
 }
 
+/* RESPONSIVE */
+
 @media(max-width:800px) {
-  .hero {min-height:760px;padding:80px 7% 290px}
-  .hero-art {width:230px;right:8%;bottom:40px}
+  .hero {
+    min-height:760px;
+    padding:80px 7% 290px;
+  }
+
+  .hero-art {
+    width:230px;
+    right:8%;
+    bottom:40px;
+  }
+
   .hero-stamp {top:5%;right:7%}
   .hero-side-note {display:none}
-  .article-wrap {display:block;padding:65px 7% 80px}
+
+  .article-wrap {
+    display:block;
+    padding:65px 7% 80px;
+  }
+
   .sidebar {
     position:static;
     margin-bottom:45px;
     padding-bottom:20px;
     border-bottom:1px solid var(--line);
   }
+
   .sidebar .side-rule {display:none}
+
   .article {font-size:16px;line-height:1.85}
-  .quote-card {margin:65px 0;padding:30px}
+
+  .quote-card {
+    margin:65px 0;
+    padding:30px;
+  }
+
   .stats {padding:25px}
   .poster {padding:25px;min-height:250px}
-  .poster svg {width:115px}
+  .poster-creature {width:130px}
   .character-stage {min-height:200px;padding:15px}
 }
 
@@ -738,9 +1117,9 @@ button {font:inherit}
   .hero-stamp {font-size:8px}
   .stats {gap:12px;padding:20px}
   .poster {gap:8px}
-  .poster svg {width:90px}
+  .poster-creature {width:100px}
   .character-stage {gap:5px}
-  .character-stage svg {width:32%}
+  .character-stage .mini-sprite {transform:scale(.8)}
   .final-screen {padding:90px 7%}
   #personality-exe .pe-characters {grid-template-columns:repeat(2,1fr)}
 }
@@ -749,7 +1128,9 @@ button {font:inherit}
   html {scroll-behavior:auto}
   .ticker-track {animation:none}
   .reveal {transition:none}
-  #personality-exe .pe-sprite {animation:none}
+  .purple-sprite,
+  .mini-sprite,
+  .sprite-eye {animation:none!important}
 }
 </style>
 </head>
@@ -766,7 +1147,10 @@ button {font:inherit}
 
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="mono hero-kicker">DIGITAL CULTURE / IDENTITY UNDER REVIEW / 002</div>
+
+  <div class="mono hero-kicker">
+    DIGITAL CULTURE / IDENTITY UNDER REVIEW / 002
+  </div>
 
   <h1>
     MAYBE YOU<br>
@@ -775,7 +1159,9 @@ button {font:inherit}
     ELSE.
   </h1>
 
-  <div class="hero-subtitle">Every December an app tells us who we are.</div>
+  <div class="hero-subtitle">
+    Every December an app tells us who we are.
+  </div>
 
   <div class="hero-meta mono">
     <span>ALMIDHA.M.A</span>
@@ -783,30 +1169,39 @@ button {font:inherit}
     <span>REPORT GENERATING...</span>
   </div>
 
-  <div class="hero-stamp mono">YOUR YEAR<br>IS READY?</div>
+  <div class="hero-stamp mono">
+    YOUR YEAR<br>IS READY?
+  </div>
+
+  <!-- PURPLE CREATURE -->
 
   <div class="hero-art">
-    <svg viewBox="0 0 340 330" role="img" aria-label="A strange illustrated digital creature">
-      <path d="M40 170 Q25 45 150 25 Q285 10 305 140 Q340 280 185 310 Q50 320 40 170Z" fill="#a78bfa" stroke="#09090f" stroke-width="8"/>
-      <path d="M65 150 Q35 80 75 45 L105 90Z" fill="#c9ff55" stroke="#09090f" stroke-width="7"/>
-      <path d="M250 75 Q315 25 315 110 L270 125Z" fill="#ff397e" stroke="#09090f" stroke-width="7"/>
-      <ellipse cx="120" cy="145" rx="25" ry="38" fill="#09090f"/>
-      <ellipse cx="225" cy="145" rx="25" ry="38" fill="#09090f"/>
-      <circle cx="128" cy="137" r="8" fill="#00e5ff"/>
-      <circle cx="217" cy="137" r="8" fill="#00e5ff"/>
-      <path d="M125 220 Q170 255 220 205" fill="none" stroke="#09090f" stroke-width="12" stroke-linecap="round"/>
-      <path d="M65 270 L20 300 M265 260 L320 300" stroke="#09090f" stroke-width="9" stroke-linecap="round"/>
-      <path d="M155 20 L165 0 L178 22" fill="#ff9f43" stroke="#09090f" stroke-width="6"/>
-      <circle cx="45" cy="220" r="12" fill="#00e5ff"/>
-      <path d="M285 190 l25 -20 l-5 35Z" fill="#c9ff55"/>
-      <text x="165" y="295" font-family="monospace" font-size="13" fill="#09090f" text-anchor="middle">USER_002</text>
-    </svg>
+    <div class="purple-sprite">
+      <div class="sprite-head">
+        <span class="sprite-ear"></span>
+        <span class="sprite-ear right"></span>
+        <span class="sprite-blush"></span>
+        <span class="sprite-blush right"></span>
+
+        <div class="sprite-eyes">
+          <span class="sprite-eye"></span>
+          <span class="sprite-eye"></span>
+        </div>
+
+        <span class="sprite-nose"></span>
+        <span class="sprite-mouth"></span>
+      </div>
+    </div>
   </div>
 </section>
 
 <div class="ticker">
   <div class="ticker-track">
-    YOUR PERSONALITY REPORT IS READY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳
+    YOUR PERSONALITY REPORT IS READY ✳
+    YOUR PERSONALITY REPORT IS READY ✳
+    DATA DOES NOT EQUAL IDENTITY ✳
+    YOUR PERSONALITY REPORT IS READY ✳
+    DATA DOES NOT EQUAL IDENTITY ✳
   </div>
 </div>
 
@@ -816,7 +1211,10 @@ button {font:inherit}
   <img
     src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85"
     alt="A person listening to music through headphones">
-  <figcaption class="photo-caption mono">01 / THE ANNUAL IDENTITY CEREMONY</figcaption>
+
+  <figcaption class="photo-caption mono">
+    01 / THE ANNUAL IDENTITY CEREMONY
+  </figcaption>
 </figure>
 
 <div class="intro-strip mono">
@@ -832,156 +1230,286 @@ button {font:inherit}
   <div class="side-rule"></div>
   SUBJECT: PERSONAL TASTE<br>
   STATUS: UNDER QUESTION
+
   <div class="side-rule"></div>
+
   SYSTEM NOTE:
-  <span class="side-green">YOUR DATA HAS BEEN RECEIVED.</span>
+  <span class="side-green">
+    YOUR DATA HAS BEEN RECEIVED.
+  </span>
+
   <div class="side-rule"></div>
-  <span class="side-cyan">SCROLL TO INVESTIGATE ↓</span>
+
+  <span class="side-cyan">
+    SCROLL TO INVESTIGATE ↓
+  </span>
 </aside>
 
 <article class="article">
 
-<p class="lead">Every December an app tells us who we are. And people eagerly wait for its release, so they can share it and claim that’s who they are.</p>
+<p class="lead">
+Every December an app tells us who we are. And people eagerly wait for its release, so they can share it and claim that’s who they are.
+</p>
 
-<p>It sounds dramatic, right? But that’s what happens. In 2024, Spotify Wrapped was later than usual, and “X” filled with memes and jokes about it, even though Spotify had already announced, “Almost here.” When it finally arrived, people claimed it was underwhelming. Oh, we spent a whole year waiting for it to tell us about ourselves, and yes, we judged the answer.</p>
+<p>
+It sounds dramatic, right? But that’s what happens. In 2024, Spotify Wrapped was later than usual, and “X” filled with memes and jokes about it, even though Spotify had already announced, “Almost here.” When it finally arrived, people claimed it was underwhelming. Oh, we spent a whole year waiting for it to tell us about ourselves, and yes, we judged the answer.
+</p>
 
-<p>It started small. In 2015, it was a simple roundup called “Year in Music,” and it became Wrapped in 2016. By 2025, Spotify said over 200 million people had opened their year-end Wrapped within a day, and it was shared more than 500 million times.</p>
+<p>
+It started small. In 2015, it was a simple roundup called “Year in Music,” and it became Wrapped in 2016. By 2025, Spotify said over 200 million people had opened their year-end Wrapped within a day, and it was shared more than 500 million times.
+</p>
 
-<p>It feels like a mirror. You listened, it counted, now it shows you yourself.</p>
+<p>
+It feels like a mirror. You listened, it counted, now it shows you yourself.
+</p>
+
+<!-- POSTER 1 -->
 
 <div class="poster reveal">
   <div>
     <div class="mono">SYSTEM REPORT / 001</div>
     <h2>IT COUNTED.<br>DID IT KNOW?</h2>
   </div>
-  <svg viewBox="0 0 180 200" role="img" aria-label="An illustrated face with mismatched eyes">
-    <path d="M20 100 Q15 15 90 12 Q165 20 160 110 Q150 195 85 190 Q20 180 20 100Z" fill="#c9ff55" stroke="#111" stroke-width="7"/>
-    <ellipse cx="60" cy="80" rx="15" ry="25" fill="#111"/>
-    <circle cx="120" cy="80" r="18" fill="#ff397e" stroke="#111" stroke-width="5"/>
-    <path d="M55 135 Q90 160 130 130" stroke="#111" stroke-width="8" fill="none"/>
-    <path d="M25 30 L5 5 M150 30 L175 5" stroke="#111" stroke-width="7"/>
-  </svg>
+
+  <div class="poster-creature">
+    <div class="purple-sprite">
+      <div class="sprite-head">
+        <span class="sprite-ear"></span>
+        <span class="sprite-ear right"></span>
+        <span class="sprite-blush"></span>
+        <span class="sprite-blush right"></span>
+        <div class="sprite-eyes">
+          <span class="sprite-eye"></span>
+          <span class="sprite-eye"></span>
+        </div>
+        <span class="sprite-nose"></span>
+        <span class="sprite-mouth"></span>
+      </div>
+    </div>
+  </div>
 </div>
 
-<p>At counting, yeah, mostly. A song only counts if you play it for at least 30 seconds, so anything shorter is filtered out. The song you skipped after ten seconds never happened. Nobody saw it, nobody noticed it.</p>
+<p>
+At counting, yeah, mostly. A song only counts if you play it for at least 30 seconds, so anything shorter is filtered out. The song you skipped after ten seconds never happened. Nobody saw it, nobody noticed it.
+</p>
 
-<p>But is it right? Is it accurate? Does counting mean it knows you?</p>
+<p>
+But is it right? Is it accurate? Does counting mean it knows you?
+</p>
 
-<p>What if a song just gets counted because I played it on purpose, past thirty seconds, without even listening to it fully, enough times? Maybe Wrapped would call it mine. It wouldn’t ask if I meant it. It wouldn’t know.</p>
+<p>
+What if a song just gets counted because I played it on purpose, past thirty seconds, without even listening to it fully, enough times? Maybe Wrapped would call it mine. It wouldn’t ask if I meant it. It wouldn’t know.
+</p>
 
-<p>What if I wanted people to think I liked that specific song?</p>
+<p>
+What if I wanted people to think I liked that specific song?
+</p>
 
 <div class="stats reveal">
   <div>
     <div class="stat-number">30s</div>
     <small>MINIMUM PLAY TIME TO COUNT</small>
   </div>
+
   <div>
     <div class="stat-number">?</div>
     <small>WHAT THE DATA DOESN'T KNOW</small>
   </div>
 </div>
 
-<p>Because counting isn’t knowing. Songs played in a Private Session don’t count toward top lists, so the one you’re embarrassed about never shows up in your Wrapped. If someone else uses your account, their listening becomes yours. So maybe the artist you think is your number one is actually your dad’s. You’ll never know. And it says “your year,” but it isn’t the whole year. Spotify says the data stops a few weeks before launch. So if you find a song you’re addicted to in late November, even if you play it 50 times more than the other songs, you’ll never know. The end of the year isn’t there, and it still calls it yours.</p>
+<p>
+Because counting isn’t knowing. Songs played in a Private Session don’t count toward top lists, so the one you’re embarrassed about never shows up in your Wrapped. If someone else uses your account, their listening becomes yours. So maybe the artist you think is your number one is actually your dad’s. You’ll never know. And it says “your year,” but it isn’t the whole year. Spotify says the data stops a few weeks before launch. So if you find a song you’re addicted to in late November, even if you play it 50 times more than the other songs, you’ll never know. The end of the year isn’t there, and it still calls it yours.
+</p>
 
 <div class="quote-card reveal">
   <p>SO WRAPPED IS A RECEIPT, NOT A PORTRAIT.</p>
   <small>IT KNOWS WHAT YOU PLAYED. IT DOESN'T KNOW WHY.</small>
 </div>
 
-<p>And that’s the weird part. So, why did you play it?</p>
+<p>
+And that’s the weird part. So, why did you play it?
+</p>
 
-<div class="section-marker mono"><span>02 /</span> THE RECOMMENDATION MACHINE</div>
+<div class="section-marker mono">
+  <span>02 /</span> THE RECOMMENDATION MACHINE
+</div>
 
-<p>A lot of what we listen to, nobody went looking for. Either it was just there or it found us. Netflix’s own engineers said their recommendations influence the choice for about 80% of the hours people stream. Influence, not control. Fine, but that means a lot of your “top playlist” was handed to you before you picked it.</p>
+<p>
+A lot of what we listen to, nobody went looking for. Either it was just there or it found us. Netflix’s own engineers said their recommendations influence the choice for about 80% of the hours people stream. Influence, not control. Fine, but that means a lot of your “top playlist” was handed to you before you picked it.
+</p>
 
-<p>In 2022, a famous show put a song from 1985 in a scene, and in one day its streams jumped by a thousand percent.</p>
+<p>
+In 2022, a famous show put a song from 1985 in a scene, and in one day its streams jumped by a thousand percent.
+</p>
 
-<p>This year, it was a dance scene. A girl shows up at a Halloween party dressed as J.Lo. The song plays. A boy dressed in a Top Gun costume walks over and dances along. Two minutes, maybe. Then the scene from Prime was posted on every platform. A week later, a song from 2011 was on Spotify’s global chart. People went searching for it after it was handed to them, in a scene, with good lighting.</p>
+<p>
+This year, it was a dance scene. A girl shows up at a Halloween party dressed as J.Lo. The song plays. A boy dressed in a Top Gun costume walks over and dances along. Two minutes, maybe. Then the scene from Prime was posted on every platform. A week later, a song from 2011 was on Spotify’s global chart. People went searching for it after it was handed to them, in a scene, with good lighting.
+</p>
 
-<p>So, in December, somebody opens their Wrapped and finds one of those songs comfortably sitting in their top five. Did they pick it to sit there, or did it find its way through the show?</p>
+<p>
+So, in December, somebody opens their Wrapped and finds one of those songs comfortably sitting in their top five. Did they pick it to sit there, or did it find its way through the show?
+</p>
+
+<!-- POSTER 2 -->
 
 <div class="poster pink reveal">
   <div>
     <div class="mono">RECOMMENDATION SYSTEM / ACTIVE</div>
     <h2>YOU FOUND IT.<br>OR DID IT FIND YOU?</h2>
   </div>
-  <svg viewBox="0 0 180 200" role="img" aria-label="A cartoon creature looking at a digital signal">
-    <path d="M25 105 Q10 25 90 15 Q170 25 155 115 Q150 190 85 185 Q20 185 25 105Z" fill="#00e5ff" stroke="#111" stroke-width="7"/>
-    <circle cx="62" cy="80" r="17" fill="#111"/>
-    <circle cx="120" cy="80" r="17" fill="#111"/>
-    <path d="M55 130 Q90 155 130 125" fill="none" stroke="#111" stroke-width="8"/>
-    <path d="M20 55 L0 30 M160 55 L180 30" stroke="#111" stroke-width="7"/>
-    <path d="M85 10 L90 0 L100 10" stroke="#111" stroke-width="5"/>
-  </svg>
+
+  <div class="poster-creature">
+    <div class="purple-sprite">
+      <div class="sprite-head">
+        <span class="sprite-ear"></span>
+        <span class="sprite-ear right"></span>
+        <span class="sprite-blush"></span>
+        <span class="sprite-blush right"></span>
+        <div class="sprite-eyes">
+          <span class="sprite-eye"></span>
+          <span class="sprite-eye"></span>
+        </div>
+        <span class="sprite-nose"></span>
+        <span class="sprite-mouth"></span>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="section-marker mono"><span>03 /</span> FAMILIARITY.EXE</div>
+<div class="section-marker mono">
+  <span>03 /</span> FAMILIARITY.EXE
+</div>
 
-<p>There is an old idea in psychology about why. In 1968, Robert Zajonc argued that seeing something again and again can make you like it more. Nobody has to convince you. It just gets familiar, and familiar starts to feel like “your taste.”</p>
+<p>
+There is an old idea in psychology about why. In 1968, Robert Zajonc argued that seeing something again and again can make you like it more. Nobody has to convince you. It just gets familiar, and familiar starts to feel like “your taste.”
+</p>
 
 <div class="glitch-panel reveal">
-  <div class="mono code">REPEAT / REPEAT / REPEAT / REPEAT</div>
+  <div class="mono code">
+    REPEAT / REPEAT / REPEAT / REPEAT
+  </div>
+
   <h2>FAMILIAR STARTS TO FEEL LIKE YOURS.</h2>
-  <div class="mono bottom-code">ERROR: ORIGINAL SOURCE NOT FOUND</div>
+
+  <div class="mono bottom-code">
+    ERROR: ORIGINAL SOURCE NOT FOUND
+  </div>
 </div>
+
+<!-- THREE PURPLE CREATURE HEADS -->
 
 <div class="character-stage reveal">
-  <svg viewBox="0 0 150 190" role="img" aria-label="A pink digital creature">
-    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#ff397e" stroke="#09090f" stroke-width="6"/>
-    <circle cx="52" cy="78" r="12" fill="#09090f"/>
-    <circle cx="98" cy="78" r="12" fill="#09090f"/>
-    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
-  </svg>
 
-  <svg viewBox="0 0 150 190" role="img" aria-label="A green digital creature">
-    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#c9ff55" stroke="#09090f" stroke-width="6"/>
-    <ellipse cx="52" cy="78" rx="9" ry="18" fill="#09090f"/>
-    <ellipse cx="98" cy="78" rx="9" ry="18" fill="#09090f"/>
-    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
-  </svg>
+  <div class="mini-sprite">
+    <div class="sprite-head">
+      <span class="sprite-ear"></span>
+      <span class="sprite-ear right"></span>
+      <span class="sprite-blush"></span>
+      <span class="sprite-blush right"></span>
+      <div class="sprite-eyes">
+        <span class="sprite-eye"></span>
+        <span class="sprite-eye"></span>
+      </div>
+      <span class="sprite-nose"></span>
+      <span class="sprite-mouth"></span>
+    </div>
+  </div>
 
-  <svg viewBox="0 0 150 190" role="img" aria-label="A purple digital creature">
-    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#a78bfa" stroke="#09090f" stroke-width="6"/>
-    <circle cx="52" cy="78" r="12" fill="#09090f"/>
-    <circle cx="98" cy="78" r="12" fill="#09090f"/>
-    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
-  </svg>
+  <div class="mini-sprite">
+    <div class="sprite-head">
+      <span class="sprite-ear"></span>
+      <span class="sprite-ear right"></span>
+      <span class="sprite-blush"></span>
+      <span class="sprite-blush right"></span>
+      <div class="sprite-eyes">
+        <span class="sprite-eye"></span>
+        <span class="sprite-eye"></span>
+      </div>
+      <span class="sprite-nose"></span>
+      <span class="sprite-mouth"></span>
+    </div>
+  </div>
+
+  <div class="mini-sprite">
+    <div class="sprite-head">
+      <span class="sprite-ear"></span>
+      <span class="sprite-ear right"></span>
+      <span class="sprite-blush"></span>
+      <span class="sprite-blush right"></span>
+      <div class="sprite-eyes">
+        <span class="sprite-eye"></span>
+        <span class="sprite-eye"></span>
+      </div>
+      <span class="sprite-nose"></span>
+      <span class="sprite-mouth"></span>
+    </div>
+  </div>
+
 </div>
 
-<p>None of this makes taste fake. People have always been shaped by friends, family, ads, whatever was playing in the car. Nobody’s taste comes from nowhere. What’s different is that when a friend gave you a song, you knew a friend gave it to you. When an app does it, it just feels like you found it yourself.</p>
+<p>
+None of this makes taste fake. People have always been shaped by friends, family, ads, whatever was playing in the car. Nobody’s taste comes from nowhere. What’s different is that when a friend gave you a song, you knew a friend gave it to you. When an app does it, it just feels like you found it yourself.
+</p>
 
-<p>So when Wrapped says who you are, what it’s really saying is who you are out of what reached you.</p>
+<p>
+So when Wrapped says who you are, what it’s really saying is who you are out of what reached you.
+</p>
 
-<div class="section-marker mono"><span>04 /</span> THE THINGS THAT NEVER REACHED YOU</div>
+<div class="section-marker mono">
+  <span>04 /</span> THE THINGS THAT NEVER REACHED YOU
+</div>
 
 <!-- BOOK PHOTOGRAPH REMOVED -->
 
-<p>That makes you think about everything that didn’t. There might be a song you would have played for years. A book you’d have argued about. A movie that would have been your comfort movie. A whole other version of you who likes things you’ve never heard of. You don’t dislike any of it. You just haven’t seen it.</p>
+<p>
+That makes you think about everything that didn’t. There might be a song you would have played for years. A book you’d have argued about. A movie that would have been your comfort movie. A whole other version of you who likes things you’ve never heard of. You don’t dislike any of it. You just haven’t seen it.
+</p>
 
-<p>And you can’t miss something you don’t know is missing.</p>
+<p>
+And you can’t miss something you don’t know is missing.
+</p>
+
+<!-- POSTER 3 -->
 
 <div class="poster green reveal">
   <div>
     <div class="mono">UNDISCOVERED / STILL POSSIBLE</div>
     <h2>WHAT IF YOU JUST HAVEN'T SEEN IT YET?</h2>
   </div>
-  <svg viewBox="0 0 180 200" role="img" aria-label="A curious abstract creature">
-    <path d="M25 105 Q10 25 90 15 Q170 25 155 115 Q150 190 85 185 Q20 185 25 105Z" fill="#ff9f43" stroke="#111" stroke-width="7"/>
-    <circle cx="62" cy="80" r="17" fill="#111"/>
-    <circle cx="120" cy="80" r="17" fill="#111"/>
-    <path d="M55 130 Q90 155 130 125" fill="none" stroke="#111" stroke-width="8"/>
-    <path d="M30 30 L5 5 M150 30 L175 5" stroke="#111" stroke-width="7"/>
-  </svg>
+
+  <div class="poster-creature">
+    <div class="purple-sprite">
+      <div class="sprite-head">
+        <span class="sprite-ear"></span>
+        <span class="sprite-ear right"></span>
+        <span class="sprite-blush"></span>
+        <span class="sprite-blush right"></span>
+        <div class="sprite-eyes">
+          <span class="sprite-eye"></span>
+          <span class="sprite-eye"></span>
+        </div>
+        <span class="sprite-nose"></span>
+        <span class="sprite-mouth"></span>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="section-marker mono"><span>05 /</span> END OF TRANSMISSION</div>
+<div class="section-marker mono">
+  <span>05 /</span> END OF TRANSMISSION
+</div>
 
-<p>So, are you really what you like?</p>
+<p>
+So, are you really what you like?
+</p>
 
-<p>Maybe. More than the algorithm thinks, probably. It never saw your private sessions, your skips, or the things you’re okay with when no one is around.</p>
+<p>
+Maybe. More than the algorithm thinks, probably. It never saw your private sessions, your skips, or the things you’re okay with when no one is around.
+</p>
 
-<p>Yes, you like the things you like. But what if you just haven’t seen anything else?</p>
+<p>
+Yes, you like the things you like. But what if you just haven’t seen anything else?
+</p>
 
 <div class="ending-question reveal">
   <div class="eye">◉</div>
@@ -993,7 +1521,12 @@ button {font:inherit}
 
 <section class="final-screen">
   <div class="mono">TRANSMISSION 002 / COMPLETE</div>
-  <h2>YOUR TASTE IS YOURS.<br><em>ISN'T IT?</em></h2>
+
+  <h2>
+    YOUR TASTE IS YOURS.<br>
+    <em>ISN'T IT?</em>
+  </h2>
+
   <p>Maybe there's more out there.</p>
 </section>
 
@@ -1003,7 +1536,7 @@ button {font:inherit}
   <a href="#top">BACK TO TOP ↑</a>
 </footer>
 
-<!-- PERSONALITY.EXE: HUMAN CLASSIFICATION EXPERIMENT -->
+<!-- PERSONALITY.EXE -->
 
 <section id="personality-exe">
 
@@ -1012,36 +1545,102 @@ button {font:inherit}
   <span id="pe-live">● SYSTEM ONLINE</span>
 </div>
 
-<h2 class="pe-title">THE HUMAN<br>CLASSIFICATION DEPARTMENT</h2>
+<h2 class="pe-title">
+  THE HUMAN<br>CLASSIFICATION DEPARTMENT
+</h2>
 
-<p class="pe-sub">A completely unnecessary investigation into the person currently operating this device.</p>
+<p class="pe-sub">
+A completely unnecessary investigation into the person currently operating this device.
+</p>
 
 <div class="pe-screen">
 
   <div class="pe-status">EMPLOYEE ROSTER // 04 ACTIVE</div>
 
+  <!-- PURPLE CREATURE EMPLOYEES -->
+
   <div class="pe-characters">
 
     <div class="pe-character">
-      <span class="pe-sprite">🤖</span>
+      <span class="pe-sprite">
+        <div class="mini-sprite">
+          <div class="sprite-head">
+            <span class="sprite-ear"></span>
+            <span class="sprite-ear right"></span>
+            <span class="sprite-blush"></span>
+            <span class="sprite-blush right"></span>
+            <div class="sprite-eyes">
+              <span class="sprite-eye"></span>
+              <span class="sprite-eye"></span>
+            </div>
+            <span class="sprite-nose"></span>
+            <span class="sprite-mouth"></span>
+          </div>
+        </div>
+      </span>
       <strong>MR. LOGIC</strong>
       <small>Chief Analyst</small>
     </div>
 
     <div class="pe-character">
-      <span class="pe-sprite">👾</span>
+      <span class="pe-sprite">
+        <div class="mini-sprite">
+          <div class="sprite-head">
+            <span class="sprite-ear"></span>
+            <span class="sprite-ear right"></span>
+            <span class="sprite-blush"></span>
+            <span class="sprite-blush right"></span>
+            <div class="sprite-eyes">
+              <span class="sprite-eye"></span>
+              <span class="sprite-eye"></span>
+            </div>
+            <span class="sprite-nose"></span>
+            <span class="sprite-mouth"></span>
+          </div>
+        </div>
+      </span>
       <strong>404</strong>
       <small>System Error</small>
     </div>
 
     <div class="pe-character">
-      <span class="pe-sprite">🕵️</span>
+      <span class="pe-sprite">
+        <div class="mini-sprite">
+          <div class="sprite-head">
+            <span class="sprite-ear"></span>
+            <span class="sprite-ear right"></span>
+            <span class="sprite-blush"></span>
+            <span class="sprite-blush right"></span>
+            <div class="sprite-eyes">
+              <span class="sprite-eye"></span>
+              <span class="sprite-eye"></span>
+            </div>
+            <span class="sprite-nose"></span>
+            <span class="sprite-mouth"></span>
+          </div>
+        </div>
+      </span>
       <strong>INSPECTOR TASTE</strong>
       <small>Evidence Officer</small>
     </div>
 
     <div class="pe-character">
-      <span class="pe-sprite">👩‍💻</span>
+      <span class="pe-sprite">
+        <div class="mini-sprite">
+          <div class="sprite-head">
+            <span class="sprite-ear"></span>
+            <span class="sprite-ear right"></span>
+            <span class="sprite-blush"></span>
+            <span class="sprite-blush right"></span>
+            <div class="sprite-eyes">
+              <span class="sprite-eye"></span>
+              <span class="sprite-eye"></span>
+            </div>
+            <span class="sprite-nose"></span>
+            <span class="sprite-mouth"></span>
+          </div>
+        </div>
+      </span>
       <strong>JANET</strong>
       <small>Human Resources</small>
     </div>
@@ -1053,14 +1652,24 @@ button {font:inherit}
   </div>
 
   <div id="pe-intro">
-    <div class="pe-question">Are you prepared to be unnecessarily analysed?</div>
-    <p class="pe-sub">This experiment has no scientific credibility. The employees, however, have confidence.</p>
-    <button class="pe-primary" id="pe-start">BEGIN INVESTIGATION →</button>
+    <div class="pe-question">
+      Are you prepared to be unnecessarily analysed?
+    </div>
+
+    <p class="pe-sub">
+      This experiment has no scientific credibility. The employees, however, have confidence.
+    </p>
+
+    <button class="pe-primary" id="pe-start">
+      BEGIN INVESTIGATION →
+    </button>
   </div>
 
   <div id="pe-game" class="pe-hidden">
 
-    <div class="pe-status" id="pe-stage">TEST 001 / THE INFLUENCE CHECK</div>
+    <div class="pe-status" id="pe-stage">
+      TEST 001 / THE INFLUENCE CHECK
+    </div>
 
     <div class="pe-progress">
       <span id="pe-bar"></span>
@@ -1076,19 +1685,37 @@ button {font:inherit}
 
   <div id="pe-song" class="pe-hidden">
 
-    <div class="pe-status">SPECIAL INVESTIGATION / SOUNDTRACK INCIDENT</div>
+    <div class="pe-status">
+      SPECIAL INVESTIGATION / SOUNDTRACK INCIDENT
+    </div>
 
-    <div class="pe-question">We need to discuss your musical decisions.</div>
+    <div class="pe-question">
+      We need to discuss your musical decisions.
+    </div>
 
-    <p class="pe-sub">Enter a song that represents your current mood. This information will be handled with absolutely no professionalism.</p>
+    <p class="pe-sub">
+      Enter a song that represents your current mood. This information will be handled with absolutely no professionalism.
+    </p>
 
     <label class="pe-label" for="pe-song-title">SONG TITLE</label>
-    <input class="pe-input" id="pe-song-title" maxlength="100" placeholder="Your current emotional soundtrack">
+
+    <input
+      class="pe-input"
+      id="pe-song-title"
+      maxlength="100"
+      placeholder="Your current emotional soundtrack">
 
     <label class="pe-label" for="pe-song-artist">ARTIST</label>
-    <input class="pe-input" id="pe-song-artist" maxlength="100" placeholder="Who is responsible?">
 
-    <button class="pe-primary" id="pe-song-submit">SUBMIT EVIDENCE →</button>
+    <input
+      class="pe-input"
+      id="pe-song-artist"
+      maxlength="100"
+      placeholder="Who is responsible?">
+
+    <button class="pe-primary" id="pe-song-submit">
+      SUBMIT EVIDENCE →
+    </button>
 
     <div class="pe-dialogue pe-hidden" id="pe-song-reaction"></div>
 
@@ -1096,7 +1723,9 @@ button {font:inherit}
 
   <div id="pe-final" class="pe-hidden">
 
-    <div class="pe-status">INVESTIGATION COMPLETE // REPORT GENERATED</div>
+    <div class="pe-status">
+      INVESTIGATION COMPLETE // REPORT GENERATED
+    </div>
 
     <div class="pe-report">
 
@@ -1112,7 +1741,9 @@ button {font:inherit}
 
     </div>
 
-    <button class="pe-secondary" id="pe-restart">REOPEN INVESTIGATION ↻</button>
+    <button class="pe-secondary" id="pe-restart">
+      REOPEN INVESTIGATION ↻
+    </button>
 
   </div>
 
@@ -1123,7 +1754,7 @@ button {font:inherit}
 </div>
 </section>
 
-<!-- END PERSONALITY.EXE -->
+<!-- PERSONALITY.EXE JAVASCRIPT -->
 
 <script>
 (function(){
@@ -1137,6 +1768,7 @@ button {font:inherit}
   const $=id=>root.querySelector('#'+id);
 
   const questions=[
+
     {
       stage:'TEST 001 / THE INFLUENCE CHECK',
       question:'You discover that everyone around you suddenly loves something you once disliked. What happens?',
@@ -1148,6 +1780,7 @@ button {font:inherit}
         ['I pretend I liked it first.','404: HA. We have found the witness.']
       ]
     },
+
     {
       stage:'TEST 002 / DECISION-MAKING',
       question:'You have already decided what you want. Then someone asks if you are sure.',
@@ -1159,6 +1792,7 @@ button {font:inherit}
         ['I change my mind.','MR. LOGIC: I would like to resign.']
       ]
     },
+
     {
       stage:'TEST 003 / THE CONTRADICTION TEST',
       question:'You insist you do not care what people think. Someone disagrees with you. Now what?',
@@ -1170,6 +1804,7 @@ button {font:inherit}
         ['I pretend I did not hear them.','A strategic disappearance. Respectable.']
       ]
     }
+
   ];
 
   let answers=[];
@@ -1178,10 +1813,15 @@ button {font:inherit}
   let songSubmitted=false;
 
   function say(html){
+
     $('pe-dialogue').innerHTML=html;
+
     $('pe-dialogue').classList.remove('pe-glitch');
+
     void $('pe-dialogue').offsetWidth;
+
     $('pe-dialogue').classList.add('pe-glitch');
+
   }
 
   function showQuestion(){
@@ -1190,9 +1830,12 @@ button {font:inherit}
 
     $('pe-stage').textContent=q.stage;
     $('pe-question').textContent=q.question;
+
     $('pe-bar').style.width=(current/4*100)+'%';
 
-    $('pe-feedback').textContent='Select an answer. The department is watching.';
+    $('pe-feedback').textContent=
+      'Select an answer. The department is watching.';
+
     $('pe-options').innerHTML='';
 
     q.answers.forEach((answer)=>{
@@ -1210,6 +1853,7 @@ button {font:inherit}
         });
 
         $('pe-options').innerHTML='';
+
         $('pe-feedback').textContent=answer[1];
 
         say('<b>'+q.character+':</b> '+answer[1]);
@@ -1235,6 +1879,7 @@ button {font:inherit}
           } else {
 
             $('pe-game').classList.add('pe-hidden');
+
             $('pe-song').classList.remove('pe-hidden');
 
             say('<b>INSPECTOR TASTE:</b> Enough about your behaviour. We need to inspect your soundtrack.');
@@ -1256,6 +1901,7 @@ button {font:inherit}
   $('pe-start').addEventListener('click',()=>{
 
     $('pe-intro').classList.add('pe-hidden');
+
     $('pe-game').classList.remove('pe-hidden');
 
     showQuestion();
@@ -1265,6 +1911,7 @@ button {font:inherit}
   function showFinal(){
 
     $('pe-song').classList.add('pe-hidden');
+
     $('pe-final').classList.remove('pe-hidden');
 
     $('pe-bar').style.width='100%';
@@ -1307,6 +1954,7 @@ button {font:inherit}
     }
 
     const title=$('pe-song-title').value.trim();
+
     const artist=$('pe-song-artist').value.trim();
 
     if(!title){
@@ -1327,10 +1975,15 @@ button {font:inherit}
     $('pe-song-reaction').classList.remove('pe-hidden');
 
     const comments=[
+
       '<b>INSPECTOR TASTE:</b> We have no idea what this says about you. We will pretend otherwise.',
+
       '<b>404:</b> I recognise the emotional damage. Not the song.',
+
       '<b>MR. LOGIC:</b> One song is insufficient evidence. I am requesting a bigger budget.',
+
       '<b>JANET:</b> At least someone here has a soundtrack.'
+
     ];
 
     $('pe-song-reaction').innerHTML=
@@ -1346,11 +1999,13 @@ button {font:inherit}
   function escapeHTML(str){
 
     return str.replace(/[&<>"']/g,c=>({
+
       '&':'&amp;',
       '<':'&lt;',
       '>':'&gt;',
       '"':'&quot;',
       "'":'&#39;'
+
     }[c]));
 
   }
@@ -1386,9 +2041,9 @@ button {font:inherit}
 })();
 </script>
 
-<script>
-/* SCROLL REVEAL ANIMATION */
+<!-- SCROLL REVEAL -->
 
+<script>
 (function(){
 
   const elements=document.querySelectorAll('.reveal');
@@ -1402,6 +2057,7 @@ button {font:inherit}
         if(entry.isIntersecting){
 
           entry.target.classList.add('visible');
+
           observer.unobserve(entry.target);
 
         }
