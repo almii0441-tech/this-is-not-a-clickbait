@@ -74,15 +74,15 @@ a { color:inherit; }
 .site-logo span { color:var(--pink); }
 .header-status { color:var(--green); }
 
-/* =================================
-   NAMITHA HERO / EDITORIAL GRID
-================================= */
+/* ARTICLE WRAPPER */
 
 .article-wrap {
   width:min(1000px,90%);
   margin:auto;
   position:relative;
 }
+
+/* NAMITHA HERO */
 
 .namitha-hero {
   min-height:600px;
@@ -91,7 +91,6 @@ a { color:inherit; }
   position:relative;
   overflow:hidden;
   isolation:isolate;
-
   display:grid;
   grid-template-columns:1.15fr .85fr;
   align-items:center;
@@ -242,7 +241,7 @@ a { color:inherit; }
   border-radius:50%;
 }
 
-/* CSS BOOK CREATURE */
+/* CRUMB_004 */
 
 .crumb {
   position:relative;
@@ -280,11 +279,11 @@ a { color:inherit; }
 .crumb::after {
   content:"";
   position:absolute;
-  width:65px;
-  height:24px;
-  left:60px;
-  bottom:46px;
-  border-bottom:5px solid #54261e;
+  width:48px;
+  height:20px;
+  left:66px;
+  bottom:54px;
+  border-bottom:4px solid #54261e;
   border-radius:50%;
 }
 
@@ -389,7 +388,7 @@ a { color:inherit; }
   z-index:6;
 }
 
-/* ARTICLE INTRO META */
+/* ARTICLE INFORMATION */
 
 .article-meta {
   display:flex;
@@ -400,24 +399,6 @@ a { color:inherit; }
   color:var(--blue);
   font:11px var(--mono);
   letter-spacing:1.5px;
-}
-
-.article-title {
-  font:700 clamp(42px,8vw,86px)/.96 var(--sans);
-  letter-spacing:-5px;
-  margin:28px 0 20px;
-  text-transform:uppercase;
-}
-
-.article-title .accent {
-  color:var(--green);
-  text-shadow:5px 3px var(--red);
-}
-
-.article-subtitle {
-  color:var(--muted);
-  font:italic clamp(17px,3vw,22px) var(--serif);
-  margin-bottom:30px;
 }
 
 .byline {
@@ -500,6 +481,8 @@ a { color:inherit; }
 
 .glitch-art figcaption span { color:var(--pink); }
 
+/* ARTWORK 001 */
+
 .art-library {
   background:
     radial-gradient(circle at 50% 50%,#8a302d,transparent 42%),
@@ -521,15 +504,19 @@ a { color:inherit; }
 }
 
 .book-one { left:13%; top:34%; }
+
 .book-two {
-  left:39%; top:25%;
+  left:39%;
+  top:25%;
   color:var(--green);
   border-color:var(--pink);
   transform:rotate(8deg);
   animation-delay:-1s;
 }
+
 .book-three {
-  right:11%; top:43%;
+  right:11%;
+  top:43%;
   border-color:var(--blue);
   transform:rotate(15deg);
   animation-delay:-2s;
@@ -561,6 +548,8 @@ a { color:inherit; }
   50% { transform:translate(8px,-5px); opacity:.8; }
 }
 
+/* ARTWORK 002 */
+
 .art-sound {
   background:radial-gradient(circle at 50%,#87352c,transparent 45%),#160d12;
 }
@@ -578,7 +567,9 @@ a { color:inherit; }
   animation:discSpin 12s linear infinite;
 }
 
-@keyframes discSpin { to { transform:rotate(360deg); } }
+@keyframes discSpin {
+  to { transform:rotate(360deg); }
+}
 
 .sound-wave {
   position:absolute;
@@ -611,6 +602,8 @@ a { color:inherit; }
   0%,94%,100% { opacity:1; }
   95% { opacity:.35; transform:skewX(-8deg); }
 }
+
+/* ARTWORK 003 */
 
 .art-edition {
   background:linear-gradient(135deg,#171019,#512321,#301417);
@@ -647,6 +640,8 @@ a { color:inherit; }
   transform:rotate(9deg);
 }
 
+/* ARTWORK 004 */
+
 .art-merch {
   background:
     radial-gradient(circle at 20% 30%,#713324,transparent 40%),
@@ -664,24 +659,30 @@ a { color:inherit; }
 }
 
 .merch-candle {
-  width:65px;height:125px;
-  left:17%;top:30%;
+  width:65px;
+  height:125px;
+  left:17%;
+  top:30%;
   background:#743a29;
   color:var(--green);
   font-size:35px;
 }
 
 .merch-perfume {
-  width:75px;height:115px;
-  left:43%;top:32%;
+  width:75px;
+  height:115px;
+  left:43%;
+  top:32%;
   background:#8a392e;
   border-color:var(--pink);
   font-size:35px;
 }
 
 .merch-book {
-  width:105px;height:135px;
-  right:13%;top:27%;
+  width:105px;
+  height:135px;
+  right:13%;
+  top:27%;
   background:#4c2524;
   border-color:var(--green);
   text-align:center;
@@ -758,8 +759,10 @@ a { color:inherit; }
 .reader-exe::before {
   content:"";
   position:absolute;
-  left:0;top:0;
-  width:100%;height:3px;
+  left:0;
+  top:0;
+  width:100%;
+  height:3px;
   background:linear-gradient(90deg,var(--green),var(--pink),var(--blue));
 }
 
@@ -779,6 +782,8 @@ a { color:inherit; }
   font:14px/1.7 var(--sans);
   max-width:550px;
 }
+
+/* EGG CHARACTER */
 
 .egg-row {
   display:flex;
@@ -813,9 +818,11 @@ a { color:inherit; }
 .egg::before {
   content:"";
   position:absolute;
-  width:35px;height:35px;
+  width:35px;
+  height:35px;
   border-radius:50%;
-  top:-16px;right:8px;
+  top:-16px;
+  right:8px;
   background:var(--green);
   border:3px solid #54261e;
 }
@@ -823,11 +830,13 @@ a { color:inherit; }
 .egg::after {
   content:"";
   position:absolute;
-  width:16px;height:16px;
+  width:16px;
+  height:16px;
   background:var(--pink);
   border:2px solid #54261e;
   border-radius:50%;
-  top:12px;left:-10px;
+  top:12px;
+  left:-10px;
 }
 
 @keyframes eggIdle {
@@ -864,7 +873,8 @@ a { color:inherit; }
 .egg-eye {
   position:absolute;
   top:43px;
-  width:9px;height:12px;
+  width:9px;
+  height:12px;
   background:#54261e;
   border-radius:50%;
 }
@@ -874,8 +884,10 @@ a { color:inherit; }
 
 .egg-mouth {
   position:absolute;
-  width:13px;height:7px;
-  left:41px;top:64px;
+  width:13px;
+  height:7px;
+  left:41px;
+  top:64px;
   border-bottom:3px solid #54261e;
   border-radius:50%;
 }
@@ -889,14 +901,16 @@ a { color:inherit; }
 }
 
 .egg-feet i {
-  width:12px;height:9px;
+  width:12px;
+  height:9px;
   background:#e85a3d;
   border:2px solid #54261e;
 }
 
 .egg-spark {
   position:absolute;
-  top:-20px;right:-12px;
+  top:-20px;
+  right:-12px;
   color:var(--green);
   font-size:23px;
   animation:sparkBlink 1.2s steps(2) infinite;
@@ -943,7 +957,8 @@ a { color:inherit; }
 }
 
 .egg[data-mood="shocked"] .egg-mouth {
-  width:13px;height:15px;
+  width:13px;
+  height:15px;
   border:2px solid #54261e;
   border-radius:50%;
 }
@@ -1090,7 +1105,10 @@ a { color:inherit; }
   margin:0 0 5px;
 }
 
-.receipt p { font-size:11px;line-height:1.7; }
+.receipt p {
+  font-size:11px;
+  line-height:1.7;
+}
 
 .receipt-line {
   display:flex;
@@ -1172,7 +1190,6 @@ a { color:inherit; }
   .hero-subtitle { margin:22px 0; }
   .hero-scroll { display:none; }
 
-  .article-title { letter-spacing:-2px; }
   .article-meta { margin-top:40px; }
 
   .article-body p { font-size:16px; }
@@ -1214,9 +1231,7 @@ a { color:inherit; }
 
 <main class="article-wrap">
 
-<!-- =================================
-     NAMITHA HERO
-================================== -->
+<!-- NAMITHA HERO -->
 
 <section class="namitha-hero">
 
@@ -1285,21 +1300,13 @@ a { color:inherit; }
 
 </section>
 
-<!-- ARTICLE INFORMATION -->
+<!-- ARTICLE INFORMATION
+     DUPLICATE TITLE AND SUBTITLE REMOVED -->
 
 <div class="article-meta">
   <span>TRANSMISSION 004</span>
   <span>CULTURE.EXE / READING CULTURE</span>
 </div>
-
-<h2 class="article-title">
-  PLAYLISTS FIRST,<br>
-  <span class="accent">STORIES NEXT.</span>
-</h2>
-
-<p class="article-subtitle">
-  The book, the experience, and everything being sold in between.
-</p>
 
 <div class="byline">
   <span>BY <strong>NAMITHA RAJEEV</strong></span>
@@ -1457,9 +1464,7 @@ a { color:inherit; }
   THE EXPERIENCE, HOWEVER, IS STILL LOADING...
 </div>
 
-<!-- =================================
-     READER.EXE EXPERIENCE BUILDER
-================================== -->
+<!-- READER.EXE EXPERIENCE BUILDER -->
 
 <section class="reader-exe" id="reader-exe">
 
@@ -1576,9 +1581,7 @@ a { color:inherit; }
 
 <script>
 
-/* =================================
-   READER.EXE
-================================== */
+/* READER.EXE */
 
 const stages = [
 
@@ -1822,6 +1825,8 @@ backButton.addEventListener("click",()=>{
 
 });
 
+/* GENERATE RECEIPT */
+
 function generateReceipt() {
 
   grid.style.display = "none";
@@ -1914,6 +1919,8 @@ function generateReceipt() {
 
 }
 
+/* RECEIPT TEXT */
+
 function receiptText() {
 
   const reader = stages[0].choices[selections[0]][0];
@@ -1957,17 +1964,19 @@ function receiptText() {
 
 $("copy-receipt").addEventListener("click",async()=>{
 
+  const text = receiptText();
+
   try {
 
     if(navigator.clipboard && window.isSecureContext) {
 
-      await navigator.clipboard.writeText(receiptText());
+      await navigator.clipboard.writeText(text);
 
     } else {
 
       const textarea = document.createElement("textarea");
 
-      textarea.value = receiptText();
+      textarea.value = text;
 
       textarea.style.position = "fixed";
       textarea.style.opacity = "0";
