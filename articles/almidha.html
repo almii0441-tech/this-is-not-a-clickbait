@@ -77,8 +77,6 @@ button {font:inherit}
 .top-status {color:var(--green)}
 .home-link {color:var(--cyan)}
 
-/* HERO */
-
 .hero {
   min-height:760px;
   padding:90px 7% 100px;
@@ -162,15 +160,64 @@ button {font:inherit}
 
 .hero-meta span:first-child {color:var(--pink)}
 
+/* NEW CUTE PURPLE FLOATING HEAD */
+
 .hero-art {
   position:absolute;
   right:6%;
-  bottom:65px;
-  width:min(32vw,330px);
-  height:280px;
+  bottom:75px;
+  width:min(32vw,300px);
   z-index:1;
-  display:grid;
-  place-items:center;
+  filter:drop-shadow(8px 12px 0 #ff397e);
+  animation:mascot-float 3.2s ease-in-out infinite;
+  transform-origin:center;
+}
+
+.hero-art svg {
+  width:100%;
+  height:auto;
+  overflow:visible;
+}
+
+@keyframes mascot-float {
+  0%,100% {transform:translateY(0) rotate(-4deg)}
+  50% {transform:translateY(-17px) rotate(4deg)}
+}
+
+.mascot-ear {
+  transform-box:fill-box;
+  transform-origin:bottom center;
+  animation:ear-wiggle 4s ease-in-out infinite;
+}
+
+.mascot-ear.right {
+  animation-delay:.5s;
+}
+
+@keyframes ear-wiggle {
+  0%,85%,100% {transform:rotate(0)}
+  90% {transform:rotate(-9deg)}
+  95% {transform:rotate(5deg)}
+}
+
+.mascot-eye {
+  transform-box:fill-box;
+  transform-origin:center;
+  animation:mascot-blink 4.8s infinite;
+}
+
+@keyframes mascot-blink {
+  0%,44%,48%,100% {transform:scaleY(1)}
+  46% {transform:scaleY(.08)}
+}
+
+.mascot-cheek {
+  animation:cheek-glow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes cheek-glow {
+  from {opacity:.55}
+  to {opacity:1}
 }
 
 .hero-side-note {
@@ -191,235 +238,6 @@ button {font:inherit}
   padding:12px;
   transform:rotate(8deg);
 }
-
-/* PURPLE CREATURE */
-
-.purple-sprite {
-  --sprite-purple:#a78bfa;
-  --sprite-dark:#09090f;
-  --sprite-pink:#ff83c9;
-
-  width:190px;
-  height:175px;
-  position:relative;
-  animation:sprite-float 2.8s ease-in-out infinite;
-  filter:drop-shadow(8px 10px 0 #ff397e);
-}
-
-.sprite-head {
-  position:absolute;
-  width:145px;
-  height:132px;
-  left:22px;
-  top:27px;
-  background:var(--sprite-purple);
-  border:5px solid var(--sprite-dark);
-  border-radius:47% 48% 44% 46%;
-  box-shadow:0 0 35px #a78bfa55;
-  transform:rotate(-5deg);
-}
-
-.sprite-ear {
-  position:absolute;
-  top:-33px;
-  left:8px;
-  width:48px;
-  height:66px;
-  background:var(--sprite-purple);
-  border:5px solid var(--sprite-dark);
-  border-radius:80% 10% 60% 20%;
-  transform:rotate(-23deg);
-  z-index:-1;
-}
-
-.sprite-ear.right {
-  left:88px;
-  transform:rotate(23deg) scaleX(-1);
-}
-
-.sprite-ear::after {
-  content:"";
-  position:absolute;
-  width:15px;
-  height:37px;
-  top:12px;
-  left:14px;
-  background:var(--sprite-pink);
-  border-radius:50%;
-}
-
-.sprite-eyes {
-  position:absolute;
-  top:44px;
-  left:29px;
-  display:flex;
-  gap:35px;
-}
-
-.sprite-eye {
-  width:22px;
-  height:31px;
-  background:#171225;
-  border-radius:50%;
-  position:relative;
-  animation:sprite-blink 4.5s infinite;
-  transform-origin:center;
-}
-
-.sprite-eye::after {
-  content:"";
-  position:absolute;
-  width:7px;
-  height:8px;
-  top:5px;
-  left:5px;
-  background:white;
-  border-radius:50%;
-}
-
-.sprite-nose {
-  position:absolute;
-  top:81px;
-  left:65px;
-  width:13px;
-  height:10px;
-  background:var(--sprite-pink);
-  border-radius:50%;
-}
-
-.sprite-mouth {
-  position:absolute;
-  top:91px;
-  left:52px;
-  width:40px;
-  height:18px;
-  border-bottom:4px solid #171225;
-  border-radius:50%;
-}
-
-.sprite-mouth::before,
-.sprite-mouth::after {
-  content:"";
-  position:absolute;
-  top:10px;
-  width:8px;
-  height:11px;
-  background:white;
-  clip-path:polygon(0 0,100% 0,50% 100%);
-}
-
-.sprite-mouth::before {left:5px}
-.sprite-mouth::after {right:5px}
-
-.sprite-blush {
-  position:absolute;
-  top:84px;
-  left:9px;
-  width:25px;
-  height:12px;
-  background:var(--sprite-pink);
-  opacity:.8;
-  border-radius:50%;
-}
-
-.sprite-blush.right {left:105px}
-
-@keyframes sprite-float {
-  0%,100% {transform:translateY(0) rotate(-3deg)}
-  50% {transform:translateY(-14px) rotate(4deg)}
-}
-
-@keyframes sprite-blink {
-  0%,44%,48%,100% {transform:scaleY(1)}
-  46% {transform:scaleY(.08)}
-}
-
-/* SMALL CREATURES */
-
-.mini-sprite {
-  width:100px;
-  height:105px;
-  position:relative;
-  animation:sprite-float 2.8s ease-in-out infinite;
-}
-
-.mini-sprite .sprite-head {
-  width:90px;
-  height:82px;
-  left:5px;
-  top:15px;
-  border-width:4px;
-}
-
-.mini-sprite .sprite-ear {
-  width:32px;
-  height:43px;
-  top:-22px;
-  left:3px;
-  border-width:3px;
-}
-
-.mini-sprite .sprite-ear.right {
-  left:51px;
-}
-
-.mini-sprite .sprite-ear::after {
-  width:10px;
-  height:24px;
-  top:8px;
-  left:9px;
-}
-
-.mini-sprite .sprite-eyes {
-  top:27px;
-  left:18px;
-  gap:22px;
-}
-
-.mini-sprite .sprite-eye {
-  width:13px;
-  height:19px;
-}
-
-.mini-sprite .sprite-eye::after {
-  width:4px;
-  height:5px;
-  top:3px;
-  left:3px;
-}
-
-.mini-sprite .sprite-nose {
-  top:50px;
-  left:40px;
-  width:8px;
-  height:6px;
-}
-
-.mini-sprite .sprite-mouth {
-  top:56px;
-  left:31px;
-  width:28px;
-  height:12px;
-  border-bottom-width:3px;
-}
-
-.mini-sprite .sprite-mouth::before,
-.mini-sprite .sprite-mouth::after {
-  top:7px;
-  width:5px;
-  height:7px;
-}
-
-.mini-sprite .sprite-blush {
-  top:51px;
-  left:5px;
-  width:15px;
-  height:8px;
-}
-
-.mini-sprite .sprite-blush.right {left:66px}
-
-/* TICKER */
 
 .ticker {
   overflow:hidden;
@@ -443,8 +261,6 @@ button {font:inherit}
   from {transform:translateX(0)}
   to {transform:translateX(-50%)}
 }
-
-/* PHOTO */
 
 .hero-photo {
   margin:0;
@@ -489,8 +305,6 @@ button {font:inherit}
 }
 
 .intro-strip strong {color:var(--cyan)}
-
-/* ARTICLE */
 
 .article-wrap {
   max-width:1200px;
@@ -566,8 +380,6 @@ button {font:inherit}
   letter-spacing:.1em;
 }
 
-/* QUOTE */
-
 .quote-card {
   margin:75px -25px;
   padding:45px;
@@ -590,8 +402,6 @@ button {font:inherit}
   margin-top:22px;
   font:10px var(--mono);
 }
-
-/* STATS */
 
 .stats {
   margin:75px 0;
@@ -616,8 +426,6 @@ button {font:inherit}
   font:10px var(--mono);
   margin-top:12px;
 }
-
-/* POSTERS */
 
 .poster {
   margin:85px 0;
@@ -645,11 +453,9 @@ button {font:inherit}
 
 .poster .mono {position:relative;z-index:2}
 
-.poster-creature {
-  width:190px;
+.poster svg {
+  width:160px;
   flex-shrink:0;
-  display:grid;
-  place-items:center;
   position:relative;
   z-index:1;
 }
@@ -657,8 +463,6 @@ button {font:inherit}
 .poster.pink {background:var(--pink)}
 .poster.green {background:var(--green)}
 .poster.orange {background:var(--orange)}
-
-/* GLITCH */
 
 .glitch-panel {
   margin:90px 0;
@@ -694,8 +498,6 @@ button {font:inherit}
 .glitch-panel .code {color:var(--green)}
 .glitch-panel .bottom-code {color:var(--pink)}
 
-/* CHARACTER STAGE */
-
 .character-stage {
   margin:85px 0;
   min-height:280px;
@@ -709,17 +511,9 @@ button {font:inherit}
   overflow:hidden;
 }
 
-.character-stage .mini-sprite:nth-child(2) {
-  transform:translateY(-25px);
-  animation-delay:.5s;
-}
-
-.character-stage .mini-sprite:nth-child(3) {
-  transform:translateY(20px);
-  animation-delay:1s;
-}
-
-/* ENDING */
+.character-stage svg {width:30%;max-width:170px}
+.character-stage svg:nth-child(2) {transform:translateY(-25px) rotate(8deg)}
+.character-stage svg:nth-child(3) {transform:translateY(20px) rotate(-7deg)}
 
 .ending-question {
   margin:85px 0 30px;
@@ -741,8 +535,6 @@ button {font:inherit}
   color:var(--cyan);
   margin-top:20px;
 }
-
-/* FINAL */
 
 .final-screen {
   padding:125px 7%;
@@ -805,7 +597,6 @@ button {font:inherit}
   --pe-pink:#ff75c8;
   --pe-blue:#77d9ff;
   --pe-purple:#b99aff;
-
   background:var(--pe-bg);
   color:#f5f1ed;
   border:1px solid #393443;
@@ -880,28 +671,20 @@ button {font:inherit}
 }
 
 #personality-exe .pe-sprite {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:75px;
+  font-family:monospace;
+  font-size:29px;
+  display:block;
+  line-height:1.5;
+  animation:pe-bob 1.8s steps(2,end) infinite;
 }
 
-#personality-exe .pe-sprite .mini-sprite {
-  transform:scale(.55);
-  transform-origin:center;
-  animation:sprite-float 2.8s ease-in-out infinite;
-}
+#personality-exe .pe-character:nth-child(2) .pe-sprite {animation-delay:.3s}
+#personality-exe .pe-character:nth-child(3) .pe-sprite {animation-delay:.6s}
+#personality-exe .pe-character:nth-child(4) .pe-sprite {animation-delay:.9s}
 
-#personality-exe .pe-character:nth-child(2) .mini-sprite {
-  animation-delay:.4s;
-}
-
-#personality-exe .pe-character:nth-child(3) .mini-sprite {
-  animation-delay:.8s;
-}
-
-#personality-exe .pe-character:nth-child(4) .mini-sprite {
-  animation-delay:1.2s;
+@keyframes pe-bob {
+  0%,100% {transform:translateY(0)}
+  50% {transform:translateY(-4px)}
 }
 
 #personality-exe .pe-character strong {
@@ -1064,47 +847,24 @@ button {font:inherit}
   100% {transform:translateX(0)}
 }
 
-/* RESPONSIVE */
-
 @media(max-width:800px) {
-  .hero {
-    min-height:760px;
-    padding:80px 7% 290px;
-  }
-
-  .hero-art {
-    width:230px;
-    right:8%;
-    bottom:40px;
-  }
-
+  .hero {min-height:760px;padding:80px 7% 290px}
+  .hero-art {width:230px;right:8%;bottom:40px}
   .hero-stamp {top:5%;right:7%}
   .hero-side-note {display:none}
-
-  .article-wrap {
-    display:block;
-    padding:65px 7% 80px;
-  }
-
+  .article-wrap {display:block;padding:65px 7% 80px}
   .sidebar {
     position:static;
     margin-bottom:45px;
     padding-bottom:20px;
     border-bottom:1px solid var(--line);
   }
-
   .sidebar .side-rule {display:none}
-
   .article {font-size:16px;line-height:1.85}
-
-  .quote-card {
-    margin:65px 0;
-    padding:30px;
-  }
-
+  .quote-card {margin:65px 0;padding:30px}
   .stats {padding:25px}
   .poster {padding:25px;min-height:250px}
-  .poster-creature {width:130px}
+  .poster svg {width:115px}
   .character-stage {min-height:200px;padding:15px}
 }
 
@@ -1117,9 +877,9 @@ button {font:inherit}
   .hero-stamp {font-size:8px}
   .stats {gap:12px;padding:20px}
   .poster {gap:8px}
-  .poster-creature {width:100px}
+  .poster svg {width:90px}
   .character-stage {gap:5px}
-  .character-stage .mini-sprite {transform:scale(.8)}
+  .character-stage svg {width:32%}
   .final-screen {padding:90px 7%}
   #personality-exe .pe-characters {grid-template-columns:repeat(2,1fr)}
 }
@@ -1128,9 +888,8 @@ button {font:inherit}
   html {scroll-behavior:auto}
   .ticker-track {animation:none}
   .reveal {transition:none}
-  .purple-sprite,
-  .mini-sprite,
-  .sprite-eye {animation:none!important}
+  #personality-exe .pe-sprite {animation:none}
+  .hero-art,.mascot-ear,.mascot-eye,.mascot-cheek {animation:none}
 }
 </style>
 </head>
@@ -1169,39 +928,144 @@ button {font:inherit}
     <span>REPORT GENERATING...</span>
   </div>
 
-  <div class="hero-stamp mono">
-    YOUR YEAR<br>IS READY?
-  </div>
+  <div class="hero-stamp mono">YOUR YEAR<br>IS READY?</div>
 
-  <!-- PURPLE CREATURE -->
-
+  <!-- NEW PURPLE FLOATING HEAD ONLY -->
   <div class="hero-art">
-    <div class="purple-sprite">
-      <div class="sprite-head">
-        <span class="sprite-ear"></span>
-        <span class="sprite-ear right"></span>
-        <span class="sprite-blush"></span>
-        <span class="sprite-blush right"></span>
+    <svg viewBox="0 0 300 270"
+         role="img"
+         aria-label="A cute floating purple creature head with pointed ears and big shiny eyes">
 
-        <div class="sprite-eyes">
-          <span class="sprite-eye"></span>
-          <span class="sprite-eye"></span>
-        </div>
+      <defs>
+        <linearGradient id="purpleHead" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#d5baff"/>
+          <stop offset="55%" stop-color="#ad85f5"/>
+          <stop offset="100%" stop-color="#8960d7"/>
+        </linearGradient>
 
-        <span class="sprite-nose"></span>
-        <span class="sprite-mouth"></span>
-      </div>
-    </div>
+        <linearGradient id="innerEar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffb8df"/>
+          <stop offset="100%" stop-color="#ff78bc"/>
+        </linearGradient>
+
+        <radialGradient id="eyeShine">
+          <stop offset="0%" stop-color="#fff"/>
+          <stop offset="100%" stop-color="#c9f5ff"/>
+        </radialGradient>
+      </defs>
+
+      <!-- EARS -->
+      <g class="mascot-ear">
+        <path d="M77 91
+                 Q37 73 38 17
+                 Q37 -1 57 13
+                 Q88 32 105 76Z"
+              fill="url(#purpleHead)"
+              stroke="#09090f"
+              stroke-width="7"
+              stroke-linejoin="round"/>
+
+        <path d="M61 65
+                 Q51 38 52 25
+                 Q73 43 82 69Z"
+              fill="url(#innerEar)"/>
+      </g>
+
+      <g class="mascot-ear right">
+        <path d="M190 77
+                 Q211 29 247 12
+                 Q266 2 259 31
+                 Q252 78 218 100Z"
+              fill="url(#purpleHead)"
+              stroke="#09090f"
+              stroke-width="7"
+              stroke-linejoin="round"/>
+
+        <path d="M218 69
+                 Q235 39 248 27
+                 Q246 52 231 77Z"
+              fill="url(#innerEar)"/>
+      </g>
+
+      <!-- HEAD -->
+      <path d="
+        M49 134
+        C38 84 81 57 142 58
+        C205 53 260 87 259 143
+        C265 202 221 241 151 242
+        C82 243 39 207 39 153
+        C39 146 43 138 49 134Z"
+        fill="url(#purpleHead)"
+        stroke="#09090f"
+        stroke-width="8"/>
+
+      <!-- HEAD HIGHLIGHT -->
+      <ellipse cx="91" cy="105" rx="29" ry="12"
+               fill="#fff" opacity=".16"
+               transform="rotate(-28 91 105)"/>
+
+      <ellipse cx="218" cy="117" rx="12" ry="6"
+               fill="#fff" opacity=".13"
+               transform="rotate(25 218 117)"/>
+
+      <!-- EYES -->
+      <g class="mascot-eye">
+        <ellipse cx="105" cy="148" rx="19" ry="25" fill="#241936"/>
+        <ellipse cx="110" cy="139" rx="7" ry="9" fill="url(#eyeShine)"/>
+        <circle cx="98" cy="156" r="3.5" fill="#fff"/>
+      </g>
+
+      <g class="mascot-eye">
+        <ellipse cx="195" cy="148" rx="19" ry="25" fill="#241936"/>
+        <ellipse cx="200" cy="139" rx="7" ry="9" fill="url(#eyeShine)"/>
+        <circle cx="188" cy="156" r="3.5" fill="#fff"/>
+      </g>
+
+      <!-- BLUSH -->
+      <ellipse class="mascot-cheek"
+               cx="70" cy="181" rx="17" ry="9"
+               fill="#ff83c9"/>
+
+      <ellipse class="mascot-cheek"
+               cx="230" cy="181" rx="17" ry="9"
+               fill="#ff83c9"/>
+
+      <!-- NOSE -->
+      <path d="M143 176 Q150 169 157 176 Q151 184 143 176Z"
+            fill="#ff83c9"/>
+
+      <!-- SMILE -->
+      <path d="M119 193
+               Q150 220 181 193"
+            fill="none"
+            stroke="#241936"
+            stroke-width="7"
+            stroke-linecap="round"/>
+
+      <!-- TINY TEETH -->
+      <path d="M132 204 L138 214 L143 207Z"
+            fill="#fff"/>
+
+      <path d="M157 207 L163 214 L168 204Z"
+            fill="#fff"/>
+
+      <!-- LITTLE SPARKLES -->
+      <path d="M24 109 L29 121 L41 126 L29 131 L24 143 L19 131 L7 126 L19 121Z"
+            fill="#c9ff55"/>
+
+      <path d="M269 180 L273 190 L283 194 L273 198 L269 208 L265 198 L255 194 L265 190Z"
+            fill="#00e5ff"/>
+
+      <circle cx="45" cy="205" r="5" fill="#ff9f43"/>
+      <circle cx="257" cy="83" r="5" fill="#ff397e"/>
+
+    </svg>
   </div>
 </section>
 
 <div class="ticker">
   <div class="ticker-track">
-    YOUR PERSONALITY REPORT IS READY ✳
-    YOUR PERSONALITY REPORT IS READY ✳
-    DATA DOES NOT EQUAL IDENTITY ✳
-    YOUR PERSONALITY REPORT IS READY ✳
-    DATA DOES NOT EQUAL IDENTITY ✳
+    YOUR PERSONALITY REPORT IS READY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳
   </div>
 </div>
 
@@ -1211,7 +1075,6 @@ button {font:inherit}
   <img
     src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85"
     alt="A person listening to music through headphones">
-
   <figcaption class="photo-caption mono">
     01 / THE ANNUAL IDENTITY CEREMONY
   </figcaption>
@@ -1230,40 +1093,22 @@ button {font:inherit}
   <div class="side-rule"></div>
   SUBJECT: PERSONAL TASTE<br>
   STATUS: UNDER QUESTION
-
   <div class="side-rule"></div>
-
   SYSTEM NOTE:
-  <span class="side-green">
-    YOUR DATA HAS BEEN RECEIVED.
-  </span>
-
+  <span class="side-green">YOUR DATA HAS BEEN RECEIVED.</span>
   <div class="side-rule"></div>
-
-  <span class="side-cyan">
-    SCROLL TO INVESTIGATE ↓
-  </span>
+  <span class="side-cyan">SCROLL TO INVESTIGATE ↓</span>
 </aside>
 
 <article class="article">
 
-<p class="lead">
-Every December an app tells us who we are. And people eagerly wait for its release, so they can share it and claim that’s who they are.
-</p>
+<p class="lead">Every December an app tells us who we are. And people eagerly wait for its release, so they can share it and claim that’s who they are.</p>
 
-<p>
-It sounds dramatic, right? But that’s what happens. In 2024, Spotify Wrapped was later than usual, and “X” filled with memes and jokes about it, even though Spotify had already announced, “Almost here.” When it finally arrived, people claimed it was underwhelming. Oh, we spent a whole year waiting for it to tell us about ourselves, and yes, we judged the answer.
-</p>
+<p>It sounds dramatic, right? But that’s what happens. In 2024, Spotify Wrapped was later than usual, and “X” filled with memes and jokes about it, even though Spotify had already announced, “Almost here.” When it finally arrived, people claimed it was underwhelming. Oh, we spent a whole year waiting for it to tell us about ourselves, and yes, we judged the answer.</p>
 
-<p>
-It started small. In 2015, it was a simple roundup called “Year in Music,” and it became Wrapped in 2016. By 2025, Spotify said over 200 million people had opened their year-end Wrapped within a day, and it was shared more than 500 million times.
-</p>
+<p>It started small. In 2015, it was a simple roundup called “Year in Music,” and it became Wrapped in 2016. By 2025, Spotify said over 200 million people had opened their year-end Wrapped within a day, and it was shared more than 500 million times.</p>
 
-<p>
-It feels like a mirror. You listened, it counted, now it shows you yourself.
-</p>
-
-<!-- POSTER 1 -->
+<p>It feels like a mirror. You listened, it counted, now it shows you yourself.</p>
 
 <div class="poster reveal">
   <div>
@@ -1271,86 +1116,52 @@ It feels like a mirror. You listened, it counted, now it shows you yourself.
     <h2>IT COUNTED.<br>DID IT KNOW?</h2>
   </div>
 
-  <div class="poster-creature">
-    <div class="purple-sprite">
-      <div class="sprite-head">
-        <span class="sprite-ear"></span>
-        <span class="sprite-ear right"></span>
-        <span class="sprite-blush"></span>
-        <span class="sprite-blush right"></span>
-        <div class="sprite-eyes">
-          <span class="sprite-eye"></span>
-          <span class="sprite-eye"></span>
-        </div>
-        <span class="sprite-nose"></span>
-        <span class="sprite-mouth"></span>
-      </div>
-    </div>
-  </div>
+  <svg viewBox="0 0 180 200" role="img" aria-label="An illustrated face with mismatched eyes">
+    <path d="M20 100 Q15 15 90 12 Q165 20 160 110 Q150 195 85 190 Q20 180 20 100Z" fill="#c9ff55" stroke="#111" stroke-width="7"/>
+    <ellipse cx="60" cy="80" rx="15" ry="25" fill="#111"/>
+    <circle cx="120" cy="80" r="18" fill="#ff397e" stroke="#111" stroke-width="5"/>
+    <path d="M55 135 Q90 160 130 130" stroke="#111" stroke-width="8" fill="none"/>
+    <path d="M25 30 L5 5 M150 30 L175 5" stroke="#111" stroke-width="7"/>
+  </svg>
 </div>
 
-<p>
-At counting, yeah, mostly. A song only counts if you play it for at least 30 seconds, so anything shorter is filtered out. The song you skipped after ten seconds never happened. Nobody saw it, nobody noticed it.
-</p>
+<p>At counting, yeah, mostly. A song only counts if you play it for at least 30 seconds, so anything shorter is filtered out. The song you skipped after ten seconds never happened. Nobody saw it, nobody noticed it.</p>
 
-<p>
-But is it right? Is it accurate? Does counting mean it knows you?
-</p>
+<p>But is it right? Is it accurate? Does counting mean it knows you?</p>
 
-<p>
-What if a song just gets counted because I played it on purpose, past thirty seconds, without even listening to it fully, enough times? Maybe Wrapped would call it mine. It wouldn’t ask if I meant it. It wouldn’t know.
-</p>
+<p>What if a song just gets counted because I played it on purpose, past thirty seconds, without even listening to it fully, enough times? Maybe Wrapped would call it mine. It wouldn’t ask if I meant it. It wouldn’t know.</p>
 
-<p>
-What if I wanted people to think I liked that specific song?
-</p>
+<p>What if I wanted people to think I liked that specific song?</p>
 
 <div class="stats reveal">
   <div>
     <div class="stat-number">30s</div>
     <small>MINIMUM PLAY TIME TO COUNT</small>
   </div>
-
   <div>
     <div class="stat-number">?</div>
     <small>WHAT THE DATA DOESN'T KNOW</small>
   </div>
 </div>
 
-<p>
-Because counting isn’t knowing. Songs played in a Private Session don’t count toward top lists, so the one you’re embarrassed about never shows up in your Wrapped. If someone else uses your account, their listening becomes yours. So maybe the artist you think is your number one is actually your dad’s. You’ll never know. And it says “your year,” but it isn’t the whole year. Spotify says the data stops a few weeks before launch. So if you find a song you’re addicted to in late November, even if you play it 50 times more than the other songs, you’ll never know. The end of the year isn’t there, and it still calls it yours.
-</p>
+<p>Because counting isn’t knowing. Songs played in a Private Session don’t count toward top lists, so the one you’re embarrassed about never shows up in your Wrapped. If someone else uses your account, their listening becomes yours. So maybe the artist you think is your number one is actually your dad’s. You’ll never know. And it says “your year,” but it isn’t the whole year. Spotify says the data stops a few weeks before launch. So if you find a song you’re addicted to in late November, even if you play it 50 times more than the other songs, you’ll never know. The end of the year isn’t there, and it still calls it yours.</p>
 
 <div class="quote-card reveal">
   <p>SO WRAPPED IS A RECEIPT, NOT A PORTRAIT.</p>
   <small>IT KNOWS WHAT YOU PLAYED. IT DOESN'T KNOW WHY.</small>
 </div>
 
-<p>
-And that’s the weird part. So, why did you play it?
-</p>
+<p>And that’s the weird part. So, why did you play it?</p>
 
-<div class="section-marker mono">
-  <span>02 /</span> THE RECOMMENDATION MACHINE
-</div>
+<div class="section-marker mono"><span>02 /</span> THE RECOMMENDATION MACHINE</div>
 
-<p>
-A lot of what we listen to, nobody went looking for. Either it was just there or it found us. Netflix’s own engineers said their recommendations influence the choice for about 80% of the hours people stream. Influence, not control. Fine, but that means a lot of your “top playlist” was handed to you before you picked it.
-</p>
+<p>A lot of what we listen to, nobody went looking for. Either it was just there or it found us. Netflix’s own engineers said their recommendations influence the choice for about 80% of the hours people stream. Influence, not control. Fine, but that means a lot of your “top playlist” was handed to you before you picked it.</p>
 
-<p>
-In 2022, a famous show put a song from 1985 in a scene, and in one day its streams jumped by a thousand percent.
-</p>
+<p>In 2022, a famous show put a song from 1985 in a scene, and in one day its streams jumped by a thousand percent.</p>
 
-<p>
-This year, it was a dance scene. A girl shows up at a Halloween party dressed as J.Lo. The song plays. A boy dressed in a Top Gun costume walks over and dances along. Two minutes, maybe. Then the scene from Prime was posted on every platform. A week later, a song from 2011 was on Spotify’s global chart. People went searching for it after it was handed to them, in a scene, with good lighting.
-</p>
+<p>This year, it was a dance scene. A girl shows up at a Halloween party dressed as J.Lo. The song plays. A boy dressed in a Top Gun costume walks over and dances along. Two minutes, maybe. Then the scene from Prime was posted on every platform. A week later, a song from 2011 was on Spotify’s global chart. People went searching for it after it was handed to them, in a scene, with good lighting.</p>
 
-<p>
-So, in December, somebody opens their Wrapped and finds one of those songs comfortably sitting in their top five. Did they pick it to sit there, or did it find its way through the show?
-</p>
-
-<!-- POSTER 2 -->
+<p>So, in December, somebody opens their Wrapped and finds one of those songs comfortably sitting in their top five. Did they pick it to sit there, or did it find its way through the show?</p>
 
 <div class="poster pink reveal">
   <div>
@@ -1358,118 +1169,60 @@ So, in December, somebody opens their Wrapped and finds one of those songs comfo
     <h2>YOU FOUND IT.<br>OR DID IT FIND YOU?</h2>
   </div>
 
-  <div class="poster-creature">
-    <div class="purple-sprite">
-      <div class="sprite-head">
-        <span class="sprite-ear"></span>
-        <span class="sprite-ear right"></span>
-        <span class="sprite-blush"></span>
-        <span class="sprite-blush right"></span>
-        <div class="sprite-eyes">
-          <span class="sprite-eye"></span>
-          <span class="sprite-eye"></span>
-        </div>
-        <span class="sprite-nose"></span>
-        <span class="sprite-mouth"></span>
-      </div>
-    </div>
-  </div>
+  <svg viewBox="0 0 180 200" role="img" aria-label="A cartoon creature looking at a digital signal">
+    <path d="M25 105 Q10 25 90 15 Q170 25 155 115 Q150 190 85 185 Q20 185 25 105Z" fill="#00e5ff" stroke="#111" stroke-width="7"/>
+    <circle cx="62" cy="80" r="17" fill="#111"/>
+    <circle cx="120" cy="80" r="17" fill="#111"/>
+    <path d="M55 130 Q90 155 130 125" fill="none" stroke="#111" stroke-width="8"/>
+    <path d="M20 55 L0 30 M160 55 L180 30" stroke="#111" stroke-width="7"/>
+    <path d="M85 10 L90 0 L100 10" stroke="#111" stroke-width="5"/>
+  </svg>
 </div>
 
-<div class="section-marker mono">
-  <span>03 /</span> FAMILIARITY.EXE
-</div>
+<div class="section-marker mono"><span>03 /</span> FAMILIARITY.EXE</div>
 
-<p>
-There is an old idea in psychology about why. In 1968, Robert Zajonc argued that seeing something again and again can make you like it more. Nobody has to convince you. It just gets familiar, and familiar starts to feel like “your taste.”
-</p>
+<p>There is an old idea in psychology about why. In 1968, Robert Zajonc argued that seeing something again and again can make you like it more. Nobody has to convince you. It just gets familiar, and familiar starts to feel like “your taste.”</p>
 
 <div class="glitch-panel reveal">
-  <div class="mono code">
-    REPEAT / REPEAT / REPEAT / REPEAT
-  </div>
-
+  <div class="mono code">REPEAT / REPEAT / REPEAT / REPEAT</div>
   <h2>FAMILIAR STARTS TO FEEL LIKE YOURS.</h2>
-
-  <div class="mono bottom-code">
-    ERROR: ORIGINAL SOURCE NOT FOUND
-  </div>
+  <div class="mono bottom-code">ERROR: ORIGINAL SOURCE NOT FOUND</div>
 </div>
-
-<!-- THREE PURPLE CREATURE HEADS -->
 
 <div class="character-stage reveal">
 
-  <div class="mini-sprite">
-    <div class="sprite-head">
-      <span class="sprite-ear"></span>
-      <span class="sprite-ear right"></span>
-      <span class="sprite-blush"></span>
-      <span class="sprite-blush right"></span>
-      <div class="sprite-eyes">
-        <span class="sprite-eye"></span>
-        <span class="sprite-eye"></span>
-      </div>
-      <span class="sprite-nose"></span>
-      <span class="sprite-mouth"></span>
-    </div>
-  </div>
+  <svg viewBox="0 0 150 190" role="img" aria-label="A pink digital creature">
+    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#ff397e" stroke="#09090f" stroke-width="6"/>
+    <circle cx="52" cy="78" r="12" fill="#09090f"/>
+    <circle cx="98" cy="78" r="12" fill="#09090f"/>
+    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
+  </svg>
 
-  <div class="mini-sprite">
-    <div class="sprite-head">
-      <span class="sprite-ear"></span>
-      <span class="sprite-ear right"></span>
-      <span class="sprite-blush"></span>
-      <span class="sprite-blush right"></span>
-      <div class="sprite-eyes">
-        <span class="sprite-eye"></span>
-        <span class="sprite-eye"></span>
-      </div>
-      <span class="sprite-nose"></span>
-      <span class="sprite-mouth"></span>
-    </div>
-  </div>
+  <svg viewBox="0 0 150 190" role="img" aria-label="A green digital creature">
+    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#c9ff55" stroke="#09090f" stroke-width="6"/>
+    <ellipse cx="52" cy="78" rx="9" ry="18" fill="#09090f"/>
+    <ellipse cx="98" cy="78" rx="9" ry="18" fill="#09090f"/>
+    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
+  </svg>
 
-  <div class="mini-sprite">
-    <div class="sprite-head">
-      <span class="sprite-ear"></span>
-      <span class="sprite-ear right"></span>
-      <span class="sprite-blush"></span>
-      <span class="sprite-blush right"></span>
-      <div class="sprite-eyes">
-        <span class="sprite-eye"></span>
-        <span class="sprite-eye"></span>
-      </div>
-      <span class="sprite-nose"></span>
-      <span class="sprite-mouth"></span>
-    </div>
-  </div>
+  <svg viewBox="0 0 150 190" role="img" aria-label="A purple digital creature">
+    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#a78bfa" stroke="#09090f" stroke-width="6"/>
+    <circle cx="52" cy="78" r="12" fill="#09090f"/>
+    <circle cx="98" cy="78" r="12" fill="#09090f"/>
+    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
+  </svg>
 
 </div>
 
-<p>
-None of this makes taste fake. People have always been shaped by friends, family, ads, whatever was playing in the car. Nobody’s taste comes from nowhere. What’s different is that when a friend gave you a song, you knew a friend gave it to you. When an app does it, it just feels like you found it yourself.
-</p>
+<p>None of this makes taste fake. People have always been shaped by friends, family, ads, whatever was playing in the car. Nobody’s taste comes from nowhere. What’s different is that when a friend gave you a song, you knew a friend gave it to you. When an app does it, it just feels like you found it yourself.</p>
 
-<p>
-So when Wrapped says who you are, what it’s really saying is who you are out of what reached you.
-</p>
+<p>So when Wrapped says who you are, what it’s really saying is who you are out of what reached you.</p>
 
-<div class="section-marker mono">
-  <span>04 /</span> THE THINGS THAT NEVER REACHED YOU
-</div>
+<div class="section-marker mono"><span>04 /</span> THE THINGS THAT NEVER REACHED YOU</div>
 
-<!-- BOOK PHOTOGRAPH REMOVED -->
+<p>That makes you think about everything that didn’t. There might be a song you would have played for years. A book you’d have argued about. A movie that would have been your comfort movie. A whole other version of you who likes things you’ve never heard of. You don’t dislike any of it. You just haven’t seen it.</p>
 
-<p>
-That makes you think about everything that didn’t. There might be a song you would have played for years. A book you’d have argued about. A movie that would have been your comfort movie. A whole other version of you who likes things you’ve never heard of. You don’t dislike any of it. You just haven’t seen it.
-</p>
-
-<p>
-And you can’t miss something you don’t know is missing.
-</p>
-
-<!-- POSTER 3 -->
+<p>And you can’t miss something you don’t know is missing.</p>
 
 <div class="poster green reveal">
   <div>
@@ -1477,39 +1230,22 @@ And you can’t miss something you don’t know is missing.
     <h2>WHAT IF YOU JUST HAVEN'T SEEN IT YET?</h2>
   </div>
 
-  <div class="poster-creature">
-    <div class="purple-sprite">
-      <div class="sprite-head">
-        <span class="sprite-ear"></span>
-        <span class="sprite-ear right"></span>
-        <span class="sprite-blush"></span>
-        <span class="sprite-blush right"></span>
-        <div class="sprite-eyes">
-          <span class="sprite-eye"></span>
-          <span class="sprite-eye"></span>
-        </div>
-        <span class="sprite-nose"></span>
-        <span class="sprite-mouth"></span>
-      </div>
-    </div>
-  </div>
+  <svg viewBox="0 0 180 200" role="img" aria-label="A curious abstract creature">
+    <path d="M25 105 Q10 25 90 15 Q170 25 155 115 Q150 190 85 185 Q20 185 25 105Z" fill="#ff9f43" stroke="#111" stroke-width="7"/>
+    <circle cx="62" cy="80" r="17" fill="#111"/>
+    <circle cx="120" cy="80" r="17" fill="#111"/>
+    <path d="M55 130 Q90 155 130 125" fill="none" stroke="#111" stroke-width="8"/>
+    <path d="M30 30 L5 5 M150 30 L175 5" stroke="#111" stroke-width="7"/>
+  </svg>
 </div>
 
-<div class="section-marker mono">
-  <span>05 /</span> END OF TRANSMISSION
-</div>
+<div class="section-marker mono"><span>05 /</span> END OF TRANSMISSION</div>
 
-<p>
-So, are you really what you like?
-</p>
+<p>So, are you really what you like?</p>
 
-<p>
-Maybe. More than the algorithm thinks, probably. It never saw your private sessions, your skips, or the things you’re okay with when no one is around.
-</p>
+<p>Maybe. More than the algorithm thinks, probably. It never saw your private sessions, your skips, or the things you’re okay with when no one is around.</p>
 
-<p>
-Yes, you like the things you like. But what if you just haven’t seen anything else?
-</p>
+<p>Yes, you like the things you like. But what if you just haven’t seen anything else?</p>
 
 <div class="ending-question reveal">
   <div class="eye">◉</div>
@@ -1521,12 +1257,7 @@ Yes, you like the things you like. But what if you just haven’t seen anything 
 
 <section class="final-screen">
   <div class="mono">TRANSMISSION 002 / COMPLETE</div>
-
-  <h2>
-    YOUR TASTE IS YOURS.<br>
-    <em>ISN'T IT?</em>
-  </h2>
-
+  <h2>YOUR TASTE IS YOURS.<br><em>ISN'T IT?</em></h2>
   <p>Maybe there's more out there.</p>
 </section>
 
@@ -1536,7 +1267,7 @@ Yes, you like the things you like. But what if you just haven’t seen anything 
   <a href="#top">BACK TO TOP ↑</a>
 </footer>
 
-<!-- PERSONALITY.EXE -->
+<!-- ORIGINAL PERSONALITY.EXE: FOUR EXISTING CHARACTERS RETAINED -->
 
 <section id="personality-exe">
 
@@ -1545,102 +1276,36 @@ Yes, you like the things you like. But what if you just haven’t seen anything 
   <span id="pe-live">● SYSTEM ONLINE</span>
 </div>
 
-<h2 class="pe-title">
-  THE HUMAN<br>CLASSIFICATION DEPARTMENT
-</h2>
+<h2 class="pe-title">THE HUMAN<br>CLASSIFICATION DEPARTMENT</h2>
 
-<p class="pe-sub">
-A completely unnecessary investigation into the person currently operating this device.
-</p>
+<p class="pe-sub">A completely unnecessary investigation into the person currently operating this device.</p>
 
 <div class="pe-screen">
 
   <div class="pe-status">EMPLOYEE ROSTER // 04 ACTIVE</div>
 
-  <!-- PURPLE CREATURE EMPLOYEES -->
-
   <div class="pe-characters">
 
     <div class="pe-character">
-      <span class="pe-sprite">
-        <div class="mini-sprite">
-          <div class="sprite-head">
-            <span class="sprite-ear"></span>
-            <span class="sprite-ear right"></span>
-            <span class="sprite-blush"></span>
-            <span class="sprite-blush right"></span>
-            <div class="sprite-eyes">
-              <span class="sprite-eye"></span>
-              <span class="sprite-eye"></span>
-            </div>
-            <span class="sprite-nose"></span>
-            <span class="sprite-mouth"></span>
-          </div>
-        </div>
-      </span>
+      <span class="pe-sprite">🤖</span>
       <strong>MR. LOGIC</strong>
       <small>Chief Analyst</small>
     </div>
 
     <div class="pe-character">
-      <span class="pe-sprite">
-        <div class="mini-sprite">
-          <div class="sprite-head">
-            <span class="sprite-ear"></span>
-            <span class="sprite-ear right"></span>
-            <span class="sprite-blush"></span>
-            <span class="sprite-blush right"></span>
-            <div class="sprite-eyes">
-              <span class="sprite-eye"></span>
-              <span class="sprite-eye"></span>
-            </div>
-            <span class="sprite-nose"></span>
-            <span class="sprite-mouth"></span>
-          </div>
-        </div>
-      </span>
+      <span class="pe-sprite">👾</span>
       <strong>404</strong>
       <small>System Error</small>
     </div>
 
     <div class="pe-character">
-      <span class="pe-sprite">
-        <div class="mini-sprite">
-          <div class="sprite-head">
-            <span class="sprite-ear"></span>
-            <span class="sprite-ear right"></span>
-            <span class="sprite-blush"></span>
-            <span class="sprite-blush right"></span>
-            <div class="sprite-eyes">
-              <span class="sprite-eye"></span>
-              <span class="sprite-eye"></span>
-            </div>
-            <span class="sprite-nose"></span>
-            <span class="sprite-mouth"></span>
-          </div>
-        </div>
-      </span>
+      <span class="pe-sprite">🕵️</span>
       <strong>INSPECTOR TASTE</strong>
       <small>Evidence Officer</small>
     </div>
 
     <div class="pe-character">
-      <span class="pe-sprite">
-        <div class="mini-sprite">
-          <div class="sprite-head">
-            <span class="sprite-ear"></span>
-            <span class="sprite-ear right"></span>
-            <span class="sprite-blush"></span>
-            <span class="sprite-blush right"></span>
-            <div class="sprite-eyes">
-              <span class="sprite-eye"></span>
-              <span class="sprite-eye"></span>
-            </div>
-            <span class="sprite-nose"></span>
-            <span class="sprite-mouth"></span>
-          </div>
-        </div>
-      </span>
+      <span class="pe-sprite">👩‍💻</span>
       <strong>JANET</strong>
       <small>Human Resources</small>
     </div>
@@ -1652,24 +1317,14 @@ A completely unnecessary investigation into the person currently operating this 
   </div>
 
   <div id="pe-intro">
-    <div class="pe-question">
-      Are you prepared to be unnecessarily analysed?
-    </div>
-
-    <p class="pe-sub">
-      This experiment has no scientific credibility. The employees, however, have confidence.
-    </p>
-
-    <button class="pe-primary" id="pe-start">
-      BEGIN INVESTIGATION →
-    </button>
+    <div class="pe-question">Are you prepared to be unnecessarily analysed?</div>
+    <p class="pe-sub">This experiment has no scientific credibility. The employees, however, have confidence.</p>
+    <button class="pe-primary" id="pe-start">BEGIN INVESTIGATION →</button>
   </div>
 
   <div id="pe-game" class="pe-hidden">
 
-    <div class="pe-status" id="pe-stage">
-      TEST 001 / THE INFLUENCE CHECK
-    </div>
+    <div class="pe-status" id="pe-stage">TEST 001 / THE INFLUENCE CHECK</div>
 
     <div class="pe-progress">
       <span id="pe-bar"></span>
@@ -1685,37 +1340,19 @@ A completely unnecessary investigation into the person currently operating this 
 
   <div id="pe-song" class="pe-hidden">
 
-    <div class="pe-status">
-      SPECIAL INVESTIGATION / SOUNDTRACK INCIDENT
-    </div>
+    <div class="pe-status">SPECIAL INVESTIGATION / SOUNDTRACK INCIDENT</div>
 
-    <div class="pe-question">
-      We need to discuss your musical decisions.
-    </div>
+    <div class="pe-question">We need to discuss your musical decisions.</div>
 
-    <p class="pe-sub">
-      Enter a song that represents your current mood. This information will be handled with absolutely no professionalism.
-    </p>
+    <p class="pe-sub">Enter a song that represents your current mood. This information will be handled with absolutely no professionalism.</p>
 
     <label class="pe-label" for="pe-song-title">SONG TITLE</label>
-
-    <input
-      class="pe-input"
-      id="pe-song-title"
-      maxlength="100"
-      placeholder="Your current emotional soundtrack">
+    <input class="pe-input" id="pe-song-title" maxlength="100" placeholder="Your current emotional soundtrack">
 
     <label class="pe-label" for="pe-song-artist">ARTIST</label>
+    <input class="pe-input" id="pe-song-artist" maxlength="100" placeholder="Who is responsible?">
 
-    <input
-      class="pe-input"
-      id="pe-song-artist"
-      maxlength="100"
-      placeholder="Who is responsible?">
-
-    <button class="pe-primary" id="pe-song-submit">
-      SUBMIT EVIDENCE →
-    </button>
+    <button class="pe-primary" id="pe-song-submit">SUBMIT EVIDENCE →</button>
 
     <div class="pe-dialogue pe-hidden" id="pe-song-reaction"></div>
 
@@ -1723,9 +1360,7 @@ A completely unnecessary investigation into the person currently operating this 
 
   <div id="pe-final" class="pe-hidden">
 
-    <div class="pe-status">
-      INVESTIGATION COMPLETE // REPORT GENERATED
-    </div>
+    <div class="pe-status">INVESTIGATION COMPLETE // REPORT GENERATED</div>
 
     <div class="pe-report">
 
@@ -1741,9 +1376,7 @@ A completely unnecessary investigation into the person currently operating this 
 
     </div>
 
-    <button class="pe-secondary" id="pe-restart">
-      REOPEN INVESTIGATION ↻
-    </button>
+    <button class="pe-secondary" id="pe-restart">REOPEN INVESTIGATION ↻</button>
 
   </div>
 
@@ -1753,8 +1386,6 @@ A completely unnecessary investigation into the person currently operating this 
 
 </div>
 </section>
-
-<!-- PERSONALITY.EXE JAVASCRIPT -->
 
 <script>
 (function(){
@@ -1768,7 +1399,6 @@ A completely unnecessary investigation into the person currently operating this 
   const $=id=>root.querySelector('#'+id);
 
   const questions=[
-
     {
       stage:'TEST 001 / THE INFLUENCE CHECK',
       question:'You discover that everyone around you suddenly loves something you once disliked. What happens?',
@@ -1780,7 +1410,6 @@ A completely unnecessary investigation into the person currently operating this 
         ['I pretend I liked it first.','404: HA. We have found the witness.']
       ]
     },
-
     {
       stage:'TEST 002 / DECISION-MAKING',
       question:'You have already decided what you want. Then someone asks if you are sure.',
@@ -1792,7 +1421,6 @@ A completely unnecessary investigation into the person currently operating this 
         ['I change my mind.','MR. LOGIC: I would like to resign.']
       ]
     },
-
     {
       stage:'TEST 003 / THE CONTRADICTION TEST',
       question:'You insist you do not care what people think. Someone disagrees with you. Now what?',
@@ -1804,7 +1432,6 @@ A completely unnecessary investigation into the person currently operating this 
         ['I pretend I did not hear them.','A strategic disappearance. Respectable.']
       ]
     }
-
   ];
 
   let answers=[];
@@ -1813,15 +1440,10 @@ A completely unnecessary investigation into the person currently operating this 
   let songSubmitted=false;
 
   function say(html){
-
     $('pe-dialogue').innerHTML=html;
-
     $('pe-dialogue').classList.remove('pe-glitch');
-
     void $('pe-dialogue').offsetWidth;
-
     $('pe-dialogue').classList.add('pe-glitch');
-
   }
 
   function showQuestion(){
@@ -1830,12 +1452,9 @@ A completely unnecessary investigation into the person currently operating this 
 
     $('pe-stage').textContent=q.stage;
     $('pe-question').textContent=q.question;
-
     $('pe-bar').style.width=(current/4*100)+'%';
 
-    $('pe-feedback').textContent=
-      'Select an answer. The department is watching.';
-
+    $('pe-feedback').textContent='Select an answer. The department is watching.';
     $('pe-options').innerHTML='';
 
     q.answers.forEach((answer)=>{
@@ -1853,7 +1472,6 @@ A completely unnecessary investigation into the person currently operating this 
         });
 
         $('pe-options').innerHTML='';
-
         $('pe-feedback').textContent=answer[1];
 
         say('<b>'+q.character+':</b> '+answer[1]);
@@ -1879,7 +1497,6 @@ A completely unnecessary investigation into the person currently operating this 
           } else {
 
             $('pe-game').classList.add('pe-hidden');
-
             $('pe-song').classList.remove('pe-hidden');
 
             say('<b>INSPECTOR TASTE:</b> Enough about your behaviour. We need to inspect your soundtrack.');
@@ -1901,7 +1518,6 @@ A completely unnecessary investigation into the person currently operating this 
   $('pe-start').addEventListener('click',()=>{
 
     $('pe-intro').classList.add('pe-hidden');
-
     $('pe-game').classList.remove('pe-hidden');
 
     showQuestion();
@@ -1911,7 +1527,6 @@ A completely unnecessary investigation into the person currently operating this 
   function showFinal(){
 
     $('pe-song').classList.add('pe-hidden');
-
     $('pe-final').classList.remove('pe-hidden');
 
     $('pe-bar').style.width='100%';
@@ -1954,7 +1569,6 @@ A completely unnecessary investigation into the person currently operating this 
     }
 
     const title=$('pe-song-title').value.trim();
-
     const artist=$('pe-song-artist').value.trim();
 
     if(!title){
@@ -1975,15 +1589,10 @@ A completely unnecessary investigation into the person currently operating this 
     $('pe-song-reaction').classList.remove('pe-hidden');
 
     const comments=[
-
       '<b>INSPECTOR TASTE:</b> We have no idea what this says about you. We will pretend otherwise.',
-
       '<b>404:</b> I recognise the emotional damage. Not the song.',
-
       '<b>MR. LOGIC:</b> One song is insufficient evidence. I am requesting a bigger budget.',
-
       '<b>JANET:</b> At least someone here has a soundtrack.'
-
     ];
 
     $('pe-song-reaction').innerHTML=
@@ -1999,13 +1608,11 @@ A completely unnecessary investigation into the person currently operating this 
   function escapeHTML(str){
 
     return str.replace(/[&<>"']/g,c=>({
-
       '&':'&amp;',
       '<':'&lt;',
       '>':'&gt;',
       '"':'&quot;',
       "'":'&#39;'
-
     }[c]));
 
   }
@@ -2041,9 +1648,9 @@ A completely unnecessary investigation into the person currently operating this 
 })();
 </script>
 
-<!-- SCROLL REVEAL -->
-
 <script>
+/* SCROLL REVEAL ANIMATION */
+
 (function(){
 
   const elements=document.querySelectorAll('.reveal');
@@ -2057,7 +1664,6 @@ A completely unnecessary investigation into the person currently operating this 
         if(entry.isIntersecting){
 
           entry.target.classList.add('visible');
-
           observer.unobserve(entry.target);
 
         }
