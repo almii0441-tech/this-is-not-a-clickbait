@@ -4,606 +4,609 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090f">
 
 <title>Maybe You Just Haven't Seen Anything Else | This Is Not a Clickbait</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#09090e;
-  --white:#f5f2eb;
-  --pink:#ff397d;
+  --black:#09090f;
+  --panel:#14131d;
+  --paper:#f3f0e9;
+  --pink:#ff397e;
   --cyan:#00e5ff;
   --purple:#a78bfa;
-  --green:#c7ff52;
-  --orange:#ff9e43;
-  --muted:#a5a2b2;
+  --green:#c9ff55;
+  --orange:#ff9f43;
+  --grey:#aaa7b5;
+  --line:#373442;
+  --mono:"DM Mono",monospace;
+  --sans:"DM Sans",sans-serif;
+  --serif:"Playfair Display",serif;
 }
 
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
 body {
   margin:0;
-  background:var(--bg);
-  color:var(--white);
-  font-family:'Space Grotesk',sans-serif;
+  background:var(--black);
+  color:var(--paper);
+  font-family:var(--sans);
   overflow-x:hidden;
 }
+img {max-width:100%;display:block}
+a {color:inherit;text-decoration:none}
+button {font:inherit}
 
-body::before {
-  content:"";
+::selection {background:var(--green);color:var(--black)}
+
+.noise {
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:10;
-  opacity:.12;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  z-index:50;
+  opacity:.09;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
-
-a { color:inherit; text-decoration:none; }
 
 .mono {
-  font-family:'Space Mono',monospace;
-  font-size:10px;
-  letter-spacing:.12em;
+  font-family:var(--mono);
   text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:10px;
 }
 
-header {
-  padding:20px 5%;
+.topbar {
+  min-height:58px;
+  padding:16px 5%;
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:15px;
-  border-bottom:1px solid #33313d;
   position:relative;
-  z-index:2;
+  z-index:3;
 }
-
-.brand { font-weight:700; letter-spacing:.08em; }
-header .status { color:var(--green); }
-header .home { color:var(--cyan); }
+.brand {font-weight:900;letter-spacing:.04em;font-size:13px}
+.top-status {color:var(--green)}
+.home-link {color:var(--cyan)}
 
 .hero {
-  min-height:780px;
-  padding:90px 7% 65px;
+  min-height:760px;
+  padding:90px 7% 100px;
   position:relative;
   overflow:hidden;
   display:flex;
   flex-direction:column;
   justify-content:center;
+  isolation:isolate;
 }
-
+.hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(ellipse at 80% 30%,#4a174b 0,transparent 38%),
+    radial-gradient(ellipse at 15% 85%,#122c44 0,transparent 35%),
+    var(--black);
+}
 .hero-grid {
   position:absolute;
   inset:0;
-  opacity:.2;
+  z-index:-1;
+  opacity:.17;
   background-image:
-    linear-gradient(#625d7a 1px,transparent 1px),
-    linear-gradient(90deg,#625d7a 1px,transparent 1px);
-  background-size:55px 55px;
+    linear-gradient(#6b617b 1px,transparent 1px),
+    linear-gradient(90deg,#6b617b 1px,transparent 1px);
+  background-size:45px 45px;
   mask-image:linear-gradient(to bottom,black,transparent);
 }
-
-.hero-label {
-  color:var(--green);
-  position:relative;
-  z-index:2;
-  margin-bottom:30px;
-}
-
+.hero-kicker {color:var(--green);margin-bottom:30px}
 .hero h1 {
+  margin:0;
+  max-width:1050px;
+  font-size:clamp(54px,10.8vw,142px);
+  font-weight:900;
+  line-height:.83;
+  letter-spacing:-.095em;
+  text-transform:uppercase;
   position:relative;
   z-index:2;
-  max-width:1000px;
-  margin:0;
-  font-size:clamp(52px,10vw,125px);
-  font-weight:700;
-  line-height:.86;
-  letter-spacing:-.09em;
-  text-transform:uppercase;
 }
-
 .hero h1 .pink {
   color:var(--pink);
-  text-shadow:5px 3px 0 var(--cyan);
+  text-shadow:5px 4px 0 var(--cyan);
 }
-
-.hero h1 .italic {
-  font-family:'Playfair Display',serif;
-  font-style:italic;
+.hero h1 .serif {
   color:var(--green);
-  letter-spacing:-.07em;
+  font-family:var(--serif);
+  font-style:italic;
+  letter-spacing:-.075em;
+  font-weight:600;
 }
-
-.hero-sub {
-  position:relative;
-  z-index:2;
-  margin-top:38px;
-  font-family:'Playfair Display',serif;
-  font-size:clamp(20px,3vw,30px);
+.hero-subtitle {
   color:var(--cyan);
-}
-
-.hero-meta {
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(20px,3vw,32px);
+  margin-top:35px;
   position:relative;
   z-index:2;
+}
+.hero-meta {
   display:flex;
   gap:25px;
   flex-wrap:wrap;
-  margin-top:45px;
-  color:var(--muted);
-}
-
-.hero-sticker {
-  position:absolute;
-  right:9%;
-  bottom:100px;
-  width:210px;
-  height:210px;
-  border-radius:50%;
-  background:var(--purple);
-  border:4px solid var(--white);
-  transform:rotate(12deg);
-  box-shadow:12px 12px 0 var(--pink);
-  display:grid;
-  place-items:center;
-  z-index:1;
-}
-
-.face {
+  margin-top:38px;
+  color:var(--grey);
   position:relative;
-  width:125px;
-  height:140px;
-  border-radius:48% 48% 38% 38%;
-  background:var(--orange);
-  border:3px solid #17131e;
-  transform:rotate(-10deg);
+  z-index:2;
+}
+.hero-meta span:first-child {color:var(--pink)}
+
+.hero-art {
+  position:absolute;
+  right:6%;
+  bottom:65px;
+  width:min(32vw,330px);
+  z-index:1;
+  transform:rotate(5deg);
+  filter:drop-shadow(12px 12px 0 var(--pink));
+}
+.hero-art svg {width:100%;height:auto;overflow:visible}
+.hero-side-note {
+  position:absolute;
+  right:4%;
+  top:18%;
+  color:var(--orange);
+  transform:rotate(90deg);
+  transform-origin:right;
+}
+.hero-stamp {
+  position:absolute;
+  right:7%;
+  top:12%;
+  border:1px solid var(--green);
+  color:var(--green);
+  padding:12px;
+  transform:rotate(8deg);
 }
 
-.face::before,.face::after {
+.ticker {
+  overflow:hidden;
+  border-top:1px solid var(--pink);
+  border-bottom:1px solid var(--pink);
+  background:var(--pink);
+  color:var(--black);
+  padding:12px 0;
+  white-space:nowrap;
+}
+.ticker-track {
+  display:inline-block;
+  font:12px var(--mono);
+  font-weight:700;
+  letter-spacing:.1em;
+  animation:marquee 28s linear infinite;
+}
+@keyframes marquee {
+  from {transform:translateX(0)}
+  to {transform:translateX(-50%)}
+}
+
+.hero-photo {
+  margin:0;
+  position:relative;
+  height:clamp(260px,48vw,540px);
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.hero-photo img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(1.25) contrast(1.1);
+  opacity:.82;
+}
+.hero-photo::after {
   content:"";
   position:absolute;
-  top:40px;
-  width:20px;
-  height:29px;
-  border-radius:50%;
-  background:#17131e;
+  inset:0;
+  background:linear-gradient(90deg,#09090f88,transparent 60%),linear-gradient(0deg,#09090f99,transparent 45%);
 }
-
-.face::before { left:25px; }
-.face::after { right:25px; }
-
-.face-mouth {
+.photo-caption {
   position:absolute;
-  width:42px;
-  height:19px;
-  border-bottom:5px solid #17131e;
-  border-radius:50%;
-  left:40px;
-  top:85px;
-}
-
-.sticker-label {
-  position:absolute;
-  right:-25px;
-  top:5px;
+  z-index:1;
+  left:6%;
+  bottom:25px;
   color:var(--green);
-  font-size:35px;
 }
 
-.star {
-  position:absolute;
-  left:-25px;
-  bottom:10px;
-  color:var(--cyan);
-  font-size:42px;
+.intro-strip {
+  padding:35px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--line);
+  color:var(--grey);
 }
+.intro-strip strong {color:var(--cyan)}
 
-.hero-caption {
-  position:absolute;
-  right:5%;
-  bottom:35px;
-  color:var(--pink);
-  transform:rotate(-5deg);
-}
-
-.cover-image {
-  margin:0 5% 100px;
-  position:relative;
-  min-height:360px;
-  overflow:hidden;
-  border:1px solid #393342;
-  background:#17121f;
-}
-
-.cover-image img {
-  width:100%;
-  height:470px;
-  object-fit:cover;
-  display:block;
-  opacity:.83;
-  filter:saturate(1.35) contrast(1.1);
-}
-
-.cover-image figcaption {
-  position:absolute;
-  bottom:18px;
-  left:20px;
-  background:var(--green);
-  color:#111;
-  padding:9px 13px;
-}
-
-main {
-  padding:20px 7% 100px;
-}
-
-.article-layout {
-  max-width:1100px;
+.article-wrap {
+  max-width:1200px;
   margin:auto;
+  padding:90px 6% 110px;
   display:grid;
-  grid-template-columns:170px minmax(0,700px);
+  grid-template-columns:170px minmax(0,760px);
   gap:65px;
   align-items:start;
 }
-
 .sidebar {
   position:sticky;
   top:30px;
-  color:var(--muted);
+  color:var(--grey);
   line-height:2;
 }
+.sidebar strong {color:var(--pink)}
+.sidebar .side-rule {
+  height:1px;
+  background:var(--line);
+  margin:18px 0;
+}
+.sidebar .side-green {color:var(--green)}
+.sidebar .side-cyan {color:var(--cyan)}
 
-.sidebar strong { color:var(--pink); }
-
-.article-body {
+.article {
+  color:#e9e6ef;
   font-size:18px;
   line-height:1.9;
-  color:#e9e5ef;
+  min-width:0;
 }
-
-.article-body p { margin:0 0 30px; }
-
-.article-body .opening {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(26px,4vw,39px);
-  line-height:1.35;
-  color:var(--white);
+.article p {margin:0 0 28px}
+.article .lead {
+  color:var(--paper);
+  font-family:var(--serif);
+  font-size:clamp(25px,3.6vw,39px);
+  line-height:1.38;
 }
+.article em {color:var(--cyan)}
+.article strong {color:var(--green);font-weight:700}
 
-.article-body em {
-  color:var(--cyan);
-}
-
-.section-title {
-  margin:100px 0 35px;
-  padding-top:20px;
-  border-top:1px solid #46404e;
+.section-marker {
+  margin:105px 0 35px;
+  padding-top:17px;
+  border-top:1px solid var(--line);
   color:var(--green);
 }
+.section-marker span {color:var(--pink)}
 
-.section-title span {
-  color:var(--pink);
-}
-
-.image-block {
+.visual {
   margin:75px 0;
   position:relative;
 }
-
-.image-block img {
+.visual img {
   width:100%;
-  display:block;
-  max-height:450px;
+  max-height:480px;
   object-fit:cover;
-  filter:saturate(1.3) contrast(1.08);
 }
-
-.image-block figcaption {
-  font:10px 'Space Mono',monospace;
-  color:var(--muted);
+.visual figcaption {
   margin-top:12px;
+  font:10px var(--mono);
+  color:var(--grey);
+  letter-spacing:.1em;
 }
 
-.quote-block {
+.quote-card {
   margin:75px -25px;
   padding:45px;
   background:var(--pink);
-  color:#101014;
-  position:relative;
+  color:var(--black);
   transform:rotate(-1deg);
+  box-shadow:10px 10px 0 var(--cyan);
 }
-
-.quote-block p {
-  font-size:clamp(27px,5vw,48px);
-  line-height:1.05;
-  font-weight:700;
+.quote-card p {
   margin:0;
-  letter-spacing:-.06em;
+  font-size:clamp(30px,5vw,58px);
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-.07em;
 }
-
-.quote-block span {
+.quote-card small {
   display:block;
-  margin-top:20px;
+  margin-top:22px;
+  font:10px var(--mono);
 }
 
-.data-wall {
-  margin:80px 0;
+.stats {
+  margin:75px 0;
   padding:35px;
   background:var(--cyan);
-  color:#111;
+  color:var(--black);
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:25px;
   transform:rotate(1deg);
 }
-
-.data-wall strong {
-  font-size:clamp(45px,8vw,85px);
+.stat-number {
+  font-size:clamp(50px,8vw,92px);
+  font-weight:900;
+  letter-spacing:-.1em;
   line-height:1;
-  letter-spacing:-.09em;
 }
-
-.data-wall small {
+.stats small {
   display:block;
-  font:10px 'Space Mono',monospace;
-  margin-top:10px;
+  font:10px var(--mono);
+  margin-top:12px;
 }
 
-.visual-poster {
+.poster {
   margin:85px 0;
-  padding:35px;
   min-height:300px;
-  background:var(--purple);
-  color:#111;
+  padding:35px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:20px;
-  position:relative;
+  gap:25px;
   overflow:hidden;
-}
-
-.visual-poster h2 {
-  font-size:clamp(30px,5vw,62px);
-  line-height:.95;
-  letter-spacing:-.08em;
-  max-width:430px;
-  text-transform:uppercase;
-}
-
-.poster-creature {
-  width:130px;
-  height:150px;
-  flex-shrink:0;
-  background:var(--green);
-  border:4px solid #111;
-  border-radius:45% 45% 35% 35%;
   position:relative;
-  transform:rotate(9deg);
-  box-shadow:10px 9px 0 var(--pink);
+  background:var(--purple);
+  color:var(--black);
 }
-
-.poster-creature::before,.poster-creature::after {
-  content:"";
-  position:absolute;
-  width:18px;
-  height:27px;
-  border-radius:50%;
-  background:#111;
-  top:45px;
-}
-
-.poster-creature::before { left:25px; }
-.poster-creature::after { right:25px; }
-
-.poster-creature i {
-  position:absolute;
-  left:44px;
-  top:92px;
-  width:35px;
-  border-bottom:5px solid #111;
-}
-
-.fragment {
-  margin:90px 0;
-  padding:50px 35px;
-  background:#171321;
-  border:1px solid var(--pink);
-  box-shadow:8px 8px 0 var(--cyan);
-  position:relative;
-  overflow:hidden;
-}
-
-.fragment h2 {
-  font-size:clamp(34px,7vw,75px);
+.poster h2 {
+  font-size:clamp(32px,5vw,65px);
+  font-weight:900;
   line-height:.9;
   letter-spacing:-.08em;
-  color:var(--cyan);
   text-transform:uppercase;
-  max-width:650px;
+  max-width:500px;
+  margin:20px 0 0;
 }
+.poster .mono {position:relative;z-index:2}
+.poster svg {width:160px;flex-shrink:0;position:relative;z-index:1}
+.poster.pink {background:var(--pink)}
+.poster.green {background:var(--green)}
+.poster.orange {background:var(--orange)}
 
-.fragment .code {
-  color:var(--green);
-}
-
-.fragment::after {
-  content:"010010 / ERROR / 010101 / REPEAT";
-  display:block;
-  color:var(--pink);
-  font:11px 'Space Mono',monospace;
-  margin-top:30px;
-}
-
-.final-visual {
-  margin:85px 0 40px;
-  padding:55px 25px;
-  text-align:center;
-  border:1px solid #555;
+.glitch-panel {
+  margin:90px 0;
+  padding:45px 35px;
   background:
-    radial-gradient(circle at 50% 50%,#3b2457 0,transparent 60%);
-}
-
-.final-visual .symbol {
-  font-size:90px;
-  color:var(--green);
-  text-shadow:5px 4px var(--pink);
-}
-
-.final-visual p {
-  color:var(--cyan);
-  font:11px 'Space Mono',monospace;
-}
-
-.ending {
-  padding:130px 7%;
-  text-align:center;
-  background:var(--green);
-  color:#101014;
+    linear-gradient(120deg,#20152d,#10101b 60%,#1b1631);
+  border:1px solid var(--pink);
+  box-shadow:9px 9px 0 var(--cyan);
   position:relative;
   overflow:hidden;
 }
+.glitch-panel::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.2;
+  background:repeating-linear-gradient(0deg,transparent 0 8px,#fff 9px,transparent 10px);
+  pointer-events:none;
+}
+.glitch-panel h2 {
+  position:relative;
+  color:var(--cyan);
+  font-size:clamp(38px,7vw,78px);
+  font-weight:900;
+  line-height:.9;
+  letter-spacing:-.08em;
+  margin:25px 0;
+  text-transform:uppercase;
+  text-shadow:4px 3px var(--pink);
+}
+.glitch-panel .code {color:var(--green)}
+.glitch-panel .bottom-code {color:var(--pink)}
 
-.ending .mono { margin-bottom:35px; }
+.character-stage {
+  margin:85px 0;
+  min-height:280px;
+  background:#171522;
+  border:1px solid #4c435d;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  gap:20px;
+  padding:25px;
+  overflow:hidden;
+}
+.character-stage svg {width:30%;max-width:170px}
+.character-stage svg:nth-child(2) {transform:translateY(-25px) rotate(8deg)}
+.character-stage svg:nth-child(3) {transform:translateY(20px) rotate(-7deg)}
 
-.ending h2 {
-  max-width:900px;
+.ending-question {
+  margin:85px 0 30px;
+  padding:50px 25px;
+  text-align:center;
+  background:radial-gradient(circle at center,#39234d,transparent 70%);
+  border:1px solid #40384c;
+}
+.ending-question .eye {
+  color:var(--green);
+  font-size:100px;
+  line-height:1;
+  text-shadow:5px 4px var(--pink);
+}
+.ending-question p {
+  font:10px var(--mono);
+  color:var(--cyan);
+  margin-top:20px;
+}
+
+.final-screen {
+  padding:125px 7%;
+  text-align:center;
+  background:var(--green);
+  color:var(--black);
+  position:relative;
+  overflow:hidden;
+}
+.final-screen .mono {margin-bottom:35px}
+.final-screen h2 {
+  max-width:1000px;
   margin:auto;
-  font-size:clamp(38px,8vw,90px);
-  line-height:.95;
+  font-size:clamp(42px,8.5vw,100px);
+  font-weight:900;
+  line-height:.9;
   letter-spacing:-.09em;
 }
-
-.ending h2 span {
+.final-screen h2 em {
+  font-family:var(--serif);
   color:var(--pink);
-  font-family:'Playfair Display',serif;
-  font-style:italic;
+}
+.final-screen p {
+  font:italic 22px var(--serif);
+  margin-top:35px;
 }
 
-.ending p {
-  margin-top:30px;
-  font-family:'Playfair Display',serif;
-  font-size:22px;
-}
-
-footer {
+.footer {
   padding:30px 6%;
   display:flex;
   justify-content:space-between;
-  flex-wrap:wrap;
   gap:20px;
-  color:var(--muted);
+  flex-wrap:wrap;
+  color:var(--grey);
 }
-
-footer a { color:var(--cyan); }
+.footer a {color:var(--cyan)}
 
 .reveal {
   opacity:0;
   transform:translateY(35px);
   transition:opacity .8s ease,transform .8s ease;
 }
+.reveal.visible {opacity:1;transform:translateY(0)}
 
-.reveal.visible {
-  opacity:1;
-  transform:translateY(0);
-}
-
-@media(max-width:750px) {
-  header { flex-wrap:wrap; }
-  .hero { min-height:750px; padding:80px 7% 250px; }
-  .hero-sticker {
-    width:150px;
-    height:150px;
-    right:10%;
-    bottom:65px;
-  }
-  .face { transform:scale(.75) rotate(-10deg); }
-  .cover-image { margin:0 4% 65px; }
-  .cover-image img { height:300px; }
-  .article-layout { display:block; }
+@media(max-width:800px) {
+  .hero {min-height:760px;padding:80px 7% 290px}
+  .hero-art {width:230px;right:8%;bottom:40px}
+  .hero-stamp {top:5%;right:7%}
+  .hero-side-note {display:none}
+  .article-wrap {display:block;padding:65px 7% 80px}
   .sidebar {
     position:static;
-    margin-bottom:35px;
+    margin-bottom:45px;
     padding-bottom:20px;
-    border-bottom:1px solid #444;
+    border-bottom:1px solid var(--line);
   }
-  .article-body { font-size:16px; }
-  .quote-block { margin:65px 0; padding:30px; }
-  .data-wall { padding:25px; }
-  .visual-poster { padding:25px; }
-  .poster-creature { transform:scale(.75) rotate(9deg); }
-  .fragment { padding:35px 22px; }
-  .ending { padding:95px 7%; }
+  .sidebar .side-rule {display:none}
+  .article {font-size:16px;line-height:1.85}
+  .quote-card {margin:65px 0;padding:30px}
+  .stats {padding:25px}
+  .poster {padding:25px;min-height:250px}
+  .poster svg {width:115px}
+  .character-stage {min-height:200px;padding:15px}
 }
-
+@media(max-width:460px) {
+  .topbar {font-size:10px}
+  .brand {font-size:11px}
+  .hero {min-height:700px}
+  .hero-meta {gap:12px}
+  .hero-art {width:185px}
+  .hero-stamp {font-size:8px}
+  .stats {gap:12px;padding:20px}
+  .poster {gap:8px}
+  .poster svg {width:90px}
+  .character-stage {gap:5px}
+  .character-stage svg {width:32%}
+  .final-screen {padding:90px 7%}
+}
 @media(prefers-reduced-motion:reduce) {
-  html { scroll-behavior:auto; }
-  .reveal { transition:none; }
+  html {scroll-behavior:auto}
+  .ticker-track {animation:none}
+  .reveal {transition:none}
 }
 </style>
 </head>
 
 <body>
+<div class="noise"></div>
 
-<header>
+<header class="topbar">
   <a class="brand" href="../index.html">THIS IS NOT A CLICKBAIT</a>
-  <span class="mono status">● TRANSMISSION 002</span>
-  <a class="mono home" href="../index.html">← HOME</a>
+  <span class="mono top-status">● FILE 002 / OPEN</span>
+  <a class="mono home-link" href="../index.html">← HOME</a>
 </header>
 
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="mono hero-label">DIGITAL CULTURE / FILE 002 / IDENTITY UNDER REVIEW</div>
+  <div class="mono hero-kicker">DIGITAL CULTURE / IDENTITY UNDER REVIEW / 002</div>
 
   <h1>
     MAYBE YOU<br>
     JUST <span class="pink">HAVEN'T</span><br>
-    SEEN <span class="italic">ANYTHING</span><br>
+    SEEN <span class="serif">ANYTHING</span><br>
     ELSE.
   </h1>
 
-  <div class="hero-sub">Every December an app tells us who we are.</div>
+  <div class="hero-subtitle">Every December an app tells us who we are.</div>
 
   <div class="hero-meta mono">
-    <span>BY ALMIDHA.M.A</span>
-    <span>READING TIME: 6 MIN</span>
-    <span>YOUR DATA IS READY</span>
+    <span>ALMIDHA.M.A</span>
+    <span>PERSONAL TASTE</span>
+    <span>REPORT GENERATING...</span>
   </div>
 
-  <div class="hero-sticker">
-    <div class="face"><div class="face-mouth"></div></div>
-    <span class="sticker-label">◉</span>
-    <span class="star">✳</span>
-  </div>
+  <div class="hero-stamp mono">YOUR YEAR<br>IS READY?</div>
 
-  <div class="hero-caption mono">PERSONALITY.EXE LOADING...</div>
+  <div class="hero-art">
+    <svg viewBox="0 0 340 330" role="img" aria-label="A strange illustrated digital creature">
+      <path d="M40 170 Q25 45 150 25 Q285 10 305 140 Q340 280 185 310 Q50 320 40 170Z" fill="#a78bfa" stroke="#09090f" stroke-width="8"/>
+      <path d="M65 150 Q35 80 75 45 L105 90Z" fill="#c9ff55" stroke="#09090f" stroke-width="7"/>
+      <path d="M250 75 Q315 25 315 110 L270 125Z" fill="#ff397e" stroke="#09090f" stroke-width="7"/>
+      <ellipse cx="120" cy="145" rx="25" ry="38" fill="#09090f"/>
+      <ellipse cx="225" cy="145" rx="25" ry="38" fill="#09090f"/>
+      <circle cx="128" cy="137" r="8" fill="#00e5ff"/>
+      <circle cx="217" cy="137" r="8" fill="#00e5ff"/>
+      <path d="M125 220 Q170 255 220 205" fill="none" stroke="#09090f" stroke-width="12" stroke-linecap="round"/>
+      <path d="M65 270 L20 300 M265 260 L320 300" stroke="#09090f" stroke-width="9" stroke-linecap="round"/>
+      <path d="M155 20 L165 0 L178 22" fill="#ff9f43" stroke="#09090f" stroke-width="6"/>
+      <circle cx="45" cy="220" r="12" fill="#00e5ff"/>
+      <path d="M285 190 l25 -20 l-5 35Z" fill="#c9ff55"/>
+      <text x="165" y="295" font-family="monospace" font-size="13" fill="#09090f" text-anchor="middle">USER_002</text>
+    </svg>
+  </div>
 </section>
 
-<figure class="cover-image reveal">
-  <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85" alt="Person listening to music through headphones">
-  <figcaption class="mono">01 / THE ANNUAL IDENTITY CEREMONY</figcaption>
+<div class="ticker">
+  <div class="ticker-track">
+    YOUR PERSONALITY REPORT IS READY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳ YOUR PERSONALITY REPORT IS READY ✳ DATA DOES NOT EQUAL IDENTITY ✳
+  </div>
+</div>
+
+<figure class="hero-photo">
+  <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1800&q=85" alt="A person listening to music through headphones">
+  <figcaption class="photo-caption mono">01 / THE ANNUAL IDENTITY CEREMONY</figcaption>
 </figure>
 
-<main>
-<div class="article-layout">
+<div class="intro-strip mono">
+  <span>SUBJECT: <strong>PERSONAL TASTE</strong></span>
+  <span>STATUS: UNDER QUESTION</span>
+  <span>SCROLL TO INVESTIGATE ↓</span>
+</div>
 
+<main class="article-wrap">
 <aside class="sidebar mono">
-  <strong>FILE NO. 002</strong><br>
+  <strong>FILE NO. 002</strong>
+  <div class="side-rule"></div>
   SUBJECT: PERSONAL TASTE<br>
-  STATUS: UNDER QUESTION<br><br>
-  SYSTEM NOTE:<br>
-  YOUR DATA HAS BEEN RECEIVED.<br><br>
-  <span style="color:var(--cyan)">SCROLL TO INVESTIGATE ↓</span>
+  STATUS: UNDER QUESTION
+  <div class="side-rule"></div>
+  SYSTEM NOTE:
+  <span class="side-green">YOUR DATA HAS BEEN RECEIVED.</span>
+  <div class="side-rule"></div>
+  <span class="side-cyan">SCROLL TO INVESTIGATE ↓</span>
 </aside>
 
-<article class="article-body">
+<article class="article">
 
-<p class="opening">Every December an app tells us who we are. And people eagerly wait for its release, so they can share it and claim that’s who they are.</p>
+<p class="lead">Every December an app tells us who we are. And people eagerly wait for its release, so they can share it and claim that’s who they are.</p>
 
 <p>It sounds dramatic, right? But that’s what happens. In 2024, Spotify Wrapped was later than usual, and “X” filled with memes and jokes about it, even though Spotify had already announced, “Almost here.” When it finally arrived, people claimed it was underwhelming. Oh, we spent a whole year waiting for it to tell us about ourselves, and yes, we judged the answer.</p>
 
@@ -611,12 +614,18 @@ footer a { color:var(--cyan); }
 
 <p>It feels like a mirror. You listened, it counted, now it shows you yourself.</p>
 
-<div class="visual-poster reveal">
+<div class="poster reveal">
   <div>
     <div class="mono">SYSTEM REPORT / 001</div>
     <h2>IT COUNTED.<br>DID IT KNOW?</h2>
   </div>
-  <div class="poster-creature"><i></i></div>
+  <svg viewBox="0 0 180 200" role="img" aria-label="An illustrated face with mismatched eyes">
+    <path d="M20 100 Q15 15 90 12 Q165 20 160 110 Q150 195 85 190 Q20 180 20 100Z" fill="#c9ff55" stroke="#111" stroke-width="7"/>
+    <ellipse cx="60" cy="80" rx="15" ry="25" fill="#111"/>
+    <circle cx="120" cy="80" r="18" fill="#ff397e" stroke="#111" stroke-width="5"/>
+    <path d="M55 135 Q90 160 130 130" stroke="#111" stroke-width="8" fill="none"/>
+    <path d="M25 30 L5 5 M150 30 L175 5" stroke="#111" stroke-width="7"/>
+  </svg>
 </div>
 
 <p>At counting, yeah, mostly. A song only counts if you play it for at least 30 seconds, so anything shorter is filtered out. The song you skipped after ten seconds never happened. Nobody saw it, nobody noticed it.</p>
@@ -627,28 +636,32 @@ footer a { color:var(--cyan); }
 
 <p>What if I wanted people to think I liked that specific song?</p>
 
-<div class="data-wall reveal">
-  <div><strong>30s</strong><small>MINIMUM PLAY TIME TO COUNT</small></div>
-  <div><strong>?</strong><small>WHAT THE DATA DOESN'T KNOW</small></div>
+<div class="stats reveal">
+  <div>
+    <div class="stat-number">30s</div>
+    <small>MINIMUM PLAY TIME TO COUNT</small>
+  </div>
+  <div>
+    <div class="stat-number">?</div>
+    <small>WHAT THE DATA DOESN'T KNOW</small>
+  </div>
 </div>
 
-<p>Because counting isn’t knowing. Songs played in a Private Session don’t count toward top lists, so the one you’re embarrassed about never shows up in your Wrapped. If someone else uses your account, their listening becomes yours. So maybe the artist you think is your number one is actually your dad’s. You’ll never know.</p>
+<p>Because counting isn’t knowing. Songs played in a Private Session don’t count toward top lists, so the one you’re embarrassed about never shows up in your Wrapped. If someone else uses your account, their listening becomes yours. So maybe the artist you think is your number one is actually your dad’s. You’ll never know. And it says “your year,” but it isn’t the whole year. Spotify says the data stops a few weeks before launch. So if you find a song you’re addicted to in late November, even if you play it 50 times more than the other songs, you’ll never know. The end of the year isn’t there, and it still calls it yours.</p>
 
-<p>And it says “your year,” but it isn’t the whole year. Spotify says the data stops a few weeks before launch. So if you find a song you’re addicted to in late November, even if you play it 50 times more than the other songs, you’ll never know. The end of the year isn’t there, and it still calls it yours.</p>
-
-<div class="quote-block reveal">
+<div class="quote-card reveal">
   <p>SO WRAPPED IS A RECEIPT, NOT A PORTRAIT.</p>
-  <span class="mono">IT KNOWS WHAT YOU PLAYED. IT DOESN'T KNOW WHY.</span>
+  <small>IT KNOWS WHAT YOU PLAYED. IT DOESN'T KNOW WHY.</small>
 </div>
 
 <p>And that’s the weird part. So, why did you play it?</p>
 
-<div class="section-title mono"><span>02 /</span> THE RECOMMENDATION MACHINE</div>
+<div class="section-marker mono"><span>02 /</span> THE RECOMMENDATION MACHINE</div>
 
 <p>A lot of what we listen to, nobody went looking for. Either it was just there or it found us. Netflix’s own engineers said their recommendations influence the choice for about 80% of the hours people stream. Influence, not control. Fine, but that means a lot of your “top playlist” was handed to you before you picked it.</p>
 
-<figure class="image-block reveal">
-  <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=85" alt="Music studio with instruments and sound equipment">
+<figure class="visual reveal">
+  <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1500&q=85" alt="Music studio equipment and instruments">
   <figcaption>THE SONG WAS THERE BEFORE YOU WENT LOOKING FOR IT.</figcaption>
 </figure>
 
@@ -658,50 +671,82 @@ footer a { color:var(--cyan); }
 
 <p>So, in December, somebody opens their Wrapped and finds one of those songs comfortably sitting in their top five. Did they pick it to sit there, or did it find its way through the show?</p>
 
-<div class="visual-poster reveal" style="background:var(--pink)">
+<div class="poster pink reveal">
   <div>
     <div class="mono">RECOMMENDATION SYSTEM / ACTIVE</div>
     <h2>YOU FOUND IT.<br>OR DID IT FIND YOU?</h2>
   </div>
-  <div class="poster-creature" style="background:var(--cyan)"><i></i></div>
+  <svg viewBox="0 0 180 200" role="img" aria-label="A cartoon creature looking at a digital signal">
+    <path d="M25 105 Q10 25 90 15 Q170 25 155 115 Q150 190 85 185 Q20 185 25 105Z" fill="#00e5ff" stroke="#111" stroke-width="7"/>
+    <circle cx="62" cy="80" r="17" fill="#111"/>
+    <circle cx="120" cy="80" r="17" fill="#111"/>
+    <path d="M55 130 Q90 155 130 125" fill="none" stroke="#111" stroke-width="8"/>
+    <path d="M20 55 L0 30 M160 55 L180 30" stroke="#111" stroke-width="7"/>
+    <path d="M85 10 L90 0 L100 10" stroke="#111" stroke-width="5"/>
+  </svg>
 </div>
 
-<div class="section-title mono"><span>03 /</span> FAMILIARITY.EXE</div>
+<div class="section-marker mono"><span>03 /</span> FAMILIARITY.EXE</div>
 
 <p>There is an old idea in psychology about why. In 1968, Robert Zajonc argued that seeing something again and again can make you like it more. Nobody has to convince you. It just gets familiar, and familiar starts to feel like “your taste.”</p>
 
-<div class="fragment reveal">
+<div class="glitch-panel reveal">
   <div class="mono code">REPEAT / REPEAT / REPEAT / REPEAT</div>
   <h2>FAMILIAR STARTS TO FEEL LIKE YOURS.</h2>
-  <div class="mono">ERROR: ORIGINAL SOURCE NOT FOUND</div>
+  <div class="mono bottom-code">ERROR: ORIGINAL SOURCE NOT FOUND</div>
+</div>
+
+<div class="character-stage reveal">
+  <svg viewBox="0 0 150 190" role="img" aria-label="A pink digital creature">
+    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#ff397e" stroke="#09090f" stroke-width="6"/>
+    <circle cx="52" cy="78" r="12" fill="#09090f"/>
+    <circle cx="98" cy="78" r="12" fill="#09090f"/>
+    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
+  </svg>
+  <svg viewBox="0 0 150 190" role="img" aria-label="A green digital creature">
+    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#c9ff55" stroke="#09090f" stroke-width="6"/>
+    <ellipse cx="52" cy="78" rx="9" ry="18" fill="#09090f"/>
+    <ellipse cx="98" cy="78" rx="9" ry="18" fill="#09090f"/>
+    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
+  </svg>
+  <svg viewBox="0 0 150 190" role="img" aria-label="A purple digital creature">
+    <path d="M20 95 Q5 20 75 12 Q145 20 130 95 Q130 180 75 180 Q15 175 20 95Z" fill="#a78bfa" stroke="#09090f" stroke-width="6"/>
+    <circle cx="52" cy="78" r="12" fill="#09090f"/>
+    <circle cx="98" cy="78" r="12" fill="#09090f"/>
+    <path d="M50 120 Q75 140 100 120" stroke="#09090f" stroke-width="7" fill="none"/>
+  </svg>
 </div>
 
 <p>None of this makes taste fake. People have always been shaped by friends, family, ads, whatever was playing in the car. Nobody’s taste comes from nowhere. What’s different is that when a friend gave you a song, you knew a friend gave it to you. When an app does it, it just feels like you found it yourself.</p>
 
 <p>So when Wrapped says who you are, what it’s really saying is who you are out of what reached you.</p>
 
-<div class="section-title mono"><span>04 /</span> THE THINGS THAT NEVER REACHED YOU</div>
+<div class="section-marker mono"><span>04 /</span> THE THINGS THAT NEVER REACHED YOU</div>
 
-<figure class="image-block reveal">
-  <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1400&q=85" alt="Books and objects waiting to be discovered">
+<figure class="visual reveal">
+  <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1500&q=85" alt="Books waiting to be discovered">
   <figcaption>AN ENTIRE WORLD OF THINGS YOU HAVEN'T ENCOUNTERED.</figcaption>
 </figure>
 
-<p>That makes you think about everything that didn’t. There might be a song you would have played for years. A book you’d have argued about. A movie that would have been your comfort movie. A whole other version of you who likes things you’ve never heard of.</p>
-
-<p>You don’t dislike any of it. You just haven’t seen it.</p>
+<p>That makes you think about everything that didn’t. There might be a song you would have played for years. A book you’d have argued about. A movie that would have been your comfort movie. A whole other version of you who likes things you’ve never heard of. You don’t dislike any of it. You just haven’t seen it.</p>
 
 <p>And you can’t miss something you don’t know is missing.</p>
 
-<div class="visual-poster reveal" style="background:var(--green)">
+<div class="poster green reveal">
   <div>
     <div class="mono">UNDISCOVERED / STILL POSSIBLE</div>
     <h2>WHAT IF YOU JUST HAVEN'T SEEN IT YET?</h2>
   </div>
-  <div class="poster-creature" style="background:var(--orange)"><i></i></div>
+  <svg viewBox="0 0 180 200" role="img" aria-label="A curious abstract creature">
+    <path d="M25 105 Q10 25 90 15 Q170 25 155 115 Q150 190 85 185 Q20 185 25 105Z" fill="#ff9f43" stroke="#111" stroke-width="7"/>
+    <circle cx="62" cy="80" r="17" fill="#111"/>
+    <circle cx="120" cy="80" r="17" fill="#111"/>
+    <path d="M55 130 Q90 155 130 125" fill="none" stroke="#111" stroke-width="8"/>
+    <path d="M30 30 L5 5 M150 30 L175 5" stroke="#111" stroke-width="7"/>
+  </svg>
 </div>
 
-<div class="section-title mono"><span>05 /</span> END OF TRANSMISSION</div>
+<div class="section-marker mono"><span>05 /</span> END OF TRANSMISSION</div>
 
 <p>So, are you really what you like?</p>
 
@@ -709,22 +754,21 @@ footer a { color:var(--cyan); }
 
 <p>Yes, you like the things you like. But what if you just haven’t seen anything else?</p>
 
-<div class="final-visual reveal">
-  <div class="symbol">◉</div>
+<div class="ending-question reveal">
+  <div class="eye">◉</div>
   <p>END OF FILE / IDENTITY NOT VERIFIED</p>
 </div>
 
 </article>
-</div>
 </main>
 
-<section class="ending">
+<section class="final-screen">
   <div class="mono">TRANSMISSION 002 / COMPLETE</div>
-  <h2>YOUR TASTE IS YOURS.<br><span>ISN'T IT?</span></h2>
+  <h2>YOUR TASTE IS YOURS.<br><em>ISN'T IT?</em></h2>
   <p>Maybe there's more out there.</p>
 </section>
 
-<footer class="mono">
+<footer class="footer mono">
   <span>THIS IS NOT A CLICKBAIT © 2026</span>
   <span>CREATED BY ALMIDHA.M.A</span>
   <a href="#">BACK TO TOP ↑</a>
@@ -733,15 +777,15 @@ footer a { color:var(--cyan); }
 <script>
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if(entry.isIntersecting) {
+    if (entry.isIntersecting) {
       entry.target.classList.add("visible");
       observer.unobserve(entry.target);
     }
   });
-},{threshold:0.12});
+}, { threshold: 0.12 });
 
-document.querySelectorAll(".reveal").forEach(element => {
-  observer.observe(element);
+document.querySelectorAll(".reveal").forEach(item => {
+  observer.observe(item);
 });
 </script>
 
