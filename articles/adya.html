@@ -16,8 +16,7 @@
 <style>
 
 /* =========================================
-   ADYA / TRANSMISSION 005
-   VISUAL IDENTITY
+   01. GLOBAL DESIGN SYSTEM
 ========================================= */
 
 :root {
@@ -67,7 +66,7 @@ button {
 }
 
 /* =========================================
-   TOP BAR
+   02. TOP BAR
 ========================================= */
 
 .topbar {
@@ -86,7 +85,7 @@ button {
 }
 
 /* =========================================
-   NAVIGATION
+   03. NAVIGATION
 ========================================= */
 
 nav {
@@ -119,7 +118,7 @@ nav {
 }
 
 /* =========================================
-   MAIN
+   04. MAIN CONTAINER
 ========================================= */
 
 main {
@@ -129,7 +128,7 @@ main {
 }
 
 /* =========================================
-   ADYA HERO
+   05. ADYA HERO SECTION
 ========================================= */
 
 .hero {
@@ -198,7 +197,7 @@ main {
 }
 
 /* =========================================
-   HERO IMAGE
+   06. HERO IMAGE
 ========================================= */
 
 .hero-image {
@@ -232,7 +231,7 @@ main {
 }
 
 /* =========================================
-   TICKER
+   07. MOVING TICKER
 ========================================= */
 
 .ticker {
@@ -253,12 +252,16 @@ main {
 }
 
 @keyframes scroll {
-  from {transform:translateX(0)}
-  to {transform:translateX(-50%)}
+  from {
+    transform:translateX(0);
+  }
+  to {
+    transform:translateX(-50%);
+  }
 }
 
 /* =========================================
-   INTRO NOTE
+   08. INTRO NOTE
 ========================================= */
 
 .intro-note {
@@ -275,7 +278,7 @@ main {
 }
 
 /* =========================================
-   ARTICLE LAYOUT
+   09. ARTICLE LAYOUT
 ========================================= */
 
 .article-layout {
@@ -304,7 +307,7 @@ main {
 }
 
 /* =========================================
-   SIDE NOTE
+   10. SIDEBAR
 ========================================= */
 
 .side-note {
@@ -326,7 +329,7 @@ main {
 }
 
 /* =========================================
-   PULL QUOTE
+   11. PULL QUOTES
 ========================================= */
 
 .pullquote {
@@ -338,7 +341,7 @@ main {
 }
 
 /* =========================================
-   INLINE IMAGES
+   12. INLINE IMAGES
 ========================================= */
 
 .inline-image {
@@ -360,7 +363,7 @@ main {
 }
 
 /* =========================================
-   SECTION MARKERS
+   13. SECTION MARKERS
 ========================================= */
 
 .section-marker {
@@ -381,7 +384,7 @@ main {
 }
 
 /* =========================================
-   END NOTE
+   14. END NOTE
 ========================================= */
 
 .end-note {
@@ -404,7 +407,7 @@ main {
 }
 
 /* =========================================
-   PHONE INTERACTIVE SECTION
+   15. PHONE INTERACTIVE SECTION
 ========================================= */
 
 .phone-section {
@@ -427,7 +430,7 @@ main {
 
   text-align:center;
   position:relative;
-  overflow:hidden;
+  overflow:visible;
 }
 
 .phone-section:before {
@@ -455,29 +458,39 @@ main {
 }
 
 /* =========================================
-   LISTENER_005 CHARACTER
+   16. LISTENER_005 CHARACTER
+   COMPLETE VISIBLE CSS CHARACTER
 ========================================= */
 
 .phone-character {
-  width:165px;
-  height:220px;
-  margin:45px auto 25px;
-  position:relative;
+  display:block !important;
+  position:relative !important;
 
-  border:5px solid #f0eee8;
-  border-radius:32px;
+  width:165px !important;
+  height:220px !important;
+
+  margin:55px auto 65px !important;
+
+  overflow:visible !important;
+  visibility:visible !important;
+  opacity:1 !important;
+
+  z-index:2;
+
+  border:5px solid #f0eee8 !important;
+  border-radius:32px !important;
 
   background:
     linear-gradient(
       145deg,
-      #8bdc68,
-      #5420a0 65%,
-      #171c3a
-    );
+      #c6ff45,
+      #8b5cf6 55%,
+      #29205c
+    ) !important;
 
   box-shadow:
     0 0 35px #8b5cf688,
-    inset 0 0 20px #ffffff18;
+    inset 0 0 20px #ffffff18 !important;
 
   animation:float 3s ease-in-out infinite;
 }
@@ -509,7 +522,7 @@ main {
   border-radius:50%;
 }
 
-/* FLOATING ANIMATION */
+/* FLOAT */
 
 @keyframes float {
   0%,100% {
@@ -521,50 +534,53 @@ main {
   }
 }
 
-/* PHONE SPEAKER */
+/* SPEAKER */
 
-.phone-speaker {
+.phone-character .phone-speaker {
+  display:block !important;
   position:absolute;
   top:10px;
   left:50%;
   transform:translateX(-50%);
   width:42px;
   height:5px;
-  border-radius:10px;
   background:#171827;
+  border-radius:10px;
 }
 
 /* EYES */
 
-.phone-eyes {
-  display:flex;
+.phone-character .phone-eyes {
+  display:flex !important;
   justify-content:center;
   gap:23px;
   margin-top:66px;
 }
 
-.eye {
+.phone-character .eye {
+  display:block !important;
+  position:relative;
   width:25px;
   height:31px;
-  border-radius:50%;
   background:#fff;
-  position:relative;
+  border-radius:50%;
 }
 
-.eye:after {
+.phone-character .eye:after {
   content:"";
   position:absolute;
-  width:10px;
-  height:13px;
-  border-radius:50%;
-  background:#171827;
   top:9px;
   left:9px;
+  width:10px;
+  height:13px;
+  background:#171827;
+  border-radius:50%;
 }
 
 /* MOUTH */
 
-.phone-mouth {
+.phone-character .phone-mouth {
+  display:block !important;
   width:29px;
   height:12px;
   margin:17px auto;
@@ -574,86 +590,93 @@ main {
 
 /* CHEEKS */
 
-.phone-cheek {
+.phone-character .phone-cheek {
+  display:block !important;
   position:absolute;
   top:115px;
   width:16px;
   height:8px;
+  background:#ff7d9a;
   border-radius:50%;
-  background:#ff7d9a88;
 }
 
-.phone-cheek.left {
+.phone-character .phone-cheek.left {
   left:22px;
 }
 
-.phone-cheek.right {
+.phone-character .phone-cheek.right {
   right:22px;
 }
 
 /* ARMS */
 
-.phone-arm {
+.phone-character .phone-arm {
+  display:block !important;
   position:absolute;
   top:115px;
   width:35px;
   height:9px;
-  border-radius:10px;
   background:#c6ff45;
+  border-radius:10px;
 }
 
-.phone-arm.left {
+.phone-character .phone-arm.left {
   left:-31px;
   transform:rotate(25deg);
 }
 
-.phone-arm.right {
+.phone-character .phone-arm.right {
   right:-31px;
   transform:rotate(-25deg);
 }
 
 /* LEGS */
 
-.phone-leg {
+.phone-character .phone-leg {
+  display:block !important;
   position:absolute;
   bottom:-24px;
   width:9px;
   height:25px;
-  border-radius:10px;
   background:#b8a8ee;
+  border-radius:10px;
 }
 
-.phone-leg.left {
+.phone-character .phone-leg.left {
   left:42px;
 }
 
-.phone-leg.right {
+.phone-character .phone-leg.right {
   right:42px;
 }
 
-/* NOTIFICATION BUBBLE */
+/* NOTIFICATION */
 
-.listener-notification {
+.phone-character .listener-notification {
   position:absolute;
-  top:34px;
-  right:-39px;
-  width:48px;
-  height:43px;
-  background:var(--pink);
+  display:block !important;
+
+  top:35px;
+  right:-40px;
+
+  width:45px;
+  height:45px;
+
   border:3px solid white;
   border-radius:12px;
-  z-index:5;
-  transform:rotate(12deg);
-  box-shadow:0 0 15px #ff168077;
-  animation:notification 2s ease-in-out infinite;
-}
 
-.listener-notification:after {
-  content:"!";
+  background:#ff1680;
   color:white;
+
   font:bold 25px Arial;
-  display:block;
-  line-height:36px;
+  text-align:center;
+  line-height:39px;
+
+  z-index:5;
+
+  box-shadow:0 0 15px #ff168077;
+
+  animation:notification 2s ease-in-out infinite;
 }
 
 @keyframes notification {
@@ -668,19 +691,24 @@ main {
 
 /* CHARACTER LABEL */
 
-.character-label {
+.phone-character .character-label {
   position:absolute;
-  bottom:-44px;
+  display:block;
+
+  bottom:-48px;
   left:50%;
   transform:translateX(-50%);
+
   width:max-content;
+
   color:var(--green);
-  font:10px 'DM Mono',monospace;
+  font:11px 'DM Mono',monospace;
   letter-spacing:2px;
+  white-space:nowrap;
 }
 
 /* =========================================
-   TALKING ANIMATION
+   17. TALKING ANIMATION
 ========================================= */
 
 .phone-character.talking {
@@ -688,11 +716,25 @@ main {
 }
 
 @keyframes glitch {
-  0% {transform:translate(0) skew(0)}
-  25% {transform:translate(5px,-2px) skew(3deg)}
-  50% {transform:translate(-4px,2px) skew(-3deg)}
-  75% {transform:translate(3px,1px)}
-  100% {transform:translate(0)}
+  0% {
+    transform:translate(0) skew(0);
+  }
+
+  25% {
+    transform:translate(5px,-2px) skew(3deg);
+  }
+
+  50% {
+    transform:translate(-4px,2px) skew(-3deg);
+  }
+
+  75% {
+    transform:translate(3px,1px);
+  }
+
+  100% {
+    transform:translate(0);
+  }
 }
 
 .phone-character.talking .phone-mouth {
@@ -703,7 +745,7 @@ main {
 }
 
 /* =========================================
-   PHONE STATUS
+   18. PHONE STATUS
 ========================================= */
 
 .phone-status {
@@ -726,7 +768,7 @@ main {
 }
 
 /* =========================================
-   INTERACTION BUTTONS
+   19. PHONE BUTTONS
 ========================================= */
 
 .phone-buttons {
@@ -763,7 +805,7 @@ main {
 }
 
 /* =========================================
-   FINAL MESSAGE
+   20. FINAL PHONE MESSAGE
 ========================================= */
 
 .phone-final {
@@ -803,20 +845,24 @@ main {
   font:13px/1.8 'DM Mono',monospace;
 }
 
+/* RESET BUTTON */
+
 .reset-button {
   margin-top:15px;
 }
 
 /* =========================================
-   FOOTER
+   21. FOOTER
 ========================================= */
 
 .footer {
   padding:35px 6%;
   border-top:1px solid var(--line);
+
   display:flex;
   justify-content:space-between;
   gap:20px;
+
   color:var(--muted);
   font:10px 'DM Mono',monospace;
 }
@@ -830,7 +876,7 @@ main {
 }
 
 /* =========================================
-   RESPONSIVE DESIGN
+   22. RESPONSIVE DESIGN
 ========================================= */
 
 @media(max-width:760px) {
@@ -871,6 +917,7 @@ main {
   .footer {
     flex-direction:column;
   }
+
 }
 
 @media(max-width:430px) {
@@ -898,7 +945,7 @@ main {
 }
 
 /* =========================================
-   REDUCED MOTION
+   23. REDUCED MOTION
 ========================================= */
 
 @media(prefers-reduced-motion:reduce) {
@@ -923,9 +970,13 @@ main {
 ===================================== -->
 
 <div class="topbar">
+
   <span>INDEPENDENT DIGITAL PUBLICATION</span>
+
   <span class="status">● SYSTEM ONLINE</span>
+
   <span>ISSUE 01 / 2026</span>
+
 </div>
 
 <!-- =====================================
@@ -939,9 +990,13 @@ main {
   </a>
 
   <div class="navlinks">
+
     <a href="../index.html#archive">ARCHIVE</a>
+
     <a href="../index.html#arcade">ARCADE</a>
+
     <a href="../index.html#about">ABOUT</a>
+
   </div>
 
 </nav>
@@ -949,7 +1004,7 @@ main {
 <main>
 
 <!-- =====================================
-     ADYA HERO SECTION
+     24. HERO
 ===================================== -->
 
 <header class="hero">
@@ -996,7 +1051,7 @@ main {
 </header>
 
 <!-- =====================================
-     TICKER
+     25. TICKER
 ===================================== -->
 
 <div class="ticker">
@@ -1010,7 +1065,7 @@ main {
 </div>
 
 <!-- =====================================
-     INTRO NOTE
+     26. INTRODUCTION
 ===================================== -->
 
 <div class="intro-note">
@@ -1023,16 +1078,20 @@ main {
 </div>
 
 <!-- =====================================
-     ARTICLE CONTENT
+     27. ARTICLE + SIDEBAR
 ===================================== -->
 
 <div class="article-layout">
 
 <article class="article-copy">
 
+<!-- INTRODUCTION -->
+
 <p>Have you ever said something to your friend about buying a pair of shoes and then continued seeing shoes on your Instagram feed? Have you discussed a vacation spot and then started watching videos about these places on YouTube? There are moments that make us wonder if our phone is listening to us all the time or if social media knows us better than we know ourselves. The truth is, social media has indeed become an all-encompassing and all-powerful entity in the 21st century.</p>
 
 <p>Instagram, Facebook, YouTube, Snapchat, TikTok, and many other social media applications are replete with information about their users. The likes, comments, searches, shares, scrolls, and clicks generate mountains of data telling the platforms what one likes and does not like. Even the videos that one does not watch or the articles one reads without clicking also inform the algorithms of what one is interested in and influence the content that starts showing up. Thus, it becomes increasingly apparent that social media is a spying entity, reading, listening, and watching everything one does online.</p>
+
+<!-- SECTION 01 -->
 
 <div class="section-marker">
 01 / THE MICROPHONE QUESTION
@@ -1058,11 +1117,15 @@ main {
   "The algorithms guess what one wants to watch, read, or listen to."
 </div>
 
+<!-- SECTION 02 -->
+
 <div class="section-marker">
 02 / THE RECOMMENDATION MACHINE
 </div>
 
 <p>When one searches for a product, say, a dress on an e-commerce website, the algorithms of social media platforms use the information to advise similar dresses based on what one searched. One can also see many ads that show what one searched on different websites. For example, Facebook and Instagram use the information about the items one searches for or the articles they read to recommend similar content or products. The algorithms power these recommendations, which make the platforms aware of what users are interested in. While one might think these platforms eavesdrop on their conversations, they do not need to. The data generated when one browses online, the location, the photos uploaded, and the friends or family one interacts with all contribute to generating information that the algorithms use to make guesses about the users’ preferences.</p>
+
+<!-- SECTION 03 -->
 
 <div class="section-marker">
 03 / PREDICTING YOU
@@ -1084,6 +1147,8 @@ main {
 
 </figure>
 
+<!-- SECTION 04 -->
+
 <div class="section-marker">
 04 / THE PRIVACY PROBLEM
 </div>
@@ -1094,11 +1159,15 @@ main {
   "Every individual must have a choice in giving away their data."
 </div>
 
+<!-- SECTION 05 -->
+
 <div class="section-marker">
 05 / TAKING BACK CONTROL
 </div>
 
 <p>Users can keep social media platforms in check in several ways. One can visit the settings of the applications and revoke the permissions given to the platforms. For example, one can disable access to the phone’s microphone or location. One can also limit ads or content that the applications recommend. Another way is ensuring that one does not give out sensitive information through the applications. Checking the accounts regularly and removing applications that one does not use is also a good way to protect personal data.</p>
+
+<!-- SECTION 06 -->
 
 <div class="section-marker">
 06 / THE ACTUAL PROBLEM
@@ -1131,7 +1200,7 @@ main {
 </div>
 
 <!-- =====================================
-     END NOTE
+     28. END NOTE
 ===================================== -->
 
 <section class="end-note">
@@ -1152,7 +1221,7 @@ main {
 </section>
 
 <!-- =====================================
-     PHONE.EXE INTERACTION
+     29. PHONE INTERACTION
 ===================================== -->
 
 <section class="phone-section" id="phone">
@@ -1175,29 +1244,35 @@ main {
   <div
     class="phone-character"
     id="phoneCharacter"
-    aria-label="LISTENER_005 cartoon phone character"
     role="img"
+    aria-label="LISTENER_005 cartoon phone character"
   >
 
     <div class="phone-speaker"></div>
 
     <div class="phone-eyes">
+
       <span class="eye"></span>
+
       <span class="eye"></span>
+
     </div>
 
     <div class="phone-cheek left"></div>
+
     <div class="phone-cheek right"></div>
 
     <div class="phone-mouth"></div>
 
     <div class="phone-arm left"></div>
+
     <div class="phone-arm right"></div>
 
     <div class="phone-leg left"></div>
+
     <div class="phone-leg right"></div>
 
-    <div class="listener-notification"></div>
+    <div class="listener-notification">!</div>
 
     <span class="character-label">
       LISTENER_005
@@ -1217,7 +1292,7 @@ main {
 
   </div>
 
-  <!-- INTERACTION BUTTONS -->
+  <!-- BUTTONS -->
 
   <div class="phone-buttons">
 
@@ -1263,7 +1338,7 @@ main {
 
   </div>
 
-  <!-- FINAL STATEMENT -->
+  <!-- FINAL MESSAGE -->
 
   <div class="phone-final" id="phoneFinal">
 
@@ -1292,7 +1367,7 @@ main {
 </main>
 
 <!-- =====================================
-     FOOTER
+     30. FOOTER
 ===================================== -->
 
 <footer class="footer">
@@ -1312,7 +1387,7 @@ main {
 </footer>
 
 <!-- =====================================
-     JAVASCRIPT
+     31. JAVASCRIPT INTERACTION
 ===================================== -->
 
 <script>
@@ -1329,7 +1404,7 @@ const reset = document.getElementById("resetPhone");
 
 let clicks = 0;
 
-/* PHONE INTERACTION */
+/* BUTTON INTERACTIONS */
 
 buttons.forEach(button => {
 
