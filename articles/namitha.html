@@ -1,0 +1,1183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090d">
+<title>Playlists First, Stories Next | This Is Not a Clickbait</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#09090d;
+  --panel:#12121a;
+  --white:#f2f0ed;
+  --muted:#9996a5;
+  --red:#ff4d62;
+  --blue:#54d9ff;
+  --purple:#a78bfa;
+  --green:#c5ff68;
+  --pink:#ff83c9;
+  --mono:'DM Mono',monospace;
+  --sans:'Space Grotesk',sans-serif;
+  --serif:'Playfair Display',serif;
+}
+
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--sans);
+  overflow-x:hidden;
+}
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:10;
+  opacity:.13;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; cursor:pointer; }
+
+.topbar {
+  padding:17px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #292733;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:1px;
+  gap:15px;
+}
+.brand { color:var(--white); font-weight:500; }
+.brand span { color:var(--red); }
+.top-status { color:var(--green); }
+
+.article-wrap {
+  width:min(920px,88%);
+  margin:auto;
+}
+.article-hero {
+  padding:85px 0 48px;
+  position:relative;
+}
+.transmission {
+  display:inline-block;
+  color:var(--green);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:2px;
+  border:1px solid #53643b;
+  padding:8px 12px;
+  margin-bottom:28px;
+}
+.hero-label {
+  color:var(--blue);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:20px;
+}
+.article-hero h1 {
+  font-size:clamp(44px,8vw,94px);
+  line-height:.98;
+  letter-spacing:-5px;
+  text-transform:uppercase;
+  max-width:850px;
+  margin:0;
+  font-weight:700;
+}
+.article-hero h1 span {
+  color:var(--red);
+  text-shadow:3px 3px var(--blue);
+}
+.article-hero h1 em {
+  font-family:var(--serif);
+  text-transform:none;
+  font-weight:600;
+  color:var(--green);
+  letter-spacing:-3px;
+}
+.byline {
+  margin-top:35px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  border-top:1px solid #35323e;
+  border-bottom:1px solid #35323e;
+  padding:16px 0;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--muted);
+}
+.byline strong { color:var(--white); }
+
+.hero-image {
+  margin:20px 0 55px;
+  position:relative;
+}
+.hero-image img {
+  display:block;
+  width:100%;
+  max-height:470px;
+  object-fit:cover;
+  filter:saturate(.85);
+}
+.image-caption {
+  color:var(--muted);
+  font-family:var(--mono);
+  font-size:10px;
+  line-height:1.7;
+  margin-top:10px;
+}
+.image-caption span { color:var(--pink); }
+
+.article-body {
+  max-width:720px;
+  margin:0 auto;
+  font-size:17px;
+  line-height:1.95;
+  color:#d5d2dc;
+}
+.article-body p { margin:0 0 29px; }
+.article-body em { color:var(--white); }
+.article-body .opening {
+  color:var(--green);
+  font-family:var(--serif);
+  font-size:30px;
+  line-height:1.4;
+  margin-bottom:30px;
+}
+.article-body .dropcap:first-letter {
+  float:left;
+  font-family:var(--serif);
+  font-size:65px;
+  line-height:.85;
+  padding:8px 9px 0 0;
+  color:var(--red);
+}
+.article-image {
+  margin:45px 0;
+}
+.article-image img {
+  width:100%;
+  max-height:390px;
+  object-fit:cover;
+  display:block;
+}
+.article-image figcaption {
+  color:var(--muted);
+  font:10px/1.7 var(--mono);
+  margin-top:10px;
+}
+.article-image figcaption span { color:var(--blue); }
+
+.pullquote {
+  margin:55px 0;
+  padding:25px 28px;
+  border-left:3px solid var(--purple);
+  background:#12111b;
+  color:var(--white);
+  font:italic 25px/1.5 var(--serif);
+}
+.pullquote small {
+  display:block;
+  color:var(--purple);
+  font:10px var(--mono);
+  letter-spacing:2px;
+  margin-top:14px;
+}
+
+.article-end {
+  border-top:1px solid #34313d;
+  margin-top:65px;
+  padding-top:25px;
+  font:11px var(--mono);
+  color:var(--green);
+  letter-spacing:2px;
+}
+
+/* READER.EXE */
+
+.reader-section {
+  width:min(920px,92%);
+  margin:100px auto 90px;
+  border:1px solid #393444;
+  background:
+    linear-gradient(135deg,rgba(84,217,255,.045),transparent 35%),
+    linear-gradient(315deg,rgba(255,77,98,.05),transparent 45%),
+    #101018;
+  position:relative;
+  overflow:hidden;
+}
+.reader-section::before {
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  background:var(--purple);
+  filter:blur(130px);
+  opacity:.18;
+  right:-70px;
+  top:100px;
+  pointer-events:none;
+}
+.reader-inner {
+  position:relative;
+  z-index:1;
+  padding:clamp(20px,5vw,48px);
+}
+.reader-top {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  color:var(--green);
+  font:10px var(--mono);
+  letter-spacing:1.5px;
+}
+.reader-title {
+  font-size:clamp(38px,7vw,70px);
+  line-height:.98;
+  letter-spacing:-3px;
+  margin:28px 0 12px;
+  text-transform:uppercase;
+}
+.reader-title span { color:var(--pink); }
+.reader-intro {
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+  max-width:570px;
+}
+.egg-area {
+  display:flex;
+  gap:20px;
+  align-items:center;
+  margin:35px 0;
+}
+.egg {
+  width:100px;
+  height:112px;
+  flex-shrink:0;
+  position:relative;
+  background:#f5eee0;
+  border:3px solid #24212c;
+  border-radius:48% 48% 45% 45% / 57% 57% 40% 40%;
+  box-shadow:5px 5px 0 var(--pink);
+  animation:eggfloat 3s ease-in-out infinite;
+}
+@keyframes eggfloat {
+  0%,100% { transform:translateY(0) rotate(-2deg); }
+  50% { transform:translateY(-6px) rotate(2deg); }
+}
+.egg-eyes {
+  position:absolute;
+  top:43px;
+  left:25px;
+  display:flex;
+  gap:24px;
+}
+.egg-eyes i {
+  display:block;
+  width:7px;
+  height:10px;
+  background:#17151d;
+  border-radius:50%;
+}
+.egg-mouth {
+  position:absolute;
+  top:61px;
+  left:43px;
+  width:12px;
+  height:6px;
+  border-bottom:2px solid #17151d;
+  border-radius:50%;
+}
+.egg-cheek {
+  position:absolute;
+  top:60px;
+  left:16px;
+  width:12px;
+  height:7px;
+  border-radius:50%;
+  background:#f5a5a5;
+  opacity:.8;
+}
+.egg-cheek.right { left:70px; }
+.egg-dialogue {
+  flex:1;
+  border:1px solid #51485e;
+  background:#191722;
+  padding:17px;
+  position:relative;
+  font-size:14px;
+  line-height:1.6;
+  color:#e7e2ed;
+}
+.egg-dialogue::before {
+  content:"";
+  position:absolute;
+  left:-7px;
+  top:35px;
+  width:12px;
+  height:12px;
+  background:#191722;
+  border-left:1px solid #51485e;
+  border-bottom:1px solid #51485e;
+  transform:rotate(45deg);
+}
+.egg-dialogue strong {
+  display:block;
+  color:var(--green);
+  font:10px var(--mono);
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+.egg-dialogue p { margin:0; }
+
+.progress-row {
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font:10px var(--mono);
+  margin-bottom:9px;
+}
+.progress-track {
+  height:5px;
+  background:#292532;
+  margin-bottom:35px;
+}
+.progress-fill {
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--blue),var(--pink),var(--green));
+  transition:width .4s ease;
+}
+.stage { display:none; animation:appear .35s ease; }
+.stage.active { display:block; }
+@keyframes appear {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.stage-number {
+  font:10px var(--mono);
+  letter-spacing:2px;
+  color:var(--blue);
+  margin-bottom:12px;
+}
+.stage h3 {
+  font-size:clamp(23px,4vw,34px);
+  margin:0 0 9px;
+}
+.stage-description {
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.7;
+  margin-bottom:22px;
+}
+.choice-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:11px;
+}
+.choice {
+  border:1px solid #3c3747;
+  background:#171620;
+  color:var(--white);
+  text-align:left;
+  padding:16px;
+  min-height:85px;
+  transition:.2s;
+}
+.choice:hover {
+  border-color:var(--blue);
+  transform:translateY(-2px);
+}
+.choice.selected {
+  border-color:var(--green);
+  background:#20251d;
+  box-shadow:inset 0 0 0 1px var(--green);
+}
+.choice strong {
+  display:block;
+  font-size:14px;
+  margin-bottom:5px;
+}
+.choice small {
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+}
+.choice .price {
+  display:block;
+  color:var(--pink);
+  font:10px var(--mono);
+  margin-top:10px;
+}
+.stage-actions {
+  display:flex;
+  gap:10px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+.action-btn {
+  border:0;
+  padding:13px 20px;
+  background:var(--green);
+  color:#101018;
+  font:11px var(--mono);
+  font-weight:bold;
+  letter-spacing:1px;
+}
+.action-btn:hover { background:var(--blue); }
+.action-btn.secondary {
+  background:transparent;
+  border:1px solid #514b5b;
+  color:var(--white);
+}
+.action-btn.secondary:hover { border-color:var(--pink); }
+.action-btn:disabled {
+  opacity:.35;
+  cursor:not-allowed;
+}
+.multi-note {
+  color:var(--muted);
+  font:10px var(--mono);
+  margin:0 0 15px;
+}
+.receipt {
+  display:none;
+  background:#eeeae0;
+  color:#17151b;
+  padding:25px;
+  max-width:540px;
+  margin:30px auto 0;
+  font-family:var(--mono);
+  position:relative;
+}
+.receipt::before {
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:1px dashed #aaa49b;
+  pointer-events:none;
+}
+.receipt-content { position:relative; z-index:1; }
+.receipt h3 {
+  text-align:center;
+  font-size:19px;
+  letter-spacing:1px;
+  margin:0 0 5px;
+}
+.receipt-sub {
+  text-align:center;
+  color:#666;
+  font-size:9px;
+  margin-bottom:20px;
+}
+.receipt-line {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:11px;
+  padding:8px 0;
+  border-bottom:1px dotted #aaa49b;
+}
+.receipt-line.total {
+  font-size:15px;
+  font-weight:bold;
+  border-top:2px solid #17151b;
+  border-bottom:2px solid #17151b;
+  margin-top:12px;
+  padding:13px 0;
+}
+.receipt-note {
+  font-family:var(--sans);
+  font-size:13px;
+  line-height:1.6;
+  margin-top:18px;
+}
+.receipt-stamp {
+  text-align:center;
+  color:#d72f48;
+  border:2px solid #d72f48;
+  padding:9px;
+  font-weight:bold;
+  font-size:12px;
+  transform:rotate(-2deg);
+  margin:20px 0;
+}
+.receipt-footer {
+  font-size:9px;
+  color:#777;
+  text-align:center;
+  margin-top:15px;
+}
+.receipt-buttons {
+  display:none;
+  justify-content:center;
+  gap:10px;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+.receipt-buttons .action-btn.secondary { color:var(--white); }
+
+.reader-ending {
+  text-align:center;
+  color:var(--muted);
+  font:10px var(--mono);
+  letter-spacing:1px;
+  margin-top:38px;
+}
+.reader-ending span { color:var(--pink); }
+
+.mag-footer {
+  padding:30px 6%;
+  border-top:1px solid #302c38;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+  color:var(--muted);
+  font:10px var(--mono);
+  letter-spacing:1px;
+}
+.mag-footer strong { color:var(--green); }
+
+@media(max-width:600px) {
+  .topbar { font-size:9px; }
+  .article-hero { padding-top:55px; }
+  .article-hero h1 { letter-spacing:-2.5px; }
+  .article-body { font-size:15px; line-height:1.85; }
+  .egg { width:78px; height:91px; }
+  .egg-eyes { top:34px; left:19px; gap:20px; }
+  .egg-eyes i { width:6px; height:8px; }
+  .egg-mouth { top:50px; left:33px; }
+  .egg-cheek { top:50px; left:11px; }
+  .egg-cheek.right { left:58px; }
+  .choice-grid { grid-template-columns:1fr; }
+  .reader-inner { padding:22px 17px; }
+  .egg-area { gap:13px; }
+  .egg-dialogue { font-size:12px; padding:13px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="brand" href="../index.html">THIS IS NOT A <span>CLICKBAIT.</span></a>
+  <div class="top-status">● TRANSMISSION ACTIVE</div>
+  <div>ISSUE 001 / 004</div>
+</header>
+
+<main class="article-wrap">
+
+  <section class="article-hero">
+    <div class="transmission">TRANSMISSION 004 / CULTURE.EXE</div>
+    <div class="hero-label">BOOK CULTURE // THE READING EXPERIENCE</div>
+
+    <h1>PLAYLISTS<br><span>FIRST,</span><br><em>Stories next.</em></h1>
+
+    <div class="byline">
+      <div>WRITTEN BY <strong>NAMITHA RAJEEV</strong></div>
+      <div>READING EXPERIENCE / CULTURE</div>
+    </div>
+  </section>
+
+  <figure class="hero-image">
+    <img
+      src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=1500&q=85"
+      alt="Books and reading atmosphere"
+      loading="lazy">
+    <figcaption><span>FIG. 004-A</span> / A story, a soundtrack, and everything that comes with it.</figcaption>
+  </figure>
+
+  <article class="article-body">
+
+    <p class="opening">It began with a playlist.</p>
+
+    <p class="dropcap">‘Maula Mere’ was part of the official playlist for Ana Huang’s <em>King of Gluttony</em>. Its presence inside the book wasn’t accidental. It read less like a mood choice than a calculated one — a way of courting Indian readers specifically, rather than simply scoring a scene. That’s the thing about these playlists: they’re rarely just a bonus. An actual Spotify link, tucked near the acknowledgments, as if the novel wasn’t quite finished without a soundtrack. What looks like a gimmick at first turns out to be a pattern. Sarah J. Maas does it. Colleen Hoover does it. Half the romance shelf now comes with its own audio companion, and some authors have gone further. Taylor Jenkins Reid’s <em>Daisy Jones &amp; the Six</em> produced an actual album for its fictional band, a soundtrack for a group that never existed.</p>
+
+    <figure class="article-image">
+      <img
+        src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1300&q=85"
+        alt="Music and headphones"
+        loading="lazy">
+      <figcaption><span>FIG. 004-B</span> / The soundtrack has entered the reading room.</figcaption>
+    </figure>
+
+    <p>The implication is hard to miss: readers no longer simply read books. They experience them, and the experience is what is being sold. Books used to be read. Now they are consumed, in the fuller sense of the word: listened to, eaten alongside, worn, displayed and visited.</p>
+
+    <p>For most of publishing history, a book’s job was simple — contain the words, put an attractive cover on it, send it into the world. The story was the pitch. Marketing stopped at the blurb and, occasionally, a review quote on the back. An author wrote the manuscript and then, largely, stepped away. Publicity was somebody else’s department, and reading was a solitary act: one person, one book, no audience.</p>
+
+    <p>None of that holds quite as true anymore, and the reason is the oldest one in commerce. A book is a single purchase. An experience can be bought again and again, and consumption runs on repeat.</p>
+
+    <figure class="article-image">
+      <img
+        src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1300&q=85"
+        alt="A collection of books"
+        loading="lazy">
+      <figcaption><span>FIG. 004-C</span> / Same story. Different edition. New reasons to buy it.</figcaption>
+    </figure>
+
+    <p>Attention, not information, is now the limited resource, and a book competes with a feed rather than a bookshelf. A feed rewards what is visual, musical and shareable, which a static block of text cannot be on its own. So the object itself was redesigned. Sprayed edges, hidden art beneath the dust jacket, “BookTok edition” covers made for readers who found the book through a video rather than a shelf. Special editions are sold not as better copies, but as different experiences of the same story.</p>
+
+    <p>When the object isn’t enough, the world around it gets stocked. There are official cookbooks for <em>Bridgerton</em> and <em>A Song of Ice and Fire</em>, candles named after specific characters, even a perfume designed to smell like a freshly printed book. Taste and smell, once the things a story could only describe, are now things a story can sell you.</p>
+
+    <figure class="article-image">
+      <img
+        src="https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=1300&q=85"
+        alt="Candles and cosy objects"
+        loading="lazy">
+      <figcaption><span>FIG. 004-D</span> / Fictional worlds are now available in scented formats.</figcaption>
+    </figure>
+
+    <p>Social media compounds the effect by turning reading into something to display. A shelf, colour-coded tabs, a carefully cultivated “reading aesthetic” — all of it folds reading into a performed identity rather than a private habit. Since performance wants an audience, reading has become communal : read-a-thons, buddy reads, Discord book clubs, BookTok reactions filmed mid-sob. Reading, once private, is now something people do together, in real time, on camera.</p>
+
+    <p>Authors, meanwhile, have become their own marketing departments. Self-publishing and TikTok put promotion directly into writers’ hands, so elements that once felt like bolted-on extras, like playlists, mood boards and bonus scenes, are now built into how a book is made in the first place.</p>
+
+    <blockquote class="pullquote">
+      "A book is a single purchase. An experience can be bought again and again."
+      <small>THE EXPERIENCE ECONOMY / 004</small>
+    </blockquote>
+
+    <p>None of this is as new as it feels. Victorian readers waited on street corners for the next serialized chapter of Dickens. Illustrated editions, literary salons, fan letters — the impulse is old. Even place has long been part of the package: pilgrims have walked to Haworth and Jane Austen’s House for generations. What has changed is the scale. Now there are Harry Potter theme parks, hostels where guests sleep in bookshelf-shaped bunks, silent reading parties held in bars. And the experience is built into the book from the start, rather than added on after a story happens to succeed.</p>
+
+    <p>Readers have long described reading as “getting lost in a story” or “travelling the world from home.” Perhaps the playlists and limited-edition covers are simply noise. Or perhaps they are that same old instinct, rebranded for a generation that finds even a thirty-second reel too long.</p>
+
+    <p>That is what consumption looks like here. When the story is the product, a reader’s appetite ends at the last page. When the experience is the product, it never has to.</p>
+
+    <p>The book, it turns out, was never just the book. The industry has simply stopped pretending otherwise.</p>
+
+    <div class="article-end">END OF TRANSMISSION 004 // READER EXPERIENCE AVAILABLE BELOW</div>
+  </article>
+</main>
+
+
+<!-- READER.EXE INTERACTIVE EXPERIENCE -->
+
+<section class="reader-section" id="reader-exe">
+<div class="reader-inner">
+
+  <div class="reader-top">
+    <span>READER.EXE / EXPERIENCE BUILDER</span>
+    <span>VERSION 1.04 // BETA</span>
+  </div>
+
+  <h2 class="reader-title">BUILD YOUR<br><span>BOOK EXPERIENCE.</span></h2>
+
+  <p class="reader-intro">
+    Apparently, reading a book is no longer enough.
+    Let's assemble the entire universe around it.
+    Eggbert from the Department of Unnecessary Book Purchases
+    will be supervising. He has received no formal training.
+  </p>
+
+  <div class="egg-area">
+    <div class="egg" id="egg">
+      <div class="egg-eyes"><i></i><i></i></div>
+      <div class="egg-mouth"></div>
+      <div class="egg-cheek"></div>
+      <div class="egg-cheek right"></div>
+    </div>
+    <div class="egg-dialogue">
+      <strong>EGGBERT // CHIEF EXPERIENCE OFFICER</strong>
+      <p id="egg-message">"Welcome! You wanted a book. We have prepared an unnecessarily elaborate experience. You're welcome."</p>
+    </div>
+  </div>
+
+  <div class="progress-row">
+    <span id="progress-label">STEP 01 / 04</span>
+    <span id="progress-percent">0% COMPLETE</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <!-- STAGE 1 -->
+  <div class="stage active" id="stage-1">
+    <div class="stage-number">01 / READER IDENTIFICATION</div>
+    <h3>What kind of reader are you?</h3>
+    <p class="stage-description">Please select your most accurate literary identity. Lying is permitted.</p>
+
+    <div class="choice-grid" data-group="personality">
+      <button class="choice" data-value="The Playlist Romantic" data-comment="A soundtrack before the first chapter. We respect the commitment.">
+        <strong>🎧 The Playlist Romantic</strong>
+        <small>Every book deserves its own soundtrack.</small>
+      </button>
+      <button class="choice" data-value="The Special Edition Collector" data-comment="A beautiful cover can change everything. Including your bank balance.">
+        <strong>📚 The Special Edition Collector</strong>
+        <small>Sprayed edges are a personality trait.</small>
+      </button>
+      <button class="choice" data-value="The Annotation Enthusiast" data-comment="The book is now 40% story and 60% your thoughts.">
+        <strong>✍️ The Annotation Enthusiast</strong>
+        <small>Tabs, highlights, notes. All of it.</small>
+      </button>
+      <button class="choice" data-value="The BookTok Explorer" data-comment="One video, three recommendations, twelve new books.">
+        <strong>📱 The BookTok Explorer</strong>
+        <small>Just one more recommendation.</small>
+      </button>
+      <button class="choice" data-value="The Atmosphere Collector" data-comment="The lighting must be right. The tea must be ready. The plot can wait.">
+        <strong>🕯️ The Atmosphere Collector</strong>
+        <small>Setting the mood is half the reading.</small>
+      </button>
+      <button class="choice" data-value="The Plot-First Reader" data-comment="A refreshing commitment to the actual words. Eggbert is taking notes.">
+        <strong>📖 The Plot-First Reader</strong>
+        <small>One book. One story. No additional paperwork.</small>
+      </button>
+    </div>
+
+    <div class="stage-actions">
+      <button class="action-btn" id="next-1" disabled>CONTINUE →</button>
+    </div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="stage" id="stage-2">
+    <div class="stage-number">02 / ATMOSPHERE CONFIGURATION</div>
+    <h3>Set the reading scene.</h3>
+    <p class="stage-description">Choose the environment. The fictional universe is counting on you.</p>
+
+    <div class="choice-grid" data-group="atmosphere">
+      <button class="choice" data-value="Rainy evening" data-comment="Rain against the window. A warm drink. Main character behaviour.">
+        <strong>🌧️ Rainy evening</strong>
+        <small>Window, tea and a little drama.</small>
+      </button>
+      <button class="choice" data-value="Midnight reading" data-comment="The clock says 2 AM. The plot says one more chapter.">
+        <strong>🌙 Midnight reading</strong>
+        <small>Sleep is a tomorrow problem.</small>
+      </button>
+      <button class="choice" data-value="Candlelit corner" data-comment="We have achieved peak literary ambience.">
+        <strong>🕯️ Candlelit corner</strong>
+        <small>Soft lighting and fictional feelings.</small>
+      </button>
+      <button class="choice" data-value="Café afternoon" data-comment="Coffee, a book and the illusion of having your life together.">
+        <strong>☕ Café afternoon</strong>
+        <small>A little background noise, please.</small>
+      </button>
+      <button class="choice" data-value="Quiet library" data-comment="A sanctuary of silence. Eggbert promises to whisper.">
+        <strong>📚 Quiet library</strong>
+        <small>Just you and several thousand pages.</small>
+      </button>
+      <button class="choice" data-value="Main character mode" data-comment="The imaginary camera is following you. Naturally.">
+        <strong>✨ Main character mode</strong>
+        <small>Everything is cinematic today.</small>
+      </button>
+    </div>
+
+    <div class="stage-actions">
+      <button class="action-btn secondary" data-back="1">← BACK</button>
+      <button class="action-btn" id="next-2" disabled>CONTINUE →</button>
+    </div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="stage" id="stage-3">
+    <div class="stage-number">03 / ADDITIONAL FEATURES</div>
+    <h3>Choose your extras.</h3>
+    <p class="stage-description">Select as many as you like. This is a judgement-free department. Mostly.</p>
+    <p class="multi-note">MULTIPLE SELECTIONS ALLOWED // YOUR WALLET HAS NOT BEEN CONSULTED.</p>
+
+    <div class="choice-grid" data-group="extras" data-multiple="true">
+      <button class="choice" data-value="Official playlist" data-price="299" data-comment="A soundtrack for turning pages. We love a production.">
+        <strong>🎧 Official playlist</strong>
+        <small>The book has its own music now.</small>
+        <span class="price">₹299</span>
+      </button>
+      <button class="choice" data-value="Sprayed-edge edition" data-price="899" data-comment="Same story. Better outfit. An excellent wardrobe change.">
+        <strong>✨ Sprayed-edge edition</strong>
+        <small>Because the sides deserve attention too.</small>
+        <span class="price">₹899</span>
+      </button>
+      <button class="choice" data-value="Character candle" data-price="499" data-comment="A fictional character, now available in scented form.">
+        <strong>🕯️ Character candle</strong>
+        <small>Smells like your favourite fictional universe.</small>
+        <span class="price">₹499</span>
+      </button>
+      <button class="choice" data-value="Book-inspired perfume" data-price="699" data-comment="The plot has a fragrance. Naturally.">
+        <strong>🌸 Book-inspired perfume</strong>
+        <small>Wear the atmosphere. Literally.</small>
+        <span class="price">₹699</span>
+      </button>
+      <button class="choice" data-value="Fictional cookbook" data-price="599" data-comment="Time to cook something from a place that doesn't exist.">
+        <strong>🍰 Fictional cookbook</strong>
+        <small>Recipes from the fictional universe.</small>
+        <span class="price">₹599</span>
+      </button>
+      <button class="choice" data-value="Character letter" data-price="399" data-comment="A handwritten letter. Eggbert would also like one, thank you.">
+        <strong>💌 Character letter</strong>
+        <small>A little message from someone imaginary.</small>
+        <span class="price">₹399</span>
+      </button>
+      <button class="choice" data-value="Bookish tote bag" data-price="349" data-comment="A place to carry the book and all its accessories.">
+        <strong>👜 Bookish tote bag</strong>
+        <small>Practical. Stylish. Very bookish.</small>
+        <span class="price">₹349</span>
+      </button>
+      <button class="choice" data-value="Fictional world map" data-price="449" data-comment="We are now offering geography lessons for imaginary places.">
+        <strong>🗺️ Fictional world map</strong>
+        <small>Because you need to know where everyone lives.</small>
+        <span class="price">₹449</span>
+      </button>
+    </div>
+
+    <div class="stage-actions">
+      <button class="action-btn secondary" data-back="2">← BACK</button>
+      <button class="action-btn" id="next-3">CONTINUE →</button>
+    </div>
+  </div>
+
+  <!-- STAGE 4 -->
+  <div class="stage" id="stage-4">
+    <div class="stage-number">04 / FINAL EXPERIENCE SETTINGS</div>
+    <h3>Choose your soundtrack.</h3>
+    <p class="stage-description">Every fictional universe needs background music. Eggbert has opinions.</p>
+
+    <div class="choice-grid" data-group="soundtrack">
+      <button class="choice" data-value="Sad indie playlist" data-comment="Excellent. We are emotionally preparing for fictional heartbreak.">
+        <strong>🎸 Sad indie playlist</strong>
+        <small>For feelings that have no business being this intense.</small>
+      </button>
+      <button class="choice" data-value="Dramatic orchestral music" data-comment="The character has entered the room. The violins have noticed.">
+        <strong>🎻 Dramatic orchestral</strong>
+        <small>Every chapter is a season finale.</small>
+      </button>
+      <button class="choice" data-value="Bollywood heartbreak" data-comment="A perfectly reasonable soundtrack for fictional suffering.">
+        <strong>💔 Bollywood heartbreak</strong>
+        <small>Maximum emotion. Minimum explanation.</small>
+      </button>
+      <button class="choice" data-value="Dreamy romantic songs" data-comment="We have entered the soft-focus portion of the experience.">
+        <strong>🌷 Dreamy romantic songs</strong>
+        <small>Everything is a little more romantic now.</small>
+      </button>
+      <button class="choice" data-value="Complete silence" data-comment="The plot can speak for itself. Eggbert approves.">
+        <strong>🤫 Complete silence</strong>
+        <small>No music. Just the pages.</small>
+      </button>
+      <button class="choice" data-value="A little bit of everything" data-comment="A playlist with commitment issues. Wonderful.">
+        <strong>🎶 A little bit of everything</strong>
+        <small>Genres are suggestions, really.</small>
+      </button>
+    </div>
+
+    <div class="stage-actions">
+      <button class="action-btn secondary" data-back="3">← BACK</button>
+      <button class="action-btn" id="generate">GENERATE MY EXPERIENCE ✦</button>
+    </div>
+  </div>
+
+  <!-- RECEIPT -->
+  <div class="receipt" id="receipt">
+    <div class="receipt-content">
+      <h3>THE READING EXPERIENCE CO.</h3>
+      <div class="receipt-sub">DEPARTMENT OF UNNECESSARY EXTRAS</div>
+      <div style="text-align:center;font-size:10px;margin-bottom:15px;">TRANSACTION #004-READER</div>
+
+      <div id="receipt-details"></div>
+
+      <div class="receipt-line total">
+        <span>TOTAL DAMAGE</span>
+        <span id="receipt-total">₹0</span>
+      </div>
+
+      <div class="receipt-stamp">EXPERIENCE APPROVED</div>
+
+      <div class="receipt-note">
+        <strong>EGGBERT'S FINAL ASSESSMENT:</strong>
+        <p id="receipt-comment"></p>
+      </div>
+
+      <div class="receipt-footer">
+        THANK YOU FOR VISITING THE DEPARTMENT.<br>
+        NO FICTIONAL CHARACTERS WERE CONSULTED IN THIS TRANSACTION.<br>
+        ALL PRICES ARE ENTIRELY FICTIONAL.
+      </div>
+    </div>
+  </div>
+
+  <div class="receipt-buttons" id="receipt-buttons">
+    <button class="action-btn" id="copy-receipt">COPY MY RECEIPT</button>
+    <button class="action-btn secondary" id="restart">START AGAIN ↻</button>
+  </div>
+
+  <div class="reader-ending">
+    A PRODUCT OF <span>READER.EXE</span> // THE STORY IS ONLY THE BEGINNING.
+  </div>
+
+</div>
+</section>
+
+<footer class="mag-footer">
+  <div>THIS IS NOT A <strong>CLICKBAIT.</strong></div>
+  <div>HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.</div>
+  <div>TRANSMISSION 004 / END</div>
+</footer>
+
+
+<script>
+const selections = {
+  personality: "",
+  atmosphere: "",
+  extras: [],
+  soundtrack: ""
+};
+
+const eggMessage = document.getElementById("egg-message");
+const progressFill = document.getElementById("progress-fill");
+const progressLabel = document.getElementById("progress-label");
+const progressPercent = document.getElementById("progress-percent");
+
+const comments = {
+  1: "A personality has been detected. I shall update your literary file. Very official.",
+  2: "Atmosphere configured. The fictional universe is looking rather comfortable.",
+  3: "Excellent choices. I have informed the accessories department. They are thrilled.",
+  4: "Soundtrack selected. Please allow me a moment to look professionally impressed."
+};
+
+function updateProgress(step) {
+  const percent = Math.round((step / 4) * 100);
+  progressFill.style.width = percent + "%";
+  progressLabel.textContent = "STEP 0" + step + " / 04";
+  progressPercent.textContent = percent + "% COMPLETE";
+}
+
+function showStage(step) {
+  document.querySelectorAll(".stage").forEach(stage => {
+    stage.classList.remove("active");
+  });
+
+  document.getElementById("stage-" + step).classList.add("active");
+  updateProgress(step);
+
+  document.getElementById("receipt").style.display = "none";
+  document.getElementById("receipt-buttons").style.display = "none";
+
+  eggMessage.textContent = comments[step];
+}
+
+function setupChoices() {
+  document.querySelectorAll(".choice-grid").forEach(group => {
+    const groupName = group.dataset.group;
+    const multiple = group.dataset.multiple === "true";
+
+    group.querySelectorAll(".choice").forEach(button => {
+      button.addEventListener("click", () => {
+        const value = button.dataset.value;
+        const comment = button.dataset.comment;
+
+        if (multiple) {
+          button.classList.toggle("selected");
+
+          if (button.classList.contains("selected")) {
+            if (!selections[groupName].includes(value)) {
+              selections[groupName].push(value);
+            }
+          } else {
+            selections[groupName] = selections[groupName].filter(item => item !== value);
+          }
+
+          eggMessage.textContent = comment;
+        } else {
+          group.querySelectorAll(".choice").forEach(choice => {
+            choice.classList.remove("selected");
+          });
+
+          button.classList.add("selected");
+          selections[groupName] = value;
+          eggMessage.textContent = comment;
+        }
+
+        updateButtons();
+      });
+    });
+  });
+}
+
+function updateButtons() {
+  document.getElementById("next-1").disabled = !selections.personality;
+  document.getElementById("next-2").disabled = !selections.atmosphere;
+  document.getElementById("next-3").disabled = false;
+}
+
+document.getElementById("next-1").addEventListener("click", () => showStage(2));
+document.getElementById("next-2").addEventListener("click", () => showStage(3));
+document.getElementById("next-3").addEventListener("click", () => showStage(4));
+
+document.querySelectorAll("[data-back]").forEach(button => {
+  button.addEventListener("click", () => {
+    showStage(Number(button.dataset.back));
+  });
+});
+
+function generateReceipt() {
+  const receipt = document.getElementById("receipt");
+  const details = document.getElementById("receipt-details");
+  const totalElement = document.getElementById("receipt-total");
+  const finalComment = document.getElementById("receipt-comment");
+
+  const prices = {
+    "Official playlist":299,
+    "Sprayed-edge edition":899,
+    "Character candle":499,
+    "Book-inspired perfume":699,
+    "Fictional cookbook":599,
+    "Character letter":399,
+    "Bookish tote bag":349,
+    "Fictional world map":449
+  };
+
+  let total = 0;
+  let html = "";
+
+  html += `<div class="receipt-line"><span>READER TYPE</span><span>${selections.personality}</span></div>`;
+  html += `<div class="receipt-line"><span>ATMOSPHERE</span><span>${selections.atmosphere}</span></div>`;
+
+  html += `<div style="font-size:10px;font-weight:bold;margin-top:18px;">YOUR SELECTED EXTRAS</div>`;
+
+  if (selections.extras.length === 0) {
+    html += `<div class="receipt-line"><span>No additional extras</span><span>₹0</span></div>`;
+  } else {
+    selections.extras.forEach(item => {
+      const price = prices[item] || 0;
+      total += price;
+      html += `<div class="receipt-line"><span>${item}</span><span>₹${price}</span></div>`;
+    });
+  }
+
+  html += `<div class="receipt-line"><span>SOUNDTRACK</span><span>${selections.soundtrack}</span></div>`;
+
+  details.innerHTML = html;
+  totalElement.textContent = "₹" + total.toLocaleString("en-IN");
+
+  const commentsByCount = [
+    "A beautifully simple experience. The book and you. A classic arrangement.",
+    "A few extras, a little atmosphere. The literary department approves.",
+    "A whole reading universe! I hope you have enough shelf space.",
+    "You have assembled quite the experience. I am considering a promotion.",
+    "This is no longer a reading setup. This is a cultural institution."
+  ];
+
+  const count = selections.extras.length;
+  let final = commentsByCount[Math.min(count, 4)];
+
+  if (count >= 3) {
+    final += " Personally, I would like to visit this fictional universe.";
+  } else {
+    final += " Now, shall we actually read the book?";
+  }
+
+  finalComment.textContent = '"' + final + '"';
+
+  document.querySelectorAll(".stage").forEach(stage => {
+    stage.classList.remove("active");
+  });
+
+  receipt.style.display = "block";
+  document.getElementById("receipt-buttons").style.display = "flex";
+
+  progressFill.style.width = "100%";
+  progressLabel.textContent = "EXPERIENCE GENERATED";
+  progressPercent.textContent = "100%";
+
+  eggMessage.textContent = "The results are in. Your reading experience has been assembled. I would like to thank the accessories department.";
+
+  receipt.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+document.getElementById("generate").addEventListener("click", () => {
+  if (!selections.soundtrack) {
+    eggMessage.textContent = "A soundtrack, please! Even fictional universes need background music. Unless silence is your thing.";
+    return;
+  }
+  generateReceipt();
+});
+
+function getReceiptText() {
+  const prices = {
+    "Official playlist":299,
+    "Sprayed-edge edition":899,
+    "Character candle":499,
+    "Book-inspired perfume":699,
+    "Fictional cookbook":599,
+    "Character letter":399,
+    "Bookish tote bag":349,
+    "Fictional world map":449
+  };
+
+  const total = selections.extras.reduce((sum,item) => sum + (prices[item] || 0),0);
+
+  return [
+    "THE READING EXPERIENCE CO.",
+    "TRANSACTION #004-READER",
+    "",
+    "Reader type: " + selections.personality,
+    "Atmosphere: " + selections.atmosphere,
+    "Extras: " + (selections.extras.length ? selections.extras.join(", ") : "None"),
+    "Soundtrack: " + selections.soundtrack,
+    "Total damage: ₹" + total.toLocaleString("en-IN"),
+    "",
+    document.getElementById("receipt-comment").textContent,
+    "",
+    "ALL PRICES ARE FICTIONAL."
+  ].join("\n");
+}
+
+document.getElementById("copy-receipt").addEventListener("click", async () => {
+  const text = getReceiptText();
+  const button = document.getElementById("copy-receipt");
+
+  try {
+    await navigator.clipboard.writeText(text);
+    button.textContent = "COPIED! ✓";
+  } catch (error) {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
+    button.textContent = "COPIED! ✓";
+  }
+
+  setTimeout(() => {
+    button.textContent = "COPY MY RECEIPT";
+  }, 2000);
+});
+
+document.getElementById("restart").addEventListener("click", () => {
+  selections.personality = "";
+  selections.atmosphere = "";
+  selections.extras = [];
+  selections.soundtrack = "";
+
+  document.querySelectorAll(".choice").forEach(button => {
+    button.classList.remove("selected");
+  });
+
+  updateButtons();
+  showStage(1);
+
+  eggMessage.textContent = "Again? Wonderful. I have absolutely nothing else scheduled.";
+  document.getElementById("reader-exe").scrollIntoView({behavior:"smooth"});
+});
+
+setupChoices();
+updateButtons();
+updateProgress(1);
+</script>
+
+</body>
+</html>
