@@ -20,6 +20,10 @@
  --muted:#a4a5ad;
  --panel:#141720;
  --line:rgba(255,255,255,.16);
+
+ --lekhaa-pink:#ff65bd;
+ --lekhaa-purple:#a47aff;
+ --lekhaa-lime:#d9ff63;
 }
 
 * { box-sizing:border-box; }
@@ -44,7 +48,9 @@ a {
  letter-spacing:.08em;
 }
 
-/* HEADER */
+/* ==========================================
+   HEADER
+========================================== */
 
 header {
  display:flex;
@@ -56,10 +62,13 @@ header {
  flex-wrap:wrap;
 }
 
-header b { color:var(--cyan); }
-header span:last-child { color:var(--red); }
+header b { color:var(--lekhaa-pink); }
 
-/* HERO */
+header span:last-child { color:var(--lekhaa-lime); }
+
+/* ==========================================
+   LEKHAA HERO
+========================================== */
 
 .hero {
  padding:85px 7% 65px;
@@ -68,83 +77,87 @@ header span:last-child { color:var(--red); }
  position:relative;
  isolation:isolate;
  overflow:hidden;
- background:
- radial-gradient(ellipse at 85% 35%,rgba(164,122,255,.20),transparent 45%),
- radial-gradient(ellipse at 10% 85%,rgba(0,217,255,.09),transparent 45%);
 }
 
-.hero::before {
+.hero.lekhaa-hero {
+ min-height:610px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ background:
+ radial-gradient(ellipse at 82% 48%,rgba(164,122,255,.32),transparent 42%),
+ radial-gradient(ellipse at 15% 90%,rgba(255,101,189,.16),transparent 45%),
+ #100a18;
+}
+
+.lekhaa-hero::before {
  content:"";
  position:absolute;
  inset:0;
  z-index:-1;
  pointer-events:none;
- opacity:.12;
+ opacity:.10;
  background:
  linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),
  linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px);
- background-size:65px 65px;
+ background-size:48px 48px;
 }
 
-.hero::after {
- content:"TRANSMISSION 001";
+.lekhaa-hero::after {
+ content:"RABBIT HOLE / 001";
  position:absolute;
  right:7%;
  top:60px;
  padding:12px 15px;
- border:1px solid var(--red);
- color:var(--red);
+ border:1px solid var(--lekhaa-pink);
+ color:var(--lekhaa-pink);
  font:10px 'DM Mono',monospace;
  letter-spacing:2px;
  transform:rotate(5deg);
 }
 
 .kicker {
- color:var(--cyan);
+ color:var(--lekhaa-lime);
  font:11px 'DM Mono',monospace;
  letter-spacing:2px;
+ position:relative;
+ z-index:3;
 }
 
 .hero h1 {
- font-size:clamp(65px,12vw,150px);
- line-height:.83;
- letter-spacing:-.09em;
+ font-size:clamp(55px,10vw,125px);
+ line-height:.91;
+ letter-spacing:-.085em;
  text-transform:uppercase;
  font-weight:900;
- margin:65px 0 30px;
+ margin:65px 0 28px;
  position:relative;
+ z-index:3;
 }
 
-.hero h1 .red {
- color:var(--red);
+.hero h1 .pink {
  display:block;
+ color:var(--lekhaa-pink);
+ text-shadow:4px 3px 0 rgba(164,122,255,.65);
 }
 
-.hero h1 .cyan { color:var(--cyan); }
-
-.glitch {
- text-shadow:
- 4px 2px 0 rgba(0,217,255,.65),
- -4px -2px 0 rgba(255,52,63,.65);
- animation:flicker 5s infinite;
+.hero h1 .lime {
+ display:block;
+ color:var(--lekhaa-lime);
 }
 
-@keyframes flicker {
- 0%,94%,96%,100% {
-  text-shadow:
-  4px 2px 0 rgba(0,217,255,.65),
-  -4px -2px 0 rgba(255,52,63,.65);
- }
- 95% {
-  text-shadow:8px 0 var(--red),-8px 0 var(--cyan);
- }
+.hero h1.glitch {
+ animation:none;
+ text-shadow:none;
 }
 
 .subtitle {
  font-size:clamp(16px,2vw,22px);
- max-width:550px;
- color:#d0ced0;
+ max-width:490px;
+ color:#e0cce9;
  line-height:1.6;
+ position:relative;
+ z-index:3;
 }
 
 .byline {
@@ -152,11 +165,142 @@ header span:last-child { color:var(--red); }
  gap:22px;
  flex-wrap:wrap;
  margin-top:35px;
- color:var(--muted);
+ color:#c5b2d1;
  font:10px 'DM Mono',monospace;
+ position:relative;
+ z-index:3;
 }
 
-/* HERO IMAGE */
+.byline span:first-child {
+ color:var(--lekhaa-pink);
+}
+
+/* ==========================================
+   RABBIT_001 MASCOT
+========================================== */
+
+.hero-rabbit {
+ position:absolute;
+ width:175px;
+ height:175px;
+ right:10%;
+ bottom:95px;
+ border-radius:50%;
+ background:linear-gradient(145deg,#ffb4dc,#d78aff);
+ border:5px solid #fff0fa;
+ box-shadow:
+ 0 0 0 12px rgba(255,101,189,.10),
+ 0 20px 65px rgba(164,122,255,.35);
+ animation:lekhaaFloat 3s ease-in-out infinite;
+ z-index:2;
+}
+
+.hero-rabbit .ear {
+ position:absolute;
+ width:38px;
+ height:100px;
+ top:-78px;
+ background:#ff9bd2;
+ border:5px solid #fff0fa;
+ border-radius:50% 50% 40% 40%;
+}
+
+.hero-rabbit .ear::after {
+ content:"";
+ position:absolute;
+ inset:12px 8px;
+ background:#d94eaa;
+ border-radius:50%;
+}
+
+.hero-rabbit .ear.left {
+ left:32px;
+ transform:rotate(-17deg);
+}
+
+.hero-rabbit .ear.right {
+ right:32px;
+ transform:rotate(17deg);
+}
+
+.hero-rabbit .eye {
+ position:absolute;
+ top:64px;
+ left:48px;
+ width:12px;
+ height:17px;
+ background:#38204b;
+ border-radius:50%;
+ box-shadow:61px 0 #38204b;
+}
+
+.hero-rabbit .nose {
+ position:absolute;
+ top:100px;
+ left:78px;
+ width:17px;
+ height:12px;
+ background:#d94eaa;
+ border-radius:50%;
+}
+
+.hero-rabbit .mouth {
+ position:absolute;
+ top:110px;
+ left:72px;
+ width:30px;
+ height:15px;
+ border-bottom:3px solid #75436f;
+ border-radius:50%;
+}
+
+.hero-rabbit .cheek {
+ position:absolute;
+ top:96px;
+ left:20px;
+ width:28px;
+ height:15px;
+ background:#ff79b9;
+ opacity:.7;
+ border-radius:50%;
+ box-shadow:102px 0 #ff79b9;
+}
+
+.hero-rabbit .rabbit-tag {
+ position:absolute;
+ bottom:-37px;
+ left:50%;
+ transform:translateX(-50%);
+ white-space:nowrap;
+ color:var(--lekhaa-lime);
+ font:10px 'DM Mono',monospace;
+ letter-spacing:2px;
+ background:#171020;
+ padding:7px 11px;
+ border:1px solid var(--lekhaa-purple);
+}
+
+.hero-rabbit .rabbit-star {
+ position:absolute;
+ top:12px;
+ right:-30px;
+ color:var(--lekhaa-lime);
+ font-size:35px;
+ animation:lekhaaSpin 8s linear infinite;
+}
+
+@keyframes lekhaaFloat {
+ 0%,100% { transform:translateY(0) rotate(-3deg); }
+ 50% { transform:translateY(-13px) rotate(3deg); }
+}
+
+@keyframes lekhaaSpin {
+ to { transform:rotate(360deg); }
+}
+
+/* ==========================================
+   HERO IMAGE
+========================================== */
 
 .hero-art {
  max-width:1100px;
@@ -175,18 +319,20 @@ header span:last-child { color:var(--red); }
 
 .caption {
  font:10px 'DM Mono',monospace;
- color:var(--cyan);
+ color:#d9a2ff;
  margin-top:10px;
 }
 
-/* TICKER */
+/* ==========================================
+   TICKER
+========================================== */
 
 .ticker {
  border-block:1px solid var(--line);
  padding:13px 0;
  overflow:hidden;
  white-space:nowrap;
- color:var(--green);
+ color:var(--lekhaa-lime);
  font:11px 'DM Mono',monospace;
 }
 
@@ -199,7 +345,9 @@ header span:last-child { color:var(--red); }
  to { transform:translateX(-50%); }
 }
 
-/* ARTICLE LAYOUT */
+/* ==========================================
+   ARTICLE LAYOUT
+========================================== */
 
 .article-wrap {
  max-width:1150px;
@@ -221,7 +369,7 @@ header span:last-child { color:var(--red); }
 .side-quote {
  margin-top:25px;
  padding:15px;
- border-left:3px solid var(--red);
+ border-left:3px solid var(--lekhaa-pink);
  font:22px 'Playfair Display',serif;
  color:white;
 }
@@ -247,15 +395,19 @@ header span:last-child { color:var(--red); }
  text-transform:uppercase;
 }
 
-.part-title span { color:var(--red); }
+.lekhaa-content .part-title span {
+ color:var(--lekhaa-pink);
+}
 
-.part-label {
- color:var(--cyan);
+.lekhaa-content .part-label {
+ color:#d9a2ff;
  font:11px 'DM Mono',monospace;
  margin-bottom:15px;
 }
 
-/* VISUALS */
+/* ==========================================
+   ARTICLE VISUALS
+========================================== */
 
 .visual {
  margin:40px 0;
@@ -280,12 +432,14 @@ header span:last-child { color:var(--red); }
 .visual-frame {
  background:linear-gradient(120deg,#171a28,#25152c);
  padding:10px;
- border:1px solid var(--purple);
+ border:1px solid var(--lekhaa-purple);
 }
 
 .visual-frame img { border:0; }
 
-/* NOTIFICATION */
+/* ==========================================
+   NOTIFICATION
+========================================== */
 
 .notification {
  background:#e9edf3;
@@ -296,7 +450,7 @@ header span:last-child { color:var(--red); }
  max-width:340px;
  font-size:13px;
  line-height:1.5;
- box-shadow:7px 7px 0 rgba(0,217,255,.25);
+ box-shadow:7px 7px 0 rgba(164,122,255,.3);
  transform:rotate(1deg);
 }
 
@@ -307,25 +461,29 @@ header span:last-child { color:var(--red); }
  margin-bottom:7px;
 }
 
-/* PULL QUOTE */
+/* ==========================================
+   PULL QUOTE
+========================================== */
 
 .pullquote {
  margin:50px 0;
  padding:30px 25px;
- background:var(--red);
- color:#08090d;
+ background:linear-gradient(120deg,#ff65bd,#b27aff);
+ color:#170d20;
  font:clamp(25px,4vw,43px) 'Playfair Display',serif;
  line-height:1.2;
  transform:rotate(-1deg);
 }
 
-/* PLATFORM BOX */
+/* ==========================================
+   PLATFORM BOX
+========================================== */
 
 .platform-box {
  margin:45px 0;
  padding:25px;
  background:var(--panel);
- border:1px solid var(--line);
+ border:1px solid rgba(217,162,255,.4);
 }
 
 .platform-box h3 {
@@ -354,41 +512,39 @@ header span:last-child { color:var(--red); }
 .substack { color:var(--purple); }
 .platform-arrow { color:#777; }
 
-/* FINAL THOUGHT */
-
-.big-number {
- color:rgba(255,255,255,.06);
- font:900 clamp(85px,18vw,180px) 'DM Sans',sans-serif;
- line-height:.8;
- margin:30px 0 -5px;
-}
+/* ==========================================
+   FINAL THOUGHT
+========================================== */
 
 .last-thought {
  margin-top:55px;
  padding:35px 25px;
- border-top:1px solid var(--cyan);
- border-bottom:1px solid var(--cyan);
+ border-top:1px solid var(--lekhaa-lime);
+ border-bottom:1px solid var(--lekhaa-lime);
  font:clamp(25px,4vw,42px) 'Playfair Display',serif;
+ line-height:1.3;
 }
 
-.last-thought span { color:var(--cyan); }
+.last-thought span { color:var(--lekhaa-lime); }
 
-/* RABBIT HOLE INTERACTION */
+/* ==========================================
+   DOWN THE RABBIT HOLE INTERACTION
+========================================== */
 
 #rabbit-hole {
- --rabbit-red:#ff4545;
- --rabbit-blue:#54d9ff;
- --rabbit-green:#c5ff55;
+ --rabbit-red:#ff65bd;
+ --rabbit-blue:#d9a2ff;
+ --rabbit-green:#d9ff63;
 
  margin:65px auto 55px;
  max-width:950px;
  padding:40px 22px;
- border:1px solid #494949;
+ border:1px solid #754b90;
 
  background:
  radial-gradient(circle at 85% 15%,#292044 0,transparent 35%),
- radial-gradient(circle at 10% 90%,rgba(0,217,255,.08),transparent 40%),
- #101014;
+ radial-gradient(circle at 10% 90%,rgba(255,101,189,.12),transparent 40%),
+ #100a18;
 
  color:#f4f0e8;
  font-family:'Space Mono',monospace;
@@ -500,7 +656,7 @@ header span:last-child { color:var(--red); }
  height:36px;
  border-radius:50%;
  background:#050507;
- border:3px solid #6d52a0;
+ border:3px solid #a47aff;
  box-shadow:0 8px 0 #30204b;
  transform:rotate(-5deg);
  position:relative;
@@ -561,6 +717,11 @@ header span:last-child { color:var(--red); }
  transform:translateY(-2px);
 }
 
+#rabbit-hole button:focus-visible {
+ outline:2px solid var(--rabbit-green);
+ outline-offset:4px;
+}
+
 #rabbit-hole .rabbit-start {
  background:var(--rabbit-red);
  color:#111;
@@ -581,7 +742,7 @@ header span:last-child { color:var(--red); }
  line-height:1.8;
  margin-top:18px;
  padding:15px;
- border:1px dashed rgba(197,255,85,.4);
+ border:1px dashed rgba(217,255,99,.4);
  animation:rabbitPop .4s ease;
 }
 
@@ -610,7 +771,9 @@ header span:last-child { color:var(--red); }
  opacity:0;
 }
 
-/* FOOTER */
+/* ==========================================
+   FOOTER
+========================================== */
 
 footer {
  border-top:1px solid var(--line);
@@ -623,9 +786,11 @@ footer {
  font:10px 'DM Mono',monospace;
 }
 
-footer a { color:var(--cyan); }
+footer a { color:var(--lekhaa-pink); }
 
-/* MOBILE */
+/* ==========================================
+   MOBILE
+========================================== */
 
 @media(max-width:720px) {
 
@@ -634,21 +799,60 @@ footer a { color:var(--cyan); }
   font-size:9px;
  }
 
- .hero {
-  padding:65px 6% 50px;
+ .hero.lekhaa-hero {
+  min-height:610px;
+  padding:65px 6% 210px;
  }
 
- .hero::after {
+ .lekhaa-hero::after {
   top:20px;
   right:6%;
   font-size:8px;
   padding:9px;
  }
 
- .hero h1 {
-  font-size:clamp(55px,13vw,95px);
+ .lekhaa-hero h1 {
+  font-size:clamp(53px,12vw,85px);
   margin-top:65px;
   letter-spacing:-.075em;
+ }
+
+ .hero-rabbit {
+  width:125px;
+  height:125px;
+  right:12%;
+  bottom:80px;
+ }
+
+ .hero-rabbit .ear {
+  width:30px;
+  height:75px;
+  top:-60px;
+ }
+
+ .hero-rabbit .ear.left { left:22px; }
+ .hero-rabbit .ear.right { right:22px; }
+
+ .hero-rabbit .eye {
+  top:45px;
+  left:33px;
+  box-shadow:49px 0 #38204b;
+ }
+
+ .hero-rabbit .nose {
+  top:77px;
+  left:54px;
+ }
+
+ .hero-rabbit .mouth {
+  top:87px;
+  left:49px;
+ }
+
+ .hero-rabbit .cheek {
+  top:75px;
+  left:12px;
+  box-shadow:79px 0 #ff79b9;
  }
 
  .hero-art { padding:0 6%; }
@@ -703,24 +907,31 @@ footer a { color:var(--cyan); }
 
 <body>
 
+<!-- ==========================================
+     HEADER
+========================================== -->
+
 <header>
  <b>THIS IS NOT A CLICKBAIT</b>
  <span>DIGITAL CULTURE / FEATURE 001</span>
  <span>ISSUE 01 · 2026</span>
 </header>
 
-<!-- HERO -->
+<!-- ==========================================
+     LEKHAA OPENING HERO
+========================================== -->
 
-<section class="hero">
+<section class="hero lekhaa-hero">
 
  <div class="kicker">
-  [ SECTION / FEED ] &nbsp; TRANSMISSION 001 &nbsp; ● AVAILABLE
+  [ DIGITAL CULTURE / THE INTERNET RABBIT HOLE ]
+  &nbsp; ● TRANSMISSION 001
  </div>
 
  <h1 class="glitch">
   WHERE ONE
-  <span class="red">CLICK</span>
-  <span class="cyan">LEADS_</span>
+  <span class="pink">CLICK</span>
+  <span class="lime">LEADS_</span>
  </h1>
 
  <p class="subtitle">
@@ -730,12 +941,32 @@ footer a { color:var(--cyan); }
  <div class="byline">
   <span>WORDS / LEKHAA MEENAKSHISUNDARAM</span>
   <span>READ / 04 MIN</span>
-  <span>STATUS / BUFFERING...</span>
+  <span>STATUS / FOLLOWING THE RABBIT...</span>
+ </div>
+
+ <!-- RABBIT_001 -->
+
+ <div class="hero-rabbit">
+
+  <span class="ear left"></span>
+  <span class="ear right"></span>
+
+  <span class="eye"></span>
+  <span class="nose"></span>
+  <span class="mouth"></span>
+  <span class="cheek"></span>
+
+  <span class="rabbit-star">✳</span>
+
+  <span class="rabbit-tag">RABBIT_001</span>
+
  </div>
 
 </section>
 
-<!-- HERO IMAGE -->
+<!-- ==========================================
+     HERO IMAGE
+========================================== -->
 
 <section class="hero-art">
 
@@ -750,7 +981,9 @@ footer a { color:var(--cyan); }
 
 </section>
 
-<!-- TICKER -->
+<!-- ==========================================
+     TICKER
+========================================== -->
 
 <div class="ticker">
  <span>
@@ -760,9 +993,11 @@ footer a { color:var(--cyan); }
  </span>
 </div>
 
-<!-- ARTICLE -->
+<!-- ==========================================
+     ARTICLE
+========================================== -->
 
-<main class="article-wrap">
+<main class="article-wrap lekhaa-content">
 
  <aside class="sidebar">
 
@@ -772,7 +1007,7 @@ footer a { color:var(--cyan); }
    “One encounter can quietly become a trail.”
   </div>
 
-  <div style="margin-top:25px;color:var(--red)">
+  <div style="margin-top:25px;color:#ff65bd">
    SCROLL TO CONTINUE ↓
   </div>
 
@@ -780,16 +1015,31 @@ footer a { color:var(--cyan); }
 
  <article class="content">
 
+  <!-- PART 01 -->
+
   <div class="part-label">01 / THE ORIGINAL SEARCH</div>
 
   <h2 class="part-title">
-   ONE SEARCH.<br>
-   <span>FOUR PLATFORMS.</span>
+   IT STARTED<br>
+   WITH A <span>TICKET.</span>
   </h2>
 
-  <p>I didn’t go looking for Marvel but it still found me. It all began when I looked at BookMyShow, trying to find tickets for the Avengers: Endgame re-release. I wasn’t exactly looking for details about the entire Marvel Cinematic Universe. Somewhere between checking showtimes and scrolling past posters, Endgame appeared on my screen over and over again, dragging with it everything associated with it. Iron Man, Captain America, and Spider-Man popped up everywhere.</p>
+  <p>
+   I didn’t go looking for Marvel, but it still found me.
+   It all began when I looked at BookMyShow, trying to
+   find tickets for the Avengers: Endgame re-release.
+   I wasn’t exactly looking for details about the entire
+   Marvel Cinematic Universe. Somewhere between checking
+   showtimes and scrolling past posters, Endgame appeared
+   on my screen over and over again, dragging with it
+   everything associated with it. Iron Man, Captain
+   America, and Spider-Man popped up everywhere.
+  </p>
 
-  <p>Once I booked my tickets, I put closed the app and put my phone down.</p>
+  <p>
+   Once I booked my tickets, I closed the app and put
+   my phone down.
+  </p>
 
   <div class="visual">
 
@@ -805,29 +1055,69 @@ footer a { color:var(--cyan); }
 
   </div>
 
-  <p>The next time I saw Marvel appeared, it was on Instagram. There was a reel about Avengers: Doomsday that showed up between the vampires and books. Then came another. Next was an edit using scenes from Endgame to speculate about what might happen in Doomsday.</p>
+  <p>
+   The next time I saw Marvel appear, it was on Instagram.
+   There was a reel about Avengers: Doomsday that showed
+   up between the vampires and books. Then came another.
+   Next was an edit using scenes from Endgame to speculate
+   about what might happen in Doomsday. I had gone from
+   looking for a ticket to an old movie to being reminded
+   that a new Avengers movie was on the way.
+  </p>
 
-  <p>YouTube followed the next day. I opened the app to watch an episode of my favorite childhood comfort show. Before I could type it into the search bar, I was flooded with shorts and fan theories about what was going to happen in Doomsday.</p>
+  <p>
+   YouTube followed the next day. I opened the app to
+   watch an episode of my favourite childhood comfort
+   show. Before I could type it into the search bar,
+   I was flooded with shorts and fan theories about
+   what was going to happen in Doomsday.
+  </p>
 
   <div class="notification">
    <small>● NOTIFICATION / JUST NOW</small>
    Because you searched Endgame: more Marvel.
   </div>
 
-  <p>At that point, I wondered if Marvel was following me.</p>
+  <p>
+   At that point, I wondered if Marvel was following me.
+  </p>
 
-  <p>The strangest part was that Marvel never appeared in quite the same way on different platforms. I often read articles on Substack. My feed is usually populated with personal essays by women about their experiences and their attempts to challenge patriarchal domination. I expected to see more of the same. Initially, that was what I found.</p>
+  <!-- PART 02 -->
 
   <div class="part-label">02 / THE INTEREST SPREADS</div>
 
   <h2 class="part-title">
    THE SAME INTEREST.<br>
-   <span>FOUR LANGUAGES.</span>
+   <span>DIFFERENT FEEDS.</span>
   </h2>
 
-  <p>Then, it was as if someone whispered to Substack ‘show her Marvel.’ Moments later, I saw a guide of what someone had to watch in order to understand Doomsday. Now, I knew I wanted to watch it when it released and I was sucked into this post.</p>
+  <p>
+   The strangest part was that Marvel never appeared in
+   quite the same way on different platforms. I often
+   read articles on Substack. My feed is usually populated
+   with personal essays by women about their experiences
+   and their attempts to challenge patriarchal domination.
+   I expected to see more of the same. Initially, that
+   was what I found.
+  </p>
 
-  <p>By then, I was convinced that Marvel was following me across apps. Curious to see where else it would turn up, I opened Pinterest. There was a tiny part of me that still hoped I’d find something other than Marvel. I ended up looking at fan-made posters, character edits, pictures of Doctor Doom and screenshots from Endgame.</p>
+  <p>
+   Then, it was as if someone whispered to Substack,
+   'show her Marvel.' Moments later, I saw a guide of
+   what someone had to watch in order to understand
+   Doomsday. Now, I knew I wanted to watch it when it
+   was released, and I was sucked into this post.
+  </p>
+
+  <p>
+   By then, I was convinced that Marvel was following
+   me across apps. Curious to see where else it would
+   turn up, I opened Pinterest. There was a tiny part
+   of me that still hoped I’d find something other
+   than Marvel. I ended up looking at fan-made posters,
+   character edits, pictures of Doctor Doom, and
+   screenshots from Endgame.
+  </p>
 
   <div class="visual visual-frame">
 
@@ -837,77 +1127,165 @@ footer a { color:var(--cyan); }
    >
 
    <div class="caption">
-    THE FEED HAS OTHER PLANS.
+    <span>THE FEED HAS OTHER PLANS.</span>
+    <span>02.01</span>
    </div>
 
   </div>
+
+  <p>
+   On Instagram, I’d been watching people speculate
+   about Doomsday. On YouTube, I had been listening
+   to people explain those theories. On Pinterest,
+   I was seeing a physical manifestation of those
+   theories.
+  </p>
+
+  <p>
+   None of these platforms was showing me exactly the
+   same thing, yet their content was connected. It was
+   almost as if each platform had its own language.
+   Instagram gave me the speculation, YouTube the
+   explanations, Pinterest the visuals, and Substack
+   the longer discussions. The subject remained the
+   same, but each platform offered a different way
+   of engaging with it.
+  </p>
 
   <div class="platform-box">
 
    <h3>THE INTEREST TRAVELLED THROUGH...</h3>
 
    <div class="platforms">
+
     <span class="book">BOOKMYSHOW</span>
     <span class="platform-arrow">→</span>
+
     <span class="insta">INSTAGRAM</span>
     <span class="platform-arrow">→</span>
+
     <span class="youtube">YOUTUBE</span>
     <span class="platform-arrow">→</span>
+
     <span class="pinterest">PINTEREST</span>
     <span class="platform-arrow">→</span>
+
     <span class="substack">SUBSTACK</span>
+
    </div>
 
   </div>
 
-  <p>On Instagram I’d been watching people speculate about Doomsday. On YouTube I had been listening to people explain those theories. On Pinterest I was seeing a physical manifestation of those theories. None of these platforms was showing me exactly the same thing, yet their content was connected. It was almost as if each platform had its own language. Instagram gave me the speculation, YouTube the explanations, Pinterest the visuals, and Substack the longer discussions. The subject remained the same, but each platform offered a different way of engaging with it.</p>
+  <!-- PART 03 -->
 
-  <p>To be fair, I helped it travel too. I had searched for it on BookMyShow. Then I’d watched the reels on Instagram when they showed up. I probably paused on the videos on YouTube longer than I meant to. I read all the posts on Substack because I genuinely was interested in the movie. Each time I engaged with the content, I gave the platforms another reason to show me more of it.</p>
+  <div class="part-label">03 / THE USER IS PART OF THE LOOP</div>
+
+  <h2 class="part-title">
+   I WAS<br>
+   <span>FEEDING IT TOO.</span>
+  </h2>
+
+  <p>
+   To be fair, I helped it travel too. I had searched
+   for it on BookMyShow. Then I watched the reels on
+   Instagram when they showed up. I probably paused
+   on the videos on YouTube longer than I meant to.
+   I read all the posts on Substack because I genuinely
+   was interested in the movie. Each time I engaged
+   with the content, I gave the platforms another
+   reason to show me more of it.
+  </p>
 
   <div class="pullquote">
    “A search here, a pause there, a click somewhere else.”
   </div>
 
-  <p>I hadn’t consciously decided that I wanted to know more about the Avengers. Yet, the little things I did were adding up, signalling my interest and shaping what I would see next.</p>
+  <p>
+   I hadn't consciously decided that I wanted to know
+   more about the Avengers. Yet, the little things I
+   did were adding up, signalling my interest and
+   shaping what I would see next.
+  </p>
 
-  <p>Now, this could have been about pretty much anything. A recipe I save on Instagram could lead me to a longer cooking video on YouTube, and then a Pinterest board full of variations of the same dish. A book I see on Instagram could become a review on YouTube and an essay about it on Substack. One encounter can quietly become a trail.</p>
+  <!-- PART 04 -->
 
-  <p>What makes it interesting is that the trail isn’t identical. We don’t see the same post copied five times. Instead, each platform gives us another piece of the thing. One shows us the object, another explains it, another interprets it, and another turns it into something visual. By the time we have moved through them all, we may know far more about something than we ever intended to.</p>
-
-  <div class="part-label">
-   03 / THE ALGORITHM HAS CONNECTED THE DOTS
-  </div>
+  <div class="part-label">04 / IT COULD HAVE BEEN ANYTHING</div>
 
   <h2 class="part-title">
-   YOU DIDN'T<br>
-   <span>PLAN ALL THIS.</span>
+   ONE THING<br>
+   LEADS TO <span>ANOTHER.</span>
   </h2>
 
-  <p>That’s why it felt like Marvel was following me. It wasn’t one platform following me. It wasn’t one platform chasing me around. It was the same interest being recognised, picked up and passed along. I was carrying it too, without really noticing it. A search here, a pause there, a click somewhere else. They weren’t decisions on their own. Together, they told my phone that I had a decision.</p>
+  <p>
+   Now, this could have been about pretty much anything.
+   A recipe I save on Instagram could lead me to a
+   longer cooking video on YouTube, and then a Pinterest
+   board full of variations of the same dish. A book I
+   see on Instagram could become a review on YouTube
+   and an essay about it on Substack. One encounter can
+   quietly become a trail.
+  </p>
+
+  <p>
+   What makes it interesting is that the trail isn’t
+   identical. We don’t see the same post copied five
+   times. Instead, each platform gives us another piece
+   of the thing. One shows us the object, another
+   explains it, another interprets it, and another turns
+   it into something visual. By the time we have moved
+   through them all, we may know far more about
+   something than we ever intended to.
+  </p>
 
   <div class="visual">
 
    <img
     src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85"
-    alt="Connected digital devices"
+    alt="People using connected digital devices"
    >
 
    <div class="caption">
-    SIGNAL FOUND / THE TRAIL IS COMPLETE.
+    <span>SIGNAL FOUND / THE TRAIL IS COMPLETE.</span>
+    <span>04.01</span>
    </div>
 
   </div>
 
+  <!-- PART 05 -->
+
+  <div class="part-label">05 / CONNECTING THE DOTS</div>
+
+  <h2 class="part-title">
+   WAS MARVEL<br>
+   FOLLOWING <span>ME?</span>
+  </h2>
+
+  <p>
+   That’s why it felt like Marvel was following me.
+   It wasn’t one platform following me. It wasn’t one
+   platform chasing me around. It was the same interest
+   being recognised, picked up and passed along. I was
+   carrying it too, without really noticing it.
+   A search here, a pause there, a click somewhere else.
+   They weren’t decisions on their own. Together,
+   they told my phone that I had a decision.
+  </p>
+
   <div class="last-thought">
-   I went looking for a ticket but ended up with an entire
-   <span>universe</span> about the movie.
+
+   I went looking for a ticket but ended up with
+   an entire <span>universe</span> about the movie.
+
   </div>
 
  </article>
 
 </main>
 
-<!-- SECOND INTERACTION: DOWN THE RABBIT HOLE -->
+<!-- ==========================================
+     SECOND INTERACTION:
+     DOWN THE RABBIT HOLE
+========================================== -->
 
 <section id="rabbit-hole">
 
@@ -994,7 +1372,9 @@ footer a { color:var(--cyan); }
 
 </section>
 
-<!-- FOOTER -->
+<!-- ==========================================
+     FOOTER
+========================================== -->
 
 <footer>
 
@@ -1010,7 +1390,9 @@ footer a { color:var(--cyan); }
 
 </footer>
 
-<!-- RABBIT INTERACTION SCRIPT -->
+<!-- ==========================================
+     RABBIT INTERACTION SCRIPT
+========================================== -->
 
 <script>
 (() => {
