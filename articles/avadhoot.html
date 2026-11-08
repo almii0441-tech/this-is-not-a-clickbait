@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghosts of the Feed | This Is Not a Clickbait</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #101018;
+  --panel: #191925;
+  --text: #f3f0fa;
+  --muted: #aaa5bb;
+  --purple: #a78bfa;
+  --blue: #83d9f5;
+  --pink: #ef9bd5;
+  --line: #343044;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 15% 10%, #30204a55, transparent 38%),
+    radial-gradient(ellipse at 90% 45%, #14394b33, transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 6%;
+  border-bottom: 1px solid var(--line);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+.site-header strong { color: var(--text); }
+
+.article-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 35px auto 65px;
+  width: min(1120px, 90%);
+  min-height: 440px;
+  padding: clamp(30px, 7vw, 75px);
+  border: 1px solid #55466c;
+  border-radius: 18px;
+  background:
+    linear-gradient(120deg, #21182f 0%, #171b2b 60%, #172b38 100%);
+  isolation: isolate;
+}
+
+.article-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .15;
+  background-image:
+    linear-gradient(#a78bfa22 1px, transparent 1px),
+    linear-gradient(90deg, #a78bfa22 1px, transparent 1px);
+  background-size: 35px 35px;
+  mask-image: linear-gradient(to right, black, transparent);
+}
+
+.article-hero::after {
+  content: "006  /  FEED ARCHIVE";
+  position: absolute;
+  right: 24px;
+  top: 22px;
+  color: #b8a4db66;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 2px;
+}
+
+.hero-kicker {
+  color: var(--blue);
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(43px, 8vw, 88px);
+  font-weight: 900;
+  line-height: .98;
+  letter-spacing: -4px;
+}
+
+.hero-title .ghost-word {
+  color: var(--purple);
+  text-shadow: 3px 3px 0 #554078;
+}
+
+.hero-title .feed-word {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.hero-subtitle {
+  max-width: 470px;
+  margin-top: 25px;
+  color: #d0cbdc;
+  font-size: 16px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 35px;
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.hero-status {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 7px 11px;
+  border: 1px solid #83d9f566;
+  border-radius: 4px;
+  color: var(--blue);
+  font: 10px 'DM Mono', monospace;
+}
+
+/* PHANTOM_006 */
+
+.phantom {
+  position: absolute;
+  right: 7%;
+  bottom: 38px;
+  width: 165px;
+  height: 190px;
+  animation: phantom-float 3.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.phantom-body {
+  position: absolute;
+  width: 125px;
+  height: 145px;
+  left: 20px;
+  top: 25px;
+  background: linear-gradient(145deg, #c4b2ff, #8067c6);
+  border: 3px solid #eee8ff;
+  border-radius: 55% 55% 25% 25%;
+  box-shadow: 0 0 35px #a78bfa55, 8px 8px 0 #4c3b76;
+  overflow: hidden;
+}
+
+.phantom-body::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: #a78bfa;
+  clip-path: polygon(0 0, 25% 45%, 50% 0, 75% 45%, 100% 0, 100% 100%, 0 100%);
+}
+
+.phantom-eyes {
+  position: absolute;
+  top: 55px;
+  left: 28px;
+  display: flex;
+  gap: 25px;
+}
+
+.phantom-eye {
+  width: 13px;
+  height: 20px;
+  background: #21172e;
+  border-radius: 50%;
+  position: relative;
+}
+
+.phantom-eye::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 4px;
+  height: 5px;
+  background: white;
+  border-radius: 50%;
+}
+
+.phantom-mouth {
+  position: absolute;
+  top: 88px;
+  left: 57px;
+  width: 12px;
+  height: 15px;
+  border: 2px solid #39264d;
+  border-radius: 50%;
+}
+
+.phantom-cheek {
+  position: absolute;
+  top: 85px;
+  left: 12px;
+  width: 20px;
+  height: 9px;
+  background: #ef9bd5;
+  border-radius: 50%;
+  opacity: .8;
+}
+
+.phantom-cheek.right { left: 91px; }
+
+.phantom-halo {
+  position: absolute;
+  top: 4px;
+  left: 42px;
+  width: 80px;
+  height: 22px;
+  border: 3px solid var(--blue);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  opacity: .8;
+}
+
+.phantom-label {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--blue);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 2px;
+}
+
+@keyframes phantom-float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-13px) rotate(3deg); }
+}
+
+.article-content {
+  width: min(760px, 88%);
+  margin: 0 auto 70px;
+}
+
+.article-label {
+  color: var(--blue);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 2px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.poem {
+  padding: 30px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px, 3vw, 23px);
+  line-height: 2;
+  color: #e9e3f3;
+}
+
+.poem p { margin: 0 0 22px; }
+
+.poem p:nth-child(4n+1) { color: #d4c5ff; }
+
+.poem .final-stanza { color: #b9eaff; }
+
+.author-note {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  color: var(--muted);
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: 1px;
+}
+
+/* INTERACTIVE SESSION */
+
+.feed-experiment {
+  width: min(900px, 90%);
+  margin: 80px auto;
+  padding: clamp(24px, 5vw, 50px);
+  background: linear-gradient(145deg, #1c1a2b, #151e29);
+  border: 1px solid #514568;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.feed-experiment::before {
+  content: "RECOVERED INTERFACE";
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  color: #83d9f566;
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: 2px;
+}
+
+.experiment-kicker {
+  color: var(--pink);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 2px;
+}
+
+.feed-experiment h2 {
+  font-size: clamp(30px, 6vw, 52px);
+  line-height: 1;
+  margin: 15px 0;
+}
+
+.feed-experiment h2 span {
+  color: var(--purple);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+.experiment-intro {
+  color: var(--muted);
+  max-width: 600px;
+}
+
+.feed-screen {
+  margin-top: 30px;
+  padding: 25px;
+  border: 1px solid #46405b;
+  border-radius: 10px;
+  background: #10121c;
+}
+
+.screen-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #aaa5bb;
+  font: 10px 'DM Mono', monospace;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #343044;
+}
+
+.fake-post {
+  margin: 25px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #32264b, #1b3541);
+  border: 1px solid #63517e;
+}
+
+.fake-post small {
+  color: var(--blue);
+  font: 10px 'DM Mono', monospace;
+}
+
+.fake-post h3 {
+  margin: 10px 0 5px;
+  font-size: 22px;
+}
+
+.fake-post p {
+  color: #c6bfd5;
+  font-size: 13px;
+  margin: 0;
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--pink);
+  font: 11px 'DM Mono', monospace;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--pink);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: .3; }
+}
+
+.experiment-question {
+  margin-top: 25px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.experiment-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.experiment-buttons button {
+  background: transparent;
+  border: 1px solid #75638f;
+  color: var(--text);
+  padding: 12px 16px;
+  border-radius: 5px;
+  font: 11px 'DM Mono', monospace;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.experiment-buttons button:hover {
+  background: #a78bfa22;
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.experiment-buttons button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+.experiment-result {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  border-left: 3px solid var(--blue);
+  background: #83d9f510;
+  color: #e8e3f2;
+}
+
+.experiment-result strong {
+  color: var(--blue);
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.experiment-result p { margin-bottom: 0; }
+
+.restart-button {
+  margin-top: 15px;
+  border: none !important;
+  background: var(--purple) !important;
+  color: #171225 !important;
+  font-weight: bold !important;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 6%;
+  color: var(--muted);
+  text-align: center;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 650px) {
+  .article-hero { min-height: 510px; }
+  .hero-title { letter-spacing: -2px; }
+  .phantom {
+    right: 5%;
+    bottom: 12px;
+    transform: scale(.78);
+    transform-origin: bottom right;
+  }
+  .hero-meta { max-width: 220px; }
+  .poem { line-height: 1.8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a href="../index.html"><strong>THIS IS NOT A CLICKBAIT</strong></a>
+  <span>TRANSMISSION 006 / ARCHIVE</span>
+</header>
+
+<section class="article-hero">
+
+  <div class="hero-kicker">DIGITAL CULTURE / INVISIBLE AUDIENCES / 006</div>
+
+  <h1 class="hero-title">
+    GHOSTS OF<br>
+    THE <span class="ghost-word">FEED.</span>
+  </h1>
+
+  <p class="hero-subtitle">
+    The post is there. The audience isn't. Welcome to the strange afterlife of the feed.
+  </p>
+
+  <div class="hero-meta">
+    <span>BY AVADHOOT PRASAD BHOLE</span>
+    <span>POETRY / DIGITAL LIFE</span>
+  </div>
+
+  <div class="hero-status">VISIBILITY STATUS: UNKNOWN...</div>
+
+  <div class="phantom" aria-label="Phantom, the ghost mascot">
+    <div class="phantom-halo"></div>
+    <div class="phantom-body">
+      <span class="phantom-cheek"></span>
+      <span class="phantom-cheek right"></span>
+      <div class="phantom-eyes">
+        <span class="phantom-eye"></span>
+        <span class="phantom-eye"></span>
+      </div>
+      <span class="phantom-mouth"></span>
+    </div>
+    <div class="phantom-label">PHANTOM_006</div>
+  </div>
+
+</section>
+
+<main>
+
+  <article class="article-content">
+    <div class="article-label">RECOVERED TEXT / POEM 006</div>
+
+    <div class="poem">
+
+      <p>
+        It is quite a shock<br>
+        When, in time’s embrace,<br>
+        One’s creations are locked<br>
+        From the viewer’s gaze.
+      </p>
+
+      <p>
+        And why is it so? All because<br>
+        The superficial likes are not enough<br>
+        There is a lack, or deficit, of<br>
+        A single values in digital troughs.
+      </p>
+
+      <p>
+        I myself have experienced this<br>
+        When, in hopes of momentary bliss,<br>
+        I posted an pic of my own life,<br>
+        And found myself faced by artificial strife.
+      </p>
+
+      <p class="final-stanza">
+        I call these “Ghosts of the Feed”,<br>
+        For they are invisible, indeed,<br>
+        Yet they leave their targets in dread,<br>
+        Fearing their works as if they’re unfed.
+      </p>
+
+    </div>
+
+    <div class="author-note">
+      END OF TRANSMISSION / AVADHOOT PRASAD BHOLE
+    </div>
+  </article>
+
+  <section class="feed-experiment" id="feed-experiment">
+
+    <div class="experiment-kicker">INTERACTIVE FILE / 006-A</div>
+
+    <h2>FEED <span>AFTERLIFE.</span></h2>
+
+    <p class="experiment-intro">
+      One post has entered the digital void. Its creator insists it was uploaded.
+      The algorithm refuses to comment. PHANTOM has agreed to investigate.
+    </p>
+
+    <div class="feed-screen">
+
+      <div class="screen-top">
+        <span>POST_ID: 006-UNKNOWN</span>
+        <span>ARCHIVE MODE</span>
+      </div>
+
+      <div class="fake-post">
+        <small>YOUR IMAGINARY SOCIAL FEED</small>
+        <h3>Just posted something.</h3>
+        <p>A perfectly ordinary picture. Nothing suspicious. Probably.</p>
+      </div>
+
+      <div class="status-line">
+        <span class="status-dot"></span>
+        <span id="feed-status">POST DETECTED. AUDIENCE NOT FOUND.</span>
+      </div>
+
+      <p class="experiment-question" id="feed-question">
+        Your post has received 2 likes. What is your immediate reaction?
+      </p>
+
+      <div class="experiment-buttons" id="feed-options">
+        <button data-choice="A">“It's fine. I'm fine.”</button>
+        <button data-choice="B">Refresh. Obviously.</button>
+        <button data-choice="C">Delete the evidence.</button>
+      </div>
+
+      <div class="experiment-result" id="feed-result" aria-live="polite">
+        <strong id="result-heading">PHANTOM'S REPORT</strong>
+        <p id="result-text"></p>
+        <div class="experiment-buttons">
+          <button class="restart-button" id="feed-restart">RUN INVESTIGATION AGAIN</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  THIS IS NOT A CLICKBAIT / HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+</footer>
+
+<script>
+const question = document.getElementById("feed-question");
+const options = document.getElementById("feed-options");
+const status = document.getElementById("feed-status");
+const result = document.getElementById("feed-result");
+const resultHeading = document.getElementById("result-heading");
+const resultText = document.getElementById("result-text");
+const restart = document.getElementById("feed-restart");
+
+const investigations = {
+  A: {
+    status: "EMOTIONAL DAMAGE: DENIED.",
+    heading: "REPORT: THE OPTIMIST",
+    text: "PHANTOM has reviewed your statement. You are either genuinely unbothered or have developed an advanced form of pretending. Both are impressive. The post remains online. Go drink some water."
+  },
+  B: {
+    status: "REFRESH COUNT: CONCERNING.",
+    heading: "REPORT: THE INVESTIGATOR",
+    text: "The feed has been refreshed 47 times. No new likes have appeared. PHANTOM recommends closing the app, although PHANTOM knows you will not."
+  },
+  C: {
+    status: "EVIDENCE DELETED. FEELINGS RETAINED.",
+    heading: "REPORT: THE DISAPPEARING ACT",
+    text: "The post is gone. The memory of posting it is not. PHANTOM would like to remind you that the internet is not a courtroom and your photograph was not on trial."
+  }
+};
+
+options.addEventListener("click", function(event) {
+  const button = event.target.closest("button[data-choice]");
+  if (!button) return;
+
+  const report = investigations[button.dataset.choice];
+
+  status.textContent = report.status;
+  resultHeading.textContent = report.heading;
+  resultText.textContent = report.text;
+
+  question.style.display = "none";
+  options.style.display = "none";
+  result.style.display = "block";
+});
+
+restart.addEventListener("click", function() {
+  question.style.display = "block";
+  options.style.display = "flex";
+  result.style.display = "none";
+  status.textContent = "POST DETECTED. AUDIENCE NOT FOUND.";
+});
+</script>
+
+</body>
+</html>
