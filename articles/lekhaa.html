@@ -402,65 +402,292 @@ footer a{color:var(--cyan)}
  <a href="../index.html">BACK TO THE MAGAZINE ↗</a>
 </footer>
 
-<script>
-const responses = [
- {
-  title:"YOU COULD HAVE LEFT.",
-  text:"You chose not to. Interesting decision.",
-  footer:"EXIT OPTION IGNORED."
- },
- {
-  title:"BREAKING NEWS.",
-  text:"This information will change absolutely nothing about your life.",
-  footer:"PUBLIC SERVICE ANNOUNCEMENT / USELESS."
- },
- {
-  title:"A LITTLE OBSERVATION.",
-  text:"Your curiosity has once again exceeded its practical value.",
-  footer:"CURIOSITY LEVEL / UNNECESSARY."
- },
- {
-  title:"YOU CAME LOOKING FOR ANSWERS.",
-  text:"We have more questions. Unfortunately.",
-  footer:"QUERY STATUS / UNRESOLVED."
- },
- {
-  title:"CONGRATULATIONS.",
-  text:"You have discovered another thing you didn't need.",
-  footer:"DISCOVERY LOG / WHY THOUGH?"
- },
- {
-  title:"YOU CLICKED IT.",
-  text:"You read an entire article about falling down an internet rabbit hole. And then willingly clicked another thing. Consistency. We respect that.",
-  footer:"INTERNET BEHAVIOUR REPORT / CONCERNING."
- }
-];
 
-let previous = -1;
+<section id="rabbit-hole">
+  <style>
+    #rabbit-hole {
+      --rabbit-red: #ff4545;
+      --rabbit-blue: #54d9ff;
+      --rabbit-green: #c5ff55;
+      margin: 65px 0 35px;
+      padding: 28px 22px;
+      border: 1px solid #494949;
+      background:
+        radial-gradient(circle at 85% 15%, #292044 0, transparent 35%),
+        #101014;
+      color: #f4f0e8;
+      font-family: 'Space Mono', monospace;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-function revealMessage() {
- const reveal = document.getElementById("reveal");
- const button = document.getElementById("revealButton");
+    #rabbit-hole * { box-sizing: border-box; }
 
- let next;
- do {
-  next = Math.floor(Math.random() * responses.length);
- } while (next === previous);
+    #rabbit-hole .rabbit-label {
+      color: var(--rabbit-green);
+      font-size: 10px;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
 
- previous = next;
+    #rabbit-hole h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(23px, 5vw, 36px);
+      margin: 0 0 8px;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
 
- document.getElementById("responseTitle").textContent =
-  responses[next].title;
+    #rabbit-hole .rabbit-intro {
+      color: #b9b9c2;
+      font-size: 12px;
+      line-height: 1.8;
+      max-width: 440px;
+      margin: 0 auto 20px;
+    }
 
- document.getElementById("responseText").textContent =
-  responses[next].text;
+    #rabbit-hole .rabbit-scene {
+      min-height: 155px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      margin: 12px auto;
+      position: relative;
+    }
 
- document.getElementById("responseFooter").textContent =
-  responses[next].footer;
+    #rabbit-hole .rabbit {
+      width: 64px;
+      height: 64px;
+      position: relative;
+      image-rendering: pixelated;
+      transition: transform .25s ease;
+    }
 
- reveal.classList.add("show");
- button.textContent = "RESPONSE RECEIVED ✓";
-}
-</script>
+    /* Pixel rabbit */
+    #rabbit-hole .rabbit::before {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #f5f0e8;
+      left: 24px;
+      top: 26px;
+      box-shadow:
+        8px 0 #f5f0e8,
+        16px 0 #f5f0e8,
+        -8px 8px #f5f0e8,
+        0 8px #f5f0e8,
+        8px 8px #f5f0e8,
+        16px 8px #f5f0e8,
+        24px 8px #f5f0e8,
+        0 16px #f5f0e8,
+        8px 16px #f5f0e8,
+        16px 16px #f5f0e8,
+        24px 16px #f5f0e8,
+        8px 24px #f5f0e8,
+        16px 24px #f5f0e8,
+        8px -8px #f5f0e8,
+        8px -16px #f5f0e8,
+        24px -8px #f5f0e8,
+        24px -16px #f5f0e8,
+        8px 8px #17171b,
+        24px 8px #17171b;
+    }
+
+    #rabbit-hole .rabbit-hole-shape {
+      width: 115px;
+      height: 36px;
+      border-radius: 50%;
+      background: #050507;
+      border: 3px solid #6d52a0;
+      box-shadow: 0 8px 0 #30204b;
+      transform: rotate(-5deg);
+      position: relative;
+    }
+
+    #rabbit-hole .rabbit-hole-shape::after {
+      content: "↓";
+      color: var(--rabbit-blue);
+      position: absolute;
+      top: -30px;
+      left: 47%;
+      font-size: 20px;
+    }
+
+    #rabbit-hole .rabbit-message {
+      color: var(--rabbit-blue);
+      font-size: 12px;
+      line-height: 1.8;
+      min-height: 42px;
+      margin: 12px auto 18px;
+      max-width: 440px;
+    }
+
+    #rabbit-hole .rabbit-question {
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 18px 0 12px;
+    }
+
+    #rabbit-hole .rabbit-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 15px auto;
+    }
+
+    #rabbit-hole button {
+      border: 1px solid #656575;
+      background: #1a1a23;
+      color: #f4f0e8;
+      padding: 10px 13px;
+      font-family: inherit;
+      font-size: 10px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    #rabbit-hole button:hover {
+      border-color: var(--rabbit-green);
+      color: var(--rabbit-green);
+      transform: translateY(-2px);
+    }
+
+    #rabbit-hole .rabbit-start {
+      background: var(--rabbit-red);
+      color: #111;
+      border-color: var(--rabbit-red);
+      font-weight: bold;
+      padding: 12px 18px;
+    }
+
+    #rabbit-hole .rabbit-start:hover {
+      background: var(--rabbit-green);
+      color: #111;
+      border-color: var(--rabbit-green);
+    }
+
+    #rabbit-hole .rabbit-end {
+      color: var(--rabbit-green);
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 18px;
+    }
+
+    #rabbit-hole .rabbit-small {
+      font-size: 9px;
+      color: #777783;
+      letter-spacing: 1px;
+      margin-top: 22px;
+    }
+
+    #rabbit-hole [hidden] { display: none !important; }
+
+    #rabbit-hole .vanish {
+      transform: translate(45px, 35px) scale(.15);
+      opacity: 0;
+    }
+  </style>
+
+  <div class="rabbit-label">/// UNNECESSARY INTERNET DETOUR</div>
+  <h2>Down the Rabbit Hole</h2>
+  <p class="rabbit-intro">
+    You came here looking for one thing.
+    The internet has other plans.
+  </p>
+
+  <div class="rabbit-scene">
+    <div class="rabbit" id="rabbit-character"></div>
+    <div class="rabbit-hole-shape"></div>
+  </div>
+
+  <div id="rabbit-message" class="rabbit-message">
+    The rabbit is waiting. It has absolutely no sense of direction.
+  </div>
+
+  <div id="rabbit-start-area">
+    <button class="rabbit-start" id="rabbit-start">
+      FOLLOW THE RABBIT →
+    </button>
+  </div>
+
+  <div id="rabbit-choices" hidden>
+    <p class="rabbit-question">
+      The rabbit has found three possible routes. Pick your excuse.
+    </p>
+    <div class="rabbit-buttons">
+      <button data-reply="curiosity">JUST CHECKING ONE THING</button>
+      <button data-reply="distraction">WELL, THIS IS INTERESTING</button>
+      <button data-reply="lost">WAIT. HOW DID WE GET HERE?</button>
+    </div>
+  </div>
+
+  <div id="rabbit-final-question" hidden>
+    <p class="rabbit-question">
+      Do you remember what you were originally looking for?
+    </p>
+    <div class="rabbit-buttons">
+      <button data-ending="yes">YES, OBVIOUSLY.</button>
+      <button data-ending="no">ABSOLUTELY NOT.</button>
+    </div>
+  </div>
+
+  <div id="rabbit-ending" class="rabbit-end" hidden></div>
+
+  <div class="rabbit-small">YOUR ORIGINAL SEARCH IS STILL WAITING.</div>
+
+  <script>
+    (() => {
+      const root = document.getElementById("rabbit-hole");
+      if (!root) return;
+
+      const rabbit = root.querySelector("#rabbit-character");
+      const message = root.querySelector("#rabbit-message");
+      const start = root.querySelector("#rabbit-start");
+      const startArea = root.querySelector("#rabbit-start-area");
+      const choices = root.querySelector("#rabbit-choices");
+      const finalQuestion = root.querySelector("#rabbit-final-question");
+      const ending = root.querySelector("#rabbit-ending");
+
+      const replies = {
+        curiosity: "The rabbit says: One search became seventeen tabs. Impressive.",
+        distraction: "The rabbit says: You have discovered something irrelevant. Congratulations.",
+        lost: "The rabbit says: Nobody knows. Not even the browser history."
+      };
+
+      start.addEventListener("click", () => {
+        startArea.hidden = true;
+        choices.hidden = false;
+        message.textContent = "The rabbit has started walking. You are now responsible for this.";
+      });
+
+      choices.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => {
+          choices.hidden = true;
+          message.textContent = replies[button.dataset.reply];
+          rabbit.style.transform = "rotate(-12deg) translateY(-8px)";
+          finalQuestion.hidden = false;
+        });
+      });
+
+      finalQuestion.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => {
+          finalQuestion.hidden = true;
+          rabbit.classList.add("vanish");
+
+          ending.textContent = button.dataset.ending === "yes"
+            ? "The rabbit is unconvinced. Your browser history disagrees."
+            : "That's what I thought. The rabbit has seen this before.";
+
+          ending.hidden = false;
+          message.textContent = "Anyway, your original search is still waiting.";
+        });
+      });
+    })();
+  </script>
+</section>
 </body>
 </html>
