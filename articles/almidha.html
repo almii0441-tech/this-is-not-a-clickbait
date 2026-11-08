@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maybe You Just Haven't Seen Anything Else | This Is Not a Clickbait</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black: #101014;
+  --paper: #f2eee7;
+  --pink: #ff527c;
+  --cyan: #00d9ff;
+  --purple: #a78bfa;
+  --green: #c5f36b;
+  --orange: #ffad55;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--paper);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.mono {
+  font-family: 'DM Mono', monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+header {
+  padding: 22px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #34343b;
+  font-size: 11px;
+}
+
+.brand {
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.home-link { color: var(--cyan); }
+
+.hero {
+  min-height: 750px;
+  padding: 85px 8% 70px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  border: 1px solid var(--purple);
+  border-radius: 50%;
+  right: -100px;
+  top: 100px;
+  box-shadow: 0 0 70px #a78bfa22;
+}
+
+.hero-label {
+  color: var(--green);
+  font-size: 11px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 2;
+  max-width: 950px;
+  font-size: clamp(48px, 9vw, 112px);
+  line-height: .94;
+  letter-spacing: -.075em;
+  margin: 0;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.hero h1 span {
+  color: var(--pink);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -.06em;
+}
+
+.hero-subtitle {
+  margin-top: 30px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(19px, 2.5vw, 27px);
+  color: var(--cyan);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 45px;
+  font-size: 10px;
+  color: #aaa8b1;
+}
+
+.hero-art {
+  position: absolute;
+  right: 10%;
+  bottom: 65px;
+  width: 190px;
+  height: 190px;
+  z-index: 1;
+}
+
+.orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed var(--cyan);
+  border-radius: 50%;
+  transform: rotate(-25deg);
+}
+
+.creature {
+  position: absolute;
+  width: 105px;
+  height: 120px;
+  background: var(--purple);
+  border: 3px solid var(--paper);
+  border-radius: 48% 48% 38% 38%;
+  left: 42px;
+  top: 30px;
+  transform: rotate(9deg);
+  box-shadow: 9px 8px 0 var(--pink);
+}
+
+.creature::before, .creature::after {
+  content: "";
+  position: absolute;
+  width: 19px;
+  height: 25px;
+  background: var(--black);
+  border-radius: 50%;
+  top: 36px;
+}
+
+.creature::before { left: 22px; }
+.creature::after { right: 20px; }
+
+.creature-mouth {
+  position: absolute;
+  width: 34px;
+  height: 12px;
+  border-bottom: 4px solid var(--black);
+  border-radius: 50%;
+  left: 34px;
+  top: 76px;
+  z-index: 2;
+}
+
+.float-eye {
+  position: absolute;
+  color: var(--green);
+  font-size: 32px;
+  right: 0;
+  top: 0;
+  transform: rotate(20deg);
+}
+
+.float-star {
+  position: absolute;
+  color: var(--orange);
+  font-size: 34px;
+  left: 0;
+  bottom: 5px;
+}
+
+main {
+  background: var(--paper);
+  color: #17171b;
+  padding: 90px 7%;
+}
+
+.article-layout {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 680px);
+  gap: 55px;
+}
+
+.side-note {
+  font-size: 10px;
+  color: #77727c;
+  line-height: 1.8;
+  position: sticky;
+  top: 30px;
+  height: fit-content;
+}
+
+.article-body {
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+.article-body p { margin: 0 0 28px; }
+
+.article-body .opening {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 4vw, 36px);
+  line-height: 1.35;
+  margin-bottom: 40px;
+}
+
+.section-marker {
+  font-family: 'DM Mono', monospace;
+  color: #9a3663;
+  font-size: 11px;
+  margin: 65px 0 25px;
+  letter-spacing: .1em;
+}
+
+.visual-break {
+  margin: 65px 0;
+  min-height: 220px;
+  padding: 35px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.visual-break.pink { background: var(--pink); }
+.visual-break.blue { background: var(--cyan); }
+.visual-break.green { background: var(--green); }
+.visual-break.purple { background: var(--purple); }
+
+.visual-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 390px;
+  font-weight: 900;
+  font-size: clamp(23px, 4vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+}
+
+.visual-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  margin-top: 15px;
+}
+
+.mini-creature {
+  width: 105px;
+  height: 115px;
+  flex-shrink: 0;
+  background: var(--black);
+  border-radius: 50% 50% 35% 35%;
+  position: relative;
+  transform: rotate(-12deg);
+}
+
+.mini-creature::before, .mini-creature::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--green);
+  top: 35px;
+}
+
+.mini-creature::before { left: 22px; }
+.mini-creature::after { right: 22px; }
+
+.mini-creature i {
+  position: absolute;
+  width: 28px;
+  height: 10px;
+  border-bottom: 3px solid var(--pink);
+  left: 39px;
+  top: 72px;
+}
+
+.data-strip {
+  border-top: 1px solid #aaa4a0;
+  border-bottom: 1px solid #aaa4a0;
+  padding: 25px 0;
+  margin: 45px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.data-strip strong {
+  display: block;
+  font-size: clamp(30px, 5vw, 48px);
+  letter-spacing: -.06em;
+}
+
+.data-strip span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #69636c;
+  line-height: 1.6;
+}
+
+.glitch-panel {
+  margin: 70px 0;
+  padding: 45px 30px;
+  background: #181820;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-panel h2 {
+  color: var(--cyan);
+  font-size: clamp(32px, 6vw, 65px);
+  line-height: .95;
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  max-width: 650px;
+}
+
+.glitch-panel p {
+  max-width: 550px;
+  color: #dedbe7;
+}
+
+.glitch-panel::after {
+  content: "010010  /  010101  /  ERROR";
+  display: block;
+  margin-top: 35px;
+  color: var(--pink);
+  font: 11px 'DM Mono', monospace;
+  letter-spacing: .2em;
+}
+
+.ending {
+  padding: 120px 8%;
+  text-align: center;
+  background: var(--black);
+  color: var(--paper);
+}
+
+.ending h2 {
+  font-size: clamp(35px, 7vw, 78px);
+  letter-spacing: -.07em;
+  line-height: 1;
+  max-width: 850px;
+  margin: 0 auto 30px;
+}
+
+.ending h2 span { color: var(--pink); }
+
+.ending p {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--cyan);
+}
+
+footer {
+  padding: 30px 7%;
+  border-top: 1px solid #34343b;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  font: 10px 'DM Mono', monospace;
+  color: #aaa8b1;
+}
+
+.back-top { color: var(--green); }
+
+body.scrolling .visual-break {
+  animation: appear .7s ease both;
+}
+
+@keyframes appear {
+  from { opacity: .3; transform: translateY(18px) skewX(-2deg); }
+  to { opacity: 1; transform: translateY(0) skewX(0); }
+}
+
+@media(max-width: 700px) {
+  .hero { min-height: 690px; padding: 75px 7% 220px; }
+  .hero-art { right: 12%; bottom: 25px; transform: scale(.8); }
+  main { padding: 65px 7%; }
+  .article-layout { display: block; }
+  .side-note { position: static; margin-bottom: 35px; }
+  .article-body { font-size: 16px; }
+  .visual-break { padding: 25px; min-height: 180px; }
+  .mini-creature { transform: scale(.75) rotate(-12deg); }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="brand" href="../index.html">THIS IS NOT A CLICKBAIT</a>
+  <span class="mono">TRANSMISSION 002</span>
+  <a class="home-link mono" href="../index.html">← HOME</a>
+</header>
+
+<section class="hero">
+  <div class="hero-label mono">DIGITAL CULTURE / TRANSMISSION 002</div>
+
+  <h1>
+    MAYBE YOU<br>
+    JUST HAVEN'T<br>
+    SEEN <span>ANYTHING</span><br>
+    ELSE.
+  </h1>
+
+  <div class="hero-subtitle">Every December an app tells us who we are.</div>
+
+  <div class="hero-meta mono">
+    <span>BY ALMIDHA.M.A</span>
+    <span>READING TIME: 6 MIN</span>
+    <span>2025 / 2026</span>
+  </div>
+
+  <div class="hero-art">
+    <div class="orbit"></div>
+    <div class="creature"><div class="creature-mouth"></div></div>
+    <div class="float-eye">◉</div>
+    <div class="float-star">✳</div>
+  </div>
+</section>
+
+<main>
+<div class="article-layout">
+
+<aside class="side-note mono">
+  FILE NO. 002<br><br>
+  SUBJECT: PERSONAL TASTE<br><br>
+  STATUS: UNDER QUESTION<br><br>
+  SYSTEM NOTE:<br>
+  YOUR DATA HAS BEEN RECEIVED.
+</aside>
+
+<article class="article-body">
+
+<p class="opening">Every December an app tells us who we are. And people eagerly wait for its release, so they can share it and claim that’s who they are.</p>
+
+<p>It sounds dramatic, right? But that’s what happens. In 2024, Spotify Wrapped was later than usual, and “X” filled with memes and jokes about it, even though Spotify had already announced, “Almost here.” When it finally arrived, people claimed it was underwhelming. Oh, we spent a whole year waiting for it to tell us about ourselves, and yes, we judged the answer.</p>
+
+<p>It started small. In 2015, it was a simple roundup called “Year in Music,” and it became Wrapped in 2016. By 2025, Spotify said over 200 million people had opened their year-end Wrapped within a day, and it was shared more than 500 million times.</p>
+
+<p>It feels like a mirror. You listened, it counted, now it shows you yourself.</p>
+
+<div class="visual-break pink">
+  <div>
+    <div class="visual-copy">IT COUNTED.<br>DID IT KNOW?</div>
+    <div class="visual-tag">A QUESTION OF PERSONAL DATA</div>
+  </div>
+  <div class="mini-creature"><i></i></div>
+</div>
+
+<p>At counting, yeah, mostly. A song only counts if you play it for at least 30 seconds, so anything shorter is filtered out. The song you skipped after ten seconds never happened. Nobody saw it, nobody noticed it.</p>
+
+<p>But is it right? Is it accurate? Does counting mean it knows you?</p>
+
+<p>What if a song just gets counted because I played it on purpose, past thirty seconds, without even listening to it fully, enough times? Maybe Wrapped would call it mine. It wouldn’t ask if I meant it. It wouldn’t know.</p>
+
+<p>What if I wanted people to think I liked that specific song?</p>
+
+<p>Because counting isn’t knowing. Songs played in a Private Session don’t count toward top lists, so the one you’re embarrassed about never shows up in your Wrapped. If someone else uses your account, their listening becomes yours. So maybe the artist you think is your number one is actually your dad’s. You’ll never know.</p>
+
+<p>And it says “your year,” but it isn’t the whole year. Spotify says the data stops a few weeks before launch. So if you find a song you’re addicted to in late November, even if you play it 50 times more than the other songs, you’ll never know. The end of the year isn’t there, and it still calls it yours.</p>
+
+<div class="data-strip">
+  <div><strong>30s</strong><span>THE MINIMUM PLAY TIME<br>FOR A STREAM TO COUNT</span></div>
+  <div><strong>?</strong><span>THE PART OF YOUR LISTENING<br>THE APP NEVER SEES</span></div>
+</div>
+
+<p>So Wrapped is a receipt, not a portrait. It knows what you played. It doesn’t know why.</p>
+
+<p>And that’s the weird part. So, why did you play it?</p>
+
+<div class="section-marker">02 / THE RECOMMENDATION MACHINE</div>
+
+<p>A lot of what we listen to, nobody went looking for. Either it was just there or it found us. Netflix’s own engineers said their recommendations influence the choice for about 80% of the hours people stream. Influence, not control. Fine, but that means a lot of your “top playlist” was handed to you before you picked it.</p>
+
+<div class="visual-break blue">
+  <div>
+    <div class="visual-copy">YOU FOUND IT.<br>OR DID IT FIND YOU?</div>
+    <div class="visual-tag">RECOMMENDATION SYSTEM / ACTIVE</div>
+  </div>
+  <div class="mini-creature"><i></i></div>
+</div>
+
+<p>In 2022, a famous show put a song from 1985 in a scene, and in one day its streams jumped by a thousand percent.</p>
+
+<p>This year, it was a dance scene. A girl shows up at a Halloween party dressed as J.Lo. The song plays. A boy dressed in a Top Gun costume walks over and dances along. Two minutes, maybe. Then the scene from Prime was posted on every platform. A week later, a song from 2011 was on Spotify’s global chart. People went searching for it after it was handed to them, in a scene, with good lighting.</p>
+
+<p>So, in December, somebody opens their Wrapped and finds one of those songs comfortably sitting in their top five. Did they pick it to sit there, or did it find its way through the show?</p>
+
+<div class="section-marker">03 / FAMILIARITY.exe</div>
+
+<p>There is an old idea in psychology about why. In 1968, Robert Zajonc argued that seeing something again and again can make you like it more. Nobody has to convince you. It just gets familiar, and familiar starts to feel like “your taste.”</p>
+
+<div class="glitch-panel">
+  <div class="mono" style="color:#ff527c;font-size:11px">REPEAT / REPEAT / REPEAT</div>
+  <h2>FAMILIAR STARTS TO FEEL LIKE YOURS.</h2>
+  <p>Sometimes the things we recognise become the things we choose.</p>
+</div>
+
+<p>None of this makes taste fake. People have always been shaped by friends, family, ads, whatever was playing in the car. Nobody’s taste comes from nowhere. What’s different is that when a friend gave you a song, you knew a friend gave it to you. When an app does it, it just feels like you found it yourself.</p>
+
+<p>So when Wrapped says who you are, what it’s really saying is who you are out of what reached you.</p>
+
+<div class="section-marker">04 / THE THINGS THAT NEVER REACHED YOU</div>
+
+<div class="visual-break green">
+  <div>
+    <div class="visual-copy">WHAT IF YOU JUST HAVEN'T SEEN IT YET?</div>
+    <div class="visual-tag">UNDISCOVERED / STILL POSSIBLE</div>
+  </div>
+  <div class="mini-creature"><i></i></div>
+</div>
+
+<p>That makes you think about everything that didn’t. There might be a song you would have played for years. A book you’d have argued about. A movie that would have been your comfort movie. A whole other version of you who likes things you’ve never heard of.</p>
+
+<p>You don’t dislike any of it. You just haven’t seen it.</p>
+
+<p>And you can’t miss something you don’t know is missing.</p>
+
+<div class="section-marker">05 / END OF TRANSMISSION</div>
+
+<p>So, are you really what you like?</p>
+
+<p>Maybe. More than the algorithm thinks, probably. It never saw your private sessions, your skips, or the things you’re okay with when no one is around.</p>
+
+<p>Yes, you like the things you like. But what if you just haven’t seen anything else?</p>
+
+</article>
+</div>
+</main>
+
+<section class="ending">
+  <div class="mono" style="color:var(--green);font-size:11px;margin-bottom:30px">
+    TRANSMISSION 002 / COMPLETE
+  </div>
+  <h2>YOUR TASTE IS YOURS.<br><span>ISN'T IT?</span></h2>
+  <p>Maybe there's more out there.</p>
+</section>
+
+<footer>
+  <span>THIS IS NOT A CLICKBAIT © 2026</span>
+  <span>CREATED BY ALMIDHA.M.A</span>
+  <a class="back-top" href="#">BACK TO TOP ↑</a>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      document.body.classList.add("scrolling");
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".visual-break, .glitch-panel").forEach(el => {
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
