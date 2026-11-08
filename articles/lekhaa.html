@@ -4,8 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WHERE ONE CLICK LEADS | This Is Not a Clickbait</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:wght@700;800&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -19,294 +21,788 @@
  --panel:#141720;
  --line:rgba(255,255,255,.16);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;background:var(--bg);color:var(--paper);
- font-family:'DM Sans',sans-serif;overflow-x:hidden;
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+ margin:0;
+ background:var(--bg);
+ color:var(--paper);
+ font-family:'DM Sans',sans-serif;
+ overflow-x:hidden;
 }
-a{color:inherit;text-decoration:none}
-.mono{font-family:'DM Mono',monospace;letter-spacing:.08em}
-header{
- display:flex;justify-content:space-between;gap:12px;
- padding:18px 6%;border-bottom:1px solid var(--line);
- font:10px 'DM Mono',monospace;flex-wrap:wrap;
+
+a {
+ color:inherit;
+ text-decoration:none;
 }
-header b{color:var(--cyan)}
-header span:last-child{color:var(--red)}
-.hero{
- padding:75px 7% 55px;max-width:1250px;margin:auto;
+
+.mono {
+ font-family:'DM Mono',monospace;
+ letter-spacing:.08em;
+}
+
+/* HEADER */
+
+header {
+ display:flex;
+ justify-content:space-between;
+ gap:12px;
+ padding:18px 6%;
+ border-bottom:1px solid var(--line);
+ font:10px 'DM Mono',monospace;
+ flex-wrap:wrap;
+}
+
+header b { color:var(--cyan); }
+header span:last-child { color:var(--red); }
+
+/* HERO */
+
+.hero {
+ padding:85px 7% 65px;
+ max-width:1250px;
+ margin:auto;
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
+ background:
+ radial-gradient(ellipse at 85% 35%,rgba(164,122,255,.20),transparent 45%),
+ radial-gradient(ellipse at 10% 85%,rgba(0,217,255,.09),transparent 45%);
+}
+
+.hero::before {
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ pointer-events:none;
+ opacity:.12;
+ background:
+ linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px);
+ background-size:65px 65px;
+}
+
+.hero::after {
+ content:"TRANSMISSION 001";
+ position:absolute;
+ right:7%;
+ top:60px;
+ padding:12px 15px;
+ border:1px solid var(--red);
+ color:var(--red);
+ font:10px 'DM Mono',monospace;
+ letter-spacing:2px;
+ transform:rotate(5deg);
+}
+
+.kicker {
+ color:var(--cyan);
+ font:11px 'DM Mono',monospace;
+ letter-spacing:2px;
+}
+
+.hero h1 {
+ font-size:clamp(65px,12vw,150px);
+ line-height:.83;
+ letter-spacing:-.09em;
+ text-transform:uppercase;
+ font-weight:900;
+ margin:65px 0 30px;
  position:relative;
 }
-.kicker{color:var(--cyan);font:11px 'DM Mono',monospace}
-.hero h1{
- font-size:clamp(65px,12vw,150px);
- line-height:.83;letter-spacing:-.09em;
- text-transform:uppercase;font-weight:900;
- margin:35px 0 25px;position:relative;
+
+.hero h1 .red {
+ color:var(--red);
+ display:block;
 }
-.hero h1 .red{color:var(--red);display:block}
-.hero h1 .cyan{color:var(--cyan)}
-.glitch{
- text-shadow:4px 2px 0 rgba(0,217,255,.65),
+
+.hero h1 .cyan { color:var(--cyan); }
+
+.glitch {
+ text-shadow:
+ 4px 2px 0 rgba(0,217,255,.65),
  -4px -2px 0 rgba(255,52,63,.65);
  animation:flicker 5s infinite;
 }
-@keyframes flicker{
- 0%,94%,96%,100%{text-shadow:4px 2px 0 rgba(0,217,255,.65),-4px -2px 0 rgba(255,52,63,.65)}
- 95%{text-shadow:8px 0 var(--red),-8px 0 var(--cyan)}
+
+@keyframes flicker {
+ 0%,94%,96%,100% {
+  text-shadow:
+  4px 2px 0 rgba(0,217,255,.65),
+  -4px -2px 0 rgba(255,52,63,.65);
+ }
+ 95% {
+  text-shadow:8px 0 var(--red),-8px 0 var(--cyan);
+ }
 }
-.subtitle{
+
+.subtitle {
  font-size:clamp(16px,2vw,22px);
- max-width:550px;color:#d0ced0;
+ max-width:550px;
+ color:#d0ced0;
+ line-height:1.6;
 }
-.byline{
- display:flex;gap:22px;flex-wrap:wrap;
- margin-top:30px;color:var(--muted);
+
+.byline {
+ display:flex;
+ gap:22px;
+ flex-wrap:wrap;
+ margin-top:35px;
+ color:var(--muted);
  font:10px 'DM Mono',monospace;
 }
-.hero-art{
- max-width:1100px;margin:0 auto 65px;padding:0 7%;
+
+/* HERO IMAGE */
+
+.hero-art {
+ max-width:1100px;
+ margin:0 auto 65px;
+ padding:0 7%;
 }
-.hero-art img{
- width:100%;height:clamp(220px,43vw,470px);
- object-fit:cover;display:block;
+
+.hero-art img {
+ width:100%;
+ height:clamp(220px,43vw,470px);
+ object-fit:cover;
+ display:block;
  border:1px solid var(--line);
  filter:saturate(1.2) contrast(1.1);
 }
-.caption{
+
+.caption {
  font:10px 'DM Mono',monospace;
- color:var(--cyan);margin-top:10px;
+ color:var(--cyan);
+ margin-top:10px;
 }
-.ticker{
- border-block:1px solid var(--line);padding:13px 0;
- overflow:hidden;white-space:nowrap;color:var(--green);
+
+/* TICKER */
+
+.ticker {
+ border-block:1px solid var(--line);
+ padding:13px 0;
+ overflow:hidden;
+ white-space:nowrap;
+ color:var(--green);
  font:11px 'DM Mono',monospace;
 }
-.ticker span{display:inline-block;animation:scroll 24s linear infinite}
-@keyframes scroll{to{transform:translateX(-50%)}}
 
-.article-wrap{
- max-width:1150px;margin:auto;padding:75px 7%;
- display:grid;grid-template-columns:190px minmax(0,1fr);gap:60px;
+.ticker span {
+ display:inline-block;
+ animation:scroll 24s linear infinite;
 }
-.sidebar{
- align-self:start;position:sticky;top:25px;
- font:10px 'DM Mono',monospace;color:var(--muted);
+
+@keyframes scroll {
+ to { transform:translateX(-50%); }
 }
-.side-quote{
- margin-top:25px;padding:15px;
+
+/* ARTICLE LAYOUT */
+
+.article-wrap {
+ max-width:1150px;
+ margin:auto;
+ padding:75px 7%;
+ display:grid;
+ grid-template-columns:190px minmax(0,1fr);
+ gap:60px;
+}
+
+.sidebar {
+ align-self:start;
+ position:sticky;
+ top:25px;
+ font:10px 'DM Mono',monospace;
+ color:var(--muted);
+}
+
+.side-quote {
+ margin-top:25px;
+ padding:15px;
  border-left:3px solid var(--red);
- font:22px 'Playfair Display',serif;color:white;
+ font:22px 'Playfair Display',serif;
+ color:white;
 }
-.content{max-width:700px;min-width:0}
-.content p{
- color:#d8d6d1;font-size:16px;
- line-height:1.95;margin:0 0 25px;
+
+.content {
+ max-width:700px;
+ min-width:0;
 }
-.part-title{
+
+.content p {
+ color:#d8d6d1;
+ font-size:16px;
+ line-height:1.95;
+ margin:0 0 25px;
+}
+
+.part-title {
  margin:65px 0 25px;
  font:clamp(29px,5vw,52px) 'DM Sans',sans-serif;
- font-weight:900;line-height:1;
+ font-weight:900;
+ line-height:1;
  letter-spacing:-.055em;
  text-transform:uppercase;
 }
-.part-title span{color:var(--red)}
-.part-label{
- color:var(--cyan);font:11px 'DM Mono',monospace;
+
+.part-title span { color:var(--red); }
+
+.part-label {
+ color:var(--cyan);
+ font:11px 'DM Mono',monospace;
  margin-bottom:15px;
 }
-.visual{
- margin:40px 0;position:relative;
+
+/* VISUALS */
+
+.visual {
+ margin:40px 0;
+ position:relative;
 }
-.visual img{
- display:block;width:100%;max-height:400px;object-fit:cover;
+
+.visual img {
+ display:block;
+ width:100%;
+ max-height:400px;
+ object-fit:cover;
  border:1px solid var(--line);
 }
-.visual .caption{
- display:flex;justify-content:space-between;gap:10px;
+
+.visual .caption {
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
  flex-wrap:wrap;
 }
-.visual-frame{
+
+.visual-frame {
  background:linear-gradient(120deg,#171a28,#25152c);
- padding:10px;border:1px solid var(--purple);
+ padding:10px;
+ border:1px solid var(--purple);
 }
-.visual-frame img{border:0}
-.notification{
- background:#e9edf3;color:#141820;
- border-radius:9px;padding:17px 20px;
- margin:35px 0 35px auto;max-width:340px;
- font-size:13px;line-height:1.5;
+
+.visual-frame img { border:0; }
+
+/* NOTIFICATION */
+
+.notification {
+ background:#e9edf3;
+ color:#141820;
+ border-radius:9px;
+ padding:17px 20px;
+ margin:35px 0 35px auto;
+ max-width:340px;
+ font-size:13px;
+ line-height:1.5;
  box-shadow:7px 7px 0 rgba(0,217,255,.25);
  transform:rotate(1deg);
 }
-.notification small{
- display:block;font:9px 'DM Mono',monospace;
- color:#646b79;margin-bottom:7px;
+
+.notification small {
+ display:block;
+ font:9px 'DM Mono',monospace;
+ color:#646b79;
+ margin-bottom:7px;
 }
-.pullquote{
- margin:50px 0;padding:30px 25px;
- background:var(--red);color:#08090d;
+
+/* PULL QUOTE */
+
+.pullquote {
+ margin:50px 0;
+ padding:30px 25px;
+ background:var(--red);
+ color:#08090d;
  font:clamp(25px,4vw,43px) 'Playfair Display',serif;
- line-height:1.2;transform:rotate(-1deg);
+ line-height:1.2;
+ transform:rotate(-1deg);
 }
-.platform-box{
- margin:45px 0;padding:25px;
+
+/* PLATFORM BOX */
+
+.platform-box {
+ margin:45px 0;
+ padding:25px;
  background:var(--panel);
  border:1px solid var(--line);
 }
-.platform-box h3{
- font:10px 'DM Mono',monospace;color:var(--muted);
+
+.platform-box h3 {
+ font:10px 'DM Mono',monospace;
+ color:var(--muted);
  margin:0 0 20px;
 }
-.platforms{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
-.platforms span{
- padding:10px 13px;border:1px solid currentColor;
+
+.platforms {
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ align-items:center;
+}
+
+.platforms span {
+ padding:10px 13px;
+ border:1px solid currentColor;
  font:11px 'DM Mono',monospace;
 }
-.book{color:var(--red)}
-.insta{color:#ff8cbb}
-.youtube{color:var(--cyan)}
-.pinterest{color:var(--green)}
-.substack{color:var(--purple)}
-.platform-arrow{color:#777}
-.big-number{
+
+.book { color:var(--red); }
+.insta { color:#ff8cbb; }
+.youtube { color:var(--cyan); }
+.pinterest { color:var(--green); }
+.substack { color:var(--purple); }
+.platform-arrow { color:#777; }
+
+/* FINAL THOUGHT */
+
+.big-number {
  color:rgba(255,255,255,.06);
  font:900 clamp(85px,18vw,180px) 'DM Sans',sans-serif;
- line-height:.8;margin:30px 0 -5px;
+ line-height:.8;
+ margin:30px 0 -5px;
 }
-.last-thought{
- margin-top:55px;padding:35px 25px;
+
+.last-thought {
+ margin-top:55px;
+ padding:35px 25px;
  border-top:1px solid var(--cyan);
  border-bottom:1px solid var(--cyan);
  font:clamp(25px,4vw,42px) 'Playfair Display',serif;
 }
-.last-thought span{color:var(--cyan)}
-/* Extra click reveal */
-.extra{
- max-width:950px;margin:40px auto 100px;padding:0 7%;
-}
-.extra-card{
- position:relative;overflow:hidden;
- padding:clamp(25px,5vw,55px);
- border:1px solid var(--cyan);
+
+.last-thought span { color:var(--cyan); }
+
+/* RABBIT HOLE INTERACTION */
+
+#rabbit-hole {
+ --rabbit-red:#ff4545;
+ --rabbit-blue:#54d9ff;
+ --rabbit-green:#c5ff55;
+
+ margin:65px auto 55px;
+ max-width:950px;
+ padding:40px 22px;
+ border:1px solid #494949;
+
  background:
- radial-gradient(circle at 90% 5%,rgba(164,122,255,.22),transparent 35%),
- linear-gradient(135deg,#151722,#101019);
+ radial-gradient(circle at 85% 15%,#292044 0,transparent 35%),
+ radial-gradient(circle at 10% 90%,rgba(0,217,255,.08),transparent 40%),
+ #101014;
+
+ color:#f4f0e8;
+ font-family:'Space Mono',monospace;
+ text-align:center;
+ position:relative;
+ overflow:hidden;
 }
-.extra-card:before{
- content:"???";position:absolute;right:-10px;bottom:-55px;
- font:900 150px 'DM Sans',sans-serif;
- color:rgba(0,217,255,.06);pointer-events:none;
+
+#rabbit-hole * { box-sizing:border-box; }
+
+#rabbit-hole::before {
+ content:"";
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+ opacity:.08;
+ background:
+ linear-gradient(rgba(255,255,255,.2) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,255,255,.2) 1px,transparent 1px);
+ background-size:35px 35px;
 }
-.extra-label{
- font:10px 'DM Mono',monospace;color:var(--green);
+
+#rabbit-hole > * {
+ position:relative;
 }
-.extra-card h2{
- font:900 clamp(35px,6vw,65px) 'DM Sans',sans-serif;
- letter-spacing:-.06em;text-transform:uppercase;
- margin:18px 0 5px;
+
+#rabbit-hole .rabbit-label {
+ color:var(--rabbit-green);
+ font-size:10px;
+ letter-spacing:3px;
+ margin-bottom:15px;
 }
-.extra-card>p{color:var(--muted);font-size:14px}
-.reveal-button{
- position:relative;z-index:1;
- margin-top:18px;padding:15px 20px;
- background:var(--red);color:white;
- border:0;font:11px 'DM Mono',monospace;
- cursor:pointer;transition:.2s;
-}
-.reveal-button:hover{
- background:var(--green);color:#090a0e;
- transform:translate(-3px,-3px);
- box-shadow:5px 5px 0 var(--cyan);
-}
-.reveal{
- display:none;position:relative;z-index:1;
- margin-top:28px;padding:25px;
- background:#090a0e;border:1px dashed var(--purple);
- animation:pop .35s ease;
-}
-.reveal.show{display:block}
-.reveal h3{
- font:900 clamp(25px,5vw,42px) 'DM Sans',sans-serif;
- color:var(--red);margin:0 0 15px;
+
+#rabbit-hole h2 {
+ font-family:'Space Grotesk',sans-serif;
+ font-size:clamp(28px,5vw,45px);
+ font-weight:700;
+ margin:0 0 12px;
  text-transform:uppercase;
+ letter-spacing:-1px;
 }
-.reveal p{font-size:16px;color:var(--paper);line-height:1.7}
-.reveal small{
- display:block;margin-top:20px;
- color:var(--cyan);font:10px 'DM Mono',monospace;
+
+#rabbit-hole .rabbit-intro {
+ color:#b9b9c2;
+ font-size:12px;
+ line-height:1.8;
+ max-width:440px;
+ margin:0 auto 25px;
 }
-@keyframes pop{
- from{opacity:0;transform:translateY(12px) scale(.98)}
- to{opacity:1;transform:translateY(0) scale(1)}
+
+#rabbit-hole .rabbit-scene {
+ min-height:175px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:35px;
+ margin:12px auto;
+ position:relative;
 }
-footer{
+
+/* PIXEL RABBIT */
+
+#rabbit-hole .rabbit {
+ width:64px;
+ height:64px;
+ position:relative;
+ image-rendering:pixelated;
+ transition:transform .35s ease,opacity .35s ease;
+ animation:rabbitBounce 2s ease-in-out infinite;
+}
+
+@keyframes rabbitBounce {
+ 0%,100% { transform:translateY(0); }
+ 50% { transform:translateY(-8px); }
+}
+
+#rabbit-hole .rabbit::before {
+ content:"";
+ position:absolute;
+ width:8px;
+ height:8px;
+ background:#f5f0e8;
+ left:24px;
+ top:26px;
+ box-shadow:
+ 8px 0 #f5f0e8,
+ 16px 0 #f5f0e8,
+ -8px 8px #f5f0e8,
+ 0 8px #f5f0e8,
+ 8px 8px #f5f0e8,
+ 16px 8px #f5f0e8,
+ 24px 8px #f5f0e8,
+ 0 16px #f5f0e8,
+ 8px 16px #f5f0e8,
+ 16px 16px #f5f0e8,
+ 24px 16px #f5f0e8,
+ 8px 24px #f5f0e8,
+ 16px 24px #f5f0e8,
+ 8px -8px #f5f0e8,
+ 8px -16px #f5f0e8,
+ 24px -8px #f5f0e8,
+ 24px -16px #f5f0e8,
+ 8px 8px #17171b,
+ 24px 8px #17171b;
+}
+
+#rabbit-hole .rabbit-hole-shape {
+ width:115px;
+ height:36px;
+ border-radius:50%;
+ background:#050507;
+ border:3px solid #6d52a0;
+ box-shadow:0 8px 0 #30204b;
+ transform:rotate(-5deg);
+ position:relative;
+}
+
+#rabbit-hole .rabbit-hole-shape::after {
+ content:"↓";
+ color:var(--rabbit-blue);
+ position:absolute;
+ top:-32px;
+ left:47%;
+ font-size:20px;
+ animation:arrowBounce 1s infinite;
+}
+
+@keyframes arrowBounce {
+ 0%,100% { transform:translateY(0); }
+ 50% { transform:translateY(6px); }
+}
+
+#rabbit-hole .rabbit-message {
+ color:var(--rabbit-blue);
+ font-size:12px;
+ line-height:1.8;
+ min-height:42px;
+ margin:12px auto 18px;
+ max-width:440px;
+}
+
+#rabbit-hole .rabbit-question {
+ font-size:13px;
+ line-height:1.7;
+ margin:18px 0 12px;
+}
+
+#rabbit-hole .rabbit-buttons {
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:9px;
+ margin:15px auto;
+}
+
+#rabbit-hole button {
+ border:1px solid #656575;
+ background:#1a1a23;
+ color:#f4f0e8;
+ padding:12px 15px;
+ font-family:'Space Mono',monospace;
+ font-size:10px;
+ cursor:pointer;
+ transition:.2s;
+}
+
+#rabbit-hole button:hover {
+ border-color:var(--rabbit-green);
+ color:var(--rabbit-green);
+ transform:translateY(-2px);
+}
+
+#rabbit-hole .rabbit-start {
+ background:var(--rabbit-red);
+ color:#111;
+ border-color:var(--rabbit-red);
+ font-weight:bold;
+ padding:14px 20px;
+}
+
+#rabbit-hole .rabbit-start:hover {
+ background:var(--rabbit-green);
+ color:#111;
+ border-color:var(--rabbit-green);
+}
+
+#rabbit-hole .rabbit-end {
+ color:var(--rabbit-green);
+ font-size:12px;
+ line-height:1.8;
+ margin-top:18px;
+ padding:15px;
+ border:1px dashed rgba(197,255,85,.4);
+ animation:rabbitPop .4s ease;
+}
+
+@keyframes rabbitPop {
+ from {
+  opacity:0;
+  transform:translateY(10px);
+ }
+ to {
+  opacity:1;
+  transform:translateY(0);
+ }
+}
+
+#rabbit-hole .rabbit-small {
+ font-size:9px;
+ color:#777783;
+ letter-spacing:1px;
+ margin-top:25px;
+}
+
+#rabbit-hole [hidden] { display:none !important; }
+
+#rabbit-hole .vanish {
+ transform:translate(45px,35px) scale(.15);
+ opacity:0;
+}
+
+/* FOOTER */
+
+footer {
  border-top:1px solid var(--line);
- padding:30px 7%;display:flex;justify-content:space-between;
- gap:15px;flex-wrap:wrap;color:var(--muted);
+ padding:30px 7%;
+ display:flex;
+ justify-content:space-between;
+ gap:15px;
+ flex-wrap:wrap;
+ color:var(--muted);
  font:10px 'DM Mono',monospace;
 }
-footer a{color:var(--cyan)}
-@media(max-width:720px){
- .hero{padding:60px 6% 40px}
- .hero-art{padding:0 6%}
- .article-wrap{display:block;padding:50px 7%}
- .sidebar{position:static;margin-bottom:45px}
- .side-quote{max-width:270px}
- .content p{font-size:15px}
- .extra{padding:0 6%}
+
+footer a { color:var(--cyan); }
+
+/* MOBILE */
+
+@media(max-width:720px) {
+
+ header {
+  padding:16px 6%;
+  font-size:9px;
+ }
+
+ .hero {
+  padding:65px 6% 50px;
+ }
+
+ .hero::after {
+  top:20px;
+  right:6%;
+  font-size:8px;
+  padding:9px;
+ }
+
+ .hero h1 {
+  font-size:clamp(55px,13vw,95px);
+  margin-top:65px;
+  letter-spacing:-.075em;
+ }
+
+ .hero-art { padding:0 6%; }
+
+ .article-wrap {
+  display:block;
+  padding:50px 7%;
+ }
+
+ .sidebar {
+  position:static;
+  margin-bottom:45px;
+ }
+
+ .side-quote { max-width:270px; }
+
+ .content p { font-size:15px; }
+
+ #rabbit-hole {
+  margin:45px 6%;
+  padding:35px 15px;
+ }
+
+ #rabbit-hole .rabbit-scene {
+  min-height:150px;
+  gap:20px;
+ }
+
+ #rabbit-hole button {
+  font-size:9px;
+  padding:11px;
+ }
+
+ footer {
+  padding:25px 6%;
+  font-size:9px;
+ }
+}
+
+@media(prefers-reduced-motion:reduce) {
+ *,
+ *::before,
+ *::after {
+  animation-duration:.01ms !important;
+  animation-iteration-count:1 !important;
+  scroll-behavior:auto !important;
+  transition-duration:.01ms !important;
+ }
 }
 </style>
 </head>
 
 <body>
+
 <header>
  <b>THIS IS NOT A CLICKBAIT</b>
  <span>DIGITAL CULTURE / FEATURE 001</span>
  <span>ISSUE 01 · 2026</span>
 </header>
 
+<!-- HERO -->
+
 <section class="hero">
- <div class="kicker">[ SECTION / FEED ] &nbsp; TRANSMISSION 001 &nbsp; ● AVAILABLE</div>
- <h1 class="glitch">WHERE ONE <span class="red">CLICK</span> <span class="cyan">LEADS_</span></h1>
- <p class="subtitle">A single click can send you down an endless digital rabbit hole.</p>
+
+ <div class="kicker">
+  [ SECTION / FEED ] &nbsp; TRANSMISSION 001 &nbsp; ● AVAILABLE
+ </div>
+
+ <h1 class="glitch">
+  WHERE ONE
+  <span class="red">CLICK</span>
+  <span class="cyan">LEADS_</span>
+ </h1>
+
+ <p class="subtitle">
+  A single click can send you down an endless digital rabbit hole.
+ </p>
+
  <div class="byline">
   <span>WORDS / LEKHAA MEENAKSHISUNDARAM</span>
   <span>READ / 04 MIN</span>
   <span>STATUS / BUFFERING...</span>
  </div>
+
 </section>
+
+<!-- HERO IMAGE -->
 
 <section class="hero-art">
- <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1500&q=85" alt="Person using digital devices">
- <div class="caption">FIG. 001 / THE BEGINNING OF A VERY LONG SEARCH.</div>
+
+ <img
+  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1500&q=85"
+  alt="Person using digital devices"
+ >
+
+ <div class="caption">
+  FIG. 001 / THE BEGINNING OF A VERY LONG SEARCH.
+ </div>
+
 </section>
 
-<div class="ticker"><span>
- BUFFERING... &nbsp; INTEREST DETECTED. &nbsp; ONE CLICK. ANOTHER CLICK. &nbsp; 
- THE INTERNET HAS A MEMORY. &nbsp; BUFFERING... &nbsp; INTEREST DETECTED. &nbsp;
- ONE CLICK. ANOTHER CLICK. &nbsp; THE INTERNET HAS A MEMORY. &nbsp;
-</span></div>
+<!-- TICKER -->
+
+<div class="ticker">
+ <span>
+  BUFFERING... &nbsp; INTEREST DETECTED. &nbsp; ONE CLICK. ANOTHER CLICK. &nbsp;
+  THE INTERNET HAS A MEMORY. &nbsp; BUFFERING... &nbsp; INTEREST DETECTED. &nbsp;
+  ONE CLICK. ANOTHER CLICK. &nbsp; THE INTERNET HAS A MEMORY. &nbsp;
+ </span>
+</div>
+
+<!-- ARTICLE -->
 
 <main class="article-wrap">
+
  <aside class="sidebar">
+
   <div>TRANSMISSION 001</div>
-  <div class="side-quote">“One encounter can quietly become a trail.”</div>
-  <div style="margin-top:25px;color:var(--red)">SCROLL TO CONTINUE ↓</div>
+
+  <div class="side-quote">
+   “One encounter can quietly become a trail.”
+  </div>
+
+  <div style="margin-top:25px;color:var(--red)">
+   SCROLL TO CONTINUE ↓
+  </div>
+
  </aside>
 
  <article class="content">
+
   <div class="part-label">01 / THE ORIGINAL SEARCH</div>
-  <h2 class="part-title">ONE SEARCH.<br><span>FOUR PLATFORMS.</span></h2>
+
+  <h2 class="part-title">
+   ONE SEARCH.<br>
+   <span>FOUR PLATFORMS.</span>
+  </h2>
 
   <p>I didn’t go looking for Marvel but it still found me. It all began when I looked at BookMyShow, trying to find tickets for the Avengers: Endgame re-release. I wasn’t exactly looking for details about the entire Marvel Cinematic Universe. Somewhere between checking showtimes and scrolling past posters, Endgame appeared on my screen over and over again, dragging with it everything associated with it. Iron Man, Captain America, and Spider-Man popped up everywhere.</p>
 
   <p>Once I booked my tickets, I put closed the app and put my phone down.</p>
 
   <div class="visual">
-   <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85" alt="Cinema screen">
-   <div class="caption"><span>BOOKMYSHOW / SEARCH COMPLETE</span><span>01.01</span></div>
+
+   <img
+    src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85"
+    alt="Cinema screen"
+   >
+
+   <div class="caption">
+    <span>BOOKMYSHOW / SEARCH COMPLETE</span>
+    <span>01.01</span>
+   </div>
+
   </div>
 
   <p>The next time I saw Marvel appeared, it was on Instagram. There was a reel about Avengers: Doomsday that showed up between the vampires and books. Then came another. Next was an edit using scenes from Endgame to speculate about what might happen in Doomsday.</p>
@@ -323,19 +819,33 @@ footer a{color:var(--cyan)}
   <p>The strangest part was that Marvel never appeared in quite the same way on different platforms. I often read articles on Substack. My feed is usually populated with personal essays by women about their experiences and their attempts to challenge patriarchal domination. I expected to see more of the same. Initially, that was what I found.</p>
 
   <div class="part-label">02 / THE INTEREST SPREADS</div>
-  <h2 class="part-title">THE SAME INTEREST.<br><span>FOUR LANGUAGES.</span></h2>
+
+  <h2 class="part-title">
+   THE SAME INTEREST.<br>
+   <span>FOUR LANGUAGES.</span>
+  </h2>
 
   <p>Then, it was as if someone whispered to Substack ‘show her Marvel.’ Moments later, I saw a guide of what someone had to watch in order to understand Doomsday. Now, I knew I wanted to watch it when it released and I was sucked into this post.</p>
 
   <p>By then, I was convinced that Marvel was following me across apps. Curious to see where else it would turn up, I opened Pinterest. There was a tiny part of me that still hoped I’d find something other than Marvel. I ended up looking at fan-made posters, character edits, pictures of Doctor Doom and screenshots from Endgame.</p>
 
   <div class="visual visual-frame">
-   <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=85" alt="Retro digital technology">
-   <div class="caption">THE FEED HAS OTHER PLANS.</div>
+
+   <img
+    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=85"
+    alt="Retro digital technology"
+   >
+
+   <div class="caption">
+    THE FEED HAS OTHER PLANS.
+   </div>
+
   </div>
 
   <div class="platform-box">
+
    <h3>THE INTEREST TRAVELLED THROUGH...</h3>
+
    <div class="platforms">
     <span class="book">BOOKMYSHOW</span>
     <span class="platform-arrow">→</span>
@@ -347,13 +857,16 @@ footer a{color:var(--cyan)}
     <span class="platform-arrow">→</span>
     <span class="substack">SUBSTACK</span>
    </div>
+
   </div>
 
   <p>On Instagram I’d been watching people speculate about Doomsday. On YouTube I had been listening to people explain those theories. On Pinterest I was seeing a physical manifestation of those theories. None of these platforms was showing me exactly the same thing, yet their content was connected. It was almost as if each platform had its own language. Instagram gave me the speculation, YouTube the explanations, Pinterest the visuals, and Substack the longer discussions. The subject remained the same, but each platform offered a different way of engaging with it.</p>
 
   <p>To be fair, I helped it travel too. I had searched for it on BookMyShow. Then I’d watched the reels on Instagram when they showed up. I probably paused on the videos on YouTube longer than I meant to. I read all the posts on Substack because I genuinely was interested in the movie. Each time I engaged with the content, I gave the platforms another reason to show me more of it.</p>
 
-  <div class="pullquote">“A search here, a pause there, a click somewhere else.”</div>
+  <div class="pullquote">
+   “A search here, a pause there, a click somewhere else.”
+  </div>
 
   <p>I hadn’t consciously decided that I wanted to know more about the Avengers. Yet, the little things I did were adding up, signalling my interest and shaping what I would see next.</p>
 
@@ -361,333 +874,231 @@ footer a{color:var(--cyan)}
 
   <p>What makes it interesting is that the trail isn’t identical. We don’t see the same post copied five times. Instead, each platform gives us another piece of the thing. One shows us the object, another explains it, another interprets it, and another turns it into something visual. By the time we have moved through them all, we may know far more about something than we ever intended to.</p>
 
-  <div class="part-label">03 / THE ALGORITHM HAS CONNECTED THE DOTS</div>
-  <h2 class="part-title">YOU DIDN'T<br><span>PLAN ALL THIS.</span></h2>
+  <div class="part-label">
+   03 / THE ALGORITHM HAS CONNECTED THE DOTS
+  </div>
+
+  <h2 class="part-title">
+   YOU DIDN'T<br>
+   <span>PLAN ALL THIS.</span>
+  </h2>
 
   <p>That’s why it felt like Marvel was following me. It wasn’t one platform following me. It wasn’t one platform chasing me around. It was the same interest being recognised, picked up and passed along. I was carrying it too, without really noticing it. A search here, a pause there, a click somewhere else. They weren’t decisions on their own. Together, they told my phone that I had a decision.</p>
 
   <div class="visual">
-   <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85" alt="Connected digital devices">
-   <div class="caption">SIGNAL FOUND / THE TRAIL IS COMPLETE.</div>
+
+   <img
+    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=85"
+    alt="Connected digital devices"
+   >
+
+   <div class="caption">
+    SIGNAL FOUND / THE TRAIL IS COMPLETE.
+   </div>
+
   </div>
 
   <div class="last-thought">
-   I went looking for a ticket but ended up with an entire <span>universe</span> about the movie.
+   I went looking for a ticket but ended up with an entire
+   <span>universe</span> about the movie.
   </div>
+
  </article>
+
 </main>
 
-<section class="extra">
- <div class="extra-card">
-  <div class="extra-label">[ IN CASE YOU WERE WONDERING ]</div>
-  <h2>ONE LAST THING.</h2>
-  <p>A little something you didn't ask for. But here we are.</p>
-
-  <button class="reveal-button" id="revealButton" onclick="revealMessage()">
-   YES, I'M WONDERING ↗
-  </button>
-
-  <div class="reveal" id="reveal">
-   <h3 id="responseTitle">YOU CLICKED IT.</h3>
-   <p id="responseText"></p>
-   <small id="responseFooter">INTERNET BEHAVIOUR REPORT / RECORDED.</small>
-   <button class="reveal-button" onclick="revealMessage()">ANOTHER ONE? ↻</button>
-  </div>
- </div>
-</section>
-
-<footer>
- <span>THIS IS NOT A CLICKBAIT</span>
- <span>HUMANITY, CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.</span>
- <a href="../index.html">BACK TO THE MAGAZINE ↗</a>
-</footer>
-
+<!-- SECOND INTERACTION: DOWN THE RABBIT HOLE -->
 
 <section id="rabbit-hole">
-  <style>
-    #rabbit-hole {
-      --rabbit-red: #ff4545;
-      --rabbit-blue: #54d9ff;
-      --rabbit-green: #c5ff55;
-      margin: 65px 0 35px;
-      padding: 28px 22px;
-      border: 1px solid #494949;
-      background:
-        radial-gradient(circle at 85% 15%, #292044 0, transparent 35%),
-        #101014;
-      color: #f4f0e8;
-      font-family: 'Space Mono', monospace;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
 
-    #rabbit-hole * { box-sizing: border-box; }
+ <div class="rabbit-label">
+  /// UNNECESSARY INTERNET DETOUR
+ </div>
 
-    #rabbit-hole .rabbit-label {
-      color: var(--rabbit-green);
-      font-size: 10px;
-      letter-spacing: 3px;
-      margin-bottom: 10px;
-    }
+ <h2>Down the Rabbit Hole</h2>
 
-    #rabbit-hole h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(23px, 5vw, 36px);
-      margin: 0 0 8px;
-      text-transform: uppercase;
-      letter-spacing: -1px;
-    }
+ <p class="rabbit-intro">
+  You came here looking for one thing.
+  The internet has other plans.
+ </p>
 
-    #rabbit-hole .rabbit-intro {
-      color: #b9b9c2;
-      font-size: 12px;
-      line-height: 1.8;
-      max-width: 440px;
-      margin: 0 auto 20px;
-    }
+ <div class="rabbit-scene">
 
-    #rabbit-hole .rabbit-scene {
-      min-height: 155px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 24px;
-      margin: 12px auto;
-      position: relative;
-    }
+  <div class="rabbit" id="rabbit-character"></div>
 
-    #rabbit-hole .rabbit {
-      width: 64px;
-      height: 64px;
-      position: relative;
-      image-rendering: pixelated;
-      transition: transform .25s ease;
-    }
+  <div class="rabbit-hole-shape"></div>
 
-    /* Pixel rabbit */
-    #rabbit-hole .rabbit::before {
-      content: "";
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #f5f0e8;
-      left: 24px;
-      top: 26px;
-      box-shadow:
-        8px 0 #f5f0e8,
-        16px 0 #f5f0e8,
-        -8px 8px #f5f0e8,
-        0 8px #f5f0e8,
-        8px 8px #f5f0e8,
-        16px 8px #f5f0e8,
-        24px 8px #f5f0e8,
-        0 16px #f5f0e8,
-        8px 16px #f5f0e8,
-        16px 16px #f5f0e8,
-        24px 16px #f5f0e8,
-        8px 24px #f5f0e8,
-        16px 24px #f5f0e8,
-        8px -8px #f5f0e8,
-        8px -16px #f5f0e8,
-        24px -8px #f5f0e8,
-        24px -16px #f5f0e8,
-        8px 8px #17171b,
-        24px 8px #17171b;
-    }
+ </div>
 
-    #rabbit-hole .rabbit-hole-shape {
-      width: 115px;
-      height: 36px;
-      border-radius: 50%;
-      background: #050507;
-      border: 3px solid #6d52a0;
-      box-shadow: 0 8px 0 #30204b;
-      transform: rotate(-5deg);
-      position: relative;
-    }
+ <div id="rabbit-message" class="rabbit-message">
+  The rabbit is waiting. It has absolutely no sense of direction.
+ </div>
 
-    #rabbit-hole .rabbit-hole-shape::after {
-      content: "↓";
-      color: var(--rabbit-blue);
-      position: absolute;
-      top: -30px;
-      left: 47%;
-      font-size: 20px;
-    }
+ <div id="rabbit-start-area">
 
-    #rabbit-hole .rabbit-message {
-      color: var(--rabbit-blue);
-      font-size: 12px;
-      line-height: 1.8;
-      min-height: 42px;
-      margin: 12px auto 18px;
-      max-width: 440px;
-    }
+  <button class="rabbit-start" id="rabbit-start">
+   FOLLOW THE RABBIT →
+  </button>
 
-    #rabbit-hole .rabbit-question {
-      font-size: 13px;
-      line-height: 1.7;
-      margin: 18px 0 12px;
-    }
+ </div>
 
-    #rabbit-hole .rabbit-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin: 15px auto;
-    }
+ <div id="rabbit-choices" hidden>
 
-    #rabbit-hole button {
-      border: 1px solid #656575;
-      background: #1a1a23;
-      color: #f4f0e8;
-      padding: 10px 13px;
-      font-family: inherit;
-      font-size: 10px;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    #rabbit-hole button:hover {
-      border-color: var(--rabbit-green);
-      color: var(--rabbit-green);
-      transform: translateY(-2px);
-    }
-
-    #rabbit-hole .rabbit-start {
-      background: var(--rabbit-red);
-      color: #111;
-      border-color: var(--rabbit-red);
-      font-weight: bold;
-      padding: 12px 18px;
-    }
-
-    #rabbit-hole .rabbit-start:hover {
-      background: var(--rabbit-green);
-      color: #111;
-      border-color: var(--rabbit-green);
-    }
-
-    #rabbit-hole .rabbit-end {
-      color: var(--rabbit-green);
-      font-size: 12px;
-      line-height: 1.8;
-      margin-top: 18px;
-    }
-
-    #rabbit-hole .rabbit-small {
-      font-size: 9px;
-      color: #777783;
-      letter-spacing: 1px;
-      margin-top: 22px;
-    }
-
-    #rabbit-hole [hidden] { display: none !important; }
-
-    #rabbit-hole .vanish {
-      transform: translate(45px, 35px) scale(.15);
-      opacity: 0;
-    }
-  </style>
-
-  <div class="rabbit-label">/// UNNECESSARY INTERNET DETOUR</div>
-  <h2>Down the Rabbit Hole</h2>
-  <p class="rabbit-intro">
-    You came here looking for one thing.
-    The internet has other plans.
+  <p class="rabbit-question">
+   The rabbit has found three possible routes. Pick your excuse.
   </p>
 
-  <div class="rabbit-scene">
-    <div class="rabbit" id="rabbit-character"></div>
-    <div class="rabbit-hole-shape"></div>
+  <div class="rabbit-buttons">
+
+   <button data-reply="curiosity">
+    JUST CHECKING ONE THING
+   </button>
+
+   <button data-reply="distraction">
+    WELL, THIS IS INTERESTING
+   </button>
+
+   <button data-reply="lost">
+    WAIT. HOW DID WE GET HERE?
+   </button>
+
   </div>
 
-  <div id="rabbit-message" class="rabbit-message">
-    The rabbit is waiting. It has absolutely no sense of direction.
+ </div>
+
+ <div id="rabbit-final-question" hidden>
+
+  <p class="rabbit-question">
+   Do you remember what you were originally looking for?
+  </p>
+
+  <div class="rabbit-buttons">
+
+   <button data-ending="yes">
+    YES, OBVIOUSLY.
+   </button>
+
+   <button data-ending="no">
+    ABSOLUTELY NOT.
+   </button>
+
   </div>
 
-  <div id="rabbit-start-area">
-    <button class="rabbit-start" id="rabbit-start">
-      FOLLOW THE RABBIT →
-    </button>
-  </div>
+ </div>
 
-  <div id="rabbit-choices" hidden>
-    <p class="rabbit-question">
-      The rabbit has found three possible routes. Pick your excuse.
-    </p>
-    <div class="rabbit-buttons">
-      <button data-reply="curiosity">JUST CHECKING ONE THING</button>
-      <button data-reply="distraction">WELL, THIS IS INTERESTING</button>
-      <button data-reply="lost">WAIT. HOW DID WE GET HERE?</button>
-    </div>
-  </div>
+ <div id="rabbit-ending" class="rabbit-end" hidden></div>
 
-  <div id="rabbit-final-question" hidden>
-    <p class="rabbit-question">
-      Do you remember what you were originally looking for?
-    </p>
-    <div class="rabbit-buttons">
-      <button data-ending="yes">YES, OBVIOUSLY.</button>
-      <button data-ending="no">ABSOLUTELY NOT.</button>
-    </div>
-  </div>
+ <div class="rabbit-small">
+  YOUR ORIGINAL SEARCH IS STILL WAITING.
+ </div>
 
-  <div id="rabbit-ending" class="rabbit-end" hidden></div>
-
-  <div class="rabbit-small">YOUR ORIGINAL SEARCH IS STILL WAITING.</div>
-
-  <script>
-    (() => {
-      const root = document.getElementById("rabbit-hole");
-      if (!root) return;
-
-      const rabbit = root.querySelector("#rabbit-character");
-      const message = root.querySelector("#rabbit-message");
-      const start = root.querySelector("#rabbit-start");
-      const startArea = root.querySelector("#rabbit-start-area");
-      const choices = root.querySelector("#rabbit-choices");
-      const finalQuestion = root.querySelector("#rabbit-final-question");
-      const ending = root.querySelector("#rabbit-ending");
-
-      const replies = {
-        curiosity: "The rabbit says: One search became seventeen tabs. Impressive.",
-        distraction: "The rabbit says: You have discovered something irrelevant. Congratulations.",
-        lost: "The rabbit says: Nobody knows. Not even the browser history."
-      };
-
-      start.addEventListener("click", () => {
-        startArea.hidden = true;
-        choices.hidden = false;
-        message.textContent = "The rabbit has started walking. You are now responsible for this.";
-      });
-
-      choices.querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", () => {
-          choices.hidden = true;
-          message.textContent = replies[button.dataset.reply];
-          rabbit.style.transform = "rotate(-12deg) translateY(-8px)";
-          finalQuestion.hidden = false;
-        });
-      });
-
-      finalQuestion.querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", () => {
-          finalQuestion.hidden = true;
-          rabbit.classList.add("vanish");
-
-          ending.textContent = button.dataset.ending === "yes"
-            ? "The rabbit is unconvinced. Your browser history disagrees."
-            : "That's what I thought. The rabbit has seen this before.";
-
-          ending.hidden = false;
-          message.textContent = "Anyway, your original search is still waiting.";
-        });
-      });
-    })();
-  </script>
 </section>
+
+<!-- FOOTER -->
+
+<footer>
+
+ <span>THIS IS NOT A CLICKBAIT</span>
+
+ <span>
+  HUMANITY, CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+ </span>
+
+ <a href="../index.html">
+  BACK TO THE MAGAZINE ↗
+ </a>
+
+</footer>
+
+<!-- RABBIT INTERACTION SCRIPT -->
+
+<script>
+(() => {
+
+ const root = document.getElementById("rabbit-hole");
+
+ if (!root) return;
+
+ const rabbit = root.querySelector("#rabbit-character");
+ const message = root.querySelector("#rabbit-message");
+
+ const start = root.querySelector("#rabbit-start");
+ const startArea = root.querySelector("#rabbit-start-area");
+
+ const choices = root.querySelector("#rabbit-choices");
+ const finalQuestion = root.querySelector("#rabbit-final-question");
+ const ending = root.querySelector("#rabbit-ending");
+
+ const replies = {
+
+  curiosity:
+   "The rabbit says: One search became seventeen tabs. Impressive.",
+
+  distraction:
+   "The rabbit says: You have discovered something irrelevant. Congratulations.",
+
+  lost:
+   "The rabbit says: Nobody knows. Not even the browser history."
+
+ };
+
+ /* STEP 1: START */
+
+ start.addEventListener("click", () => {
+
+  startArea.hidden = true;
+  choices.hidden = false;
+
+  message.textContent =
+   "The rabbit has started walking. You are now responsible for this.";
+
+ });
+
+ /* STEP 2: CHOOSE A ROUTE */
+
+ choices.querySelectorAll("button").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+   choices.hidden = true;
+
+   message.textContent = replies[button.dataset.reply];
+
+   rabbit.style.transform =
+    "rotate(-12deg) translateY(-8px)";
+
+   finalQuestion.hidden = false;
+
+  });
+
+ });
+
+ /* STEP 3: FINAL QUESTION */
+
+ finalQuestion.querySelectorAll("button").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+   finalQuestion.hidden = true;
+
+   rabbit.classList.add("vanish");
+
+   ending.textContent =
+    button.dataset.ending === "yes"
+     ? "The rabbit is unconvinced. Your browser history disagrees."
+     : "That's what I thought. The rabbit has seen this before.";
+
+   ending.hidden = false;
+
+   message.textContent =
+    "Anyway, your original search is still waiting.";
+
+  });
+
+ });
+
+})();
+</script>
+
 </body>
 </html>
