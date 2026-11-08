@@ -14,338 +14,1002 @@
 :root {
   --bg:#09090d;
   --paper:#f1eee8;
-  --red:#ff424f;
-  --cyan:#4ce5e8;
+  --red:#ff1680;
+  --cyan:#55d9e8;
   --purple:#a78bfa;
-  --green:#c7ff65;
+  --green:#ffdf4d;
   --muted:#88858e;
   --mono:'DM Mono',monospace;
   --sans:'DM Sans',sans-serif;
   --serif:'Playfair Display',serif;
 }
+
 * {box-sizing:border-box}
+
 html {scroll-behavior:smooth}
+
 body {
-  margin:0;background:var(--bg);color:var(--paper);
-  font-family:var(--sans);overflow-x:hidden;
+  margin:0;
+  background:var(--bg);
+  color:var(--paper);
+  font-family:var(--sans);
+  overflow-x:hidden;
 }
+
 a {color:inherit;text-decoration:none}
 button {font:inherit}
+
 .noise {
-  position:fixed;inset:0;pointer-events:none;z-index:20;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:20;
   opacity:.055;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
+
+/* TOP NAVIGATION */
+
 .topbar {
-  padding:18px 5vw;border-bottom:1px solid #292831;
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;font:11px var(--mono);letter-spacing:1px;color:var(--muted);
+  padding:18px 5vw;
+  border-bottom:1px solid #292831;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  font:11px var(--mono);
+  letter-spacing:1px;
+  color:var(--muted);
+  position:relative;
+  z-index:5;
 }
-.brand {color:var(--paper);font-weight:500}
+
+.brand {
+  color:var(--paper);
+  font-weight:500;
+}
+
 .topbar a:last-child {color:var(--cyan)}
-.hero {
-  min-height:76vh;padding:90px 8vw 70px;
-  display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;
+
+/* =================================
+   YOSHITHA HERO SECTION
+================================= */
+
+.yoshitha-hero {
+  min-height:690px;
+  padding:85px 8vw 80px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 80% 40%,#004f75 0%,transparent 45%),
+    radial-gradient(ellipse at 12% 90%,#25205e 0%,transparent 42%),
+    #09090e;
 }
-.hero:after {
-  content:"";position:absolute;width:380px;height:380px;
-  border:1px solid #33303d;border-radius:50%;
-  right:-100px;top:15%;
-  box-shadow:0 0 0 35px #111018,0 0 0 36px #292531,
-  0 0 0 90px #111018,0 0 0 91px #292531;
-  opacity:.5;
+
+/* Background circles */
+
+.yoshitha-hero:before {
+  content:"";
+  position:absolute;
+  width:480px;
+  height:480px;
+  border:1px solid rgba(85,217,232,.2);
+  border-radius:50%;
+  right:5%;
+  top:50%;
+  transform:translateY(-50%);
+  box-shadow:
+    0 0 0 40px rgba(85,217,232,.025),
+    0 0 0 41px rgba(85,217,232,.15),
+    0 0 0 100px rgba(85,217,232,.02),
+    0 0 0 101px rgba(85,217,232,.1);
+  z-index:-1;
 }
-.eyebrow {font:12px var(--mono);color:var(--cyan);letter-spacing:3px}
-h1 {
-  position:relative;z-index:1;
-  font:900 clamp(3.2rem,10vw,8.5rem)/.9 var(--sans);
-  letter-spacing:-.09em;text-transform:uppercase;
-  max-width:1050px;margin:30px 0;
-  text-shadow:4px 0 var(--red),-3px 0 var(--cyan);
+
+.yoshitha-hero:after {
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:#ff1680;
+  filter:blur(150px);
+  opacity:.17;
+  right:15%;
+  bottom:0;
+  z-index:-1;
 }
-.subtitle {
-  position:relative;z-index:1;
-  font:italic clamp(1.2rem,2.6vw,2rem) var(--serif);
-  color:#c5c0cc;max-width:600px;
+
+.hero-content {
+  position:relative;
+  z-index:3;
+  width:72%;
 }
-.byline {
-  position:relative;z-index:1;margin-top:42px;
-  font:12px var(--mono);color:var(--muted);
+
+.hero-kicker {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font:11px var(--mono);
+  color:var(--cyan);
+  letter-spacing:3px;
 }
-.byline strong {color:var(--green);font-weight:400}
+
+.hero-kicker:before {
+  content:"";
+  width:30px;
+  height:1px;
+  background:var(--cyan);
+}
+
+.hero-title {
+  font:900 clamp(3.5rem,9.5vw,8.2rem)/.88 var(--sans);
+  letter-spacing:-.095em;
+  text-transform:uppercase;
+  margin:35px 0 25px;
+  max-width:850px;
+  position:relative;
+  z-index:2;
+}
+
+.hero-title .glitch-word {
+  color:var(--cyan);
+  text-shadow:5px 3px var(--red);
+  position:relative;
+}
+
+.hero-title .period {
+  color:var(--green);
+  text-shadow:none;
+}
+
+.hero-subtitle {
+  font:italic clamp(1.2rem,2.5vw,2rem) var(--serif);
+  color:var(--green);
+  margin-top:25px;
+}
+
+.hero-meta {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:45px;
+  font:11px var(--mono);
+  letter-spacing:1px;
+  color:var(--muted);
+}
+
+.hero-meta .author {
+  color:var(--red);
+}
+
+.hero-meta .separator {
+  width:25px;
+  height:1px;
+  background:#555;
+}
+
+.hero-status {
+  margin-top:30px;
+  font:10px var(--mono);
+  letter-spacing:2px;
+  color:#777;
+}
+
+.hero-status span {
+  color:var(--green);
+}
+
+/* CRITIC MASCOT */
+
+.hero-mascot {
+  position:absolute;
+  right:9%;
+  bottom:65px;
+  width:230px;
+  height:290px;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.mascot {
+  position:relative;
+  width:180px;
+  height:195px;
+  background:var(--cyan);
+  border:5px solid #a5f4f5;
+  border-radius:42% 48% 40% 48%;
+  box-shadow:
+    12px 12px 0 var(--red),
+    0 0 65px rgba(85,217,232,.25);
+  animation:mascotFloat 4s ease-in-out infinite;
+}
+
+/* Mascot eyes */
+
+.mascot-eye {
+  position:absolute;
+  width:20px;
+  height:27px;
+  background:#171522;
+  border-radius:50%;
+  top:77px;
+  left:43px;
+  z-index:3;
+}
+
+.mascot-eye.right {
+  left:116px;
+}
+
+/* Judgmental eyebrows */
+
+.critic-brow {
+  position:absolute;
+  top:62px;
+  left:34px;
+  width:39px;
+  height:7px;
+  border-radius:10px;
+  background:#171522;
+  transform:rotate(-12deg);
+  z-index:3;
+}
+
+.critic-brow.right {
+  left:108px;
+  transform:rotate(12deg);
+}
+
+/* Mouth */
+
+.mascot-mouth {
+  position:absolute;
+  left:65px;
+  top:125px;
+  width:48px;
+  height:18px;
+  border-bottom:5px solid #171522;
+  border-radius:0 0 50% 50%;
+  transform:rotate(-5deg);
+}
+
+/* Mascot decoration */
+
+.mascot-decoration {
+  position:absolute;
+  top:-35px;
+  right:-25px;
+  width:65px;
+  height:65px;
+  background:var(--green);
+  clip-path:polygon(50% 0%,61% 35%,100% 50%,61% 65%,50% 100%,39% 65%,0 50%,39% 35%);
+  animation:spinStar 12s linear infinite;
+}
+
+.mascot-label {
+  position:absolute;
+  bottom:-35px;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  font:10px var(--mono);
+  color:var(--green);
+  letter-spacing:2px;
+}
+
+.mascot-shadow {
+  position:absolute;
+  width:140px;
+  height:20px;
+  background:#000;
+  opacity:.4;
+  filter:blur(12px);
+  bottom:20px;
+  left:45px;
+  border-radius:50%;
+  animation:shadowFloat 4s ease-in-out infinite;
+}
+
+@keyframes mascotFloat {
+  0%,100% {transform:translateY(0) rotate(-4deg)}
+  50% {transform:translateY(-15px) rotate(3deg)}
+}
+
+@keyframes shadowFloat {
+  0%,100% {transform:scale(1);opacity:.4}
+  50% {transform:scale(.75);opacity:.2}
+}
+
+@keyframes spinStar {
+  to {transform:rotate(360deg)}
+}
+
+@keyframes heroGlitch {
+  0%,90%,100% {transform:translateX(0)}
+  92% {transform:translateX(-3px)}
+  94% {transform:translateX(3px)}
+  96% {transform:translateX(-2px)}
+}
+
+.hero-title .glitch-word {
+  animation:heroGlitch 5s infinite;
+  display:inline-block;
+}
+
 .hero-tag {
-  position:absolute;right:8%;bottom:45px;
-  font:10px var(--mono);color:var(--red);letter-spacing:2px;
+  position:absolute;
+  right:8%;
+  bottom:30px;
+  font:10px var(--mono);
+  color:var(--red);
+  letter-spacing:2px;
 }
+
+/* =================================
+   ORIGINAL ARTICLE DESIGN
+================================= */
+
 .hero-image {
-  width:100%;height:280px;object-fit:cover;
-  display:block;filter:grayscale(35%) contrast(1.1);
-  border-top:1px solid #38313e;border-bottom:1px solid #38313e;
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(35%) contrast(1.1);
+  border-top:1px solid #38313e;
+  border-bottom:1px solid #38313e;
 }
+
 .image-caption {
   padding:10px 7vw;
-  font:10px var(--mono);color:var(--muted);
-  letter-spacing:1px;text-align:right;
+  font:10px var(--mono);
+  color:var(--muted);
+  letter-spacing:1px;
+  text-align:right;
 }
+
 .interlude {
-  padding:80px 7vw;background:#12111a;
-  border-top:1px solid #302b3b;border-bottom:1px solid #302b3b;
+  padding:80px 7vw;
+  background:#12111a;
+  border-top:1px solid #302b3b;
+  border-bottom:1px solid #302b3b;
   text-align:center;
 }
+
 .interlude .small {
-  font:11px var(--mono);color:var(--cyan);letter-spacing:3px;
+  font:11px var(--mono);
+  color:var(--cyan);
+  letter-spacing:3px;
 }
+
 .interlude h2 {
   font:900 clamp(2rem,6vw,4.5rem)/1 var(--sans);
-  letter-spacing:-.06em;max-width:800px;margin:25px auto;
+  letter-spacing:-.06em;
+  max-width:800px;
+  margin:25px auto;
 }
-.interlude p {color:var(--muted);font:12px var(--mono);line-height:1.8}
-.glitch-word {color:var(--red);text-shadow:2px 0 var(--cyan),-2px 0 var(--purple)}
+
+.interlude p {
+  color:var(--muted);
+  font:12px var(--mono);
+  line-height:1.8;
+}
+
+.glitch-word {
+  color:var(--red);
+  text-shadow:2px 0 var(--cyan),-2px 0 var(--purple);
+}
+
 .article-wrap {
-  max-width:850px;margin:auto;padding:70px 7vw 100px;
+  max-width:850px;
+  margin:auto;
+  padding:70px 7vw 100px;
 }
+
 .article-label {
-  font:11px var(--mono);color:var(--red);
-  letter-spacing:2px;margin:55px 0 25px;
+  font:11px var(--mono);
+  color:var(--red);
+  letter-spacing:2px;
+  margin:55px 0 25px;
 }
+
 .article-body {
   font:400 17px/1.95 var(--sans);
   color:#d8d4d0;
 }
+
 .article-body p {margin:0 0 30px}
+
 .article-body p:first-child:first-letter {
-  float:left;font:700 5rem/.85 var(--serif);
-  color:var(--cyan);padding:9px 12px 0 0;
+  float:left;
+  font:700 5rem/.85 var(--serif);
+  color:var(--cyan);
+  padding:9px 12px 0 0;
 }
+
 .pullquote {
-  margin:65px -3vw;padding:35px 25px;
+  margin:65px -3vw;
+  padding:35px 25px;
   border-top:1px solid var(--purple);
   border-bottom:1px solid var(--purple);
   font:italic clamp(1.6rem,4vw,2.6rem)/1.35 var(--serif);
   color:var(--green);
 }
+
 .visual-break {
-  margin:65px 0;position:relative;
+  margin:65px 0;
+  position:relative;
 }
+
 .visual-break img {
-  width:100%;height:330px;object-fit:cover;
-  display:block;border:1px solid #37313f;
+  width:100%;
+  height:330px;
+  object-fit:cover;
+  display:block;
+  border:1px solid #37313f;
   filter:saturate(.8) contrast(1.05);
 }
+
 .visual-break figcaption {
-  margin-top:10px;font:10px var(--mono);
-  color:var(--muted);letter-spacing:1px;
+  margin-top:10px;
+  font:10px var(--mono);
+  color:var(--muted);
+  letter-spacing:1px;
 }
+
 .visual-break .sticker {
-  position:absolute;right:-15px;top:-20px;
-  background:var(--red);color:#09090d;
-  padding:13px 17px;transform:rotate(5deg);
-  font:11px var(--mono);font-weight:500;
+  position:absolute;
+  right:-15px;
+  top:-20px;
+  background:var(--red);
+  color:#09090d;
+  padding:13px 17px;
+  transform:rotate(5deg);
+  font:11px var(--mono);
+  font-weight:500;
 }
+
 .review-wall {
-  margin:65px 0;padding:25px;
-  background:#15131d;border:1px solid #393044;
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin:65px 0;
+  padding:25px;
+  background:#15131d;
+  border:1px solid #393044;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
+
 .review {
-  padding:17px;background:#0c0b12;
+  padding:17px;
+  background:#0c0b12;
   border:1px solid #34303d;
-  font:12px/1.7 var(--mono);color:#d8d4d0;
+  font:12px/1.7 var(--mono);
+  color:#d8d4d0;
 }
+
 .review:nth-child(2) {transform:rotate(1deg);border-color:var(--red)}
 .review:nth-child(3) {transform:rotate(-1deg);border-color:var(--cyan)}
 .review:nth-child(4) {border-color:var(--purple)}
-.review small {display:block;color:var(--muted);margin-top:10px}
-.review .stars {color:var(--green);letter-spacing:3px}
-.image-pair {
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:14px;margin:65px 0;
+
+.review small {
+  display:block;
+  color:var(--muted);
+  margin-top:10px;
 }
+
+.review .stars {
+  color:var(--green);
+  letter-spacing:3px;
+}
+
+.image-pair {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:65px 0;
+}
+
 .image-pair figure {margin:0}
+
 .image-pair img {
-  width:100%;height:230px;object-fit:cover;
+  width:100%;
+  height:230px;
+  object-fit:cover;
   border:1px solid #393044;
 }
-.image-pair figcaption {
-  padding-top:9px;font:10px var(--mono);color:var(--muted);
-}
-.ticker {
-  overflow:hidden;white-space:nowrap;
-  padding:15px 0;background:var(--green);color:#09090d;
-  font:11px var(--mono);letter-spacing:2px;
-}
-.ticker span {display:inline-block;animation:scroll 25s linear infinite}
-@keyframes scroll {to{transform:translateX(-50%)}}
 
-/* GAME */
-.game-section {padding:90px 5vw 100px;background:#08080c}
-.game-heading {text-align:center;max-width:760px;margin:0 auto 40px}
-.game-heading .eyebrow {color:var(--green)}
-.game-heading h2 {
-  font:900 clamp(2.5rem,7vw,5.5rem)/.95 var(--sans);
-  letter-spacing:-.08em;margin:20px 0;
+.image-pair figcaption {
+  padding-top:9px;
+  font:10px var(--mono);
+  color:var(--muted);
 }
-.game-heading p {color:var(--muted);line-height:1.7}
-.game-shell {
-  max-width:900px;margin:auto;border:1px solid #45404e;
-  background:#101018;box-shadow:10px 10px 0 #21182c;
-}
-.game-top {
-  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-  padding:15px 20px;border-bottom:1px solid #34303d;
-  font:11px var(--mono);color:var(--cyan);
-}
-.game-screen {
-  position:relative;min-height:360px;overflow:hidden;
-  background:
-  linear-gradient(#11111c 1px,transparent 1px),
-  linear-gradient(90deg,#11111c 1px,transparent 1px),
-  radial-gradient(ellipse at center,#242035,#0c0c12 75%);
-  background-size:30px 30px,30px 30px,auto;
-  display:flex;align-items:center;justify-content:space-around;
-  padding:35px 20px;
-}
-.fighter {
-  width:38%;display:flex;flex-direction:column;align-items:center;
-  gap:16px;position:relative;
-}
-.character {
-  width:125px;height:125px;position:relative;
-  display:flex;align-items:center;justify-content:center;
-  transition:transform .2s,filter .2s;
-}
-.character.hit {animation:shake .3s}
-.character.attack-animation {animation:attackmove .35s}
-@keyframes shake {
-  0%,100%{transform:translateX(0)}
-  25%{transform:translateX(-12px)}
-  75%{transform:translateX(12px)}
-}
-@keyframes attackmove {
-  0%,100%{transform:translateX(0) scale(1)}
-  50%{transform:translateX(24px) scale(1.15)}
-}
-.crumb-body {
-  width:82px;height:92px;background:#eee9df;
-  clip-path:polygon(16% 5%,35% 0,42% 8%,65% 3%,75% 13%,91% 10%,100% 31%,92% 48%,100% 70%,83% 91%,62% 87%,49% 100%,29% 91%,12% 97%,0 72%,8% 49%,0 26%);
-  position:relative;filter:drop-shadow(5px 5px 0 var(--red));
-}
-.crumb-body:before {
-  content:"•  •";white-space:pre;position:absolute;
-  top:24px;left:17px;color:#111;font:28px var(--sans);
+
+.ticker {
+  overflow:hidden;
+  white-space:nowrap;
+  padding:15px 0;
+  background:var(--green);
+  color:#09090d;
+  font:11px var(--mono);
   letter-spacing:2px;
 }
-.crumb-body:after {
-  content:"▰";position:absolute;top:53px;left:28px;
-  color:var(--red);font:22px var(--sans);
+
+.ticker span {
+  display:inline-block;
+  animation:scroll 25s linear infinite;
 }
+
+@keyframes scroll {
+  to {transform:translateX(-50%)}
+}
+
+/* =================================
+   CRITIC BOSS FIGHT
+================================= */
+
+.game-section {
+  padding:90px 5vw 100px;
+  background:#08080c;
+}
+
+.game-heading {
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 40px;
+}
+
+.game-heading .eyebrow {color:var(--green)}
+
+.game-heading h2 {
+  font:900 clamp(2.5rem,7vw,5.5rem)/.95 var(--sans);
+  letter-spacing:-.08em;
+  margin:20px 0;
+}
+
+.game-heading p {
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.game-shell {
+  max-width:900px;
+  margin:auto;
+  border:1px solid #45404e;
+  background:#101018;
+  box-shadow:10px 10px 0 #21182c;
+}
+
+.game-top {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:15px 20px;
+  border-bottom:1px solid #34303d;
+  font:11px var(--mono);
+  color:var(--cyan);
+}
+
+.game-screen {
+  position:relative;
+  min-height:360px;
+  overflow:hidden;
+  background:
+    linear-gradient(#11111c 1px,transparent 1px),
+    linear-gradient(90deg,#11111c 1px,transparent 1px),
+    radial-gradient(ellipse at center,#242035,#0c0c12 75%);
+  background-size:30px 30px,30px 30px,auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  padding:35px 20px;
+}
+
+.fighter {
+  width:38%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+  position:relative;
+}
+
+.character {
+  width:125px;
+  height:125px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .2s,filter .2s;
+}
+
+.character.hit {animation:shake .3s}
+.character.attack-animation {animation:attackmove .35s}
+
+@keyframes shake {
+  0%,100% {transform:translateX(0)}
+  25% {transform:translateX(-12px)}
+  75% {transform:translateX(12px)}
+}
+
+@keyframes attackmove {
+  0%,100% {transform:translateX(0) scale(1)}
+  50% {transform:translateX(24px) scale(1.15)}
+}
+
+.crumb-body {
+  width:82px;
+  height:92px;
+  background:#eee9df;
+  clip-path:polygon(16% 5%,35% 0,42% 8%,65% 3%,75% 13%,91% 10%,100% 31%,92% 48%,100% 70%,83% 91%,62% 87%,49% 100%,29% 91%,12% 97%,0 72%,8% 49%,0 26%);
+  position:relative;
+  filter:drop-shadow(5px 5px 0 var(--red));
+}
+
+.crumb-body:before {
+  content:"•  •";
+  white-space:pre;
+  position:absolute;
+  top:24px;
+  left:17px;
+  color:#111;
+  font:28px var(--sans);
+  letter-spacing:2px;
+}
+
+.crumb-body:after {
+  content:"▰";
+  position:absolute;
+  top:53px;
+  left:28px;
+  color:var(--red);
+  font:22px var(--sans);
+}
+
 .crumb-limb {
-  position:absolute;width:12px;height:32px;background:var(--red);
-  bottom:0;left:34px;transform:rotate(20deg);
+  position:absolute;
+  width:12px;
+  height:32px;
+  background:var(--red);
+  bottom:0;
+  left:34px;
+  transform:rotate(20deg);
   box-shadow:42px 0 var(--cyan);
 }
+
 .window-body {
-  width:105px;height:85px;position:relative;
-  background:#24233d;border:5px solid #8b72e8;
-  transform:rotate(-7deg);box-shadow:7px 7px 0 var(--cyan);
+  width:105px;
+  height:85px;
+  position:relative;
+  background:#24233d;
+  border:5px solid #8b72e8;
+  transform:rotate(-7deg);
+  box-shadow:7px 7px 0 var(--cyan);
 }
+
 .window-bar {
-  height:18px;background:#8b72e8;
-  display:flex;justify-content:flex-end;gap:5px;
-  padding:2px 5px;color:#171321;font:10px var(--mono);
+  height:18px;
+  background:#8b72e8;
+  display:flex;
+  justify-content:flex-end;
+  gap:5px;
+  padding:2px 5px;
+  color:#171321;
+  font:10px var(--mono);
 }
+
 .window-eyes {
-  color:var(--red);font:28px var(--sans);
-  text-align:center;margin-top:8px;letter-spacing:8px;
+  color:var(--red);
+  font:28px var(--sans);
+  text-align:center;
+  margin-top:8px;
+  letter-spacing:8px;
 }
+
 .window-legs {
-  position:absolute;bottom:-24px;left:15px;
-  width:12px;height:25px;background:var(--cyan);
-  transform:rotate(15deg);box-shadow:55px 5px var(--purple);
+  position:absolute;
+  bottom:-24px;
+  left:15px;
+  width:12px;
+  height:25px;
+  background:var(--cyan);
+  transform:rotate(15deg);
+  box-shadow:55px 5px var(--purple);
 }
+
 .critic-body {
-  width:105px;height:105px;border-radius:48% 52% 44% 56%;
-  background:var(--red);position:relative;
-  border:4px solid #ff8990;box-shadow:8px 8px 0 #5b2339;
+  width:105px;
+  height:105px;
+  border-radius:48% 52% 44% 56%;
+  background:var(--red);
+  position:relative;
+  border:4px solid #ff8990;
+  box-shadow:8px 8px 0 #5b2339;
 }
+
 .critic-body:before {
-  content:"••";position:absolute;top:23px;left:23px;
-  font:30px var(--sans);letter-spacing:12px;color:#160d17;
+  content:"••";
+  position:absolute;
+  top:23px;
+  left:23px;
+  font:30px var(--sans);
+  letter-spacing:12px;
+  color:#160d17;
 }
+
 .critic-body:after {
-  content:"▰";position:absolute;top:60px;left:35px;
-  color:#160d17;font:25px var(--sans);
+  content:"▰";
+  position:absolute;
+  top:60px;
+  left:35px;
+  color:#160d17;
+  font:25px var(--sans);
 }
-.name {font:12px var(--mono);letter-spacing:2px;color:var(--paper);text-align:center}
-.hp {width:100%;height:9px;background:#302c39;border:1px solid #56505d}
-.hp-fill {height:100%;width:100%;transition:width .3s}
+
+.name {
+  font:12px var(--mono);
+  letter-spacing:2px;
+  color:var(--paper);
+  text-align:center;
+}
+
+.hp {
+  width:100%;
+  height:9px;
+  background:#302c39;
+  border:1px solid #56505d;
+}
+
+.hp-fill {
+  height:100%;
+  width:100%;
+  transition:width .3s;
+}
+
 .player-hp {background:var(--cyan)}
 .boss-hp {background:var(--red)}
-.vs {font:900 25px var(--sans);color:var(--green);text-shadow:2px 2px var(--purple)}
+
+.vs {
+  font:900 25px var(--sans);
+  color:var(--green);
+  text-shadow:2px 2px var(--purple);
+}
+
 .game-message {
-  min-height:55px;padding:15px 20px;
-  border-top:1px solid #34303d;border-bottom:1px solid #34303d;
-  font:12px/1.7 var(--mono);color:var(--green);text-align:center;
+  min-height:55px;
+  padding:15px 20px;
+  border-top:1px solid #34303d;
+  border-bottom:1px solid #34303d;
+  font:12px/1.7 var(--mono);
+  color:var(--green);
+  text-align:center;
 }
+
 .game-controls {padding:22px}
+
 .character-select,.attack-row {
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
+
 .character-select {margin-bottom:20px}
+
 .game-btn {
-  background:#1b1925;color:var(--paper);
-  border:1px solid #51465e;padding:13px 17px;
-  font:11px var(--mono);letter-spacing:1px;cursor:pointer;transition:.2s;
+  background:#1b1925;
+  color:var(--paper);
+  border:1px solid #51465e;
+  padding:13px 17px;
+  font:11px var(--mono);
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:.2s;
 }
+
 .game-btn:hover:not(:disabled) {
-  background:var(--purple);color:#09090d;transform:translateY(-3px);
+  background:var(--purple);
+  color:#09090d;
+  transform:translateY(-3px);
 }
-.game-btn:disabled {opacity:.35;cursor:not-allowed}
+
+.game-btn:disabled {
+  opacity:.35;
+  cursor:not-allowed;
+}
+
 .game-btn.attack {border-color:var(--cyan)}
 .game-btn.special {border-color:var(--red)}
-.game-btn.selected {background:var(--green);color:#101018;border-color:var(--green)}
+
+.game-btn.selected {
+  background:var(--green);
+  color:#101018;
+  border-color:var(--green);
+}
+
 .game-footer {
-  padding:15px 20px;background:#0b0b10;
-  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-  font:10px var(--mono);color:var(--muted);
+  padding:15px 20px;
+  background:#0b0b10;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  font:10px var(--mono);
+  color:var(--muted);
 }
+
 .game-result {
-  display:none;text-align:center;padding:25px;
-  background:#1b1724;border-top:1px solid var(--green);
+  display:none;
+  text-align:center;
+  padding:25px;
+  background:#1b1724;
+  border-top:1px solid var(--green);
 }
-.game-result h3 {font:900 2rem var(--sans);color:var(--green)}
-.game-result p {color:#c5c0cc;line-height:1.7}
+
+.game-result h3 {
+  font:900 2rem var(--sans);
+  color:var(--green);
+}
+
+.game-result p {
+  color:#c5c0cc;
+  line-height:1.7;
+}
+
 .restart {margin-top:10px}
+
 .bottom-note {
-  text-align:center;padding:60px 20px;
-  color:var(--muted);font:11px var(--mono);letter-spacing:2px;line-height:2;
+  text-align:center;
+  padding:60px 20px;
+  color:var(--muted);
+  font:11px var(--mono);
+  letter-spacing:2px;
+  line-height:2;
 }
+
 .bottom-note strong {color:var(--red)}
 
+/* =================================
+   RESPONSIVE DESIGN
+================================= */
+
+@media(max-width:900px) {
+  .hero-content {width:85%}
+
+  .hero-mascot {
+    right:4%;
+    transform:scale(.8);
+    transform-origin:bottom right;
+  }
+
+  .hero-title {
+    font-size:clamp(3.5rem,10vw,7rem);
+  }
+}
+
 @media(max-width:600px) {
-  .topbar {font-size:9px;padding:15px 4vw}
-  .hero {min-height:65vh;padding:65px 7vw}
-  .hero:after {right:-230px}
-  .hero-tag {font-size:9px}
+  .topbar {
+    font-size:9px;
+    padding:15px 4vw;
+  }
+
+  .yoshitha-hero {
+    min-height:720px;
+    padding:65px 7vw 270px;
+    align-items:flex-start;
+  }
+
+  .yoshitha-hero:before {
+    width:330px;
+    height:330px;
+    right:-140px;
+    top:auto;
+    bottom:30px;
+    transform:none;
+  }
+
+  .hero-content {width:100%}
+
+  .hero-kicker {
+    font-size:9px;
+    letter-spacing:2px;
+  }
+
+  .hero-title {
+    font-size:clamp(3.5rem,13vw,5.5rem);
+    margin:30px 0 20px;
+  }
+
+  .hero-subtitle {font-size:1.3rem}
+
+  .hero-meta {
+    margin-top:30px;
+    gap:12px;
+    font-size:9px;
+  }
+
+  .hero-status {
+    margin-top:20px;
+    font-size:9px;
+  }
+
+  .hero-mascot {
+    width:190px;
+    height:230px;
+    right:8%;
+    bottom:15px;
+    transform:scale(.75);
+    transform-origin:bottom right;
+  }
+
+  .hero-tag {
+    right:auto;
+    left:7vw;
+    bottom:25px;
+    font-size:8px;
+  }
+
   .hero-image {height:210px}
+
   .article-wrap {padding:50px 7vw}
+
   .article-body {font-size:15px}
+
   .pullquote {margin:50px 0}
+
   .visual-break img {height:230px}
-  .review-wall {padding:12px;gap:8px}
-  .review {padding:12px;font-size:10px}
+
+  .review-wall {
+    padding:12px;
+    gap:8px;
+  }
+
+  .review {
+    padding:12px;
+    font-size:10px;
+  }
+
   .image-pair {gap:9px}
+
   .image-pair img {height:150px}
-  .game-screen {min-height:300px;padding:25px 8px}
+
+  .game-screen {
+    min-height:300px;
+    padding:25px 8px;
+  }
+
   .character {transform:scale(.8)}
+
   .fighter {width:42%}
-  .game-btn {padding:12px 10px;font-size:10px}
+
+  .game-btn {
+    padding:12px 10px;
+    font-size:10px;
+  }
+
+  .game-top {font-size:9px}
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto !important;
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div class="noise"></div>
 
 <header class="topbar">
@@ -354,18 +1018,79 @@ h1 {
   <a href="../index.html">← ARCHIVE</a>
 </header>
 
-<section class="hero">
-  <div class="eyebrow">THE INTERNET HAS AN OPINION</div>
-  <h1>Suddenly<br>Everyone's<br>a Critic<span style="color:var(--red)">.</span></h1>
-  <div class="subtitle">Reflex vs. Reflection in Media</div>
-  <div class="byline">A TRANSMISSION BY <strong>YOSHITHA REDDY</strong></div>
-  <div class="hero-tag">[ SCROLL TO FORM AN OPINION ]</div>
+<!-- =================================
+     YOSHITHA HERO
+================================= -->
+
+<section class="yoshitha-hero">
+
+  <div class="hero-content">
+
+    <div class="hero-kicker">
+      DIGITAL CULTURE / MEDIA UNDER REVIEW / 003
+    </div>
+
+    <h1 class="hero-title">
+      SUDDENLY<br>
+      EVERYONE'S<br>
+      A <span class="glitch-word">CRITIC</span><span class="period">.</span>
+    </h1>
+
+    <div class="hero-subtitle">
+      Reflex vs. Reflection in Media.
+    </div>
+
+    <div class="hero-meta">
+      <span class="author">YOSHITHA REDDY</span>
+      <span class="separator"></span>
+      <span>MEDIA CULTURE</span>
+    </div>
+
+    <div class="hero-status">
+      <span>●</span> CRITICAL ANALYSIS LOADING...
+    </div>
+
+  </div>
+
+  <div class="hero-mascot">
+
+    <div class="mascot-shadow"></div>
+
+    <div class="mascot">
+
+      <div class="mascot-decoration"></div>
+
+      <div class="critic-brow"></div>
+      <div class="critic-brow right"></div>
+
+      <div class="mascot-eye"></div>
+      <div class="mascot-eye right"></div>
+
+      <div class="mascot-mouth"></div>
+
+      <div class="mascot-label">CRITIC_003</div>
+
+    </div>
+
+  </div>
+
+  <div class="hero-tag">
+    [ SCROLL TO FORM AN OPINION ]
+  </div>
+
 </section>
+
+<!-- =================================
+     ARTICLE IMAGE
+================================= -->
 
 <img class="hero-image"
 src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=85"
 alt="Rows of seats inside a cinema">
-<div class="image-caption">FIG. 01 / THE PLACE WHERE OPINIONS ARE FORMED IN THE DARK.</div>
+
+<div class="image-caption">
+  FIG. 01 / THE PLACE WHERE OPINIONS ARE FORMED IN THE DARK.
+</div>
 
 <div class="interlude">
   <div class="small">A SMALL OBSERVATION FROM THE COMMENT SECTION</div>
@@ -373,7 +1098,12 @@ alt="Rows of seats inside a cinema">
   <p>THE REVIEW WAS READY BEFORE THE FILM WAS.</p>
 </div>
 
+<!-- =================================
+     MAIN ARTICLE
+================================= -->
+
 <main class="article-wrap">
+
   <div class="article-label">01 / THE REFLEX</div>
 
   <article class="article-body">
@@ -401,8 +1131,12 @@ alt="Rows of seats inside a cinema">
     <figure class="visual-break">
       <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=85"
       alt="Camera equipment ready to capture a scene">
+
       <span class="sticker">ROLL CAMERA!</span>
-      <figcaption>THE WORK BEHIND THE FRAME IS EASIER TO FORGET THAN THE FRAME ITSELF.</figcaption>
+
+      <figcaption>
+        THE WORK BEHIND THE FRAME IS EASIER TO FORGET THAN THE FRAME ITSELF.
+      </figcaption>
     </figure>
 
     <div class="article-label">02 / THE OVERLOAD</div>
@@ -415,26 +1149,31 @@ alt="Rows of seats inside a cinema">
     comes with technological development and over flow of productions and distributions.</p>
 
     <div class="review-wall">
+
       <div class="review">
         <span class="stars">★★★★★</span><br>
         "Haven't watched it. Already disappointed."
         <small>@definitely_a_film_expert</small>
       </div>
+
       <div class="review">
         <span class="stars">★☆☆☆☆</span><br>
         "The trailer was 90 seconds too long."
         <small>@cinema_connoisseur_47</small>
       </div>
+
       <div class="review">
         <span class="stars">★★☆☆☆</span><br>
         "My mutual said it was bad."
         <small>@opinion_pending</small>
       </div>
+
       <div class="review">
         <span class="stars">★★★★★</span><br>
         "I liked the poster. That's my review."
         <small>@visual_storyteller</small>
       </div>
+
     </div>
 
     <p>In the past decade we have seen so much evolution in specifically film media, that it takes quite
@@ -451,10 +1190,18 @@ alt="Rows of seats inside a cinema">
     media and art.</p>
 
     <figure class="visual-break">
+
       <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=85"
       alt="Person using a smartphone">
-      <span class="sticker" style="background:var(--cyan)">SCROLL. JUDGE. REPEAT.</span>
-      <figcaption>THE FEED NEVER RUNS OUT OF THINGS TO HAVE AN OPINION ABOUT.</figcaption>
+
+      <span class="sticker" style="background:var(--cyan)">
+        SCROLL. JUDGE. REPEAT.
+      </span>
+
+      <figcaption>
+        THE FEED NEVER RUNS OUT OF THINGS TO HAVE AN OPINION ABOUT.
+      </figcaption>
+
     </figure>
 
     <div class="article-label">03 / THE SECOND VERDICT</div>
@@ -464,7 +1211,8 @@ alt="Rows of seats inside a cinema">
     characters, predicting its failure in the box office yet it went on to make 270 crore rupees
     worldwide against a 150 crore rupees budget. Years later, I came across multiple edits of the
     movie on my reels feed praising it for its VFX effects, many even claiming it to be the best visual
-    effects in Bollywood’s history and asking for a sequel in the comments section and Reddit posts. Ra.One shows what distance adds to a first verdict. The first verdict was formed in a
+    effects in Bollywood’s history and asking for a sequel in the comments section and Reddit posts.
+    Ra.One shows what distance adds to a first verdict. The first verdict was formed in a
     release-week frenzy, and the second came with time to compare, revisit and look more closely.</p>
 
     <div class="pullquote">
@@ -472,16 +1220,19 @@ alt="Rows of seats inside a cinema">
     </div>
 
     <div class="image-pair">
+
       <figure>
         <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=900&q=85"
         alt="A cinematic film projector">
         <figcaption>THE FIRST WATCH.</figcaption>
       </figure>
+
       <figure>
         <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85"
         alt="A movie theatre screen">
         <figcaption>THE SECOND LOOK.</figcaption>
       </figure>
+
     </div>
 
     <div class="article-label">04 / THE REFLECTION</div>
@@ -497,7 +1248,12 @@ alt="Rows of seats inside a cinema">
     in us to truly know our personal review of it and what it means to us.</p>
 
   </article>
+
 </main>
+
+<!-- =================================
+     TICKER
+================================= -->
 
 <div class="ticker">
   <span>
@@ -506,21 +1262,49 @@ alt="Rows of seats inside a cinema">
   </span>
 </div>
 
+<!-- =================================
+     GAME INTRO
+================================= -->
+
 <section class="interlude">
+
   <div class="small">END OF ARTICLE / BEGINNING OF PROBLEM</div>
+
   <h2>Since everyone is a critic now...</h2>
+
   <p>LET'S SEE HOW YOU HANDLE ONE.</p>
-  <p style="color:var(--red)">WARNING: THE COMMENT SECTION HAS ENTERED THE CHAT.</p>
+
+  <p style="color:var(--red)">
+    WARNING: THE COMMENT SECTION HAS ENTERED THE CHAT.
+  </p>
+
 </section>
 
+<!-- =================================
+     CRITIC BOSS FIGHT
+================================= -->
+
 <section class="game-section" id="critic-game">
+
   <div class="game-heading">
-    <div class="eyebrow">BONUS INTERACTIVE INCIDENT / 001</div>
-    <h2>CRITIC<br><span class="glitch-word">BOSS FIGHT</span></h2>
-    <p>Defend the art. Question the verdict. Try not to become the comment section.</p>
+
+    <div class="eyebrow">
+      BONUS INTERACTIVE INCIDENT / 001
+    </div>
+
+    <h2>
+      CRITIC<br>
+      <span class="glitch-word">BOSS FIGHT</span>
+    </h2>
+
+    <p>
+      Defend the art. Question the verdict. Try not to become the comment section.
+    </p>
+
   </div>
 
   <div class="game-shell">
+
     <div class="game-top">
       <span>MEDIA.exe // BATTLE MODE</span>
       <span id="round-label">ROUND 01 / 03</span>
@@ -528,24 +1312,38 @@ alt="Rows of seats inside a cinema">
     </div>
 
     <div class="game-screen">
+
       <div class="fighter">
+
         <div class="character" id="player-character">
           <div class="crumb-body" id="crumb-art"></div>
           <div class="crumb-limb" id="crumb-limbs"></div>
         </div>
+
         <div class="name" id="player-name">CRUMB</div>
-        <div class="hp"><div class="hp-fill player-hp" id="player-hp"></div></div>
+
+        <div class="hp">
+          <div class="hp-fill player-hp" id="player-hp"></div>
+        </div>
+
       </div>
 
       <div class="vs">VS</div>
 
       <div class="fighter">
+
         <div class="character" id="boss-character">
           <div class="critic-body"></div>
         </div>
+
         <div class="name" id="boss-name">THE CRITIC</div>
-        <div class="hp"><div class="hp-fill boss-hp" id="boss-hp"></div></div>
+
+        <div class="hp">
+          <div class="hp-fill boss-hp" id="boss-hp"></div>
+        </div>
+
       </div>
+
     </div>
 
     <div class="game-message" id="game-message">
@@ -553,38 +1351,82 @@ alt="Rows of seats inside a cinema">
     </div>
 
     <div class="game-controls">
+
       <div class="character-select">
-        <button class="game-btn selected" id="crumb-select" onclick="selectCharacter('crumb')">PLAY AS CRUMB</button>
-        <button class="game-btn" id="window-select" onclick="selectCharacter('window')">PLAY AS WINDOWS.exe</button>
+
+        <button class="game-btn selected" id="crumb-select"
+        onclick="selectCharacter('crumb')">
+          PLAY AS CRUMB
+        </button>
+
+        <button class="game-btn" id="window-select"
+        onclick="selectCharacter('window')">
+          PLAY AS WINDOWS.exe
+        </button>
+
       </div>
 
       <div class="attack-row">
-        <button class="game-btn attack" onclick="attack('context')">CONTEXT BLAST</button>
-        <button class="game-btn attack" onclick="attack('thought')">THOUGHT BUBBLE</button>
-        <button class="game-btn special" onclick="attack('rewatch')">THE REWATCH</button>
-        <button class="game-btn special" onclick="attack('curiosity')">CURIOSITY ATTACK</button>
+
+        <button class="game-btn attack" onclick="attack('context')">
+          CONTEXT BLAST
+        </button>
+
+        <button class="game-btn attack" onclick="attack('thought')">
+          THOUGHT BUBBLE
+        </button>
+
+        <button class="game-btn special" onclick="attack('rewatch')">
+          THE REWATCH
+        </button>
+
+        <button class="game-btn special" onclick="attack('curiosity')">
+          CURIOSITY ATTACK
+        </button>
+
       </div>
+
     </div>
 
     <div class="game-result" id="game-result">
+
       <h3 id="result-title">BOSS DEFEATED.</h3>
+
       <p id="result-text"></p>
-      <button class="game-btn restart" onclick="restartGame()">PLAY AGAIN</button>
+
+      <button class="game-btn restart" onclick="restartGame()">
+        PLAY AGAIN
+      </button>
+
     </div>
 
     <div class="game-footer">
       <span>HP: HUMAN CURIOSITY</span>
       <span>TIP: THE REWATCH IS YOUR STRONGEST MOVE.</span>
     </div>
+
   </div>
+
 </section>
 
+<!-- =================================
+     FOOTER
+================================= -->
+
 <footer class="bottom-note">
+
   THIS IS NOT A CLICKBAIT <strong>///</strong><br>
+
   HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+
 </footer>
 
+<!-- =================================
+     GAME JAVASCRIPT
+================================= -->
+
 <script>
+
 let player = "crumb";
 let playerHP = 100;
 let bossHP = 100;
@@ -614,68 +1456,112 @@ const bossAttacks = [
 ];
 
 const moves = {
+
   context: {
     name:"CONTEXT BLAST",
     damage:18,
     text:"You supplied context. The critic has requested a source."
   },
+
   thought: {
     name:"THOUGHT BUBBLE",
     damage:15,
     text:"You paused to think. The critic is visibly uncomfortable."
   },
+
   rewatch: {
     name:"THE REWATCH",
     damage:30,
     text:"You watched it again. A second opinion has entered the room."
   },
+
   curiosity: {
     name:"CURIOSITY ATTACK",
     damage:22,
     text:"You asked a question instead of posting a verdict. Devastating."
   }
+
 };
 
+/* CHARACTER SELECTION */
+
 function selectCharacter(choice) {
+
   if (turn > 0 || gameOver || busy) return;
 
   player = choice;
-  document.getElementById("crumb-select").classList.toggle("selected",choice==="crumb");
-  document.getElementById("window-select").classList.toggle("selected",choice==="window");
+
+  document.getElementById("crumb-select")
+    .classList.toggle("selected",choice==="crumb");
+
+  document.getElementById("window-select")
+    .classList.toggle("selected",choice==="window");
 
   const art = document.getElementById("player-character");
 
   if (choice === "crumb") {
-    art.innerHTML = '<div class="crumb-body"></div><div class="crumb-limb"></div>';
+
+    art.innerHTML =
+      '<div class="crumb-body"></div><div class="crumb-limb"></div>';
+
     document.getElementById("player-name").textContent = "CRUMB";
-    message.textContent = "Crumb has entered the arena. Small creature. Large opinions.";
+
+    message.textContent =
+      "Crumb has entered the arena. Small creature. Large opinions.";
+
   } else {
-    art.innerHTML = '<div class="window-body"><div class="window-bar">× _</div><div class="window-eyes">● ●</div><div class="window-legs"></div></div>';
+
+    art.innerHTML =
+      '<div class="window-body"><div class="window-bar">× _</div><div class="window-eyes">● ●</div><div class="window-legs"></div></div>';
+
     document.getElementById("player-name").textContent = "WINDOWS.exe";
-    message.textContent = "Windows.exe has booted. Please do not turn it off during battle.";
+
+    message.textContent =
+      "Windows.exe has booted. Please do not turn it off during battle.";
+
   }
+
 }
+
+/* UPDATE HEALTH BARS */
 
 function updateBars() {
+
   playerHPBar.style.width = Math.max(0,playerHP) + "%";
+
   bossHPBar.style.width = Math.max(0,bossHP) + "%";
+
 }
 
-function animate(element, className) {
+/* ANIMATION */
+
+function animate(element,className) {
+
   element.classList.remove(className);
+
   void element.offsetWidth;
+
   element.classList.add(className);
-  setTimeout(() => element.classList.remove(className),400);
+
+  setTimeout(() => {
+    element.classList.remove(className);
+  },400);
+
 }
+
+/* PLAYER ATTACK */
 
 function attack(type) {
+
   if (gameOver || busy) return;
 
   busy = true;
   turn++;
 
   const move = moves[type];
+
   bossHP = Math.max(0,bossHP-move.damage);
+
   updateBars();
 
   animate(playerCharacter,"attack-animation");
@@ -684,73 +1570,131 @@ function attack(type) {
   message.textContent = move.name + " — " + move.text;
 
   if (bossHP <= 0) {
+
     setTimeout(nextRound,650);
+
     return;
+
   }
 
   setTimeout(bossTurn,650);
+
 }
 
+/* BOSS ATTACK */
+
 function bossTurn() {
+
   if (gameOver) return;
 
   const damage = Math.floor(Math.random()*12)+9;
-  const attackName = bossAttacks[Math.floor(Math.random()*bossAttacks.length)];
+
+  const attackName =
+    bossAttacks[Math.floor(Math.random()*bossAttacks.length)];
 
   playerHP = Math.max(0,playerHP-damage);
+
   updateBars();
+
   animate(playerCharacter,"hit");
 
-  message.textContent = "THE CRITIC ATTACKS: " + attackName + " You lost " + damage + " curiosity points.";
+  message.textContent =
+    "THE CRITIC ATTACKS: " + attackName +
+    " You lost " + damage + " curiosity points.";
 
   if (playerHP <= 0) {
+
     setTimeout(() => finishGame(false),650);
+
   } else {
+
     busy = false;
+
   }
+
 }
 
+/* NEXT ROUND */
+
 function nextRound() {
+
   if (round >= 3) {
+
     finishGame(true);
+
     return;
+
   }
 
   round++;
+
   bossHP = 100;
-  document.getElementById("round-label").textContent = "ROUND 0" + round + " / 03";
-  document.getElementById("boss-name").textContent = bossNames[round-1];
+
+  document.getElementById("round-label").textContent =
+    "ROUND 0" + round + " / 03";
+
+  document.getElementById("boss-name").textContent =
+    bossNames[round-1];
+
   updateBars();
 
-  message.textContent = "NEW THREAT DETECTED: " + bossNames[round-1] + ". The comments have multiplied.";
+  message.textContent =
+    "NEW THREAT DETECTED: " +
+    bossNames[round-1] +
+    ". The comments have multiplied.";
+
   busy = false;
+
 }
 
+/* GAME RESULT */
+
 function finishGame(won) {
+
   gameOver = true;
   busy = false;
 
   const result = document.getElementById("game-result");
+
   result.style.display = "block";
 
   if (won) {
-    document.getElementById("result-title").textContent = "BOSS DEFEATED.";
+
+    document.getElementById("result-title").textContent =
+      "BOSS DEFEATED.";
+
     document.getElementById("result-text").textContent =
       "You defended curiosity, context and the right to change your mind. Unfortunately, a new critic has been detected. YOU. Achievement unlocked: You became the thing you were fighting.";
-    message.textContent = "VICTORY. THE COMMENT SECTION HAS BEEN TEMPORARILY MUTED.";
+
+    message.textContent =
+      "VICTORY. THE COMMENT SECTION HAS BEEN TEMPORARILY MUTED.";
+
   } else {
-    document.getElementById("result-title").textContent = "CRITICAL FAILURE.";
+
+    document.getElementById("result-title").textContent =
+      "CRITICAL FAILURE.";
+
     document.getElementById("result-text").textContent =
       "The critic has defeated your curiosity. You may now post a one-star review of this battle without playing it again.";
-    message.textContent = "GAME OVER. THE CRITIC HAS LEFT A LONG REVIEW.";
+
+    message.textContent =
+      "GAME OVER. THE CRITIC HAS LEFT A LONG REVIEW.";
+
   }
 
-  document.querySelectorAll(".attack-row button").forEach(button => button.disabled=true);
+  document.querySelectorAll(".attack-row button")
+    .forEach(button => button.disabled=true);
+
   document.getElementById("crumb-select").disabled=true;
+
   document.getElementById("window-select").disabled=true;
+
 }
 
+/* RESTART */
+
 function restartGame() {
+
   player = "crumb";
   playerHP = 100;
   bossHP = 100;
@@ -759,24 +1703,42 @@ function restartGame() {
   gameOver = false;
   busy = false;
 
-  document.getElementById("round-label").textContent = "ROUND 01 / 03";
-  document.getElementById("boss-name").textContent = "THE CRITIC";
-  document.getElementById("game-result").style.display = "none";
+  document.getElementById("round-label").textContent =
+    "ROUND 01 / 03";
 
-  document.querySelectorAll(".attack-row button").forEach(button => button.disabled=false);
+  document.getElementById("boss-name").textContent =
+    "THE CRITIC";
+
+  document.getElementById("game-result").style.display =
+    "none";
+
+  document.querySelectorAll(".attack-row button")
+    .forEach(button => button.disabled=false);
+
   document.getElementById("crumb-select").disabled=false;
+
   document.getElementById("window-select").disabled=false;
 
-  document.getElementById("crumb-select").classList.add("selected");
-  document.getElementById("window-select").classList.remove("selected");
+  document.getElementById("crumb-select")
+    .classList.add("selected");
+
+  document.getElementById("window-select")
+    .classList.remove("selected");
 
   document.getElementById("player-character").innerHTML =
     '<div class="crumb-body"></div><div class="crumb-limb"></div>';
-  document.getElementById("player-name").textContent = "CRUMB";
 
-  message.textContent = "A critic has appeared. Select your character and choose your first attack.";
+  document.getElementById("player-name").textContent =
+    "CRUMB";
+
+  message.textContent =
+    "A critic has appeared. Select your character and choose your first attack.";
+
   updateBars();
+
 }
+
 </script>
+
 </body>
 </html>
