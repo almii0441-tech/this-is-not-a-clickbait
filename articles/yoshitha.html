@@ -7,7 +7,8 @@
 <title>Suddenly Everyone's a Critic | This Is Not a Clickbait</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -25,27 +26,23 @@
 * {box-sizing:border-box}
 html {scroll-behavior:smooth}
 body {
-  margin:0;
-  background:var(--bg);
-  color:var(--paper);
-  font-family:var(--sans);
-  overflow-x:hidden;
+  margin:0;background:var(--bg);color:var(--paper);
+  font-family:var(--sans);overflow-x:hidden;
 }
 a {color:inherit;text-decoration:none}
 button {font:inherit}
 .noise {
-  position:fixed;inset:0;pointer-events:none;z-index:10;
-  opacity:.07;
+  position:fixed;inset:0;pointer-events:none;z-index:20;
+  opacity:.055;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
 }
 .topbar {
-  padding:18px 5vw;
-  border-bottom:1px solid #292831;
+  padding:18px 5vw;border-bottom:1px solid #292831;
   display:flex;justify-content:space-between;align-items:center;
-  font:11px var(--mono);letter-spacing:1px;color:var(--muted);
+  gap:15px;font:11px var(--mono);letter-spacing:1px;color:var(--muted);
 }
 .brand {color:var(--paper);font-weight:500}
-.topbar a {color:var(--cyan)}
+.topbar a:last-child {color:var(--cyan)}
 .hero {
   min-height:76vh;padding:90px 8vw 70px;
   display:flex;flex-direction:column;justify-content:center;
@@ -54,13 +51,15 @@ button {font:inherit}
 .hero:after {
   content:"";position:absolute;width:380px;height:380px;
   border:1px solid #33303d;border-radius:50%;
-  right:-100px;top:15%;box-shadow:0 0 0 35px #111018,0 0 0 36px #292531,0 0 0 90px #111018,0 0 0 91px #292531;
+  right:-100px;top:15%;
+  box-shadow:0 0 0 35px #111018,0 0 0 36px #292531,
+  0 0 0 90px #111018,0 0 0 91px #292531;
   opacity:.5;
 }
 .eyebrow {font:12px var(--mono);color:var(--cyan);letter-spacing:3px}
 h1 {
   position:relative;z-index:1;
-  font:800 clamp(3.2rem,10vw,8.5rem)/.9 var(--sans);
+  font:900 clamp(3.2rem,10vw,8.5rem)/.9 var(--sans);
   letter-spacing:-.09em;text-transform:uppercase;
   max-width:1050px;margin:30px 0;
   text-shadow:4px 0 var(--red),-3px 0 var(--cyan);
@@ -79,36 +78,15 @@ h1 {
   position:absolute;right:8%;bottom:45px;
   font:10px var(--mono);color:var(--red);letter-spacing:2px;
 }
-.article-wrap {
-  max-width:850px;margin:auto;padding:70px 7vw 100px;
+.hero-image {
+  width:100%;height:280px;object-fit:cover;
+  display:block;filter:grayscale(35%) contrast(1.1);
+  border-top:1px solid #38313e;border-bottom:1px solid #38313e;
 }
-.article-label {
-  font:11px var(--mono);color:var(--red);
-  letter-spacing:2px;margin-bottom:30px;
-}
-.article-body {
-  font:400 17px/1.95 var(--sans);
-  color:#d8d4d0;
-}
-.article-body p {margin:0 0 30px}
-.article-body p:first-child:first-letter {
-  float:left;font:700 5rem/.85 var(--serif);
-  color:var(--cyan);padding:9px 12px 0 0;
-}
-.article-body p:nth-child(3) {
-  border-left:3px solid var(--red);
-  padding-left:22px;
-}
-.article-body p:nth-child(4) {
-  background:#15131d;padding:25px;
-  border:1px solid #393044;
-}
-.pullquote {
-  margin:65px -3vw;padding:35px 25px;
-  border-top:1px solid var(--purple);
-  border-bottom:1px solid var(--purple);
-  font:italic clamp(1.6rem,4vw,2.6rem)/1.35 var(--serif);
-  color:var(--green);
+.image-caption {
+  padding:10px 7vw;
+  font:10px var(--mono);color:var(--muted);
+  letter-spacing:1px;text-align:right;
 }
 .interlude {
   padding:80px 7vw;background:#12111a;
@@ -119,31 +97,99 @@ h1 {
   font:11px var(--mono);color:var(--cyan);letter-spacing:3px;
 }
 .interlude h2 {
-  font:800 clamp(2rem,6vw,4.5rem)/1 var(--sans);
+  font:900 clamp(2rem,6vw,4.5rem)/1 var(--sans);
   letter-spacing:-.06em;max-width:800px;margin:25px auto;
 }
-.interlude p {color:var(--muted);font:14px var(--mono)}
-.glitch-word {
-  color:var(--red);text-shadow:2px 0 var(--cyan),-2px 0 var(--purple);
+.interlude p {color:var(--muted);font:12px var(--mono);line-height:1.8}
+.glitch-word {color:var(--red);text-shadow:2px 0 var(--cyan),-2px 0 var(--purple)}
+.article-wrap {
+  max-width:850px;margin:auto;padding:70px 7vw 100px;
 }
+.article-label {
+  font:11px var(--mono);color:var(--red);
+  letter-spacing:2px;margin:55px 0 25px;
+}
+.article-body {
+  font:400 17px/1.95 var(--sans);
+  color:#d8d4d0;
+}
+.article-body p {margin:0 0 30px}
+.article-body p:first-child:first-letter {
+  float:left;font:700 5rem/.85 var(--serif);
+  color:var(--cyan);padding:9px 12px 0 0;
+}
+.pullquote {
+  margin:65px -3vw;padding:35px 25px;
+  border-top:1px solid var(--purple);
+  border-bottom:1px solid var(--purple);
+  font:italic clamp(1.6rem,4vw,2.6rem)/1.35 var(--serif);
+  color:var(--green);
+}
+.visual-break {
+  margin:65px 0;position:relative;
+}
+.visual-break img {
+  width:100%;height:330px;object-fit:cover;
+  display:block;border:1px solid #37313f;
+  filter:saturate(.8) contrast(1.05);
+}
+.visual-break figcaption {
+  margin-top:10px;font:10px var(--mono);
+  color:var(--muted);letter-spacing:1px;
+}
+.visual-break .sticker {
+  position:absolute;right:-15px;top:-20px;
+  background:var(--red);color:#09090d;
+  padding:13px 17px;transform:rotate(5deg);
+  font:11px var(--mono);font-weight:500;
+}
+.review-wall {
+  margin:65px 0;padding:25px;
+  background:#15131d;border:1px solid #393044;
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.review {
+  padding:17px;background:#0c0b12;
+  border:1px solid #34303d;
+  font:12px/1.7 var(--mono);color:#d8d4d0;
+}
+.review:nth-child(2) {transform:rotate(1deg);border-color:var(--red)}
+.review:nth-child(3) {transform:rotate(-1deg);border-color:var(--cyan)}
+.review:nth-child(4) {border-color:var(--purple)}
+.review small {display:block;color:var(--muted);margin-top:10px}
+.review .stars {color:var(--green);letter-spacing:3px}
+.image-pair {
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:14px;margin:65px 0;
+}
+.image-pair figure {margin:0}
+.image-pair img {
+  width:100%;height:230px;object-fit:cover;
+  border:1px solid #393044;
+}
+.image-pair figcaption {
+  padding-top:9px;font:10px var(--mono);color:var(--muted);
+}
+.ticker {
+  overflow:hidden;white-space:nowrap;
+  padding:15px 0;background:var(--green);color:#09090d;
+  font:11px var(--mono);letter-spacing:2px;
+}
+.ticker span {display:inline-block;animation:scroll 25s linear infinite}
+@keyframes scroll {to{transform:translateX(-50%)}}
 
 /* GAME */
-.game-section {
-  padding:90px 5vw 100px;
-  background:#08080c;
-}
+.game-section {padding:90px 5vw 100px;background:#08080c}
 .game-heading {text-align:center;max-width:760px;margin:0 auto 40px}
 .game-heading .eyebrow {color:var(--green)}
 .game-heading h2 {
-  font:800 clamp(2.5rem,7vw,5.5rem)/.95 var(--sans);
+  font:900 clamp(2.5rem,7vw,5.5rem)/.95 var(--sans);
   letter-spacing:-.08em;margin:20px 0;
 }
 .game-heading p {color:var(--muted);line-height:1.7}
 .game-shell {
-  max-width:900px;margin:auto;
-  border:1px solid #45404e;
-  background:#101018;
-  box-shadow:10px 10px 0 #21182c;
+  max-width:900px;margin:auto;border:1px solid #45404e;
+  background:#101018;box-shadow:10px 10px 0 #21182c;
 }
 .game-top {
   display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
@@ -151,8 +197,8 @@ h1 {
   font:11px var(--mono);color:var(--cyan);
 }
 .game-screen {
-  position:relative;min-height:360px;
-  overflow:hidden;background:
+  position:relative;min-height:360px;overflow:hidden;
+  background:
   linear-gradient(#11111c 1px,transparent 1px),
   linear-gradient(90deg,#11111c 1px,transparent 1px),
   radial-gradient(ellipse at center,#242035,#0c0c12 75%);
@@ -170,10 +216,15 @@ h1 {
   transition:transform .2s,filter .2s;
 }
 .character.hit {animation:shake .3s}
+.character.attack-animation {animation:attackmove .35s}
 @keyframes shake {
   0%,100%{transform:translateX(0)}
   25%{transform:translateX(-12px)}
   75%{transform:translateX(12px)}
+}
+@keyframes attackmove {
+  0%,100%{transform:translateX(0) scale(1)}
+  50%{transform:translateX(24px) scale(1.15)}
 }
 .crumb-body {
   width:82px;height:92px;background:#eee9df;
@@ -197,8 +248,7 @@ h1 {
 .window-body {
   width:105px;height:85px;position:relative;
   background:#24233d;border:5px solid #8b72e8;
-  transform:rotate(-7deg);
-  box-shadow:7px 7px 0 var(--cyan);
+  transform:rotate(-7deg);box-shadow:7px 7px 0 var(--cyan);
 }
 .window-bar {
   height:18px;background:#8b72e8;
@@ -227,24 +277,16 @@ h1 {
   content:"▰";position:absolute;top:60px;left:35px;
   color:#160d17;font:25px var(--sans);
 }
-.name {
-  font:12px var(--mono);letter-spacing:2px;color:var(--paper);
-}
-.hp {
-  width:100%;height:9px;background:#302c39;border:1px solid #56505d;
-}
+.name {font:12px var(--mono);letter-spacing:2px;color:var(--paper);text-align:center}
+.hp {width:100%;height:9px;background:#302c39;border:1px solid #56505d}
 .hp-fill {height:100%;width:100%;transition:width .3s}
 .player-hp {background:var(--cyan)}
 .boss-hp {background:var(--red)}
-.vs {
-  font:900 25px var(--sans);color:var(--green);
-  text-shadow:2px 2px var(--purple);
-}
+.vs {font:900 25px var(--sans);color:var(--green);text-shadow:2px 2px var(--purple)}
 .game-message {
   min-height:55px;padding:15px 20px;
   border-top:1px solid #34303d;border-bottom:1px solid #34303d;
-  font:12px/1.7 var(--mono);color:var(--green);
-  text-align:center;
+  font:12px/1.7 var(--mono);color:var(--green);text-align:center;
 }
 .game-controls {padding:22px}
 .character-select,.attack-row {
@@ -254,8 +296,7 @@ h1 {
 .game-btn {
   background:#1b1925;color:var(--paper);
   border:1px solid #51465e;padding:13px 17px;
-  font:11px var(--mono);letter-spacing:1px;cursor:pointer;
-  transition:.2s;
+  font:11px var(--mono);letter-spacing:1px;cursor:pointer;transition:.2s;
 }
 .game-btn:hover:not(:disabled) {
   background:var(--purple);color:#09090d;transform:translateY(-3px);
@@ -273,19 +314,29 @@ h1 {
   display:none;text-align:center;padding:25px;
   background:#1b1724;border-top:1px solid var(--green);
 }
-.game-result h3 {font:800 2rem var(--sans);color:var(--green)}
+.game-result h3 {font:900 2rem var(--sans);color:var(--green)}
 .game-result p {color:#c5c0cc;line-height:1.7}
 .restart {margin-top:10px}
 .bottom-note {
   text-align:center;padding:60px 20px;
-  color:var(--muted);font:11px var(--mono);letter-spacing:2px;
+  color:var(--muted);font:11px var(--mono);letter-spacing:2px;line-height:2;
 }
 .bottom-note strong {color:var(--red)}
+
 @media(max-width:600px) {
+  .topbar {font-size:9px;padding:15px 4vw}
   .hero {min-height:65vh;padding:65px 7vw}
   .hero:after {right:-230px}
+  .hero-tag {font-size:9px}
+  .hero-image {height:210px}
   .article-wrap {padding:50px 7vw}
   .article-body {font-size:15px}
+  .pullquote {margin:50px 0}
+  .visual-break img {height:230px}
+  .review-wall {padding:12px;gap:8px}
+  .review {padding:12px;font-size:10px}
+  .image-pair {gap:9px}
+  .image-pair img {height:150px}
   .game-screen {min-height:300px;padding:25px 8px}
   .character {transform:scale(.8)}
   .fighter {width:42%}
@@ -310,6 +361,11 @@ h1 {
   <div class="byline">A TRANSMISSION BY <strong>YOSHITHA REDDY</strong></div>
   <div class="hero-tag">[ SCROLL TO FORM AN OPINION ]</div>
 </section>
+
+<img class="hero-image"
+src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=85"
+alt="Rows of seats inside a cinema">
+<div class="image-caption">FIG. 01 / THE PLACE WHERE OPINIONS ARE FORMED IN THE DARK.</div>
 
 <div class="interlude">
   <div class="small">A SMALL OBSERVATION FROM THE COMMENT SECTION</div>
@@ -342,6 +398,13 @@ h1 {
       “We become reactive towards art rather than reflective.”
     </div>
 
+    <figure class="visual-break">
+      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=85"
+      alt="Camera equipment ready to capture a scene">
+      <span class="sticker">ROLL CAMERA!</span>
+      <figcaption>THE WORK BEHIND THE FRAME IS EASIER TO FORGET THAN THE FRAME ITSELF.</figcaption>
+    </figure>
+
     <div class="article-label">02 / THE OVERLOAD</div>
 
     <p>Firstly, we must establish that we are in an era where making any piece of art or any type of
@@ -350,6 +413,29 @@ h1 {
     easier compared to that of a person producing something creative a decade or a century ago.
     We become reactive towards art rather than reflective. This is a level of desensitisation that
     comes with technological development and over flow of productions and distributions.</p>
+
+    <div class="review-wall">
+      <div class="review">
+        <span class="stars">★★★★★</span><br>
+        "Haven't watched it. Already disappointed."
+        <small>@definitely_a_film_expert</small>
+      </div>
+      <div class="review">
+        <span class="stars">★☆☆☆☆</span><br>
+        "The trailer was 90 seconds too long."
+        <small>@cinema_connoisseur_47</small>
+      </div>
+      <div class="review">
+        <span class="stars">★★☆☆☆</span><br>
+        "My mutual said it was bad."
+        <small>@opinion_pending</small>
+      </div>
+      <div class="review">
+        <span class="stars">★★★★★</span><br>
+        "I liked the poster. That's my review."
+        <small>@visual_storyteller</small>
+      </div>
+    </div>
 
     <p>In the past decade we have seen so much evolution in specifically film media, that it takes quite
     a lot of creative experimentation to make us in awe of it. Psychology talks about this
@@ -364,6 +450,13 @@ h1 {
     dismissals comments compared to genuine curiosity and openness and deeper analysis of
     media and art.</p>
 
+    <figure class="visual-break">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=85"
+      alt="Person using a smartphone">
+      <span class="sticker" style="background:var(--cyan)">SCROLL. JUDGE. REPEAT.</span>
+      <figcaption>THE FEED NEVER RUNS OUT OF THINGS TO HAVE AN OPINION ABOUT.</figcaption>
+    </figure>
+
     <div class="article-label">03 / THE SECOND VERDICT</div>
 
     <p>A Bollywood sci-fi movie called Ra.One starring Shah Rukh Khan was released in 2011. Initially
@@ -376,6 +469,19 @@ h1 {
 
     <div class="pullquote">
       A first reaction is not always a final thought.
+    </div>
+
+    <div class="image-pair">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=900&q=85"
+        alt="A cinematic film projector">
+        <figcaption>THE FIRST WATCH.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85"
+        alt="A movie theatre screen">
+        <figcaption>THE SECOND LOOK.</figcaption>
+      </figure>
     </div>
 
     <div class="article-label">04 / THE REFLECTION</div>
@@ -392,6 +498,13 @@ h1 {
 
   </article>
 </main>
+
+<div class="ticker">
+  <span>
+    OPINION DETECTED /// CONTEXT MISSING /// REVIEW PUBLISHED /// FILM NOT WATCHED ///
+    OPINION DETECTED /// CONTEXT MISSING /// REVIEW PUBLISHED /// FILM NOT WATCHED ///
+  </span>
+</div>
 
 <section class="interlude">
   <div class="small">END OF ARTICLE / BEGINNING OF PROBLEM</div>
@@ -446,10 +559,10 @@ h1 {
       </div>
 
       <div class="attack-row">
-        <button class="game-btn attack" id="context-btn" onclick="attack('context')">CONTEXT BLAST</button>
-        <button class="game-btn attack" id="thought-btn" onclick="attack('thought')">THOUGHT BUBBLE</button>
-        <button class="game-btn special" id="rewatch-btn" onclick="attack('rewatch')">THE REWATCH</button>
-        <button class="game-btn special" id="curiosity-btn" onclick="attack('curiosity')">CURIOSITY ATTACK</button>
+        <button class="game-btn attack" onclick="attack('context')">CONTEXT BLAST</button>
+        <button class="game-btn attack" onclick="attack('thought')">THOUGHT BUBBLE</button>
+        <button class="game-btn special" onclick="attack('rewatch')">THE REWATCH</button>
+        <button class="game-btn special" onclick="attack('curiosity')">CURIOSITY ATTACK</button>
       </div>
     </div>
 
@@ -467,7 +580,8 @@ h1 {
 </section>
 
 <footer class="bottom-note">
-  THIS IS NOT A CLICKBAIT <strong>///</strong> HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+  THIS IS NOT A CLICKBAIT <strong>///</strong><br>
+  HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
 </footer>
 
 <script>
@@ -477,6 +591,7 @@ let bossHP = 100;
 let round = 1;
 let turn = 0;
 let gameOver = false;
+let busy = false;
 
 const playerCharacter = document.getElementById("player-character");
 const bossCharacter = document.getElementById("boss-character");
@@ -522,7 +637,7 @@ const moves = {
 };
 
 function selectCharacter(choice) {
-  if (turn > 0 || gameOver) return;
+  if (turn > 0 || gameOver || busy) return;
 
   player = choice;
   document.getElementById("crumb-select").classList.toggle("selected",choice==="crumb");
@@ -533,56 +648,65 @@ function selectCharacter(choice) {
   if (choice === "crumb") {
     art.innerHTML = '<div class="crumb-body"></div><div class="crumb-limb"></div>';
     document.getElementById("player-name").textContent = "CRUMB";
-    message.textContent = "Crumb is ready. Tiny creature. Questionable amount of confidence.";
+    message.textContent = "Crumb has entered the arena. Small creature. Large opinions.";
   } else {
-    art.innerHTML = '<div class="window-body"><div class="window-bar">_ □ X</div><div class="window-eyes">• •</div><div class="window-legs"></div></div>';
+    art.innerHTML = '<div class="window-body"><div class="window-bar">× _</div><div class="window-eyes">● ●</div><div class="window-legs"></div></div>';
     document.getElementById("player-name").textContent = "WINDOWS.exe";
-    message.textContent = "Windows.exe has entered the chat. Please accept all unexpected updates.";
+    message.textContent = "Windows.exe has booted. Please do not turn it off during battle.";
   }
 }
 
-function attack(type) {
-  if (gameOver) return;
+function updateBars() {
+  playerHPBar.style.width = Math.max(0,playerHP) + "%";
+  bossHPBar.style.width = Math.max(0,bossHP) + "%";
+}
 
-  const move = moves[type];
+function animate(element, className) {
+  element.classList.remove(className);
+  void element.offsetWidth;
+  element.classList.add(className);
+  setTimeout(() => element.classList.remove(className),400);
+}
+
+function attack(type) {
+  if (gameOver || busy) return;
+
+  busy = true;
   turn++;
 
-  let damage = move.damage;
-  if (type === "rewatch" && round === 3) damage += 8;
+  const move = moves[type];
+  bossHP = Math.max(0,bossHP-move.damage);
+  updateBars();
 
-  bossHP = Math.max(0,bossHP-damage);
-  bossHPBar.style.width = bossHP + "%";
-  bossCharacter.classList.remove("hit");
-  void bossCharacter.offsetWidth;
-  bossCharacter.classList.add("hit");
+  animate(playerCharacter,"attack-animation");
+  animate(bossCharacter,"hit");
 
-  message.textContent = move.text + " -" + damage + " critic HP.";
+  message.textContent = move.name + " — " + move.text;
 
   if (bossHP <= 0) {
-    nextRound();
+    setTimeout(nextRound,650);
     return;
   }
 
-  setTimeout(bossTurn,550);
+  setTimeout(bossTurn,650);
 }
 
 function bossTurn() {
   if (gameOver) return;
 
+  const damage = Math.floor(Math.random()*12)+9;
   const attackName = bossAttacks[Math.floor(Math.random()*bossAttacks.length)];
-  const damage = Math.floor(Math.random()*13)+8;
 
   playerHP = Math.max(0,playerHP-damage);
-  playerHPBar.style.width = playerHP + "%";
+  updateBars();
+  animate(playerCharacter,"hit");
 
-  playerCharacter.classList.remove("hit");
-  void playerCharacter.offsetWidth;
-  playerCharacter.classList.add("hit");
-
-  message.textContent = "THE CRITIC ATTACKS: " + attackName + " -" + damage + " curiosity HP.";
+  message.textContent = "THE CRITIC ATTACKS: " + attackName + " You lost " + damage + " curiosity points.";
 
   if (playerHP <= 0) {
-    finishGame(false);
+    setTimeout(() => finishGame(false),650);
+  } else {
+    busy = false;
   }
 }
 
@@ -594,59 +718,64 @@ function nextRound() {
 
   round++;
   bossHP = 100;
-  bossHPBar.style.width = "100%";
   document.getElementById("round-label").textContent = "ROUND 0" + round + " / 03";
   document.getElementById("boss-name").textContent = bossNames[round-1];
+  updateBars();
 
-  message.textContent = round === 2
-    ? "The comment section has arrived. Apparently one opinion was not enough."
-    : "A whole army of identical profile pictures has appeared. This is getting personal.";
+  message.textContent = "NEW THREAT DETECTED: " + bossNames[round-1] + ". The comments have multiplied.";
+  busy = false;
 }
 
 function finishGame(won) {
   gameOver = true;
-
-  document.querySelectorAll(".attack-row button").forEach(btn => btn.disabled=true);
-  document.getElementById("crumb-select").disabled=true;
-  document.getElementById("window-select").disabled=true;
+  busy = false;
 
   const result = document.getElementById("game-result");
   result.style.display = "block";
 
   if (won) {
-    document.getElementById("result-title").textContent = "CRITIC DEFEATED.";
-    document.getElementById("result-text").innerHTML =
-      "The comment section has been defeated. Context has survived another day.<br><br>" +
-      "Achievement unlocked: <strong>YOU BECAME THE THING YOU WERE FIGHTING.</strong><br>" +
-      "New critic detected. Identity: YOU.";
-    message.textContent = "VICTORY. Wait. Why are you already typing a review?";
-  } else {
-    document.getElementById("result-title").textContent = "YOU HAVE BEEN REVIEWED.";
+    document.getElementById("result-title").textContent = "BOSS DEFEATED.";
     document.getElementById("result-text").textContent =
-      "The critic won. Your curiosity has left the chat. Perhaps watch the movie before reviewing it next time.";
-    message.textContent = "GAME OVER. The critic has posted a 1-star review of your performance.";
+      "You defended curiosity, context and the right to change your mind. Unfortunately, a new critic has been detected. YOU. Achievement unlocked: You became the thing you were fighting.";
+    message.textContent = "VICTORY. THE COMMENT SECTION HAS BEEN TEMPORARILY MUTED.";
+  } else {
+    document.getElementById("result-title").textContent = "CRITICAL FAILURE.";
+    document.getElementById("result-text").textContent =
+      "The critic has defeated your curiosity. You may now post a one-star review of this battle without playing it again.";
+    message.textContent = "GAME OVER. THE CRITIC HAS LEFT A LONG REVIEW.";
   }
+
+  document.querySelectorAll(".attack-row button").forEach(button => button.disabled=true);
+  document.getElementById("crumb-select").disabled=true;
+  document.getElementById("window-select").disabled=true;
 }
 
 function restartGame() {
+  player = "crumb";
   playerHP = 100;
   bossHP = 100;
   round = 1;
   turn = 0;
   gameOver = false;
+  busy = false;
 
-  playerHPBar.style.width = "100%";
-  bossHPBar.style.width = "100%";
   document.getElementById("round-label").textContent = "ROUND 01 / 03";
-  document.getElementById("boss-name").textContent = bossNames[0];
+  document.getElementById("boss-name").textContent = "THE CRITIC";
   document.getElementById("game-result").style.display = "none";
 
-  document.querySelectorAll(".attack-row button").forEach(btn => btn.disabled=false);
+  document.querySelectorAll(".attack-row button").forEach(button => button.disabled=false);
   document.getElementById("crumb-select").disabled=false;
   document.getElementById("window-select").disabled=false;
 
-  selectCharacter("crumb");
+  document.getElementById("crumb-select").classList.add("selected");
+  document.getElementById("window-select").classList.remove("selected");
+
+  document.getElementById("player-character").innerHTML =
+    '<div class="crumb-body"></div><div class="crumb-limb"></div>';
+  document.getElementById("player-name").textContent = "CRUMB";
+
   message.textContent = "A critic has appeared. Select your character and choose your first attack.";
+  updateBars();
 }
 </script>
 </body>
