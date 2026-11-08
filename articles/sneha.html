@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>The Borrowed Imagination | TINAC</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,33 +16,47 @@
   --panel: #242016;
   --text: #f5edda;
   --muted: #b9ad91;
-  --purple: #d5a84b;
-  --blue: #a9b58a;
-  --pink: #c8794f;
-  --green: #e7d49c;
+  --gold: #d5a84b;
+  --olive: #a9b58a;
+  --orange: #c8794f;
+  --cream: #e7d49c;
   --line: #49402d;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  margin: 0;
   background:
-    radial-gradient(ellipse at 15% 8%, #76552b25, transparent 35%),
-    radial-gradient(ellipse at 90% 50%, #46512b22, transparent 35%),
+    radial-gradient(ellipse at 10% 10%, #76552b25, transparent 35%),
+    radial-gradient(ellipse at 90% 55%, #46512b22, transparent 35%),
     var(--bg);
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   line-height: 1.8;
 }
 
-a { color: inherit; text-decoration: none; }
+button, textarea {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HEADER */
 
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
   padding: 20px 6%;
   border-bottom: 1px solid var(--line);
   color: var(--muted);
@@ -49,14 +64,18 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 1px;
 }
 
-.site-header strong { color: var(--text); }
+.site-header strong {
+  color: var(--text);
+}
+
+/* HERO */
 
 .article-hero {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
+  overflow: hidden;
   width: min(1120px, 90%);
-  min-height: 460px;
+  min-height: 480px;
   margin: 35px auto 65px;
   padding: clamp(30px, 7vw, 75px);
   border: 1px solid #80683d;
@@ -69,36 +88,32 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: .14;
+  opacity: .2;
   background-image:
     linear-gradient(#d5a84b22 1px, transparent 1px),
     linear-gradient(90deg, #d5a84b22 1px, transparent 1px);
   background-size: 34px 34px;
-  mask-image: linear-gradient(to right, black, transparent);
 }
 
 .article-hero::after {
   content: "007 / CREATIVE ARCHIVE";
   position: absolute;
-  right: 24px;
   top: 22px;
+  right: 24px;
   color: #d5a84b77;
   font: 10px 'DM Mono', monospace;
   letter-spacing: 2px;
 }
 
 .hero-kicker {
-  color: var(--blue);
+  color: var(--olive);
   font: 10px 'DM Mono', monospace;
   letter-spacing: 2px;
   margin-bottom: 24px;
 }
 
 .hero-title {
-  position: relative;
-  z-index: 2;
   max-width: 760px;
-  margin: 0;
   font-size: clamp(43px, 8vw, 86px);
   font-weight: 900;
   line-height: .98;
@@ -106,30 +121,29 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-title .borrowed {
-  color: #d5a84b;
+  color: var(--gold);
   text-shadow: 3px 3px 0 #76532d;
 }
 
 .hero-title .imagination {
-  color: #c8794f;
+  color: var(--orange);
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 600;
 }
 
 .hero-subtitle {
-  max-width: 530px;
+  max-width: 510px;
   margin-top: 25px;
   color: #e0d5bd;
   font-size: 15px;
-  line-height: 1.7;
 }
 
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 28px;
-  margin-top: 30px;
+  margin-top: 25px;
   color: var(--muted);
   font: 10px 'DM Mono', monospace;
   letter-spacing: 1px;
@@ -137,122 +151,194 @@ a { color: inherit; text-decoration: none; }
 
 .hero-status {
   display: inline-block;
-  margin-top: 23px;
+  margin-top: 22px;
   padding: 7px 11px;
   border: 1px solid #a9b58a77;
   border-radius: 4px;
-  color: var(--blue);
+  color: var(--olive);
   font: 10px 'DM Mono', monospace;
 }
 
-/* MUSE_007 */
+/* MUSE CHARACTER */
 
-.muse {
+.muse-character {
   position: absolute;
   right: 7%;
-  bottom: 24px;
-  width: 175px;
-  height: 190px;
-  animation: muse-float 3.5s ease-in-out infinite;
-  z-index: 1;
+  bottom: 18px;
+  width: 190px;
+  height: 255px;
+  cursor: pointer;
+  z-index: 5;
+  animation: muse-float 2.3s ease-in-out infinite;
 }
+
+.muse-body {
+  position: absolute;
+  top: 65px;
+  left: 30px;
+  width: 125px;
+  height: 130px;
+  border: 3px solid #f8e8bb;
+  border-radius: 48% 48% 43% 43%;
+  background: linear-gradient(145deg, #f2cc69, #c99035);
+  box-shadow: 0 10px 0 #76532d, 0 0 35px #d5a84b55;
+  z-index: 2;
+}
+
+.muse-eyes {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 39px;
+}
+
+.muse-eye {
+  position: relative;
+  width: 15px;
+  height: 22px;
+  border-radius: 50%;
+  background: #282016;
+  animation: blink 4s infinite;
+}
+
+.muse-eye i {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 5px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.muse-mouth {
+  position: absolute;
+  top: 84px;
+  left: 52px;
+  width: 20px;
+  height: 12px;
+  border-bottom: 3px solid #44301d;
+  border-radius: 50%;
+}
+
+.muse-blush {
+  position: absolute;
+  top: 78px;
+  width: 19px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.muse-blush.left { left: 12px; }
+.muse-blush.right { right: 12px; }
 
 .muse-pencil {
   position: absolute;
+  top: 14px;
+  left: 92px;
   width: 9px;
   height: 55px;
-  top: 0;
-  left: 83px;
-  background: #c8794f;
+  background: var(--orange);
+  border: 1px solid var(--cream);
   border-radius: 3px;
-  transform: rotate(25deg);
+  transform: rotate(24deg);
+  z-index: 3;
 }
 
 .muse-pencil::before {
   content: "";
   position: absolute;
-  top: -8px;
-  left: 0;
+  top: -9px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 9px solid #f5edda;
+  border-bottom: 10px solid var(--cream);
 }
 
-.muse-head {
+.muse-arm {
   position: absolute;
-  width: 135px;
-  height: 125px;
-  left: 20px;
-  top: 40px;
-  background: #d5a84b;
-  border: 3px solid #f5edda;
-  border-radius: 48% 48% 44% 44%;
-  box-shadow: 8px 8px 0 #76532d, 0 0 25px #d5a84b33;
+  top: 116px;
+  width: 45px;
+  height: 14px;
+  border: 2px solid var(--cream);
+  border-radius: 20px;
+  background: var(--gold);
+  z-index: 1;
 }
 
-.muse-eye {
+.left-arm {
+  left: -2px;
+  transform: rotate(35deg);
+}
+
+.right-arm {
+  right: -1px;
+  transform-origin: left center;
+  animation: waving .6s ease-in-out infinite alternate;
+}
+
+.muse-legs {
   position: absolute;
-  top: 43px;
-  left: 34px;
-  width: 13px;
-  height: 19px;
-  border-radius: 50%;
-  background: #282016;
+  top: 193px;
+  left: 72px;
+  display: flex;
+  gap: 25px;
 }
 
-.muse-eye.right {
-  left: 83px;
+.muse-legs span {
+  width: 11px;
+  height: 23px;
+  border-radius: 10px;
+  background: var(--gold);
 }
 
-.muse-eye::after {
-  content: "";
-  position: absolute;
-  width: 4px;
-  height: 5px;
-  left: 3px;
-  top: 3px;
-  border-radius: 50%;
-  background: white;
-}
-
-.muse-smile {
-  position: absolute;
-  left: 55px;
-  top: 73px;
-  width: 25px;
-  height: 13px;
-  border-bottom: 3px solid #44301d;
-  border-radius: 50%;
-}
-
-.muse-cheek {
-  position: absolute;
-  top: 69px;
-  left: 15px;
-  width: 20px;
-  height: 9px;
-  border-radius: 50%;
-  background: #c8794f;
-}
-
-.muse-cheek.right { left: 100px; }
-
-.muse-label {
+.muse-name {
   position: absolute;
   bottom: 0;
   width: 100%;
   text-align: center;
-  color: #e7d49c;
+  color: var(--cream);
   font: 10px 'DM Mono', monospace;
   letter-spacing: 2px;
 }
 
-@keyframes muse-float {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-12px) rotate(3deg); }
+.muse-speech {
+  position: absolute;
+  top: 10px;
+  left: -42px;
+  padding: 9px 12px;
+  border-radius: 12px 12px 12px 2px;
+  background: var(--cream);
+  color: #292016;
+  font-size: 11px;
+  font-weight: 900;
+  white-space: nowrap;
+  box-shadow: 3px 4px 0 #76532d;
+  animation: pop .5s ease;
+  z-index: 6;
 }
 
-/* ARTICLE BODY */
+@keyframes muse-float {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-13px) rotate(3deg); }
+}
+
+@keyframes waving {
+  from { transform: rotate(-25deg); }
+  to { transform: rotate(-105deg); }
+}
+
+@keyframes blink {
+  0%,44%,48%,100% { transform: scaleY(1); }
+  46% { transform: scaleY(.08); }
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ARTICLE */
 
 .article-content {
   width: min(760px, 88%);
@@ -260,36 +346,34 @@ a { color: inherit; text-decoration: none; }
 }
 
 .article-label {
-  color: var(--blue);
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: 2px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
+  color: var(--olive);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 2px;
 }
 
 .article-opening {
   margin: 30px 0 38px;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(21px, 3.4vw, 28px);
+  color: var(--cream);
+  font: italic 28px 'Playfair Display', serif;
   line-height: 1.6;
-  color: #e7d49c;
 }
 
 .article-content p {
-  margin: 0 0 27px;
+  margin-bottom: 27px;
   color: #e3dac8;
   font-size: 16px;
   line-height: 1.95;
 }
 
-.article-content .pullquote {
+.pullquote {
   margin: 48px -15px;
   padding: 25px 28px;
-  border-left: 3px solid #d5a84b;
+  border-left: 3px solid var(--gold);
   background: linear-gradient(90deg, #d5a84b12, transparent);
-  color: #e7d49c;
+  color: var(--cream);
   font: italic 23px 'Playfair Display', serif;
-  line-height: 1.5;
 }
 
 .article-image {
@@ -301,56 +385,54 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   max-height: 420px;
   object-fit: cover;
-  border-radius: 10px;
   border: 1px solid #665438;
-  filter: saturate(.78) sepia(.13);
+  border-radius: 10px;
+  filter: saturate(.8) sepia(.12);
 }
 
 .article-image figcaption {
   margin-top: 10px;
   color: var(--muted);
   font: 10px 'DM Mono', monospace;
-  letter-spacing: .5px;
 }
 
 .article-end {
-  border-top: 1px solid var(--line);
-  padding-top: 20px;
   margin-top: 45px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
   color: var(--muted);
   font: 10px 'DM Mono', monospace;
   letter-spacing: 1px;
 }
 
-/* INTERACTIVE GAME */
+/* GAME SECTION */
 
 .idea-game {
-  width: min(900px, 90%);
+  position: relative;
+  overflow: hidden;
+  width: min(920px, 90%);
   margin: 80px auto;
   padding: clamp(24px, 5vw, 48px);
   border: 1px solid #80683d;
-  border-radius: 16px;
+  border-radius: 18px;
   background: linear-gradient(145deg, #292318, #202016);
-  position: relative;
-  overflow: hidden;
 }
 
 .game-kicker {
-  color: #c8794f;
+  color: var(--orange);
   font: 10px 'DM Mono', monospace;
   letter-spacing: 2px;
 }
 
 .idea-game h2 {
-  font-size: clamp(32px, 6vw, 58px);
-  line-height: 1;
   margin: 17px 0;
+  font-size: clamp(35px, 6vw, 58px);
+  line-height: 1;
 }
 
 .idea-game h2 span {
-  color: #d5a84b;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  color: var(--gold);
+  font: italic 600 1em 'Playfair Display', serif;
 }
 
 .game-intro {
@@ -360,9 +442,9 @@ a { color: inherit; text-decoration: none; }
 
 .game-screen {
   margin-top: 30px;
-  padding: clamp(18px, 4vw, 30px);
+  padding: clamp(16px, 4vw, 30px);
   border: 1px solid #55452f;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #171610;
 }
 
@@ -370,43 +452,186 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  color: #b9ad91;
-  font: 10px 'DM Mono', monospace;
   padding-bottom: 15px;
-  border-bottom: 1px solid #49402d;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font: 10px 'DM Mono', monospace;
+}
+
+/* GAME CHARACTER */
+
+.game-host {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 22px 0;
+  padding: 18px;
+  border: 1px solid #665438;
+  border-radius: 12px;
+  background: #d5a84b0d;
+}
+
+.game-host-character {
+  position: relative;
+  flex: 0 0 105px;
+  height: 135px;
+  animation: host-hop 2s ease-in-out infinite;
+}
+
+.host-body {
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  width: 85px;
+  height: 85px;
+  border: 2px solid var(--cream);
+  border-radius: 45%;
+  background: linear-gradient(140deg, #f2cc69, #c99035);
+  box-shadow: 0 6px 0 #76532d;
+}
+
+.host-eyes {
+  display: flex;
+  justify-content: center;
+  gap: 17px;
+  padding-top: 27px;
+}
+
+.host-eyes span {
+  width: 11px;
+  height: 15px;
+  border-radius: 50%;
+  background: #292016;
+}
+
+.host-mouth {
+  width: 16px;
+  height: 8px;
+  margin: 10px auto;
+  border-bottom: 2px solid #44301d;
+  border-radius: 50%;
+}
+
+.host-arm {
+  position: absolute;
+  top: 65px;
+  width: 33px;
+  height: 10px;
+  border: 2px solid var(--cream);
+  border-radius: 15px;
+  background: var(--gold);
+  z-index: 2;
+}
+
+.host-left { left: -3px; }
+
+.host-right {
+  right: -3px;
+  transform-origin: left;
+  animation: waving .6s infinite alternate;
+}
+
+.host-pencil {
+  position: absolute;
+  top: 5px;
+  left: 52px;
+  width: 7px;
+  height: 30px;
+  background: var(--orange);
+  transform: rotate(25deg);
+  z-index: 3;
+}
+
+.host-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--gold);
+  font: 9px 'DM Mono', monospace;
+}
+
+.game-muse-bubble {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: var(--cream);
+  color: #292016;
+  font: 8px 'DM Mono', monospace;
+  white-space: nowrap;
+  z-index: 5;
+}
+
+.host-dialogue {
+  flex: 1;
+}
+
+.host-dialogue span {
+  color: var(--gold);
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.host-dialogue p {
+  margin-top: 8px;
+  color: var(--cream);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@keyframes host-hop {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* GAME CONTENT */
+
+.game-progress {
+  height: 5px;
+  margin: 22px 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #403725;
+}
+
+.game-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  transition: width .5s ease;
 }
 
 .game-stage {
-  color: #a9b58a;
+  margin-top: 20px;
+  color: var(--olive);
   font: 10px 'DM Mono', monospace;
   letter-spacing: 2px;
-  margin-top: 25px;
 }
 
 .game-prompt {
   margin: 15px 0;
-  padding: 22px;
+  padding: 25px;
   border: 1px solid #6a5738;
-  border-radius: 8px;
+  border-radius: 10px;
   background: linear-gradient(120deg, #45331e, #292b1d);
 }
 
 .game-prompt h3 {
-  color: #f5edda;
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  margin: 0 0 8px;
+  color: var(--cream);
+  font: 26px 'Playfair Display', serif;
 }
 
 .game-prompt p {
+  margin-top: 8px;
   color: #d6c9ac;
   font-size: 13px;
-  margin: 0;
 }
 
 .game-question {
+  margin: 22px 0 12px;
   font-weight: 700;
-  margin: 25px 0 12px;
 }
 
 .game-options {
@@ -419,97 +644,160 @@ a { color: inherit; text-decoration: none; }
 .game-action {
   padding: 12px 15px;
   border: 1px solid #8a7047;
-  border-radius: 5px;
+  border-radius: 7px;
   background: transparent;
-  color: #f5edda;
+  color: var(--text);
   font: 11px 'DM Mono', monospace;
   cursor: pointer;
   transition: .2s;
 }
 
-.game-options button:hover,
-.game-action:hover {
+.game-options button:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
   background: #d5a84b22;
-  border-color: #d5a84b;
-  transform: translateY(-2px);
 }
 
-.game-options button:focus-visible,
-.game-action:focus-visible,
-.game-input:focus-visible {
-  outline: 2px solid #e7d49c;
-  outline-offset: 3px;
+.game-options button.selected {
+  background: var(--gold);
+  color: #171510;
+  border-color: var(--gold);
+}
+
+.game-action {
+  background: var(--gold);
+  color: #171510;
+  border-color: var(--gold);
+  font-weight: bold;
+}
+
+.game-action:hover {
+  transform: translateY(-3px);
+  background: var(--cream);
 }
 
 .game-input {
   width: 100%;
-  min-height: 90px;
+  min-height: 100px;
+  padding: 15px;
   resize: vertical;
-  padding: 14px;
   border: 1px solid #665438;
-  border-radius: 6px;
+  border-radius: 7px;
   background: #211e17;
-  color: #f5edda;
-  font: 14px 'DM Sans', sans-serif;
+  color: var(--text);
 }
 
-.game-input::placeholder { color: #93866b; }
-
-.game-result {
-  display: none;
-  margin-top: 25px;
-  padding: 22px;
-  border-left: 3px solid #d5a84b;
-  background: #d5a84b12;
+.game-input::placeholder {
+  color: #93866b;
 }
-
-.game-result strong {
-  color: #d5a84b;
-  font: 11px 'DM Mono', monospace;
-  letter-spacing: 1px;
-}
-
-.game-result p { color: #e3dac8; }
 
 .game-controls {
   margin-top: 18px;
 }
 
-.game-action {
-  background: #d5a84b;
-  color: #171510;
-  border-color: #d5a84b;
-  font-weight: bold;
+.game-result {
+  display: none;
+  margin-top: 25px;
+  padding: 24px;
+  border-left: 3px solid var(--gold);
+  background: #d5a84b12;
+  animation: pop .4s ease;
 }
 
+.game-result strong {
+  color: var(--gold);
+  font: 11px 'DM Mono', monospace;
+}
+
+.game-result p {
+  margin-top: 12px;
+  color: #e3dac8;
+}
+
+.game-result .result-sticker {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 7px 12px;
+  border: 1px solid var(--olive);
+  border-radius: 20px;
+  color: var(--olive);
+  font: 10px 'DM Mono', monospace;
+}
+
+.game-panel {
+  animation: panel-in .4s ease;
+}
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* FOOTER */
+
 .site-footer {
+  padding: 28px 6%;
   border-top: 1px solid var(--line);
-  padding: 25px 6%;
   color: var(--muted);
   text-align: center;
   font: 10px 'DM Mono', monospace;
   letter-spacing: 1px;
 }
 
-@media (max-width: 650px) {
-  .article-hero { min-height: 520px; }
-  .hero-title { letter-spacing: -2px; }
-  .muse {
-    right: 4%;
-    bottom: 10px;
-    transform: scale(.82);
-    transform-origin: bottom right;
-  }
-  .hero-meta { max-width: 220px; }
-  .article-content p { font-size: 15px; }
-  .article-content .pullquote { margin-left: 0; margin-right: 0; }
+button:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 4px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+/* MOBILE */
+
+@media(max-width:650px) {
+  .article-hero {
+    min-height: 580px;
+  }
+
+  .hero-title {
+    letter-spacing: -2px;
+  }
+
+  .muse-character {
+    right: 5px;
+    bottom: 5px;
+    transform: scale(.83);
+    transform-origin: bottom right;
+  }
+
+  .article-content p {
+    font-size: 15px;
+  }
+
+  .pullquote {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .game-host {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .game-host-character {
+    flex-basis: 90px;
+  }
+
+  .host-dialogue p {
+    font-size: 11px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
   }
 }
 </style>
@@ -517,16 +805,23 @@ a { color: inherit; text-decoration: none; }
 
 <body>
 
+<!-- HEADER -->
+
 <header class="site-header">
-  <a href="../index.html"><strong>THIS IS NOT A CLICKBAIT</strong></a>
+  <a href="../index.html">
+    <strong>THIS IS NOT A CLICKBAIT</strong>
+  </a>
   <span>TRANSMISSION 007 / ARCHIVE</span>
 </header>
 
-<!-- SHARED ARTICLE OPENING -->
+
+<!-- HERO SECTION -->
 
 <section class="article-hero">
 
-  <div class="hero-kicker">DIGITAL CULTURE / CREATIVITY / 007</div>
+  <div class="hero-kicker">
+    DIGITAL CULTURE / CREATIVITY / 007
+  </div>
 
   <h1 class="hero-title">
     THE <span class="borrowed">BORROWED</span><br>
@@ -542,27 +837,55 @@ a { color: inherit; text-decoration: none; }
     <span>CREATIVITY / DIGITAL CULTURE</span>
   </div>
 
-  <div class="hero-status">ORIGINALITY UNDER INVESTIGATION...</div>
+  <div class="hero-status">
+    ORIGINALITY UNDER INVESTIGATION...
+  </div>
 
-  <div class="muse" aria-label="Muse, the creative mascot">
-    <div class="muse-pencil"></div>
-    <div class="muse-head">
-      <span class="muse-eye"></span>
-      <span class="muse-eye right"></span>
-      <span class="muse-cheek"></span>
-      <span class="muse-cheek right"></span>
-      <span class="muse-smile"></span>
+  <!-- MUSE HERO CHARACTER -->
+
+  <div class="muse-character" id="heroMuse">
+
+    <div class="muse-speech" id="heroSpeech">
+      Psst... got an idea?
     </div>
-    <div class="muse-label">MUSE_007</div>
+
+    <div class="muse-pencil"></div>
+
+    <div class="muse-arm left-arm"></div>
+    <div class="muse-arm right-arm"></div>
+
+    <div class="muse-body">
+      <div class="muse-eyes">
+        <span class="muse-eye"><i></i></span>
+        <span class="muse-eye"><i></i></span>
+      </div>
+
+      <div class="muse-blush left"></div>
+      <div class="muse-blush right"></div>
+      <div class="muse-mouth"></div>
+    </div>
+
+    <div class="muse-legs">
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="muse-name">MUSE_007</div>
+
   </div>
 
 </section>
+
+
+<!-- ARTICLE -->
 
 <main>
 
 <article class="article-content">
 
-  <div class="article-label">RECOVERED TEXT / ARTICLE 007</div>
+  <div class="article-label">
+    RECOVERED TEXT / ARTICLE 007
+  </div>
 
   <div class="article-opening">
     Are we still imagining, or have we only gotten skilled at reproducing what we scroll past?
@@ -575,7 +898,7 @@ a { color: inherit; text-decoration: none; }
     through other people's rooms, already arranged, already lit, already captioned.
     Before I let myself begin anything, I went looking for what the ending was
     supposed to look like, and the feed was always willing to show me. It felt
-    harmless. Natural, even , isn't that where creation starts, with a borrowed
+    harmless. Natural, even. Isn't that where creation starts, with a borrowed
     spark? But somewhere between the scrolling and the finding, a quiet question
     started following me around: was I still imagining anything, or just choosing
     from a grid someone else had already curated for me?
@@ -583,14 +906,14 @@ a { color: inherit; text-decoration: none; }
 
   <figure class="article-image">
     <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=85"
-         alt="A notebook and writing tools on a desk">
+    alt="A notebook and writing tools on a desk">
     <figcaption>01 / THE FIRST IDEA ISN'T ALWAYS THE FIRST THING WE SEE</figcaption>
   </figure>
 
   <p>
     We live inside an ocean of other people's seeing, and most days we enter it
     through the same small rectangle in our hand. One scroll and a hundred lives
-    arrive at once , other people's mornings, other people's rooms, other people's
+    arrive at once: other people's mornings, other people's rooms, other people's
     faces arranged into their best angle, all within the time it takes to breathe.
     We can pass through more curated beauty in an afternoon than someone born two
     centuries ago might have seen in an entire lifetime. We can watch strangers
@@ -606,10 +929,10 @@ a { color: inherit; text-decoration: none; }
     creates in silence, untouched. A writer carries the quiet weight of every book
     that ever moved them. A painter's eye has been colored by skies that belonged
     to someone else first. What's different now is the speed and the sameness of
-    the borrowing , a musician reshaping a sound that passed through centuries is
+    the borrowing. A musician reshaping a sound that passed through centuries is
     one thing; a feed reshaping a million people's taste into the same six
     aesthetics by Tuesday is another. We are made from what has touched us. But
-    Instagram doesn't touch us once and let go, it touches us a hundred times a
+    Instagram doesn't touch us once and let go. It touches us a hundred times a
     day, in the same voice, until we start to wonder whether originality was ever
     about starting from nothing, or whether it was always this: taking what we
     were given and turning it, just slightly, toward something the algorithm
@@ -617,12 +940,12 @@ a { color: inherit; text-decoration: none; }
   </p>
 
   <div class="pullquote">
-    “We are made from what has touched us.”
+    "We are made from what has touched us."
   </div>
 
   <figure class="article-image">
     <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=85"
-         alt="Art materials and creative work">
+    alt="Art materials and creative work">
     <figcaption>02 / BORROWING, COLLECTING, TRANSFORMING</figcaption>
   </figure>
 
@@ -646,13 +969,13 @@ a { color: inherit; text-decoration: none; }
   </p>
 
   <p>
-    The danger was never in looking. The danger is mistaking what is familiar ,
-    what keeps appearing, keeps getting liked, keeps getting saved , for what is
+    The danger was never in looking. The danger is mistaking what is familiar,
+    what keeps appearing, keeps getting liked, keeps getting saved, for what is
     possible. After a thousand sunsets shot from the same beach, in the same
     filter, captioned with some version of the same four words, it becomes harder
     to picture one that refuses the pattern. After enough photographs of
-    "loneliness" the same empty chair, the same rain against the same glass, the
-    same moody desaturation we start to believe the feeling is that chair, that
+    "loneliness" — the same empty chair, the same rain against the same glass, the
+    same moody desaturation — we start to believe the feeling is that chair, that
     glass, that filter, instead of whatever it actually is in us. We don't only
     inherit the images. We inherit the whole visual grammar the app has quietly
     trained into us. And an imagination that was built to wander keeps finding
@@ -663,26 +986,26 @@ a { color: inherit; text-decoration: none; }
     Every metaphor feels slightly used, every aesthetic already has a name, a
     hashtag, a following of its own. The more we scroll, the more we feel the
     crowd standing just behind us, all of them making, too, and posting it, and
-    being told it's good and the question quietly shifts from what do I want to
-    say to has this already been said, posted, and said better.
+    being told it's good. And the question quietly shifts from what do I want to
+    say to has this already been said, posted, and said better?
   </p>
 
   <figure class="article-image">
     <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=1200&q=85"
-         alt="A quiet creative workspace with books and objects">
+    alt="A quiet creative workspace with books and objects">
     <figcaption>03 / THE AESTHETIC WE LEARN BEFORE THE EXPERIENCE</figcaption>
   </figure>
 
   <p>
     That question alone can be enough to stop a person cold. We start editing a
     thought before it has finished arriving, the way we'd edit a photo before
-    anyone's even seen it. We threw away a drawing for looking too much like
+    anyone's even seen it. We throw away a drawing for looking too much like
     something we scrolled past last week. We hesitate over a sentence because
     somewhere, someone with more followers has already written something close
     to it, and lovelier, and it got reposted. In trying so hard not to repeat what
     the feed has already shown us, we sometimes manage to make nothing at all,
     just close the app, and open it again. And there is something else quietly
-    slipping away in all this scrolling ,our ability to simply witness something
+    slipping away in all this scrolling: our ability to simply witness something
     without immediately turning it into a shape we already recognize from
     somewhere online.
   </p>
@@ -698,27 +1021,27 @@ a { color: inherit; text-decoration: none; }
     visual language of experience before we've had the experience itself. A place
     can arrive on our screen a hundred times before our feet ever touch its
     ground, and by the time they do, we are sometimes only checking the world
-    against the post, not the other way around mentally cropping, already
+    against the post, not the other way around: mentally cropping, already
     composing the caption, already half-elsewhere.
   </p>
 
   <p>
     Which is maybe why boredom deserves a little more faith than we give it. We
-    have become remarkably good at making sure we never feel it , waiting for a
+    have become remarkably good at making sure we never feel it: waiting for a
     bus, standing in a line, sitting alone with a cup going cold, and instead of
     letting the moment sit there empty, we open the same three apps, in the same
     order, without deciding to. But it is often in those unguarded, undecorated
-    moments , the ones we've trained ourselves to feel instantly that a thought
+    moments, the ones we've trained ourselves to feel instantly that a thought
     actually wanders somewhere of its own accord, that two unrelated memories
     brush against each other and make a small spark neither one had alone.
     Nothing we scroll through was built to give us that. It was built to keep us
-    scrolling. Maybe imagination simply needs a little unclaimed quiet , a stretch
+    scrolling. Maybe imagination simply needs a little unclaimed quiet, a stretch
     of time where nothing is asking for our thumb, and no feed has already
     decided what we're supposed to see, or feel, or want.
   </p>
 
   <div class="pullquote">
-    “The imagination doesn't need to be untouched to be ours.”
+    "The imagination doesn't need to be untouched to be ours."
   </div>
 
   <p>
@@ -728,7 +1051,7 @@ a { color: inherit; text-decoration: none; }
     the art arrives through a feed. Someone's photography on Instagram can
     genuinely retrain an eye for color. A reel can introduce a sound, a place, a
     way of moving through the world, that we'd never have found on our own. What
-    we consume even there, even like that can widen the imagination, because it
+    we consume even there, even like that, can widen the imagination, because it
     carries us past the edge of what we already knew we wanted.
   </p>
 
@@ -736,11 +1059,11 @@ a { color: inherit; text-decoration: none; }
     So maybe the real question was never how much we consume, but what we let it
     become once it's inside us. Do we let it unsettle what we assumed, bend how
     we see, fold itself into something larger and slower than imitation? Or do we
-    only collect its surface screenshot , saving to a folder we'll never open
+    only collect its surface — screenshot, saving to a folder we'll never open
     again, admiring, copying, never quite letting it change shape inside us,
     reproducing what moved us instead of discovering what we might do, now that
     we have been moved? Maybe the imagination doesn't need to be untouched to be
-    ours. It only needs room to transform what it has already taken in even what
+    ours. It only needs room to transform what it has already taken in, even what
     it took in through a feed, half-distracted, at two in the morning. We will
     always be borrowers now, of color, of voice, of rhythm, of a hundred
     strangers' curated mornings. But borrowing was never meant to mean
@@ -750,18 +1073,18 @@ a { color: inherit; text-decoration: none; }
 
   <figure class="article-image">
     <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200&q=85"
-         alt="A quiet writing space with a notebook">
+    alt="A quiet writing space with a notebook">
     <figcaption>04 / BACK TO THE BLANK PAGE</figcaption>
   </figure>
 
   <p>
     I come back to the blank page. This time, I left my phone in the other room.
-    It's uncomfortable , no reference to lean against, no finished example
+    It's uncomfortable — no reference to lean against, no finished example
     pointing the way forward, no small red notification promising that someone,
     somewhere, already approved of something like this. For a moment, nothing
     comes. Then a thought arrives, a little crooked, a little unfinished,
     unmistakably mine, and this time, I let it stay. Maybe that is where
-    creativity begins again not in deleting everything we've scrolled through,
+    creativity begins again: not in deleting everything we've scrolled through,
     but in finally finding the nerve, for a little while, to put the phone down
     and walk past it.
   </p>
@@ -772,17 +1095,23 @@ a { color: inherit; text-decoration: none; }
 
 </article>
 
-<!-- INTERACTIVE SESSION -->
+
+<!-- INTERACTIVE GAME -->
 
 <section class="idea-game" id="idea-game">
 
-  <div class="game-kicker">INTERACTIVE FILE / 007-A</div>
+  <div class="game-kicker">
+    INTERACTIVE FILE / 007-A
+  </div>
 
-  <h2>IDEA <span>THIEF.EXE</span></h2>
+  <h2>
+    IDEA <span>THIEF.EXE</span>
+  </h2>
 
   <p class="game-intro">
-    MUSE_007 has discovered a suspiciously familiar idea.
-    Can you turn it into something of your own?
+    MUSE_007 has intercepted your imagination.
+    It has three challenges. One very dramatic personality.
+    And absolutely no patience for boring ideas.
   </p>
 
   <div class="game-screen">
@@ -792,47 +1121,129 @@ a { color: inherit; text-decoration: none; }
       <span id="game-count">ROUND 01 / 03</span>
     </div>
 
-    <div class="game-stage" id="game-stage">ROUND 01 / THE BORROWED SPARK</div>
-
-    <div class="game-prompt">
-      <h3 id="prompt-title">A room where it rains indoors.</h3>
-      <p id="prompt-description">
-        An idea has appeared. It may or may not belong to you.
-      </p>
+    <div class="game-progress">
+      <div class="game-progress-fill" id="progressFill"></div>
     </div>
 
-    <p class="game-question" id="game-question">
-      What direction would you take this idea?
-    </p>
+    <!-- GAME MUSE -->
 
-    <div class="game-options" id="game-options">
-      <button data-answer="cosy">Make it cosy and nostalgic</button>
-      <button data-answer="strange">Make it unsettling</button>
-      <button data-answer="absurd">Make it absurd and funny</button>
-      <button data-answer="unexpected">Take it somewhere unexpected</button>
-    </div>
+    <div class="game-host">
 
-    <div id="writing-stage" style="display:none">
-      <p class="game-question">
-        Give your transformed idea one detail of its own.
-      </p>
-      <textarea
-        class="game-input"
-        id="creative-input"
-        maxlength="180"
-        placeholder="A detail, a title, a strange little thought..."
-      ></textarea>
-      <div class="game-controls">
-        <button class="game-action" id="submit-idea">SUBMIT YOUR IDEA</button>
+      <div class="game-host-character" id="gameMuse">
+
+        <div class="game-muse-bubble" id="gameMuseSpeech">
+          HELLO, HUMAN!
+        </div>
+
+        <div class="host-pencil"></div>
+
+        <div class="host-arm host-left"></div>
+        <div class="host-arm host-right"></div>
+
+        <div class="host-body">
+          <div class="host-eyes">
+            <span></span>
+            <span></span>
+          </div>
+          <div class="host-mouth"></div>
+        </div>
+
+        <div class="host-name">MUSE_007</div>
+
       </div>
+
+      <div class="host-dialogue">
+        <span>MUSE SAYS:</span>
+        <p id="museDialogue">
+          HELLO, CREATIVE HUMAN! Welcome to my laboratory.
+          Let's make something wonderfully weird.
+        </p>
+      </div>
+
     </div>
 
-    <div class="game-result" id="game-result" aria-live="polite">
-      <strong id="result-title">MUSE'S ORIGINALITY REPORT</strong>
-      <p id="result-copy"></p>
-      <div class="game-controls">
-        <button class="game-action" id="play-again">START ANOTHER SESSION</button>
+    <!-- GAME CONTENT -->
+
+    <div id="gameContent" class="game-panel">
+
+      <div class="game-stage" id="gameStage">
+        ROUND 01 / THE BORROWED SPARK
       </div>
+
+      <div class="game-prompt">
+        <h3 id="promptTitle">
+          A room where it rains indoors.
+        </h3>
+        <p id="promptDescription">
+          The weather has apparently moved in.
+        </p>
+      </div>
+
+      <p class="game-question" id="gameQuestion">
+        What would YOU do with this idea?
+      </p>
+
+      <div class="game-options" id="gameOptions">
+
+        <button data-answer="cosy">
+          Make it cosy and nostalgic
+        </button>
+
+        <button data-answer="strange">
+          Make it wonderfully strange
+        </button>
+
+        <button data-answer="absurd">
+          Make it ridiculous and funny
+        </button>
+
+        <button data-answer="unexpected">
+          Take it somewhere unexpected
+        </button>
+
+      </div>
+
+      <div id="writingStage" style="display:none">
+
+        <p class="game-question">
+          Now give it a detail nobody else would think of.
+        </p>
+
+        <textarea
+          class="game-input"
+          id="creativeInput"
+          maxlength="180"
+          placeholder="A strange little detail, a title, a thought..."
+        ></textarea>
+
+        <div class="game-controls">
+          <button class="game-action" id="submitIdea">
+            MUSE, LOOK WHAT I MADE!
+          </button>
+        </div>
+
+      </div>
+
+      <div id="resultStage" class="game-result" aria-live="polite">
+
+        <strong id="resultTitle">
+          MUSE_007 / ORIGINALITY REPORT
+        </strong>
+
+        <p id="resultCopy"></p>
+
+        <div class="result-sticker" id="resultSticker">
+          CERTIFIED IDEA EXPLORER
+        </div>
+
+        <div class="game-controls">
+          <button class="game-action" id="nextRound">
+            NEXT CHALLENGE →
+          </button>
+        </div>
+
+      </div>
+
     </div>
 
   </div>
@@ -841,132 +1252,323 @@ a { color: inherit; text-decoration: none; }
 
 </main>
 
+
+<!-- FOOTER -->
+
 <footer class="site-footer">
   THIS IS NOT A CLICKBAIT / HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
 </footer>
 
+
 <script>
-const prompts = [
+
+/* MUSE PERSONALITY */
+
+const heroLines = [
+  "Psst... got an idea?",
+  "Stop scrolling. Start imagining!",
+  "I have a suspicious feeling...",
+  "Your brain called. It wants to play.",
+  "Originality loading...!"
+];
+
+const heroSpeech = document.getElementById("heroSpeech");
+
+document.getElementById("heroMuse").addEventListener("click", () => {
+  heroSpeech.textContent =
+    heroLines[Math.floor(Math.random() * heroLines.length)];
+
+  heroSpeech.style.animation = "none";
+  void heroSpeech.offsetWidth;
+  heroSpeech.style.animation = "pop .5s ease";
+});
+
+
+/* GAME DATA */
+
+const challenges = [
   {
     title: "A room where it rains indoors.",
     description: "The weather has apparently moved in.",
-    question: "What direction would you take this idea?"
+    question: "What would YOU do with this idea?"
   },
   {
     title: "A shop that sells forgotten memories.",
     description: "The shelves are full. Nobody remembers ordering anything.",
-    question: "What direction would you take this idea?"
+    question: "How would you transform this strange little shop?"
   },
   {
     title: "A town where nobody sleeps.",
     description: "The streetlights have started looking exhausted.",
-    question: "What direction would you take this idea?"
-  },
-  {
-    title: "A mirror that remembers everyone.",
-    description: "It has seen things. It has opinions.",
-    question: "What direction would you take this idea?"
+    question: "What happens in this sleepless town?"
   }
 ];
 
 const directions = [
   { value: "cosy", label: "Make it cosy and nostalgic" },
-  { value: "strange", label: "Make it unsettling" },
-  { value: "absurd", label: "Make it absurd and funny" },
+  { value: "strange", label: "Make it wonderfully strange" },
+  { value: "absurd", label: "Make it ridiculous and funny" },
   { value: "unexpected", label: "Take it somewhere unexpected" }
 ];
 
-const reports = {
-  cosy: "You have given the idea a memory, a little warmth and possibly a suspiciously expensive candle. MUSE approves. The algorithm is trying to categorise your nostalgia.",
-  strange: "You have made the familiar uncomfortable. Something is probably watching the room. MUSE is delighted. The algorithm has requested clarification.",
-  absurd: "You have introduced an unnecessary amount of nonsense. This is an excellent development. MUSE would like to subscribe to your thought process.",
-  unexpected: "You refused to follow the obvious route. MUSE has found an unfamiliar corner of your imagination. No reference image was harmed in this process."
+const reactions = {
+  cosy: {
+    dialogue: "AWWW. You gave it feelings. I wasn't prepared for this.",
+    speech: "SOFT SPOT DETECTED!",
+    report: "You transformed the idea with warmth and nostalgia. You've given an ordinary concept a personality and a memory. MUSE is emotionally invested now.",
+    sticker: "THE NOSTALGIC DREAMER"
+  },
+
+  strange: {
+    dialogue: "WAIT. WHAT? That's unsettling. I LOVE IT.",
+    speech: "SLIGHTLY CONCERNED!",
+    report: "You took a familiar concept and made it unfamiliar. You aren't afraid of the strange little corners of your imagination. MUSE approves. Cautiously.",
+    sticker: "THE BEAUTIFULLY WEIRD"
+  },
+
+  absurd: {
+    dialogue: "HAHAHA. Okay, your brain is a dangerous place.",
+    speech: "CHAOS DETECTED!",
+    report: "You chose chaos. Excellent. Humour can turn an ordinary idea into something nobody expected. MUSE has stopped taking notes because it's laughing.",
+    sticker: "THE CHAOS CREATOR"
+  },
+
+  unexpected: {
+    dialogue: "EXCUSE ME? I didn't see that coming!",
+    speech: "PLOT TWIST!",
+    report: "You refused the obvious direction and went exploring. That's the fun of imagination: following a thought somewhere unfamiliar and seeing what happens.",
+    sticker: "THE IDEA EXPLORER"
+  }
 };
 
-let currentPrompt;
-let chosenDirection = "";
-let sessionNumber = 0;
 
-const promptTitle = document.getElementById("prompt-title");
-const promptDescription = document.getElementById("prompt-description");
-const gameQuestion = document.getElementById("game-question");
-const gameOptions = document.getElementById("game-options");
-const gameStage = document.getElementById("game-stage");
+/* GAME STATE */
+
+let round = 0;
+let selectedDirection = "";
+let personalIdea = "";
+
 const gameCount = document.getElementById("game-count");
-const writingStage = document.getElementById("writing-stage");
-const creativeInput = document.getElementById("creative-input");
-const gameResult = document.getElementById("game-result");
-const resultTitle = document.getElementById("result-title");
-const resultCopy = document.getElementById("result-copy");
+const gameStage = document.getElementById("gameStage");
+const progressFill = document.getElementById("progressFill");
 
-function startGame() {
-  sessionNumber++;
-  currentPrompt = prompts[Math.floor(Math.random() * prompts.length)];
-  chosenDirection = "";
+const promptTitle = document.getElementById("promptTitle");
+const promptDescription = document.getElementById("promptDescription");
+const gameQuestion = document.getElementById("gameQuestion");
 
-  promptTitle.textContent = currentPrompt.title;
-  promptDescription.textContent = currentPrompt.description;
-  gameQuestion.textContent = currentPrompt.question;
+const gameOptions = document.getElementById("gameOptions");
+const writingStage = document.getElementById("writingStage");
+const creativeInput = document.getElementById("creativeInput");
+const resultStage = document.getElementById("resultStage");
 
-  gameStage.textContent = "ROUND 01 / THE BORROWED SPARK";
-  gameCount.textContent = "ROUND 01 / 03";
+const museDialogue = document.getElementById("museDialogue");
+const museSpeech = document.getElementById("gameMuseSpeech");
+
+
+/* START EACH ROUND */
+
+function startRound() {
+
+  selectedDirection = "";
+  personalIdea = "";
+
+  const challenge = challenges[round];
+
+  gameCount.textContent = `ROUND 0${round + 1} / 03`;
+
+  gameStage.textContent =
+    `ROUND 0${round + 1} / THE CREATIVE EXPERIMENT`;
+
+  promptTitle.textContent = challenge.title;
+  promptDescription.textContent = challenge.description;
+  gameQuestion.textContent = challenge.question;
+
+  progressFill.style.width = `${round / 3 * 100}%`;
 
   gameOptions.innerHTML = "";
 
   directions.forEach(direction => {
+
     const button = document.createElement("button");
+
     button.textContent = direction.label;
     button.dataset.answer = direction.value;
+
     gameOptions.appendChild(button);
+
   });
 
   gameOptions.style.display = "flex";
   writingStage.style.display = "none";
-  gameResult.style.display = "none";
+  resultStage.style.display = "none";
+
   creativeInput.value = "";
+
+  museDialogue.textContent =
+    round === 0
+      ? "HELLO, CREATIVE HUMAN! Let's start with a little imagination."
+      : round === 1
+      ? "YOU'RE BACK! I knew your imagination wasn't finished."
+      : "FINAL CHALLENGE! Make this one count.";
+
+  museSpeech.textContent =
+    round === 0
+      ? "LET'S PLAY!"
+      : round === 1
+      ? "ROUND TWO!"
+      : "FINAL ROUND!";
+
 }
 
+
+/* CHOOSE A CREATIVE DIRECTION */
+
 gameOptions.addEventListener("click", event => {
+
   const button = event.target.closest("button[data-answer]");
+
   if (!button) return;
 
-  chosenDirection = button.dataset.answer;
+  selectedDirection = button.dataset.answer;
 
-  gameStage.textContent = "ROUND 02 / THE TRANSFORMATION";
-  gameCount.textContent = "ROUND 02 / 03";
+  gameOptions.querySelectorAll("button").forEach(item => {
+    item.classList.remove("selected");
+  });
+
+  button.classList.add("selected");
+
+  const reaction = reactions[selectedDirection];
+
+  museDialogue.textContent = reaction.dialogue;
+  museSpeech.textContent = reaction.speech;
+
+  gameQuestion.textContent =
+    "Good choice! Now make it yours. Give this idea one original detail.";
 
   gameOptions.style.display = "none";
   writingStage.style.display = "block";
-  gameQuestion.textContent =
-    "Now give the idea one detail that belongs to you.";
+
+  gameStage.textContent =
+    `ROUND 0${round + 1} / YOUR TURN TO CREATE`;
+
 });
 
-document.getElementById("submit-idea").addEventListener("click", () => {
-  const idea = creativeInput.value.trim();
 
-  if (!idea) {
+/* SUBMIT IDEA */
+
+document.getElementById("submitIdea").addEventListener("click", () => {
+
+  personalIdea = creativeInput.value.trim();
+
+  if (!personalIdea) {
+
+    museDialogue.textContent =
+      "Psst! I'm waiting for your idea. Don't leave me hanging!";
+
+    museSpeech.textContent = "WRITE SOMETHING!";
+
     creativeInput.focus();
-    creativeInput.placeholder = "MUSE is waiting. Give it one little detail.";
     return;
   }
 
-  gameStage.textContent = "ROUND 03 / THE REPORT";
-  gameCount.textContent = "ROUND 03 / 03";
+  const reaction = reactions[selectedDirection];
 
   writingStage.style.display = "none";
-  gameResult.style.display = "block";
+  resultStage.style.display = "block";
+
+  gameStage.textContent =
+    `ROUND 0${round + 1} / MUSE'S CREATIVE REPORT`;
 
   resultTitle.textContent = "MUSE_007 / ORIGINALITY REPORT";
 
   resultCopy.textContent =
-    reports[chosenDirection] +
-    " Your contribution: \"" + idea +
-    "\". Reference detected. Transformation also detected. The idea has officially left the group chat.";
+    reaction.report +
+    ` Your creative contribution: "${personalIdea}".`;
+
+  document.getElementById("resultSticker").textContent =
+    reaction.sticker;
+
+  museDialogue.textContent =
+    "LOOK AT YOU GO! I'm putting that in my imaginary trophy cabinet.";
+
+  museSpeech.textContent = "IMPRESSED!";
+
+  progressFill.style.width = `${(round + 1) / 3 * 100}%`;
+
+  document.getElementById("nextRound").textContent =
+    round === 2 ? "SEE MY FINAL REPORT →" : "NEXT CHALLENGE →";
+
 });
 
-document.getElementById("play-again").addEventListener("click", startGame);
 
-startGame();
+/* NEXT ROUND / FINAL RESULT */
+
+document.getElementById("nextRound").addEventListener("click", () => {
+
+  if (round < 2) {
+
+    round++;
+    startRound();
+
+  } else {
+
+    showFinalReport();
+
+  }
+
+});
+
+
+/* FINAL REPORT */
+
+function showFinalReport() {
+
+  gameStage.textContent = "SESSION COMPLETE / 007";
+
+  gameCount.textContent = "MISSION COMPLETED";
+
+  gameOptions.style.display = "none";
+  writingStage.style.display = "none";
+
+  resultStage.style.display = "block";
+
+  resultTitle.textContent = "MUSE_007 / FINAL CREATIVE REPORT";
+
+  resultCopy.textContent =
+    "YOU DID IT! You explored three different ideas, transformed them and added your own details. Remember: inspiration can come from anywhere. What matters is what you do with it. Your imagination isn't a photocopier. It's a whole universe.";
+
+  document.getElementById("resultSticker").textContent =
+    "CERTIFIED ORIGINALITY EXPLORER";
+
+  document.getElementById("nextRound").textContent =
+    "PLAY AGAIN ↻";
+
+  museDialogue.textContent =
+    "I'm genuinely proud of you. Now go make something weird!";
+
+  museSpeech.textContent =
+    "YOU DID IT!";
+
+  document.getElementById("nextRound").onclick = () => {
+
+    round = 0;
+
+    document.getElementById("nextRound").onclick = null;
+
+    startRound();
+
+    document.getElementById("nextRound").textContent =
+      "NEXT CHALLENGE →";
+
+  };
+
+}
+
+
+/* INITIALISE */
+
+startRound();
+
 </script>
 
 </body>
