@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,57 +6,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Consumption Vortex | This Is Not a Clickbait</title>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;800&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,500&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,500;1,700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --bg:#0d0e12;
   --ink:#f4f1ec;
   --dim:#9a9aa0;
-  --line:#292831;
+  --line:#292a32;
   --cy:#19d4ff;
-  --purple:#a38aff;
-  --lime:#d6e45b;
-  --pink:#ff2a55;
+  --red:#ff5a4d;
+  --purple:#b58cff;
+  --green:#c8ff00;
+  --pink:#ff83c9;
   --mono:"Space Mono",monospace;
   --sans:"DM Sans",sans-serif;
 }
 
-* {box-sizing:border-box}
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-html {scroll-behavior:smooth}
+html {
+  scroll-behavior:smooth;
+}
 
 body {
-  margin:0;
   background:var(--bg);
   color:var(--ink);
   font-family:var(--sans);
   line-height:1.6;
+  overflow-x:hidden;
 }
 
-a {color:inherit}
+a {
+  color:inherit;
+  text-decoration:none;
+}
 
 .nav {
   display:flex;
   justify-content:space-between;
-  gap:12px;
+  align-items:center;
   flex-wrap:wrap;
-  padding:18px 40px;
+  gap:12px;
+  padding:18px 6%;
   border-bottom:1px solid var(--line);
-  font:13px var(--mono);
+  font:12px var(--mono);
   letter-spacing:.06em;
 }
 
 .nav a {
-  text-decoration:none;
   font-weight:700;
 }
 
-.nav span {color:var(--cy)}
+.nav span {
+  color:var(--cy);
+}
 
 .page {
-  max-width:1200px;
-  margin:0 auto;
+  max-width:1250px;
+  margin:auto;
   padding:36px 24px 0;
 }
 
@@ -64,516 +78,423 @@ a {color:inherit}
   background-image:
     linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(120deg,#171522,#17131e 55%,#10212a);
+    linear-gradient(120deg,#17121a,#17151e 55%,#101c24);
   background-size:40px 40px,40px 40px,auto;
-  border:1px solid #34303f;
+  border:1px solid #34323d;
   border-radius:24px;
 }
+
+/* OPENING */
 
 .hero {
   position:relative;
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   align-items:center;
-  gap:24px;
-  padding:56px 64px;
+  gap:30px;
+  padding:55px 60px;
   overflow:hidden;
 }
 
 .kicker,.label {
-  font:13px var(--mono);
+  font:12px var(--mono);
   letter-spacing:.16em;
   color:var(--cy);
 }
 
-/* MAIN TITLE */
-
 h1 {
-  margin:18px 0;
+  margin:20px 0;
   font-weight:800;
-  font-size:clamp(40px,8vw,108px);
-  line-height:.94;
+  font-size:clamp(45px,9vw,112px);
+  line-height:.95;
   letter-spacing:-.045em;
 }
 
-.cv-glitch-title {
-  position:relative;
-  color:var(--ink);
-  text-shadow:2px 0 rgba(25,212,255,.35);
-}
-
-.cv-glitch-title b {
-  position:relative;
-  display:inline-block;
-  color:var(--purple);
-  text-shadow:
-    -3px 0 var(--cy),
-    4px 3px var(--pink);
-  animation:cv-title-flicker 4s infinite;
-}
-
-.cv-glitch-title b::before,
-.cv-glitch-title b::after {
-  content:attr(data-text);
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-}
-
-.cv-glitch-title b::before {
-  color:var(--cy);
-  text-shadow:2px 0 var(--cy);
-  animation:cv-glitch-one 3s infinite steps(1);
-}
-
-.cv-glitch-title b::after {
+h1 b {
   color:var(--pink);
-  text-shadow:2px 0 var(--pink);
-  animation:cv-glitch-two 2.7s infinite steps(1);
+  text-shadow:-3px 0 var(--cy),4px 3px var(--purple);
+  animation:title-glitch 4s infinite;
 }
 
-@keyframes cv-glitch-one {
-  0%,88%,100% {
-    clip-path:inset(0 0 0 0);
-    transform:translate(0);
-    opacity:0;
-  }
-  89% {
-    clip-path:inset(10% 0 65% 0);
-    transform:translate(-5px,2px);
-    opacity:1;
-  }
-  91% {
-    clip-path:inset(55% 0 20% 0);
-    transform:translate(4px,-2px);
-    opacity:1;
-  }
-  93% {
-    opacity:0;
-    transform:translate(0);
-  }
-}
-
-@keyframes cv-glitch-two {
-  0%,82%,100% {
-    clip-path:inset(0 0 0 0);
-    transform:translate(0);
-    opacity:0;
-  }
-  83% {
-    clip-path:inset(60% 0 10% 0);
-    transform:translate(5px,-2px);
-    opacity:1;
-  }
-  85% {
-    clip-path:inset(15% 0 55% 0);
-    transform:translate(-4px,2px);
-    opacity:1;
-  }
-  87% {
-    opacity:0;
-  }
-}
-
-@keyframes cv-title-flicker {
-  0%,90%,94%,100% {opacity:1}
-  91% {opacity:.75}
-  92% {opacity:1}
+@keyframes title-glitch {
+  0%,90%,100% {transform:translate(0)}
+  92% {transform:translate(3px,-2px)}
+  94% {transform:translate(-3px,1px)}
+  96% {transform:translate(2px,0)}
 }
 
 .sub {
-  margin:0 0 22px;
-  font:italic 500 clamp(19px,3vw,25px)/1.4 "Playfair Display",Georgia,serif;
+  max-width:550px;
+  margin-bottom:20px;
+  font:italic 500 clamp(19px,3vw,25px)/1.4 "Playfair Display",serif;
   color:#e9e4de;
-  max-width:540px;
 }
 
 .by {
-  font:12px var(--mono);
-  letter-spacing:.1em;
-  color:#b9b4ae;
   margin-bottom:20px;
+  color:#b9b4ae;
+  font:11px var(--mono);
+  letter-spacing:.08em;
 }
 
 .pill {
   display:inline-block;
-  border:1px solid #62577d;
+  border:1px solid #666078;
   border-radius:6px;
   padding:9px 14px;
-  font:12px var(--mono);
-  color:var(--cy);
-  letter-spacing:.06em;
+  color:var(--pink);
+  font:11px var(--mono);
 }
 
 /* VORTEX CHARACTER */
 
 .mascot {
   position:relative;
-  width:260px;
+  width:245px;
   justify-self:end;
 }
 
 .mascot svg {
   display:block;
   width:100%;
-  overflow:visible;
+  height:auto;
   animation:float 3.5s ease-in-out infinite;
 }
 
-.bubble {
+@keyframes float {
+  50% {transform:translateY(-9px)}
+}
+
+.character-bubble {
   position:absolute;
   left:-105px;
-  top:40px;
-  width:155px;
-  background:var(--ink);
-  color:#17131e;
-  font-weight:800;
-  font-size:13px;
-  line-height:1.4;
-  padding:12px 15px;
+  top:45px;
+  z-index:2;
+  width:150px;
+  padding:11px 13px;
   border-radius:12px;
-  box-shadow:3px 4px 0 var(--purple);
-  z-index:3;
+  background:var(--ink);
+  color:#17151c;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.4;
+  box-shadow:3px 3px 0 var(--purple);
 }
 
-.bubble:after {
-  content:"";
-  position:absolute;
-  right:12px;
-  bottom:-9px;
-  border-width:10px 0 0 12px;
-  border-style:solid;
-  border-color:transparent transparent transparent var(--ink);
-}
-
-.orbit {
-  transform-origin:130px 128px;
+.character-orbit {
+  transform-origin:120px 120px;
   animation:orbit 9s linear infinite;
-}
-
-.orbit-two {
-  transform-origin:130px 128px;
-  animation:orbit 13s linear infinite reverse;
-}
-
-.eye {
-  transform-origin:center;
-  animation:blink 4s infinite;
-}
-
-@keyframes float {
-  50% {transform:translateY(-10px)}
 }
 
 @keyframes orbit {
   to {transform:rotate(360deg)}
 }
 
-@keyframes blink {
-  0%,44%,48%,100% {transform:scaleY(1)}
-  46% {transform:scaleY(.1)}
-}
-
 /* POEM INTRO */
 
 .block {
-  padding:65px 0 8px;
+  padding:65px 0 15px;
 }
 
-h2 {
-  font-size:clamp(30px,6vw,56px);
+.block h2 {
+  margin:12px 0;
+  font-size:clamp(30px,6vw,55px);
   line-height:1.05;
   letter-spacing:-.03em;
   font-weight:800;
-  margin:10px 0 12px;
 }
 
-h2 b {
-  color:var(--purple);
+.block h2 b {
+  color:var(--pink);
   text-shadow:-2px 0 var(--cy);
 }
 
-.block>p {
-  max-width:620px;
+.block > p {
+  max-width:650px;
+  margin:15px 0 30px;
   color:#c9c4be;
-  font-size:18px;
-  margin:0 0 28px;
+  font-size:17px;
+  line-height:1.9;
 }
 
-/* INTERACTIVE POEM */
-
-.cv-head {
+.poem-heading {
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:12px;
   flex-wrap:wrap;
-  margin-bottom:14px;
+  margin:40px 0 18px;
 }
 
-.cv-head button {
-  font:12px var(--mono);
-  letter-spacing:.06em;
-  color:var(--cy);
-  background:none;
-  border:1px solid #343642;
-  padding:9px 15px;
+.poem-heading button {
+  padding:8px 13px;
+  border:1px solid #45404e;
   border-radius:6px;
+  background:transparent;
+  color:var(--cy);
+  font:11px var(--mono);
   cursor:pointer;
   transition:.2s;
 }
 
-.cv-head button:hover {
-  background:var(--cy);
-  color:#0d0e12;
+.poem-heading button:hover {
+  border-color:var(--cy);
+  background:#19d4ff12;
 }
 
-.cv-head button:focus-visible {
-  outline:2px solid white;
-  outline-offset:3px;
-}
+/* CIRCULAR POEM */
 
-.cv-stage {
-  position:relative;
-  min-height:570px;
-  padding:35px 25px;
-  overflow:hidden;
-  isolation:isolate;
-}
-
-.cv-stage:before,
-.cv-stage:after {
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:-1;
-}
-
-.cv-stage:before {
-  width:330px;
-  height:330px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  border:1px solid rgba(163,138,255,.13);
-  box-shadow:
-    0 0 0 35px rgba(163,138,255,.025),
-    0 0 0 70px rgba(25,212,255,.025);
-}
-
-.cv-stage:after {
-  width:190px;
-  height:190px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(163,138,255,.12),transparent 70%);
-}
-
-.cv-feed {
-  max-width:690px;
-  margin:0 auto;
-  display:flex;
-  flex-direction:column;
-  gap:13px;
-}
-
-.cv-line {
+.vortex-stage {
   position:relative;
   display:grid;
-  grid-template-columns:38px 1fr;
-  gap:14px;
-  align-items:start;
-  padding:15px 18px;
-  background:rgba(20,20,29,.88);
-  border:1px solid #34303f;
-  border-radius:9px;
-  opacity:0;
-  transform:translateY(20px);
-  transition:
-    opacity .65s ease,
-    transform .65s ease,
-    border-color .4s;
+  place-items:center;
+  width:100%;
+  padding:25px 12px;
+  min-height:600px;
+  overflow:hidden;
+  border:1px solid #34313d;
+  border-radius:18px;
+  background:
+    radial-gradient(ellipse at center,#211c2b 0%,#15141b 38%,#101014 75%);
 }
 
-.cv-line.visible {
-  opacity:1;
-  transform:translateY(0);
-  border-left:2px solid var(--accent);
-}
-
-.cv-line:nth-child(3n+1) {--accent:var(--cy)}
-.cv-line:nth-child(3n+2) {--accent:var(--purple)}
-.cv-line:nth-child(3n) {--accent:var(--lime)}
-
-.cv-number {
-  font:12px var(--mono);
-  color:var(--accent);
-  padding-top:5px;
-}
-
-.cv-text {
-  color:#e9e4de;
-  font-size:clamp(14px,2vw,17px);
-  line-height:1.75;
-  min-height:1.75em;
-}
-
-.cv-line:nth-child(even) {margin-left:35px}
-.cv-line:nth-child(odd) {margin-right:35px}
-
-.cv-cursor {
-  display:inline-block;
-  width:7px;
-  height:17px;
-  background:var(--cy);
-  vertical-align:-3px;
-  margin-left:3px;
-  animation:cursor 1s steps(1) infinite;
-}
-
-@keyframes cursor {
-  50% {opacity:0}
-}
-
-/* CENTRAL POEM LINE */
-
-.cv-centre {
-  display:none;
-  position:relative;
-  max-width:530px;
-  margin:55px auto 15px;
-  padding:48px 30px;
-  text-align:center;
-  border:1px solid var(--purple);
+.vortex-stage::before,
+.vortex-stage::after {
+  content:"";
+  position:absolute;
+  width:70%;
+  aspect-ratio:1;
+  border:1px solid rgba(181,140,255,.08);
   border-radius:50%;
-  background:radial-gradient(circle,rgba(163,138,255,.15),rgba(13,14,18,.96) 70%);
-  animation:centre-in 1.5s ease both;
+  pointer-events:none;
 }
 
-.cv-centre.show {display:block}
-
-.cv-centre .label {
-  color:var(--purple);
-  font-size:10px;
+.vortex-stage::after {
+  width:85%;
+  border-color:rgba(25,212,255,.06);
 }
 
-.cv-centre h3 {
-  margin:22px auto 10px;
-  max-width:430px;
-  font:italic 500 clamp(22px,4vw,34px)/1.45 "Playfair Display",serif;
-  color:var(--ink);
+.vortex-art {
+  display:block;
+  width:min(100%,760px);
+  height:auto;
+  overflow:visible;
 }
 
-.cv-centre small {
-  color:var(--cy);
-  font:11px var(--mono);
-  letter-spacing:.13em;
+.vortex-orbit {
+  fill:none;
+  stroke:rgba(181,140,255,.13);
+  stroke-width:1;
 }
 
-@keyframes centre-in {
-  from {
-    opacity:0;
-    transform:scale(.65) rotate(-8deg);
-  }
-  to {
-    opacity:1;
-    transform:scale(1) rotate(0);
-  }
+.vortex-orbit:nth-child(even) {
+  stroke:rgba(25,212,255,.10);
+}
+
+.vortex-text {
+  fill:#e9e4de;
+  font-family:"Caveat",cursive;
+  font-size:16px;
+  font-weight:500;
+  letter-spacing:.15px;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+.vortex-text:nth-of-type(3n) {
+  fill:#c9b6e9;
+}
+
+.vortex-text:nth-of-type(3n + 1) {
+  fill:#a9dce5;
+}
+
+.vortex-text.visible {
+  opacity:1;
+}
+
+.vortex-text text {
+  dominant-baseline:auto;
+}
+
+.vortex-center {
+  opacity:0;
+  transition:opacity 2s ease;
+}
+
+.vortex-center.visible {
+  opacity:1;
+}
+
+.center-small {
+  fill:var(--cy);
+  font:10px var(--mono);
+  letter-spacing:2px;
+}
+
+.center-main {
+  fill:#fff;
+  font-family:"Playfair Display",serif;
+  font-style:italic;
+  font-size:25px;
+}
+
+.center-accent {
+  fill:var(--pink);
+}
+
+.vortex-glow {
+  fill:none;
+  stroke:var(--purple);
+  stroke-width:1;
+  opacity:.35;
+  animation:pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {opacity:.8;stroke-width:2}
+}
+
+.vortex-stage.playing .vortex-art {
+  animation:slow-turn 90s linear infinite;
+}
+
+@keyframes slow-turn {
+  to {transform:rotate(360deg)}
+}
+
+.vortex-stage.finished .vortex-art {
+  animation:breath 5s ease-in-out infinite;
+}
+
+@keyframes breath {
+  50% {transform:scale(1.015)}
+}
+
+.poem-caption {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  padding:15px 4px;
+  color:#85818b;
+  font:9px var(--mono);
+  letter-spacing:1px;
 }
 
 /* END */
 
 .end {
-  padding:55px 0 30px;
+  padding:60px 0 55px;
+}
+
+.end h2 {
+  margin:12px 0;
+  font-size:clamp(32px,6vw,60px);
+  line-height:1.08;
+}
+
+.end h2 b {
+  color:var(--pink);
 }
 
 .end p {
   max-width:600px;
-  color:#c9c4be;
-  font-size:17px;
+  color:#aaa;
+  font-size:16px;
+  line-height:1.9;
 }
 
 .foot {
-  max-width:1200px;
+  max-width:1250px;
   margin:0 auto;
   padding:28px 24px 52px;
   border-top:1px solid var(--line);
-  font:12px var(--mono);
-  letter-spacing:.05em;
   color:var(--dim);
+  font:11px var(--mono);
+  letter-spacing:.05em;
   display:grid;
-  gap:8px;
-  justify-items:start;
+  gap:9px;
 }
 
 .foot a {
-  text-decoration:none;
   color:var(--cy);
 }
 
-/* RESPONSIVE */
+@media(max-width:850px) {
+  .hero {
+    padding:40px 28px;
+  }
 
-@media(max-width:900px) {
-  .hero {padding:40px 28px}
-  .mascot {width:210px}
-  .bubble {left:-90px;top:35px}
+  .mascot {
+    width:190px;
+  }
+
+  .character-bubble {
+    left:-95px;
+    width:130px;
+    font-size:11px;
+  }
+
+  .vortex-stage {
+    min-height:450px;
+  }
+
+  .vortex-text {
+    font-size:17px;
+  }
 }
 
-@media(max-width:640px) {
-  .nav {padding:16px 20px}
+@media(max-width:600px) {
+  .nav {
+    padding:16px 20px;
+    font-size:10px;
+  }
 
   .hero {
     grid-template-columns:1fr;
-    padding:35px 24px;
+    padding:38px 23px;
   }
 
   .mascot {
     justify-self:center;
-    margin-top:45px;
-    width:220px;
+    width:190px;
+    margin-top:30px;
   }
 
-  .bubble {
-    left:-10px;
-    top:-35px;
+  .character-bubble {
+    left:-35px;
+    top:5px;
+    width:140px;
   }
 
-  .cv-stage {
-    padding:25px 12px;
+  .page {
+    padding:20px 14px 0;
   }
 
-  .cv-line {
-    grid-template-columns:27px 1fr;
-    gap:9px;
-    padding:13px 10px;
+  .vortex-stage {
+    min-height:340px;
+    padding:8px 0;
   }
 
-  .cv-line:nth-child(even) {margin-left:13px}
-  .cv-line:nth-child(odd) {margin-right:13px}
+  .vortex-text {
+    font-size:18px;
+  }
 
-  .cv-centre {
-    border-radius:22px;
-    padding:38px 20px;
+  .center-main {
+    font-size:25px;
+  }
+
+  .block {
+    padding-top:50px;
   }
 }
 
-/* ACCESSIBILITY */
-
 @media(prefers-reduced-motion:reduce) {
-  *,*:before,*:after {
-    scroll-behavior:auto!important;
-    animation:none!important;
-    transition:none!important;
-  }
-
-  .cv-glitch-title b::before,
-  .cv-glitch-title b::after {
-    display:none;
+  *,*::before,*::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
   }
 }
 </style>
@@ -582,402 +503,408 @@ h2 b {
 <body>
 
 <div class="nav">
-  <a href="https://almii0441-tech.github.io/this-is-not-a-clickbait/index.html">
-    THIS IS NOT A CLICKBAIT
-  </a>
-  <span>TRANSMISSION 009 / ARCHIVE</span>
+  <a href="../index.html">THIS IS NOT A CLICKBAIT</a>
+  <span>TRANSMISSION 009 / VISUAL POETRY</span>
 </div>
 
 <div class="page">
 
-<!-- HERO -->
+  <!-- OPENING -->
 
-<header class="hero grid">
+  <header class="hero grid">
 
-  <div>
-    <div class="kicker">DIGITAL CULTURE / CONSUMPTION / 009</div>
+    <div>
+      <div class="kicker">DIGITAL CULTURE / ATTENTION / 009</div>
 
-    <h1 class="cv-glitch-title">
-      CONSUMPTION<br>
-      <b data-text="VORTEX.">VORTEX.</b>
-    </h1>
+      <h1>
+        CONSUMPTION<br>
+        <b>VORTEX.</b>
+      </h1>
 
-    <p class="sub">
-      We came looking for everything. Somewhere along the way, we lost ourselves.
+      <p class="sub">
+        Everyone else's lives, slowly becoming louder than your own.
+      </p>
+
+      <div class="by">
+        BY LEKHAA MEENAKSHISUNDARAM
+        &nbsp;&nbsp; VISUAL POETRY / DIGITAL LIFE
+      </div>
+
+      <div class="pill">
+        STATUS: LOST IN THE FEED...
+      </div>
+    </div>
+
+    <div class="mascot">
+
+      <div class="character-bubble">
+        Just one more scroll. I promise...
+      </div>
+
+      <svg viewBox="0 0 260 280" role="img"
+           aria-label="VORTEX, a little character trapped in a digital scrolling vortex">
+
+        <defs>
+          <radialGradient id="bodyGlow">
+            <stop offset="0%" stop-color="#b58cff"/>
+            <stop offset="75%" stop-color="#654c91"/>
+            <stop offset="100%" stop-color="#302541"/>
+          </radialGradient>
+          <linearGradient id="screenGlow" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#19d4ff"/>
+            <stop offset="100%" stop-color="#b58cff"/>
+          </linearGradient>
+        </defs>
+
+        <g class="character-orbit">
+          <ellipse cx="130" cy="112" rx="112" ry="38"
+                   fill="none" stroke="#19d4ff"
+                   stroke-width="2" stroke-dasharray="25 13" opacity=".8"/>
+          <circle cx="20" cy="112" r="5" fill="#ff83c9"/>
+          <circle cx="239" cy="112" r="5" fill="#c8ff00"/>
+        </g>
+
+        <path d="M130 35 C80 50 65 90 91 115
+                 C115 140 175 119 177 163
+                 C179 197 137 210 112 185"
+              fill="none" stroke="#b58cff" stroke-width="3"
+              stroke-linecap="round" opacity=".55"/>
+
+        <path d="M130 52 C75 55 75 105 112 116
+                 C153 128 183 89 198 120"
+              fill="none" stroke="#19d4ff" stroke-width="2"
+              stroke-dasharray="5 7" opacity=".65"/>
+
+        <ellipse cx="130" cy="170" rx="67" ry="74"
+                 fill="url(#bodyGlow)" stroke="#b58cff" stroke-width="2"/>
+
+        <ellipse cx="130" cy="170" rx="54" ry="61"
+                 fill="#17151e" stroke="#19d4ff" stroke-width="1.5"/>
+
+        <path d="M90 132 Q130 108 170 132"
+              fill="none" stroke="#ff83c9" stroke-width="3"/>
+
+        <ellipse cx="111" cy="163" rx="8" ry="11" fill="#f4f1ec"/>
+        <ellipse cx="150" cy="163" rx="8" ry="11" fill="#f4f1ec"/>
+
+        <circle cx="113" cy="164" r="4" fill="#080808"/>
+        <circle cx="152" cy="164" r="4" fill="#080808"/>
+
+        <path d="M120 188 Q130 197 141 188"
+              fill="none" stroke="#ff83c9"
+              stroke-width="3" stroke-linecap="round"/>
+
+        <circle cx="97" cy="181" r="7" fill="#ff83c9" opacity=".4"/>
+        <circle cx="164" cy="181" r="7" fill="#ff83c9" opacity=".4"/>
+
+        <path d="M75 158 Q48 140 56 119"
+              fill="none" stroke="#b58cff" stroke-width="5"
+              stroke-linecap="round"/>
+
+        <path d="M185 158 Q210 139 205 119"
+              fill="none" stroke="#19d4ff" stroke-width="5"
+              stroke-linecap="round"/>
+
+        <path d="M105 235 L92 252 M155 235 L168 252"
+              stroke="#b58cff" stroke-width="7"
+              stroke-linecap="round"/>
+
+        <text x="130" y="275" text-anchor="middle"
+              font-family="Space Mono,monospace"
+              font-size="12" letter-spacing="2"
+              fill="#19d4ff">VORTEX_009</text>
+
+      </svg>
+    </div>
+
+  </header>
+
+  <!-- POEM -->
+
+  <section class="block">
+
+    <div class="label">VISUAL EXPERIMENT / 009-A</div>
+
+    <h2>
+      THE FEED NEVER<br>
+      <b>REALLY ENDS.</b>
+    </h2>
+
+    <p>
+      Here is everything that happened while you were away.
+      Everything you could have been, everything you could have
+      experienced, and everything you were told you needed.
+      Somewhere in the middle of it all, your own voice got quieter.
     </p>
 
-    <div class="by">
-      BY LEKHAA MEENAKSHI SUNDARAM
-      &nbsp;&nbsp;&nbsp; POETRY / DIGITAL LIFE
+    <div class="poem-heading">
+      <span class="label">RECOVERED TEXT / POEM 02</span>
+      <button id="replay" type="button">REPLAY ↻</button>
     </div>
 
-    <div class="pill">FEED STATUS: NEVER ENDING...</div>
-  </div>
+    <div class="vortex-stage grid" id="vortexStage">
 
-  <!-- ORIGINAL CHARACTER -->
+      <svg class="vortex-art" id="vortexArt"
+           viewBox="0 0 840 840"
+           role="img"
+           aria-label="Consumption Vortex poem, with ten sentences arranged in concentric circular paths around its central conclusion">
 
-  <div class="mascot">
+        <defs>
+          <path id="ring1" d="M420,420 m-350,0 a350,350 0 1,1 700,0 a350,350 0 1,1 -700,0"/>
+          <path id="ring2" d="M420,420 m-330,0 a330,330 0 1,1 660,0 a330,330 0 1,1 -660,0"/>
+          <path id="ring3" d="M420,420 m-310,0 a310,310 0 1,1 620,0 a310,310 0 1,1 -620,0"/>
+          <path id="ring4" d="M420,420 m-290,0 a290,290 0 1,1 580,0 a290,290 0 1,1 -580,0"/>
+          <path id="ring5" d="M420,420 m-270,0 a270,270 0 1,1 540,0 a270,270 0 1,1 -540,0"/>
+          <path id="ring6" d="M420,420 m-250,0 a250,250 0 1,1 500,0 a250,250 0 1,1 -500,0"/>
+          <path id="ring7" d="M420,420 m-230,0 a230,230 0 1,1 460,0 a230,230 0 1,1 -460,0"/>
+          <path id="ring8" d="M420,420 m-210,0 a210,210 0 1,1 420,0 a210,210 0 1,1 -420,0"/>
+          <path id="ring9" d="M420,420 m-190,0 a190,190 0 1,1 380,0 a190,190 0 1,1 -380,0"/>
+          <path id="ring10" d="M420,420 m-170,0 a170,170 0 1,1 340,0 a340,340 0 1,1 -340,0"/>
+        </defs>
 
-    <div class="bubble">
-      Just one more scroll. I promise...
-    </div>
+        <!-- Circular guide lines -->
 
-    <svg viewBox="0 0 260 280" role="img"
-         aria-label="VORTEX 009, a little digital creature surrounded by floating content">
+        <circle class="vortex-orbit" cx="420" cy="420" r="350"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="330"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="310"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="290"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="270"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="250"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="230"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="210"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="190"/>
+        <circle class="vortex-orbit" cx="420" cy="420" r="170"/>
 
-      <g class="orbit">
+        <!-- TEN SENTENCES / NO NUMBERS -->
 
-        <rect x="14" y="91" width="38" height="29" rx="6"
-              fill="#19d4ff" opacity=".9"/>
-        <rect x="22" y="98" width="22" height="3" rx="2" fill="#0d0e12"/>
-        <rect x="22" y="106" width="14" height="3" rx="2" fill="#0d0e12"/>
+        <g id="poemLines">
 
-        <circle cx="130" cy="15" r="13" fill="#a38aff"/>
-        <circle cx="130" cy="15" r="5" fill="#f4f1ec"/>
+          <text class="vortex-text">
+            <textPath href="#ring1" startOffset="2%">
+              Here’s everything that happened in the world while you slept.
+            </textPath>
+          </text>
 
-        <rect x="205" y="150" width="37" height="28" rx="6"
-              fill="#d6e45b"/>
-        <path d="M214 159h18 M214 166h12"
-              stroke="#17131e" stroke-width="3" stroke-linecap="round"/>
+          <text class="vortex-text">
+            <textPath href="#ring2" startOffset="2%">
+              Everyone else, a thousand lives I would never actually know or experience.
+            </textPath>
+          </text>
 
-      </g>
+          <text class="vortex-text">
+            <textPath href="#ring3" startOffset="2%">
+              Fiction was my savior, another world was always waiting for me to enter.
+            </textPath>
+          </text>
 
-      <g class="orbit-two">
-        <circle cx="35" cy="195" r="9" fill="#ff7cae"/>
-        <rect x="192" y="50" width="35" height="23" rx="5"
-              fill="#a38aff"/>
-        <circle cx="132" cy="249" r="8" fill="#19d4ff"/>
-      </g>
+          <text class="vortex-text">
+            <textPath href="#ring4" startOffset="2%">
+              Someone kept showing me the person they thought I wanted to be.
+            </textPath>
+          </text>
 
-      <path d="M43 133 C8 80 90 35 146 48"
-            fill="none" stroke="#19d4ff" stroke-width="2"
-            stroke-dasharray="5 7" opacity=".55"/>
+          <text class="vortex-text">
+            <textPath href="#ring5" startOffset="2%">
+              I didn’t feel like anything was missing until I was told that it was.
+            </textPath>
+          </text>
 
-      <path d="M215 110 C250 170 185 222 116 214"
-            fill="none" stroke="#a38aff" stroke-width="2"
-            stroke-dasharray="5 7" opacity=".55"/>
+          <text class="vortex-text">
+            <textPath href="#ring6" startOffset="2%">
+              I was never enough because of the people I scrolled past.
+            </textPath>
+          </text>
 
-      <!-- BODY -->
+          <text class="vortex-text">
+            <textPath href="#ring7" startOffset="2%">
+              I cared about it because everyone else seemed to care about it.
+            </textPath>
+          </text>
 
-      <ellipse cx="136" cy="232" rx="56" ry="9"
-               fill="#000" opacity=".35"/>
+          <text class="vortex-text">
+            <textPath href="#ring8" startOffset="2%">
+              They are so far ahead. Why am I not there yet?
+            </textPath>
+          </text>
 
-      <rect x="57" y="77" width="151" height="145" rx="29"
-            fill="#19d4ff" opacity=".45"
-            transform="translate(7 4)"/>
+          <text class="vortex-text">
+            <textPath href="#ring9" startOffset="2%">
+              I built myself from the things I loved and my interests were my name.
+            </textPath>
+          </text>
 
-      <rect x="48" y="77" width="151" height="145" rx="29"
-            fill="#a38aff" opacity=".55"
-            transform="translate(-7 2)"/>
+          <text class="vortex-text">
+            <textPath href="#ring10" startOffset="2%">
+              I never chose what came next but something always showed up next.
+            </textPath>
+          </text>
 
-      <rect x="52" y="72" width="151" height="145" rx="29"
-            fill="#252432" stroke="#a38aff" stroke-width="2"/>
+        </g>
 
-      <!-- SCREEN -->
+        <!-- CENTRAL CONCLUSION -->
 
-      <rect x="65" y="88" width="125" height="112" rx="18"
-            fill="#f4f1ec"/>
+        <g class="vortex-center" id="vortexCenter">
 
-      <rect x="65" y="88" width="125" height="24" rx="15"
-            fill="#a38aff"/>
+          <circle class="vortex-glow" cx="420" cy="420" r="118"/>
 
-      <rect x="65" y="100" width="125" height="12"
-            fill="#a38aff"/>
+          <circle cx="420" cy="420" r="105"
+                  fill="#111017"
+                  stroke="#b58cff"
+                  stroke-opacity=".45"/>
 
-      <circle cx="80" cy="100" r="3" fill="#f4f1ec"/>
-      <circle cx="92" cy="100" r="3" fill="#f4f1ec"/>
-      <circle cx="104" cy="100" r="3" fill="#f4f1ec"/>
+          <text x="420" y="365"
+                text-anchor="middle"
+                class="center-small">
+            AFTER ALL THIS
+          </text>
 
-      <!-- EYES -->
+          <text x="420" y="412"
+                text-anchor="middle"
+                class="center-main">
+            I don't know
+          </text>
 
-      <g class="eye">
-        <ellipse cx="103" cy="148" rx="8" ry="11" fill="#252432"/>
-        <ellipse cx="153" cy="148" rx="8" ry="11" fill="#252432"/>
-        <circle cx="105" cy="145" r="3" fill="#fff"/>
-        <circle cx="155" cy="145" r="3" fill="#fff"/>
-      </g>
+          <text x="420" y="445"
+                text-anchor="middle"
+                class="center-main">
+            what's
+            <tspan class="center-accent"> mine </tspan>
+          </text>
 
-      <ellipse cx="88" cy="169" rx="9" ry="5"
-               fill="#ff7cae" opacity=".7"/>
-      <ellipse cx="169" cy="169" rx="9" ry="5"
-               fill="#ff7cae" opacity=".7"/>
+          <text x="420" y="478"
+                text-anchor="middle"
+                class="center-main">
+            anymore.
+          </text>
 
-      <path d="M120 178 Q128 184 136 178"
-            fill="none" stroke="#252432" stroke-width="3"
-            stroke-linecap="round"/>
+          <circle cx="420" cy="330" r="3" fill="#19d4ff"/>
+          <circle cx="420" cy="510" r="3" fill="#ff83c9"/>
 
-      <!-- FEET -->
+        </g>
 
-      <rect x="84" y="216" width="35" height="12" rx="6"
-            fill="#a38aff"/>
-      <rect x="141" y="216" width="35" height="12" rx="6"
-            fill="#19d4ff"/>
-
-      <text x="130" y="268" text-anchor="middle"
-            font-family="Space Mono,monospace"
-            font-size="12" letter-spacing="2"
-            fill="#19d4ff">VORTEX_009</text>
-
-    </svg>
-  </div>
-
-</header>
-
-
-<!-- POEM INTRO -->
-
-<section class="block">
-
-  <div class="label">INTERACTIVE FILE / 009-A</div>
-
-  <h2>LOST IN THE <b>FEED.</b></h2>
-
-  <p>
-    Ten thoughts. A thousand distractions.
-    Every scroll brings another world into view,
-    until the line between what we love and what we consume
-    begins to disappear.
-    Press play and watch the vortex unfold.
-  </p>
-
-  <div class="cv-head">
-    <span class="label">RECOVERED TEXT / POEM 02</span>
-    <button id="cv-replay" type="button">REPLAY ↻</button>
-  </div>
-
-  <div class="grid cv-stage" id="cv-stage">
-
-    <div class="cv-feed" id="cv-feed"></div>
-
-    <div class="cv-centre" id="cv-centre">
-
-      <div class="label">THE CENTRE OF IT ALL</div>
-
-      <h3>
-        After all this, I don't know what's mine anymore.
-      </h3>
-
-      <small>IDENTITY STATUS: LOST_009</small>
+      </svg>
 
     </div>
 
-  </div>
+    <div class="poem-caption">
+      <span>TRANSMISSION 009 / CONSUMPTION VORTEX</span>
+      <span id="poemStatus">AWAITING INPUT...</span>
+    </div>
 
-  <p id="cv-status" class="label" aria-live="polite"
-     style="margin-top:18px;font-size:10px">
-    WAITING FOR INPUT...
-  </p>
+  </section>
 
-</section>
+  <!-- END -->
 
+  <section class="end">
 
-<!-- END -->
+    <div class="label">END OF FILE / 009</div>
 
-<section class="end">
+    <h2>
+      Somewhere in the scroll,<br>
+      <b>I lost my own voice.</b>
+    </h2>
 
-  <div class="label">END OF FILE / 009</div>
+    <p>
+      We consume other people's lives, interests, opinions and
+      versions of happiness until our own become difficult to
+      recognise. Maybe the question was never what we were missing.
+      Maybe it was what we had stopped noticing.
+    </p>
 
-  <h2>SCROLLING WITHOUT <b>ARRIVING.</b></h2>
-
-  <p>
-    We came for inspiration, entertainment, connection,
-    and a thousand different versions of life.
-    But somewhere between watching everyone else's stories
-    and trying to keep up, we forgot to ask what our own looked like.
-  </p>
-
-</section>
+  </section>
 
 </div>
 
-
 <footer class="foot">
-
   <span>THIS IS NOT A CLICKBAIT</span>
-
-  <span>ARTICLE 009 / CONSUMPTION VORTEX</span>
-
-  <span>TOO MUCH INFORMATION. NOT ENOUGH OF OURSELVES.</span>
-
-  <a href="https://almii0441-tech.github.io/this-is-not-a-clickbait/index.html">
-    ← RETURN TO HOMEPAGE
-  </a>
-
+  <span>TRANSMISSION 009 / CONSUMPTION VORTEX</span>
+  <span>HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.</span>
+  <a href="../index.html">← RETURN TO HOMEPAGE</a>
 </footer>
 
-
 <script>
-(function(){
+(function() {
 
-  const reduceMotion =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stage = document.getElementById("vortexStage");
+  const lines = Array.from(
+    document.querySelectorAll(".vortex-text")
+  );
+  const center = document.getElementById("vortexCenter");
+  const button = document.getElementById("replay");
+  const status = document.getElementById("poemStatus");
 
-  const feed = document.getElementById("cv-feed");
-  const stage = document.getElementById("cv-stage");
-  const centre = document.getElementById("cv-centre");
-  const status = document.getElementById("cv-status");
-  const replay = document.getElementById("cv-replay");
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
   let run = 0;
-  let started = false;
-
-  const lines = [
-
-    "Here's everything that happened in the world while you slept.",
-
-    "Everyone else, a thousand lives I would never actually know or experience.",
-
-    "Fiction was my savior, another world was always waiting for me to enter.",
-
-    "Someone kept showing me the person they thought I wanted to be.",
-
-    "I didn't feel like anything was missing until I was told that it was.",
-
-    "I was never enough because of the people I scrolled past.",
-
-    "I cared about it because everyone else seemed to care about it.",
-
-    "They are so far ahead. Why am I not there yet?",
-
-    "I built myself from the things I loved and my interests were my name.",
-
-    "I never chose what came next but something always showed up next."
-
-  ];
 
   function sleep(ms) {
     return new Promise(resolve =>
-      setTimeout(resolve, reduceMotion ? 0 : ms)
+      setTimeout(resolve, reducedMotion ? 30 : ms)
     );
-  }
-
-  function createLine(index) {
-
-    const card = document.createElement("div");
-    card.className = "cv-line";
-
-    const number = document.createElement("div");
-    number.className = "cv-number";
-    number.textContent = String(index + 1).padStart(2,"0");
-
-    const text = document.createElement("div");
-    text.className = "cv-text";
-
-    card.append(number,text);
-    feed.append(card);
-
-    return {card,text};
-  }
-
-  async function typeText(element,text,id) {
-
-    if(reduceMotion) {
-      element.textContent = text;
-      return;
-    }
-
-    const cursor = document.createElement("span");
-    cursor.className = "cv-cursor";
-    element.append(cursor);
-
-    for(let i=0;i<text.length;i++) {
-
-      if(id !== run) return;
-
-      element.insertBefore(
-        document.createTextNode(text[i]),
-        cursor
-      );
-
-      await sleep(32);
-    }
-
-    cursor.remove();
   }
 
   async function play() {
 
-    const id = ++run;
+    const currentRun = ++run;
 
-    feed.innerHTML = "";
-    centre.classList.remove("show");
+    stage.classList.remove("playing","finished");
+    lines.forEach(line => line.classList.remove("visible"));
+    center.classList.remove("visible");
 
-    status.textContent = "CONNECTING TO THE FEED...";
+    status.textContent = "THE FEED IS LOADING...";
 
-    await sleep(700);
+    await sleep(500);
 
-    for(let i=0;i<lines.length;i++) {
+    stage.classList.add("playing");
 
-      if(id !== run) return;
+    for (let i = 0; i < lines.length; i++) {
+
+      if (currentRun !== run) return;
+
+      lines[i].classList.add("visible");
 
       status.textContent =
-        "CONSUMING DATA / " +
-        String(i+1).padStart(2,"0") +
-        " OF 10";
-
-      const item = createLine(i);
-
-      await sleep(120);
-
-      if(id !== run) return;
-
-      item.card.classList.add("visible");
-
-      await typeText(item.text,lines[i],id);
-
-      if(id !== run) return;
+        "RECOVERING THOUGHTS...";
 
       await sleep(850);
-
-      item.card.scrollIntoView({
-        behavior:reduceMotion ? "auto" : "smooth",
-        block:"nearest"
-      });
-
     }
 
-    if(id !== run) return;
+    if (currentRun !== run) return;
 
-    status.textContent = "ALL DATA CONSUMED.";
+    await sleep(900);
 
-    await sleep(1200);
+    center.classList.add("visible");
 
-    if(id !== run) return;
+    status.textContent = "TRANSMISSION COMPLETE.";
 
-    centre.classList.add("show");
+    await sleep(1800);
 
-    status.textContent = "IDENTITY STATUS: LOST_009";
-
-    centre.scrollIntoView({
-      behavior:reduceMotion ? "auto" : "smooth",
-      block:"center"
-    });
+    if (currentRun === run) {
+      stage.classList.remove("playing");
+      stage.classList.add("finished");
+    }
 
   }
 
-  replay.addEventListener("click",play);
+  button.addEventListener("click", play);
 
-  if("IntersectionObserver" in window) {
+  if ("IntersectionObserver" in window) {
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(entries => {
 
-      if(!started && entries[0].isIntersecting) {
-
-        started = true;
+      if (entries[0].isIntersecting) {
         observer.disconnect();
         play();
-
       }
 
-    },{threshold:.2});
+    }, {threshold:0.2});
 
     observer.observe(stage);
 
   } else {
-
     play();
-
   }
 
 })();
@@ -985,4 +912,3 @@ h2 b {
 
 </body>
 </html>
-```
