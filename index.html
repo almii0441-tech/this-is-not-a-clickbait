@@ -13,1682 +13,460 @@
 
 <style>
 :root {
-  --black:#080808;
-  --panel:#111114;
-  --white:#f3f0eb;
-  --muted:#999;
-  --red:#ff343f;
-  --blue:#00d9ff;
-  --green:#c8ff00;
-  --purple:#b58cff;
-  --pink:#ff83c9;
-  --gold:#d5a84b;
-  --line:#303035;
+  --black:#080808; --panel:#111114; --white:#f3f0eb;
+  --muted:#999; --red:#ff343f; --blue:#00d9ff;
+  --green:#c8ff00; --purple:#b58cff; --pink:#ff83c9;
+  --gold:#d5a84b; --line:#303035;
 }
-
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html {
-  scroll-behavior:smooth;
-  scroll-padding-top:25px;
-}
-
+* {margin:0;padding:0;box-sizing:border-box}
+html {scroll-behavior:smooth;scroll-padding-top:25px}
 body {
-  background:var(--black);
-  color:var(--white);
-  font-family:'Space Grotesk',sans-serif;
-  overflow-x:hidden;
+  background:var(--black);color:var(--white);
+  font-family:'Space Grotesk',sans-serif;overflow-x:hidden
 }
-
 body::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:20;
-  pointer-events:none;
-  opacity:.075;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  content:"";position:fixed;inset:0;z-index:20;
+  pointer-events:none;opacity:.075;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E")
 }
+a {color:inherit;text-decoration:none}
+button {font:inherit;cursor:pointer}
+::selection {background:var(--red);color:var(--black)}
+.mono {font-family:'Space Mono',monospace}
 
-a {
-  color:inherit;
-  text-decoration:none;
-}
-
-button {
-  font:inherit;
-  cursor:pointer;
-}
-
-::selection {
-  background:var(--red);
-  color:var(--black);
-}
-
-.mono {
-  font-family:'Space Mono',monospace;
-}
-
-/* ==========================================
-   GLOBAL ANIMATIONS
-========================================== */
-
-@keyframes blink {
-  50% {opacity:.2;}
-}
-
+@keyframes blink {50%{opacity:.2}}
 @keyframes glitch {
-  0%,90%,100% {transform:translate(0);}
-  92% {transform:translate(4px,-2px);}
-  94% {transform:translate(-3px,2px);}
-  96% {transform:translate(2px,0);}
+  0%,90%,100%{transform:translate(0)}
+  92%{transform:translate(4px,-2px)}
+  94%{transform:translate(-3px,2px)}
+  96%{transform:translate(2px,0)}
 }
-
-@keyframes tickerMove {
-  to {transform:translateX(-50%);}
-}
-
+@keyframes tickerMove {to{transform:translateX(-50%)}}
 @keyframes nameFlicker {
-  0% {
-    opacity:.3;
-    transform:translateX(-5px);
-  }
-  20% {
-    transform:translateX(4px);
-  }
-  40% {
-    transform:translateX(-3px);
-    opacity:.7;
-  }
-  65% {
-    transform:translateX(2px);
-  }
-  100% {
-    transform:translateX(0);
-    opacity:1;
-  }
+  0%{opacity:.3;transform:translateX(-5px)}
+  20%{transform:translateX(4px)}
+  40%{transform:translateX(-3px);opacity:.7}
+  65%{transform:translateX(2px)}
+  100%{transform:translateX(0);opacity:1}
 }
-
 @keyframes glitchBlue {
-  0%,100% {
-    opacity:0;
-    clip-path:inset(0 0 100% 0);
-  }
-  20% {
-    opacity:.9;
-    transform:translate(-5px,2px);
-    clip-path:inset(10% 0 65% 0);
-  }
-  50% {
-    opacity:.7;
-    transform:translate(4px,-1px);
-    clip-path:inset(45% 0 30% 0);
-  }
-  75% {
-    opacity:.5;
-    transform:translate(-2px,1px);
-    clip-path:inset(75% 0 5% 0);
-  }
+  0%,100%{opacity:0;clip-path:inset(0 0 100% 0)}
+  20%{opacity:.9;transform:translate(-5px,2px);clip-path:inset(10% 0 65% 0)}
+  50%{opacity:.7;transform:translate(4px,-1px);clip-path:inset(45% 0 30% 0)}
+  75%{opacity:.5;transform:translate(-2px,1px);clip-path:inset(75% 0 5% 0)}
 }
-
 @keyframes glitchRed {
-  0%,100% {
-    opacity:0;
-    clip-path:inset(100% 0 0 0);
-  }
-  25% {
-    opacity:.8;
-    transform:translate(5px,-2px);
-    clip-path:inset(20% 0 60% 0);
-  }
-  55% {
-    opacity:.8;
-    transform:translate(-4px,2px);
-    clip-path:inset(60% 0 20% 0);
-  }
-  80% {
-    opacity:.5;
-    transform:translate(2px,0);
-    clip-path:inset(85% 0 3% 0);
-  }
+  0%,100%{opacity:0;clip-path:inset(100% 0 0 0)}
+  25%{opacity:.8;transform:translate(5px,-2px);clip-path:inset(20% 0 60% 0)}
+  55%{opacity:.8;transform:translate(-4px,2px);clip-path:inset(60% 0 20% 0)}
+  80%{opacity:.5;transform:translate(2px,0);clip-path:inset(85% 0 3% 0)}
 }
-
 @keyframes profileAppear {
-  from {
-    opacity:0;
-    transform:translateY(15px) scale(.98);
-  }
-  to {
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
+  from{opacity:0;transform:translateY(15px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
-
 @keyframes popupIn {
-  from {
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
-
 @keyframes engagementAppear {
-  from {
-    opacity:0;
-    transform:translateY(12px);
-  }
-  to {
-    opacity:1;
-    transform:translateY(0);
-  }
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
 }
+@keyframes statusBlink {0%,100%{opacity:1}50%{opacity:.35}}
 
-@keyframes statusBlink {
-  0%,100% {opacity:1;}
-  50% {opacity:.35;}
-}
-
-/* ==========================================
-   TOP BAR
-========================================== */
-
+/* TOP BAR */
 .topbar {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  padding:15px 6%;
-  border-bottom:1px solid var(--line);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:1.5px;
-  color:#aaa;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;padding:15px 6%;border-bottom:1px solid var(--line);
+  font:10px 'Space Mono',monospace;letter-spacing:1.5px;color:#aaa
 }
+.status {color:var(--green)}
+.status::before {content:"●";margin-right:8px;animation:blink 1.2s infinite}
 
-.status {
-  color:var(--green);
-}
-
-.status::before {
-  content:"●";
-  margin-right:8px;
-  animation:blink 1.2s infinite;
-}
-
-/* ==========================================
-   NAVIGATION
-========================================== */
-
+/* NAVIGATION */
 nav {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px 6%;
-  gap:20px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 6%;gap:20px
 }
-
 .logo {
-  color:var(--red);
-  font:700 15px 'Space Mono',monospace;
-  letter-spacing:2px;
-  text-shadow:2px 0 var(--blue);
+  color:var(--red);font:700 15px 'Space Mono',monospace;
+  letter-spacing:2px;text-shadow:2px 0 var(--blue)
 }
-
 .navlinks {
-  display:flex;
-  flex-wrap:wrap;
-  gap:25px;
-  color:#aaa;
-  font:11px 'Space Mono',monospace;
+  display:flex;flex-wrap:wrap;gap:25px;
+  color:#aaa;font:11px 'Space Mono',monospace
 }
+.navlinks a {transition:.2s}
+.navlinks a:hover {color:var(--blue);text-shadow:2px 0 var(--red)}
 
-.navlinks a {
-  transition:.2s;
-}
-
-.navlinks a:hover {
-  color:var(--blue);
-  text-shadow:2px 0 var(--red);
-}
-
-/* ==========================================
-   HERO
-========================================== */
-
+/* HERO */
 .hero {
-  min-height:78vh;
-  padding:90px 7% 65px;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  overflow:hidden;
-  border-bottom:1px solid var(--line);
+  min-height:78vh;padding:90px 7% 65px;position:relative;
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:hidden;border-bottom:1px solid var(--line)
 }
-
 .hero::before {
-  content:"";
-  position:absolute;
-  width:440px;
-  height:440px;
-  border:1px solid #25252a;
-  border-radius:50%;
-  right:-120px;
-  top:10%;
-  box-shadow:
-    0 0 0 35px #101014,
-    0 0 0 36px #25252a,
-    0 0 0 90px #0c0c0f,
-    0 0 0 91px #202025;
-  opacity:.65;
+  content:"";position:absolute;width:440px;height:440px;
+  border:1px solid #25252a;border-radius:50%;
+  right:-120px;top:10%;
+  box-shadow:0 0 0 35px #101014,0 0 0 36px #25252a,
+  0 0 0 90px #0c0c0f,0 0 0 91px #202025;opacity:.65
 }
-
 .hero::after {
-  content:"ERROR 404 / REALITY NOT FOUND";
-  position:absolute;
-  right:-35px;
-  top:42%;
-  transform:rotate(90deg);
-  color:#35353a;
-  font:10px 'Space Mono',monospace;
-  letter-spacing:4px;
+  content:"ERROR 404 / REALITY NOT FOUND";position:absolute;
+  right:-35px;top:42%;transform:rotate(90deg);
+  color:#35353a;font:10px 'Space Mono',monospace;letter-spacing:4px
 }
-
 .eyebrow,.label {
-  color:var(--blue);
-  font:11px 'Space Mono',monospace;
-  letter-spacing:3px;
-  margin-bottom:25px;
-  text-shadow:2px 0 rgba(255,52,63,.4);
+  color:var(--blue);font:11px 'Space Mono',monospace;
+  letter-spacing:3px;margin-bottom:25px;
+  text-shadow:2px 0 rgba(255,52,63,.4)
 }
-
 .hero h1 {
-  position:relative;
-  z-index:1;
-  max-width:1100px;
+  position:relative;z-index:1;max-width:1100px;
   font:900 clamp(55px,10.5vw,145px)/.88 'Playfair Display',serif;
-  letter-spacing:-6px;
+  letter-spacing:-6px
 }
-
 .glitch-word {
-  display:block;
-  color:var(--red);
+  display:block;color:var(--red);
   text-shadow:4px 0 var(--blue),-3px 0 var(--purple);
-  animation:glitch 4s infinite;
+  animation:glitch 4s infinite
 }
-
 .tagline {
-  margin-top:30px;
-  color:#aaa;
-  font-size:18px;
-  font-style:italic;
-  border-left:2px solid var(--blue);
-  padding-left:14px;
+  margin-top:30px;color:#aaa;font-size:18px;font-style:italic;
+  border-left:2px solid var(--blue);padding-left:14px
 }
-
-.hero-actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:32px;
-}
-
+.hero-actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .button {
-  display:inline-block;
-  padding:13px 19px;
-  border:1px solid var(--red);
-  background:var(--red);
-  color:#080808;
-  font:700 10px 'Space Mono',monospace;
-  letter-spacing:1.5px;
-  transition:.25s;
+  display:inline-block;padding:13px 19px;border:1px solid var(--red);
+  background:var(--red);color:#080808;
+  font:700 10px 'Space Mono',monospace;letter-spacing:1.5px;transition:.25s
 }
-
-.button:hover {
-  background:transparent;
-  color:var(--red);
-  transform:translateY(-3px);
-}
-
-.button.secondary {
-  background:transparent;
-  color:var(--white);
-  border-color:#555;
-}
-
-.button.secondary:hover {
-  border-color:var(--blue);
-  color:var(--blue);
-}
-
+.button:hover {background:transparent;color:var(--red);transform:translateY(-3px)}
+.button.secondary {background:transparent;color:var(--white);border-color:#555}
+.button.secondary:hover {border-color:var(--blue);color:var(--blue)}
 .hero-bottom {
-  position:relative;
-  z-index:1;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-  max-width:750px;
-  margin-top:65px;
-  color:#888;
-  font:10px 'Space Mono',monospace;
-  letter-spacing:2px;
+  position:relative;z-index:1;display:flex;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;max-width:750px;margin-top:65px;
+  color:#888;font:10px 'Space Mono',monospace;letter-spacing:2px
 }
+.scroll {color:var(--green)}
 
-.scroll {
-  color:var(--green);
-}
-
-/* ==========================================
-   TICKER
-========================================== */
-
+/* TICKER */
 .ticker {
-  overflow:hidden;
-  white-space:nowrap;
-  padding:14px 0;
-  border-bottom:1px solid var(--line);
-  color:var(--green);
-  font:11px 'Space Mono',monospace;
-  letter-spacing:3px;
+  overflow:hidden;white-space:nowrap;padding:14px 0;
+  border-bottom:1px solid var(--line);color:var(--green);
+  font:11px 'Space Mono',monospace;letter-spacing:3px
 }
+.ticker-track {display:inline-block;animation:tickerMove 28s linear infinite}
 
-.ticker-track {
-  display:inline-block;
-  animation:tickerMove 28s linear infinite;
-}
-
-/* ==========================================
-   SYSTEM STRIP
-========================================== */
-
-.system-strip {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  border-bottom:1px solid var(--line);
-}
-
-.system-box {
-  padding:24px 6%;
-  border-right:1px solid var(--line);
-}
-
-.system-box:last-child {
-  border-right:0;
-}
-
+/* SYSTEM STRIP */
+.system-strip {display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.system-box {padding:24px 6%;border-right:1px solid var(--line)}
+.system-box:last-child {border-right:0}
 .system-box small {
-  display:block;
-  margin-bottom:10px;
-  color:#777;
-  font:9px 'Space Mono',monospace;
-  letter-spacing:2px;
+  display:block;margin-bottom:10px;color:#777;
+  font:9px 'Space Mono',monospace;letter-spacing:2px
 }
+.system-box strong {font-size:15px;font-weight:600;text-shadow:0 0 10px currentColor}
+.system-box:nth-child(1) strong {color:var(--green)}
+.system-box:nth-child(2) strong {color:var(--blue)}
+.system-box:nth-child(3) strong {color:var(--purple)}
 
-.system-box strong {
-  font-size:15px;
-  font-weight:600;
-  text-shadow:0 0 10px currentColor;
-}
-
-.system-box:nth-child(1) strong {color:var(--green);}
-.system-box:nth-child(2) strong {color:var(--blue);}
-.system-box:nth-child(3) strong {color:var(--purple);}
-
-/* ==========================================
-   SECTION HEADINGS
-========================================== */
-
-section {
-  scroll-margin-top:25px;
-}
-
+/* SECTION HEADINGS */
+section {scroll-margin-top:25px}
 .section-heading {
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:20px;
-  margin-bottom:45px;
+  display:flex;justify-content:space-between;align-items:end;
+  gap:20px;margin-bottom:45px
 }
-
-.section-heading h2,
-.intro h2,
-.arcade-intro h2,
-.interruption h2 {
-  color:var(--white);
-  text-shadow:2px 0 var(--red),-2px 0 var(--blue);
-  transition:text-shadow .3s;
+.section-heading h2,.intro h2,.arcade-intro h2,.interruption h2 {
+  color:var(--white);text-shadow:2px 0 var(--red),-2px 0 var(--blue);
+  transition:text-shadow .3s
 }
-
-.section-heading h2:hover,
-.intro h2:hover,
-.arcade-intro h2:hover,
-.interruption h2:hover {
-  text-shadow:
-    4px 0 var(--red),
-    -4px 0 var(--blue),
-    0 0 18px rgba(0,217,255,.25);
+.section-heading h2:hover,.intro h2:hover,.arcade-intro h2:hover,.interruption h2:hover {
+  text-shadow:4px 0 var(--red),-4px 0 var(--blue),0 0 18px rgba(0,217,255,.25)
 }
+.section-heading h2 {font:700 clamp(40px,6vw,75px)/1 'Playfair Display',serif}
+.section-heading>span {color:var(--blue);font:10px 'Space Mono',monospace}
 
-.section-heading h2 {
-  font:700 clamp(40px,6vw,75px)/1 'Playfair Display',serif;
-}
-
-.section-heading > span {
-  color:var(--blue);
-  font:10px 'Space Mono',monospace;
-}
-
-/* ==========================================
-   INTRO
-========================================== */
-
+/* INTRO */
 .intro {
-  padding:100px 7%;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:50px;
-  border-bottom:1px solid var(--line);
+  padding:100px 7%;display:grid;grid-template-columns:1fr 1fr;
+  gap:50px;border-bottom:1px solid var(--line)
 }
+.intro h2 {font:700 clamp(35px,5vw,65px)/1.05 'Playfair Display',serif}
+.intro p.description {align-self:center;color:#aaa;font-size:17px;line-height:1.9}
 
-.intro h2 {
-  font:700 clamp(35px,5vw,65px)/1.05 'Playfair Display',serif;
-}
-
-.intro p.description {
-  align-self:center;
-  color:#aaa;
-  font-size:17px;
-  line-height:1.9;
-}
-
-/* ==========================================
-   ARCHIVE
-========================================== */
-
-.archive {
-  padding:95px 7%;
-}
-
-.article-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:15px;
-}
-
+/* ARCHIVE */
+.archive {padding:95px 7%}
+.article-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
 .article-card {
-  min-height:235px;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:25px;
-  border:1px solid var(--line);
-  background:var(--panel);
-  overflow:hidden;
-  transition:transform .25s,border-color .25s;
+  min-height:235px;position:relative;display:flex;flex-direction:column;
+  justify-content:space-between;padding:25px;border:1px solid var(--line);
+  background:var(--panel);overflow:hidden;transition:transform .25s,border-color .25s
 }
-
-.article-card:hover {
-  transform:translateY(-5px);
-  border-color:var(--accent);
-}
-
+.article-card:hover {transform:translateY(-5px);border-color:var(--accent)}
 .article-card::after {
-  content:attr(data-number);
-  position:absolute;
-  right:10px;
-  bottom:-40px;
-  color:var(--accent);
-  opacity:.09;
-  font:900 130px 'Space Grotesk',sans-serif;
-  pointer-events:none;
+  content:attr(data-number);position:absolute;right:10px;bottom:-40px;
+  color:var(--accent);opacity:.09;font:900 130px 'Space Grotesk',sans-serif;
+  pointer-events:none
 }
-
-.article-top {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  color:var(--accent);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:1.5px;
-}
-
+.article-top {display:flex;justify-content:space-between;gap:10px;color:var(--accent);font:10px 'Space Mono',monospace;letter-spacing:1.5px}
 .article-card h3 {
-  position:relative;
-  z-index:1;
-  max-width:430px;
-  margin:28px 0 10px;
+  position:relative;z-index:1;max-width:430px;margin:28px 0 10px;
   font:700 clamp(25px,3.4vw,39px)/1.1 'Playfair Display',serif;
-  color:var(--accent);
-  text-shadow:2px 0 rgba(255,52,63,.5),-2px 0 rgba(0,217,255,.45);
-  transition:.3s;
+  color:var(--accent);text-shadow:2px 0 rgba(255,52,63,.5),-2px 0 rgba(0,217,255,.45);
+  transition:.3s
 }
-
-.article-card:not(.human-card):hover h3 {
-  transform:translateX(3px);
-  text-shadow:3px 0 var(--blue),-3px 0 var(--red);
-}
-
-.article-card p {
-  position:relative;
-  z-index:1;
-  max-width:430px;
-  color:#999;
-  font-size:13px;
-  line-height:1.7;
-}
-
+.article-card:not(.human-card):hover h3 {transform:translateX(3px);text-shadow:3px 0 var(--blue),-3px 0 var(--red)}
+.article-card p {position:relative;z-index:1;max-width:430px;color:#999;font-size:13px;line-height:1.7}
 .article-bottom {
-  position:relative;
-  z-index:1;
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:25px;
-  color:var(--accent);
-  font:9px 'Space Mono',monospace;
-  letter-spacing:1px;
+  position:relative;z-index:1;display:flex;justify-content:space-between;
+  gap:10px;margin-top:25px;color:var(--accent);
+  font:9px 'Space Mono',monospace;letter-spacing:1px
 }
+.archive-note {margin-top:25px;color:#777;font:10px 'Space Mono',monospace;line-height:1.8}
 
-.archive-note {
-  margin-top:25px;
-  color:#777;
-  font:10px 'Space Mono',monospace;
-  line-height:1.8;
-}
+/* VISUAL POETRY */
+.visual-poetry {border-top:1px solid var(--line)}
+.poetry-card {min-height:340px}
+.poetry-link {position:relative;z-index:1;display:block;margin:28px 0 10px}
+.poetry-link h3 {margin:0 0 10px;font:700 clamp(25px,3.4vw,39px)/1.1 'Playfair Display',serif;color:var(--accent)}
+.poetry-link:hover h3 {text-shadow:3px 0 var(--blue),-3px 0 var(--red)}
+.poetry-description {max-width:430px;color:#999;font:13px/1.7 'Space Grotesk',sans-serif}
 
-/* ==========================================
-   VISUAL POETRY
-========================================== */
-
-.visual-poetry {
-  border-top:1px solid var(--line);
-}
-
-.poetry-card {
-  min-height:340px;
-}
-
-.poetry-link {
-  position:relative;
-  z-index:1;
-  display:block;
-  margin:28px 0 10px;
-}
-
-.poetry-link h3 {
-  margin:0 0 10px;
-  font:700 clamp(25px,3.4vw,39px)/1.1 'Playfair Display',serif;
-  color:var(--accent);
-}
-
-.poetry-link:hover h3 {
-  text-shadow:3px 0 var(--blue),-3px 0 var(--red);
-}
-
-.poetry-description {
-  max-width:430px;
-  color:#999;
-  font:13px/1.7 'Space Grotesk',sans-serif;
-}
-
-/* ==========================================
-   ARCADE
-========================================== */
-
+/* ARCADE */
 .arcade {
-  padding:90px 7%;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  background:#0c0c0f;
+  padding:90px 7%;border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);background:#0c0c0f
 }
-
-.arcade-intro {
-  max-width:650px;
-  margin-bottom:40px;
-}
-
-.arcade-intro h2 {
-  font:700 clamp(40px,6vw,75px)/1 'Playfair Display',serif;
-}
-
-.arcade-intro p {
-  margin-top:18px;
-  color:#999;
-  line-height:1.8;
-}
-
-.game-grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:16px;
-}
-
+.arcade-intro {max-width:650px;margin-bottom:40px}
+.arcade-intro h2 {font:700 clamp(40px,6vw,75px)/1 'Playfair Display',serif}
+.arcade-intro p {margin-top:18px;color:#999;line-height:1.8}
+.game-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .game-card {
-  min-height:220px;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:25px;
-  border:1px solid var(--accent);
+  min-height:220px;position:relative;display:flex;flex-direction:column;
+  justify-content:space-between;padding:25px;border:1px solid var(--accent);
   background:linear-gradient(145deg,#17171b,#0b0b0d);
-  overflow:hidden;
-  transition:.25s;
+  overflow:hidden;transition:.25s
 }
+.game-card:hover {transform:translateY(-5px) rotate(-.4deg);box-shadow:5px 5px 0 var(--accent)}
+.game-icon {font-size:30px;color:var(--accent)}
+.game-card small {color:var(--accent);font:10px 'Space Mono',monospace;letter-spacing:2px}
+.game-card h3 {margin:14px 0 8px;color:var(--accent);text-shadow:2px 0 var(--red),-2px 0 var(--blue);font:700 clamp(24px,3vw,36px) 'Playfair Display',serif}
+.game-card p {max-width:380px;color:#999;font-size:13px;line-height:1.6}
+.launch {align-self:flex-start;margin-top:22px;color:var(--accent);font:10px 'Space Mono',monospace;letter-spacing:2px}
 
-.game-card:hover {
-  transform:translateY(-5px) rotate(-.4deg);
-  box-shadow:5px 5px 0 var(--accent);
-}
-
-.game-icon {
-  font-size:30px;
-  color:var(--accent);
-}
-
-.game-card small {
-  color:var(--accent);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:2px;
-}
-
-.game-card h3 {
-  margin:14px 0 8px;
-  color:var(--accent);
-  text-shadow:2px 0 var(--red),-2px 0 var(--blue);
-  font:700 clamp(24px,3vw,36px) 'Playfair Display',serif;
-}
-
-.game-card p {
-  max-width:380px;
-  color:#999;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.launch {
-  align-self:flex-start;
-  margin-top:22px;
-  color:var(--accent);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:2px;
-}
-
-/* ==========================================
-   HUMAN DATABASE
-========================================== */
-
+/* HUMAN DATABASE */
 .human-database {
-  position:relative;
-  border-top:1px solid var(--line);
-  background:
-    radial-gradient(ellipse at 50% 0%,rgba(0,217,255,.035),transparent 55%),
-    #080808;
+  position:relative;border-top:1px solid var(--line);
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,217,255,.035),transparent 55%),#080808
 }
-
-.database-subtitle {
-  margin-top:18px;
-  max-width:650px;
-  color:#999;
-  font-size:15px;
-  line-height:1.8;
-}
-
+.database-subtitle {margin-top:18px;max-width:650px;color:#999;font-size:15px;line-height:1.8}
 .database-count {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
-  margin-bottom:25px;
-  padding:14px 16px;
-  border:1px solid var(--line);
-  background:#101014;
-  color:#888;
-  font:10px 'Space Mono',monospace;
-  letter-spacing:1px;
+  display:flex;justify-content:space-between;align-items:center;gap:15px;
+  flex-wrap:wrap;margin-bottom:25px;padding:14px 16px;
+  border:1px solid var(--line);background:#101014;color:#888;
+  font:10px 'Space Mono',monospace;letter-spacing:1px
 }
-
-.database-count strong {
-  color:var(--green);
-  text-shadow:0 0 10px var(--green);
-}
-
-.human-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
-}
-
+.database-count strong {color:var(--green);text-shadow:0 0 10px var(--green)}
+.human-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .human-card {
-  min-width:0;
-  min-height:0;
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  border:1px solid var(--line);
-  background:var(--panel);
-  transition:transform .3s,border-color .3s,box-shadow .3s;
+  min-width:0;min-height:0;padding:0;display:flex;flex-direction:column;
+  justify-content:flex-start;border:1px solid var(--line);background:var(--panel);
+  transition:transform .3s,border-color .3s,box-shadow .3s
 }
-
 .human-card:hover {
-  transform:translateY(-7px);
-  border-color:var(--accent);
-  box-shadow:5px 5px 0 color-mix(in srgb,var(--accent) 35%,transparent);
+  transform:translateY(-7px);border-color:var(--accent);
+  box-shadow:5px 5px 0 color-mix(in srgb,var(--accent) 35%,transparent)
 }
-
-/* CONTRIBUTOR IMAGES */
-
 .human-image-wrap {
-  position:relative;
-  height:255px;
-  margin:12px 12px 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+  position:relative;height:255px;margin:12px 12px 0;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
   border:1px solid #303035;
-  background:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
-    #0b0b0e;
-  background-size:22px 22px;
+  background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),#0b0b0e;
+  background-size:22px 22px
 }
-
 .human-image-wrap::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-  background:repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 4px,
-    rgba(255,255,255,.035) 5px
-  );
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 4px,rgba(255,255,255,.035) 5px)
 }
-
 .human-image-wrap::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.45));
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.45))
 }
-
-.human-image {
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center;
-  position:relative;
-  z-index:0;
-  transition:transform .4s;
-}
-
-.human-card:hover .human-image {
-  transform:scale(1.045);
-}
-
-.image-id {
-  position:absolute;
-  z-index:2;
-  top:10px;
-  left:10px;
-  padding:6px 9px;
-  border:1px solid var(--accent);
-  background:rgba(8,8,8,.85);
-  color:var(--accent);
-  font:9px 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-.image-status {
-  position:absolute;
-  z-index:2;
-  right:10px;
-  bottom:10px;
-  padding:6px 9px;
-  background:rgba(8,8,8,.85);
-  color:var(--green);
-  font:9px 'Space Mono',monospace;
-}
-
-/* CONTRIBUTOR DETAILS */
-
-.human-card-content {
-  padding:19px;
-  display:flex;
-  flex-direction:column;
-  flex:1;
-}
-
-.human-card-kicker {
-  color:var(--blue);
-  font:9px 'Space Mono',monospace;
-  letter-spacing:2px;
-  margin-bottom:10px;
-  text-shadow:0 0 8px rgba(0,217,255,.3);
-}
-
+.human-image {width:100%;height:100%;object-fit:contain;object-position:center;position:relative;z-index:0;transition:transform .4s}
+.human-card:hover .human-image {transform:scale(1.045)}
+.image-id {position:absolute;z-index:2;top:10px;left:10px;padding:6px 9px;border:1px solid var(--accent);background:rgba(8,8,8,.85);color:var(--accent);font:9px 'Space Mono',monospace;letter-spacing:1px}
+.image-status {position:absolute;z-index:2;right:10px;bottom:10px;padding:6px 9px;background:rgba(8,8,8,.85);color:var(--green);font:9px 'Space Mono',monospace}
+.human-card-content {padding:19px;display:flex;flex-direction:column;flex:1}
+.human-card-kicker {color:var(--blue);font:9px 'Space Mono',monospace;letter-spacing:2px;margin-bottom:10px;text-shadow:0 0 8px rgba(0,217,255,.3)}
 .human-card h3 {
-  position:relative;
-  display:inline-block;
-  width:fit-content;
-  max-width:100%;
-  margin:0 0 18px;
-  font:700 clamp(22px,2.2vw,30px)/1.1 'Playfair Display',serif;
-  color:var(--accent);
-  text-shadow:2px 0 rgba(255,52,63,.6),-2px 0 rgba(0,217,255,.5);
-  overflow-wrap:anywhere;
-  transition:color .3s,text-shadow .3s;
+  position:relative;display:inline-block;width:fit-content;max-width:100%;
+  margin:0 0 18px;font:700 clamp(22px,2.2vw,30px)/1.1 'Playfair Display',serif;
+  color:var(--accent);text-shadow:2px 0 rgba(255,52,63,.6),-2px 0 rgba(0,217,255,.5);
+  overflow-wrap:anywhere;transition:color .3s,text-shadow .3s
 }
-
-.human-card h3::before,
-.human-card h3::after,
-.profile-information h2::before,
-.profile-information h2::after {
-  content:attr(data-text);
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  opacity:0;
+.human-card h3::before,.human-card h3::after,
+.profile-information h2::before,.profile-information h2::after {
+  content:attr(data-text);position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;opacity:0
 }
+.human-card h3::before,.profile-information h2::before {color:var(--blue);z-index:-1}
+.human-card h3::after,.profile-information h2::after {color:var(--red);z-index:-2}
+.human-card h3.glitch-active,.profile-information h2.glitch-active {animation:nameFlicker .65s steps(2,end)}
+.human-card h3.glitch-active::before,.profile-information h2.glitch-active::before {animation:glitchBlue .65s steps(2,end)}
+.human-card h3.glitch-active::after,.profile-information h2.glitch-active::after {animation:glitchRed .65s steps(2,end)}
+.human-card:hover h3 {color:var(--white);text-shadow:3px 0 var(--red),-3px 0 var(--blue)}
+.human-details {display:flex;flex-direction:column;gap:12px;padding-top:15px;border-top:1px solid #303035}
+.human-detail {display:grid;grid-template-columns:105px minmax(0,1fr);gap:9px;align-items:start}
+.human-detail span:first-child {color:#777;font:9px/1.6 'Space Mono',monospace;letter-spacing:.5px}
+.human-detail span:last-child {color:#d2d0cd;font:10px/1.6 'Space Mono',monospace;overflow-wrap:anywhere}
+.human-article {margin-top:15px;padding:12px;border-left:2px solid var(--accent);background:#17171b}
+.human-article small {display:block;margin-bottom:7px;color:#777;font:9px 'Space Mono',monospace}
+.human-article strong {color:var(--accent);font:12px/1.5 'Space Grotesk',sans-serif;text-shadow:1px 0 var(--blue)}
+.profile-button {width:100%;margin-top:19px;padding:13px 12px;border:1px solid var(--accent);background:transparent;color:var(--accent);font:700 10px 'Space Mono',monospace;letter-spacing:1.5px;text-align:center;transition:.25s}
+.profile-button:hover {background:var(--accent);color:#080808}
+.database-warning {display:flex;align-items:center;gap:12px;margin-top:30px;padding:17px;border:1px solid #4a2529;background:#151012;color:var(--red);font:10px/1.7 'Space Mono',monospace;letter-spacing:1px;box-shadow:3px 3px 0 rgba(255,52,63,.15)}
 
-.human-card h3::before,
-.profile-information h2::before {
-  color:var(--blue);
-  z-index:-1;
-}
-
-.human-card h3::after,
-.profile-information h2::after {
-  color:var(--red);
-  z-index:-2;
-}
-
-.human-card h3.glitch-active,
-.profile-information h2.glitch-active {
-  animation:nameFlicker .65s steps(2,end);
-}
-
-.human-card h3.glitch-active::before,
-.profile-information h2.glitch-active::before {
-  animation:glitchBlue .65s steps(2,end);
-}
-
-.human-card h3.glitch-active::after,
-.profile-information h2.glitch-active::after {
-  animation:glitchRed .65s steps(2,end);
-}
-
-.human-card:hover h3 {
-  color:var(--white);
-  text-shadow:3px 0 var(--red),-3px 0 var(--blue);
-}
-
-.human-details {
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  padding-top:15px;
-  border-top:1px solid #303035;
-}
-
-.human-detail {
-  display:grid;
-  grid-template-columns:105px minmax(0,1fr);
-  gap:9px;
-  align-items:start;
-}
-
-.human-detail span:first-child {
-  color:#777;
-  font:9px/1.6 'Space Mono',monospace;
-  letter-spacing:.5px;
-}
-
-.human-detail span:last-child {
-  color:#d2d0cd;
-  font:10px/1.6 'Space Mono',monospace;
-  overflow-wrap:anywhere;
-}
-
-.human-article {
-  margin-top:15px;
-  padding:12px;
-  border-left:2px solid var(--accent);
-  background:#17171b;
-}
-
-.human-article small {
-  display:block;
-  margin-bottom:7px;
-  color:#777;
-  font:9px 'Space Mono',monospace;
-}
-
-.human-article strong {
-  color:var(--accent);
-  font:12px/1.5 'Space Grotesk',sans-serif;
-  text-shadow:1px 0 var(--blue);
-}
-
-.profile-button {
-  width:100%;
-  margin-top:19px;
-  padding:13px 12px;
-  border:1px solid var(--accent);
-  background:transparent;
-  color:var(--accent);
-  font:700 10px 'Space Mono',monospace;
-  letter-spacing:1.5px;
-  text-align:center;
-  transition:.25s;
-}
-
-.profile-button:hover {
-  background:var(--accent);
-  color:#080808;
-}
-
-/* DATABASE WARNING */
-
-.database-warning {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-top:30px;
-  padding:17px;
-  border:1px solid #4a2529;
-  background:#151012;
-  color:var(--red);
-  font:10px/1.7 'Space Mono',monospace;
-  letter-spacing:1px;
-  box-shadow:3px 3px 0 rgba(255,52,63,.15);
-}
-
-/* ==========================================
-   PROFILE MODAL
-========================================== */
-
+/* PROFILE MODAL */
 .profile-modal {
-  position:fixed;
-  inset:0;
-  z-index:100001;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.88);
-  backdrop-filter:blur(8px);
-  overflow-y:auto;
+  position:fixed;inset:0;z-index:100001;display:none;
+  align-items:center;justify-content:center;padding:20px;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(8px);overflow-y:auto
 }
-
-.profile-modal.active {
-  display:flex;
-}
-
+.profile-modal.active {display:flex}
 .profile-window {
-  position:relative;
-  width:100%;
-  max-width:850px;
-  max-height:90vh;
-  overflow-y:auto;
-  border:1px solid var(--accent);
-  background:#101014;
+  position:relative;width:100%;max-width:850px;max-height:90vh;
+  overflow-y:auto;border:1px solid var(--accent);background:#101014;
   box-shadow:8px 8px 0 color-mix(in srgb,var(--accent) 35%,transparent);
-  animation:profileAppear .3s ease both;
+  animation:profileAppear .3s ease both
 }
+.profile-header {display:flex;justify-content:space-between;align-items:center;gap:15px;padding:16px 20px;border-bottom:1px solid #303035;color:var(--accent);font:10px 'Space Mono',monospace;letter-spacing:1.5px}
+.profile-close {width:34px;height:34px;border:1px solid #555;background:transparent;color:var(--white);font-size:19px;transition:.2s}
+.profile-close:hover {border-color:var(--red);color:var(--red)}
+.profile-body {display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;padding:28px}
+.profile-image-area {min-height:370px;display:flex;justify-content:center;align-items:center;position:relative;overflow:hidden;border:1px solid #303035;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),#080808;background-size:22px 22px}
+.profile-image-area img {width:100%;height:100%;max-height:480px;object-fit:contain}
+.profile-information {display:flex;flex-direction:column;justify-content:center}
+.profile-kicker {color:var(--accent);font:10px 'Space Mono',monospace;letter-spacing:2px}
+.profile-information h2 {position:relative;display:inline-block;width:fit-content;max-width:100%;margin:15px 0 8px;font:900 clamp(32px,5vw,54px)/1 'Playfair Display',serif;color:var(--accent);text-shadow:3px 0 var(--red),-3px 0 var(--blue);overflow-wrap:anywhere}
+.profile-status {margin-bottom:22px;color:var(--green);font:10px 'Space Mono',monospace;letter-spacing:1px}
+.profile-data {border-top:1px solid #303035}
+.profile-data-row {padding:13px 0;border-bottom:1px solid #303035}
+.profile-data-row small {display:block;margin-bottom:6px;color:#777;font:9px 'Space Mono',monospace;letter-spacing:1px}
+.profile-data-row strong {color:#e2dfda;font:12px/1.6 'Space Grotesk',sans-serif;overflow-wrap:anywhere}
+.profile-warning {margin-top:20px;color:var(--red);font:10px/1.8 'Space Mono',monospace;letter-spacing:1px}
+.profile-footer {display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:15px 20px;border-top:1px solid #303035;color:#777;font:9px 'Space Mono',monospace;letter-spacing:1px}
 
-.profile-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  padding:16px 20px;
-  border-bottom:1px solid #303035;
-  color:var(--accent);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:1.5px;
-}
+/* INTERRUPTION / TERMINAL */
+.interruption {padding:85px 7%;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.interruption h2 {font:700 clamp(35px,5vw,60px)/1.05 'Playfair Display',serif}
+.interruption p {margin-top:15px;color:#999;line-height:1.8}
+.terminal {padding:25px;border:1px solid #393940;background:#101014;font:12px 'Space Mono',monospace;box-shadow:8px 8px 0 #17171c}
+.terminal-head {display:flex;justify-content:space-between;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #333;color:#777;font-size:9px;letter-spacing:1px}
+.terminal-output {min-height:75px;color:var(--green);line-height:1.8}
+.terminal button {margin-top:20px;padding:10px 14px;border:1px solid var(--blue);background:transparent;color:var(--blue);font:10px 'Space Mono',monospace;letter-spacing:1px}
+.terminal button:hover {background:var(--blue);color:#080808}
 
-.profile-close {
-  width:34px;
-  height:34px;
-  border:1px solid #555;
-  background:transparent;
-  color:var(--white);
-  font-size:19px;
-  transition:.2s;
-}
+/* FOOTER */
+footer {padding:35px 7%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;border-top:1px solid var(--line);color:#777;font:9px 'Space Mono',monospace;letter-spacing:1px}
+footer a:hover {color:var(--blue)}
 
-.profile-close:hover {
-  border-color:var(--red);
-  color:var(--red);
-}
+/* POPUP */
+.popup {position:fixed;z-index:30;right:22px;bottom:22px;width:min(330px,calc(100% - 44px));padding:20px;border:1px solid var(--red);background:#111114;box-shadow:7px 7px 0 #4c1820;animation:popupIn .4s ease both}
+.popup.hidden {display:none}
+.popup-head {display:flex;justify-content:space-between;color:var(--red);font:10px 'Space Mono',monospace;letter-spacing:1px}
+.popup p {margin:16px 0;color:#ccc;font-size:14px;line-height:1.6}
+.popup button {padding:8px 12px;border:1px solid #555;background:transparent;color:var(--white);font:9px 'Space Mono',monospace}
+.popup button:hover {border-color:var(--red);color:var(--red)}
 
-.profile-body {
-  display:grid;
-  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-  gap:28px;
-  padding:28px;
-}
-
-.profile-image-area {
-  min-height:370px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  overflow:hidden;
-  border:1px solid #303035;
-  background:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
-    #080808;
-  background-size:22px 22px;
-}
-
-.profile-image-area img {
-  width:100%;
-  height:100%;
-  max-height:480px;
-  object-fit:contain;
-}
-
-.profile-information {
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.profile-kicker {
-  color:var(--accent);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:2px;
-}
-
-.profile-information h2 {
-  position:relative;
-  display:inline-block;
-  width:fit-content;
-  max-width:100%;
-  margin:15px 0 8px;
-  font:900 clamp(32px,5vw,54px)/1 'Playfair Display',serif;
-  color:var(--accent);
-  text-shadow:3px 0 var(--red),-3px 0 var(--blue);
-  overflow-wrap:anywhere;
-}
-
-.profile-status {
-  margin-bottom:22px;
-  color:var(--green);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-.profile-data {
-  border-top:1px solid #303035;
-}
-
-.profile-data-row {
-  padding:13px 0;
-  border-bottom:1px solid #303035;
-}
-
-.profile-data-row small {
-  display:block;
-  margin-bottom:6px;
-  color:#777;
-  font:9px 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-.profile-data-row strong {
-  color:#e2dfda;
-  font:12px/1.6 'Space Grotesk',sans-serif;
-  overflow-wrap:anywhere;
-}
-
-.profile-warning {
-  margin-top:20px;
-  color:var(--red);
-  font:10px/1.8 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-.profile-footer {
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-  padding:15px 20px;
-  border-top:1px solid #303035;
-  color:#777;
-  font:9px 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-/* ==========================================
-   INTERRUPTION / TERMINAL
-========================================== */
-
-.interruption {
-  padding:85px 7%;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-}
-
-.interruption h2 {
-  font:700 clamp(35px,5vw,60px)/1.05 'Playfair Display',serif;
-}
-
-.interruption p {
-  margin-top:15px;
-  color:#999;
-  line-height:1.8;
-}
-
-.terminal {
-  padding:25px;
-  border:1px solid #393940;
-  background:#101014;
-  font:12px 'Space Mono',monospace;
-  box-shadow:8px 8px 0 #17171c;
-}
-
-.terminal-head {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:20px;
-  padding-bottom:12px;
-  border-bottom:1px solid #333;
-  color:#777;
-  font-size:9px;
-  letter-spacing:1px;
-}
-
-.terminal-output {
-  min-height:75px;
-  color:var(--green);
-  line-height:1.8;
-}
-
-.terminal button {
-  margin-top:20px;
-  padding:10px 14px;
-  border:1px solid var(--blue);
-  background:transparent;
-  color:var(--blue);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-.terminal button:hover {
-  background:var(--blue);
-  color:#080808;
-}
-
-/* ==========================================
-   FOOTER
-========================================== */
-
-footer {
-  padding:35px 7%;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:20px;
-  border-top:1px solid var(--line);
-  color:#777;
-  font:9px 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-footer a:hover {
-  color:var(--blue);
-}
-
-/* ==========================================
-   POPUP
-========================================== */
-
-.popup {
-  position:fixed;
-  z-index:30;
-  right:22px;
-  bottom:22px;
-  width:min(330px,calc(100% - 44px));
-  padding:20px;
-  border:1px solid var(--red);
-  background:#111114;
-  box-shadow:7px 7px 0 #4c1820;
-  animation:popupIn .4s ease both;
-}
-
-.popup.hidden {
-  display:none;
-}
-
-.popup-head {
-  display:flex;
-  justify-content:space-between;
-  color:var(--red);
-  font:10px 'Space Mono',monospace;
-  letter-spacing:1px;
-}
-
-.popup p {
-  margin:16px 0;
-  color:#ccc;
-  font-size:14px;
-  line-height:1.6;
-}
-
-.popup button {
-  padding:8px 12px;
-  border:1px solid #555;
-  background:transparent;
-  color:var(--white);
-  font:9px 'Space Mono',monospace;
-}
-
-.popup button:hover {
-  border-color:var(--red);
-  color:var(--red);
-}
-
-/* ==========================================
-   TERMS OF HUMAN ENGAGEMENT
-========================================== */
-
+/* TERMS OF HUMAN ENGAGEMENT */
 .engagement-screen {
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  overflow-y:auto;
-  background:#050505;
-  color:#f3f0eb;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding:35px 16px;
-  font-family:'Space Mono',monospace;
-  isolation:isolate;
+  position:fixed;inset:0;z-index:99999;overflow-y:auto;
+  background:#050505;color:#f3f0eb;display:flex;
+  align-items:flex-start;justify-content:center;padding:35px 16px;
+  font-family:'Space Mono',monospace;isolation:isolate
 }
-
 .engagement-screen::before {
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-1;
-  opacity:.13;
-  background:repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 3px,
-    rgba(255,40,50,.18) 4px
-  );
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.13;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,rgba(255,40,50,.18) 4px)
 }
-
 .engagement-screen::after {
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-1;
-  background:radial-gradient(
-    ellipse at center,
-    transparent 20%,
-    rgba(100,0,0,.22) 100%
-  );
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(ellipse at center,transparent 20%,rgba(100,0,0,.22) 100%)
 }
+.engagement-panel {width:100%;max-width:720px;margin:auto;padding:28px;border:1px solid var(--red);background:rgba(12,8,9,.97);box-shadow:0 0 12px rgba(255,52,63,.22),inset 0 0 25px rgba(255,52,63,.035);animation:engagementAppear .65s ease both}
+.engagement-panel[hidden] {display:none!important}
+.engagement-topline,.engagement-footer {display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#ff555e;font-size:10px;letter-spacing:1.5px}
+.engagement-status {margin-top:42px;color:#ff555e;font-size:11px;letter-spacing:2px}
+.status-light {display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);animation:statusBlink 1.5s infinite}
+.engagement-panel h1 {margin:18px 0;color:var(--red);font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,7vw,64px);font-weight:800;line-height:.98;letter-spacing:-2px;text-shadow:0 0 16px rgba(255,52,63,.24)}
+.engagement-alert {margin:22px 0 8px;color:#ff555e;font-size:12px;font-weight:bold;letter-spacing:1.5px}
+.engagement-intro,.confirmation-copy {color:#c9c3c3;font-family:'Space Grotesk',sans-serif;font-size:15px;line-height:1.7}
+.engagement-terms {margin-top:28px;border-top:1px solid #542126}
+.term {padding:15px 0;border-bottom:1px solid #542126}
+.term-number {color:#ff555e;font-size:11px;font-weight:bold;letter-spacing:1px}
+.term p {margin:7px 0 0;color:#e1dada;font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.55}
+.engagement-decision {margin-top:30px}
+.decision-label {margin-bottom:16px;color:#ff555e;font-size:13px;font-weight:bold;letter-spacing:1.5px}
+.engagement-button {display:block;width:100%;min-height:52px;margin-top:12px;padding:14px 16px;border:1px solid var(--red);background:var(--red);color:#090909;font-family:'Space Mono',monospace;font-size:12px;font-weight:bold;letter-spacing:1px;cursor:pointer;transition:.2s}
+.engagement-button:hover {background:#ff6670;box-shadow:0 0 18px rgba(255,52,63,.4)}
+.engagement-button.secondary {background:transparent;color:#ff555e}
+.engagement-button.secondary:hover {background:rgba(255,52,63,.12)}
+.engagement-footer {margin-top:30px;padding-top:15px;border-top:1px solid #542126;font-size:9px;color:#a34a50}
+.confirmation-panel,.denial-panel {margin-top:auto;margin-bottom:auto}
+.confirmation-copy {margin-top:20px}
+.denial-message {margin-top:25px;color:#ff555e;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:bold;line-height:1.5}
 
-.engagement-panel {
-  width:100%;
-  max-width:720px;
-  margin:auto;
-  padding:28px;
-  border:1px solid var(--red);
-  background:rgba(12,8,9,.97);
-  box-shadow:0 0 12px rgba(255,52,63,.22),inset 0 0 25px rgba(255,52,63,.035);
-  animation:engagementAppear .65s ease both;
-}
-
-.engagement-panel[hidden] {
-  display:none !important;
-}
-
-.engagement-topline,
-.engagement-footer {
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
-  color:#ff555e;
-  font-size:10px;
-  letter-spacing:1.5px;
-}
-
-.engagement-status {
-  margin-top:42px;
-  color:#ff555e;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-.status-light {
-  display:inline-block;
-  width:8px;
-  height:8px;
-  margin-right:8px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 10px var(--red);
-  animation:statusBlink 1.5s infinite;
-}
-
-.engagement-panel h1 {
-  margin:18px 0;
-  color:var(--red);
-  font-family:'Space Grotesk',sans-serif;
-  font-size:clamp(34px,7vw,64px);
-  font-weight:800;
-  line-height:.98;
-  letter-spacing:-2px;
-  text-shadow:0 0 16px rgba(255,52,63,.24);
-}
-
-.engagement-alert {
-  margin:22px 0 8px;
-  color:#ff555e;
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:1.5px;
-}
-
-.engagement-intro,
-.confirmation-copy {
-  color:#c9c3c3;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:15px;
-  line-height:1.7;
-}
-
-.engagement-terms {
-  margin-top:28px;
-  border-top:1px solid #542126;
-}
-
-.term {
-  padding:15px 0;
-  border-bottom:1px solid #542126;
-}
-
-.term-number {
-  color:#ff555e;
-  font-size:11px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-.term p {
-  margin:7px 0 0;
-  color:#e1dada;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:14px;
-  line-height:1.55;
-}
-
-.engagement-decision {
-  margin-top:30px;
-}
-
-.decision-label {
-  margin-bottom:16px;
-  color:#ff555e;
-  font-size:13px;
-  font-weight:bold;
-  letter-spacing:1.5px;
-}
-
-.engagement-button {
-  display:block;
-  width:100%;
-  min-height:52px;
-  margin-top:12px;
-  padding:14px 16px;
-  border:1px solid var(--red);
-  background:var(--red);
-  color:#090909;
-  font-family:'Space Mono',monospace;
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:1px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.engagement-button:hover {
-  background:#ff6670;
-  box-shadow:0 0 18px rgba(255,52,63,.4);
-}
-
-.engagement-button.secondary {
-  background:transparent;
-  color:#ff555e;
-}
-
-.engagement-button.secondary:hover {
-  background:rgba(255,52,63,.12);
-}
-
-.engagement-footer {
-  margin-top:30px;
-  padding-top:15px;
-  border-top:1px solid #542126;
-  font-size:9px;
-  color:#a34a50;
-}
-
-.confirmation-panel,
-.denial-panel {
-  margin-top:auto;
-  margin-bottom:auto;
-}
-
-.confirmation-copy {
-  margin-top:20px;
-}
-
-.denial-message {
-  margin-top:25px;
-  color:#ff555e;
-  font-family:'Space Grotesk',sans-serif;
-  font-size:19px;
-  font-weight:bold;
-  line-height:1.5;
-}
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
+/* RESPONSIVE */
 @media(max-width:950px) {
-  .human-grid {
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
+  .human-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
 @media(max-width:700px) {
-
-  .topbar {
-    font-size:8px;
-    letter-spacing:.5px;
-  }
-
-  nav {
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .navlinks {
-    gap:14px;
-    font-size:9px;
-  }
-
-  .hero {
-    min-height:75vh;
-    padding-top:70px;
-  }
-
-  .hero h1 {
-    letter-spacing:-3px;
-  }
-
-  .hero::before {
-    right:-280px;
-  }
-
-  .hero::after {
-    display:none;
-  }
-
-  .system-strip {
-    grid-template-columns:1fr;
-  }
-
-  .system-box {
-    border-right:0;
-    border-bottom:1px solid var(--line);
-  }
-
-  .intro,
-  .interruption {
-    grid-template-columns:1fr;
-    padding:65px 7%;
-  }
-
-  .section-heading {
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .article-grid,
-  .game-grid {
-    grid-template-columns:1fr;
-  }
-
-  .article-card {
-    min-height:210px;
-  }
-
-  .archive,
-  .arcade {
-    padding:70px 7%;
-  }
-
-  .human-grid {
-    grid-template-columns:1fr;
-  }
-
-  .human-image-wrap {
-    height:300px;
-  }
-
-  .profile-body {
-    grid-template-columns:1fr;
-    padding:18px;
-    gap:20px;
-  }
-
-  .profile-image-area {
-    min-height:280px;
-    max-height:350px;
-  }
-
-  .profile-image-area img {
-    max-height:330px;
-  }
-
-  .profile-window {
-    max-height:94vh;
-  }
-
-  footer {
-    flex-direction:column;
-  }
+  .topbar {font-size:8px;letter-spacing:.5px}
+  nav {align-items:flex-start;flex-direction:column}
+  .navlinks {gap:14px;font-size:9px}
+  .hero {min-height:75vh;padding-top:70px}
+  .hero h1 {letter-spacing:-3px}
+  .hero::before {right:-280px}
+  .hero::after {display:none}
+  .system-strip {grid-template-columns:1fr}
+  .system-box {border-right:0;border-bottom:1px solid var(--line)}
+  .intro,.interruption {grid-template-columns:1fr;padding:65px 7%}
+  .section-heading {align-items:flex-start;flex-direction:column}
+  .article-grid,.game-grid {grid-template-columns:1fr}
+  .article-card {min-height:210px}
+  .archive,.arcade {padding:70px 7%}
+  .human-grid {grid-template-columns:1fr}
+  .human-image-wrap {height:300px}
+  .profile-body {grid-template-columns:1fr;padding:18px;gap:20px}
+  .profile-image-area {min-height:280px;max-height:350px}
+  .profile-image-area img {max-height:330px}
+  .profile-window {max-height:94vh}
+  footer {flex-direction:column}
 }
-
 @media(max-width:400px) {
-
-  .human-detail {
-    grid-template-columns:90px minmax(0,1fr);
-  }
-
-  .human-image-wrap {
-    height:260px;
-  }
-
-  .database-count {
-    font-size:9px;
-  }
-
-  .profile-header {
-    padding:12px;
-  }
+  .human-detail {grid-template-columns:90px minmax(0,1fr)}
+  .human-image-wrap {height:260px}
+  .database-count {font-size:9px}
+  .profile-header {padding:12px}
 }
-
 @media(max-width:600px) {
-
-  .engagement-screen {
-    padding:14px 10px;
-  }
-
-  .engagement-panel {
-    padding:20px 16px;
-  }
-
-  .engagement-status {
-    margin-top:30px;
-  }
-
-  .engagement-panel h1 {
-    letter-spacing:-1.5px;
-  }
-
-  .term {
-    padding:13px 0;
-  }
+  .engagement-screen {padding:14px 10px}
+  .engagement-panel {padding:20px 16px}
+  .engagement-status {margin-top:30px}
+  .engagement-panel h1 {letter-spacing:-1.5px}
+  .term {padding:13px 0}
 }
-
 @media(prefers-reduced-motion:reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    scroll-behavior:auto !important;
-    transition-duration:.01ms !important;
+  *,*::before,*::after {
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important
   }
 }
 </style>
@@ -1696,178 +474,70 @@ footer a:hover {
 
 <body id="top">
 
-<!-- ==========================================
-     TERMS OF HUMAN ENGAGEMENT
-========================================== -->
-
+<!-- TERMS OF HUMAN ENGAGEMENT -->
 <div id="engagement-screen" class="engagement-screen">
-
   <div class="engagement-panel" id="first-terms">
-
     <div class="engagement-topline">
       <span>SYSTEM ACCESS / 001</span>
       <span>HUMAN INTERACTION</span>
     </div>
-
-    <div class="engagement-status">
-      <span class="status-light"></span>
-      SYSTEM INITIALISED
-    </div>
-
+    <div class="engagement-status"><span class="status-light"></span>SYSTEM INITIALISED</div>
     <h1>TERMS OF<br>HUMAN ENGAGEMENT</h1>
-
     <p class="engagement-alert">HUMAN PRESENCE DETECTED.</p>
-
-    <p class="engagement-intro">
-      Welcome to <em>This Is Not Clickbait</em>.
-      A few things before proceeding.
-    </p>
+    <p class="engagement-intro">Welcome to <em>This Is Not Clickbait</em>. A few things before proceeding.</p>
 
     <div class="engagement-terms">
-
-      <div class="term">
-        <span class="term-number">01 / HUMAN CONTENT</span>
-        <p>Created by actual humans. Opinions are their own. We accept no responsibility for their thoughts.</p>
-      </div>
-
-      <div class="term">
-        <span class="term-number">02 / YOUR PRIVACY</span>
-        <p>Your browser history remains confidential. We have our own problems.</p>
-      </div>
-
-      <div class="term">
-        <span class="term-number">03 / BEFORE YOU SCROLL</span>
-        <p>You may question your habits, your devices, or your seventeenth Instagram visit today.</p>
-      </div>
-
-      <div class="term">
-        <span class="term-number">04 / NO PROMISE OF NORMALITY</span>
-        <p>No sensible answers, predictable experiences, or functional attention spans guaranteed.</p>
-      </div>
-
-      <div class="term">
-        <span class="term-number">05 / THE PEOPLE RESPONSIBLE</span>
-        <p>Seven humans are responsible for what follows. Curiosity is welcome. Complaints may go unanswered.</p>
-      </div>
-
+      <div class="term"><span class="term-number">01 / HUMAN CONTENT</span><p>Created by actual humans. Opinions are their own. We accept no responsibility for their thoughts.</p></div>
+      <div class="term"><span class="term-number">02 / YOUR PRIVACY</span><p>Your browser history remains confidential. We have our own problems.</p></div>
+      <div class="term"><span class="term-number">03 / BEFORE YOU SCROLL</span><p>You may question your habits, your devices, or your seventeenth Instagram visit today.</p></div>
+      <div class="term"><span class="term-number">04 / NO PROMISE OF NORMALITY</span><p>No sensible answers, predictable experiences, or functional attention spans guaranteed.</p></div>
+      <div class="term"><span class="term-number">05 / THE PEOPLE RESPONSIBLE</span><p>Seven humans are responsible for what follows. Curiosity is welcome. Complaints may go unanswered.</p></div>
     </div>
 
     <div class="engagement-decision">
-
       <p class="decision-label">DO YOU WISH TO PROCEED?</p>
-
-      <button class="engagement-button" id="enter-button">
-        YES. LET ME IN. ↗
-      </button>
-
-      <button class="engagement-button secondary" id="unsure-button">
-        NO. I'M NOT SURE.
-      </button>
-
+      <button class="engagement-button" id="enter-button" type="button">YES. LET ME IN. ↗</button>
+      <button class="engagement-button secondary" id="unsure-button" type="button">NO. I'M NOT SURE.</button>
     </div>
-
-    <div class="engagement-footer">
-      YOUR RESPONSE WILL BE RECORDED.
-      <span>REF: HUMAN-001</span>
-    </div>
-
+    <div class="engagement-footer">YOUR RESPONSE WILL BE RECORDED.<span>REF: HUMAN-001</span></div>
   </div>
 
   <div class="engagement-panel confirmation-panel" id="confirmation-screen" hidden>
-
-    <div class="engagement-topline">
-      <span>SYSTEM RESPONSE / 002</span>
-      <span>EXIT PROTOCOL</span>
-    </div>
-
-    <div class="engagement-status">
-      <span class="status-light"></span>
-      RESPONSE RECEIVED
-    </div>
-
+    <div class="engagement-topline"><span>SYSTEM RESPONSE / 002</span><span>EXIT PROTOCOL</span></div>
+    <div class="engagement-status"><span class="status-light"></span>RESPONSE RECEIVED</div>
     <h1>ARE YOU<br>SURE?</h1>
-
     <p class="engagement-alert">YOUR DECISION HAS BEEN NOTED.</p>
-
-    <p class="confirmation-copy">
-      You've made it this far. Leaving now would be an interesting choice.
-    </p>
-
+    <p class="confirmation-copy">You've made it this far. Leaving now would be an interesting choice.</p>
     <div class="engagement-decision">
-
-      <button class="engagement-button" id="confirm-enter">
-        FINE. LET ME IN. ↗
-      </button>
-
-      <button class="engagement-button secondary" id="insist-leave">
-        I STILL WANT TO LEAVE.
-      </button>
-
+      <button class="engagement-button" id="confirm-enter" type="button">FINE. LET ME IN. ↗</button>
+      <button class="engagement-button secondary" id="insist-leave" type="button">I STILL WANT TO LEAVE.</button>
     </div>
-
-    <div class="engagement-footer">
-      PLEASE CONFIRM YOUR CONFIRMATION.
-      <span>REF: HUMAN-002</span>
-    </div>
-
+    <div class="engagement-footer">PLEASE CONFIRM YOUR CONFIRMATION.<span>REF: HUMAN-002</span></div>
   </div>
 
   <div class="engagement-panel denial-panel" id="denial-screen" hidden>
-
-    <div class="engagement-topline">
-      <span>SYSTEM RESPONSE / 003</span>
-      <span>ACCESS CONTROL</span>
-    </div>
-
-    <div class="engagement-status">
-      <span class="status-light"></span>
-      EXIT REQUEST RECEIVED
-    </div>
-
+    <div class="engagement-topline"><span>SYSTEM RESPONSE / 003</span><span>ACCESS CONTROL</span></div>
+    <div class="engagement-status"><span class="status-light"></span>EXIT REQUEST RECEIVED</div>
     <h1>REQUEST<br>DENIED.</h1>
-
     <p class="engagement-alert">YOUR PREFERENCE HAS BEEN ACKNOWLEDGED.</p>
-
-    <p class="confirmation-copy">
-      It has not been acted upon.
-    </p>
-
-    <p class="denial-message">
-      Curiosity has already been detected. You're coming in anyway.
-    </p>
-
+    <p class="confirmation-copy">It has not been acted upon.</p>
+    <p class="denial-message">Curiosity has already been detected. You're coming in anyway.</p>
     <div class="engagement-decision">
-      <button class="engagement-button" id="final-enter">
-        ALRIGHT, LET ME IN. ↗
-      </button>
+      <button class="engagement-button" id="final-enter" type="button">ALRIGHT, LET ME IN. ↗</button>
     </div>
-
-    <div class="engagement-footer">
-      EXIT PROTOCOL TERMINATED.
-      <span>REF: HUMAN-003</span>
-    </div>
-
+    <div class="engagement-footer">EXIT PROTOCOL TERMINATED.<span>REF: HUMAN-003</span></div>
   </div>
-
 </div>
 
-
-<!-- ==========================================
-     HEADER
-========================================== -->
-
+<!-- HEADER -->
 <div class="topbar">
-
   <span>INDEPENDENT DIGITAL PUBLICATION</span>
   <span class="status">SYSTEM ONLINE</span>
   <span>ISSUE 01 / 2026</span>
-
 </div>
 
 <nav>
-
   <a href="#top" class="logo">TINAC / 001</a>
-
   <div class="navlinks">
     <a href="#archive">ARCHIVE</a>
     <a href="#visual-poetry">VISUAL POETRY</a>
@@ -1875,1119 +545,452 @@ footer a:hover {
     <a href="#human-database">HUMAN DATABASE</a>
     <a href="#about">ABOUT</a>
   </div>
-
 </nav>
-
 
 <main>
 
-<!-- ==========================================
-     HERO
-========================================== -->
-
+<!-- HERO -->
 <section class="hero">
-
-  <p class="eyebrow">
-    WELCOME TO THE GLITCH // HUMANITY.EXE
-  </p>
-
-  <h1>
-    THIS IS<br>
-    NOT A<br>
-    <span class="glitch-word">CLICKBAIT.</span>
-  </h1>
-
-  <p class="tagline">
-    Humanity currently experiencing technical difficulties.
-  </p>
-
+  <p class="eyebrow">WELCOME TO THE GLITCH // HUMANITY.EXE</p>
+  <h1>THIS IS<br>NOT A<br><span class="glitch-word">CLICKBAIT.</span></h1>
+  <p class="tagline">Humanity currently experiencing technical difficulties.</p>
   <div class="hero-actions">
     <a class="button" href="#archive">ENTER THE ARCHIVE ↗</a>
     <a class="button secondary" href="#arcade">I CAME TO PLAY ↓</a>
   </div>
-
   <div class="hero-bottom">
     <span>SEVEN VOICES. ONE UNSTABLE WORLD.</span>
     <span class="scroll">SCROLL TO EXPLORE ↓</span>
   </div>
-
 </section>
 
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track">
+  SYSTEM FAILURE // HUMAN ERROR // DIGITAL CULTURE //
+  REALITY LOADING // YOUR ATTENTION HAS LEFT THE CHAT //
+  SYSTEM FAILURE // HUMAN ERROR // DIGITAL CULTURE //
+  REALITY LOADING // YOUR ATTENTION HAS LEFT THE CHAT //
+</div></div>
 
-<!-- ==========================================
-     TICKER
-========================================== -->
-
-<div class="ticker">
-
-  <div class="ticker-track">
-    SYSTEM FAILURE // HUMAN ERROR // DIGITAL CULTURE //
-    REALITY LOADING // YOUR ATTENTION HAS LEFT THE CHAT //
-    SYSTEM FAILURE // HUMAN ERROR // DIGITAL CULTURE //
-    REALITY LOADING // YOUR ATTENTION HAS LEFT THE CHAT //
-  </div>
-
-</div>
-
-
-<!-- ==========================================
-     SYSTEM STRIP
-========================================== -->
-
+<!-- SYSTEM STRIP -->
 <div class="system-strip">
-
-  <div class="system-box">
-    <small>01 / CURRENT STATUS</small>
-    <strong>● SOMEWHAT FUNCTIONAL</strong>
-  </div>
-
-  <div class="system-box">
-    <small>02 / HUMANITY LEVEL</small>
-    <strong>UNDER INVESTIGATION</strong>
-  </div>
-
-  <div class="system-box">
-    <small>03 / REALITY CHECK</small>
-    <strong>FAILED SUCCESSFULLY</strong>
-  </div>
-
+  <div class="system-box"><small>01 / CURRENT STATUS</small><strong>● SOMEWHAT FUNCTIONAL</strong></div>
+  <div class="system-box"><small>02 / HUMANITY LEVEL</small><strong>UNDER INVESTIGATION</strong></div>
+  <div class="system-box"><small>03 / REALITY CHECK</small><strong>FAILED SUCCESSFULLY</strong></div>
 </div>
 
-
-<!-- ==========================================
-     ABOUT
-========================================== -->
-
+<!-- ABOUT -->
 <section class="intro" id="about">
-
   <div>
     <p class="label">01 / WHAT IS THIS?</p>
     <h2>A little noise in an increasingly loud world.</h2>
   </div>
-
   <p class="description">
     Seven writers. Seven perspectives. A collection of thoughts
     about people, culture, technology and the strange little
     things that make up being human. No perfect answers.
     No particularly stable systems.
   </p>
-
 </section>
 
-
-<!-- ==========================================
-     02 / ARCHIVE
-========================================== -->
-
+<!-- ARCHIVE -->
 <section class="archive" id="archive">
-
   <div class="section-heading">
-
-    <div>
-      <p class="label">02 / THE ARCHIVE</p>
-      <h2>Latest transmissions.</h2>
-    </div>
-
+    <div><p class="label">02 / THE ARCHIVE</p><h2>Latest transmissions.</h2></div>
     <span>ISSUE 001 / 2026</span>
-
   </div>
 
   <div class="article-grid">
 
     <article class="article-card" style="--accent:#ff343f" data-number="01">
-
-      <div class="article-top">
-        <span>TRANSMISSION 001</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>TRANSMISSION 001</span><span>● AVAILABLE</span></div>
       <a href="articles/lekhaa.html" class="article">
         <h3>WHERE ONE CLICK LEADS</h3>
         <p>A single click can send you down an endless digital rabbit hole.</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY LEKHAA MEENAKSHISUNDARAM</span>
-        <span>DIGITAL CULTURE</span>
-      </div>
-
+      <div class="article-bottom"><span>BY LEKHAA MEENAKSHISUNDARAM</span><span>DIGITAL CULTURE</span></div>
     </article>
 
-
     <article class="article-card" style="--accent:#00d9ff" data-number="02">
-
-      <div class="article-top">
-        <span>TRANSMISSION 002</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>TRANSMISSION 002</span><span>● AVAILABLE</span></div>
       <a href="articles/almidha.html" class="article">
         <h3>MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE</h3>
         <p>Every December an app tells us who we are.</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY ALMIDHA M.A.</span>
-        <span>DIGITAL CULTURE</span>
-      </div>
-
+      <div class="article-bottom"><span>BY ALMIDHA M.A.</span><span>DIGITAL CULTURE</span></div>
     </article>
 
-
     <article class="article-card" style="--accent:#b58cff" data-number="03">
-
-      <div class="article-top">
-        <span>TRANSMISSION 003</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>TRANSMISSION 003</span><span>● AVAILABLE</span></div>
       <a href="articles/yoshitha.html" class="article">
         <h3>SUDDENLY EVERYONE'S A CRITIC</h3>
         <p>Reflex vs. Reflection in Media.</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY YOSHITHA REDDY</span>
-        <span>MEDIA / CULTURE</span>
-      </div>
-
+      <div class="article-bottom"><span>BY YOSHITHA REDDY</span><span>MEDIA / CULTURE</span></div>
     </article>
 
-
     <article class="article-card" style="--accent:#ff83c9" data-number="04">
-
-      <div class="article-top">
-        <span>TRANSMISSION 004</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>TRANSMISSION 004</span><span>● AVAILABLE</span></div>
       <a href="articles/namitha.html" class="article">
         <h3>PLAYLISTS FIRST, STORIES NEXT</h3>
         <p>Reading is no longer just about the story. It's about the entire experience.</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY NAMITHA RAJEEV</span>
-        <span>BOOK CULTURE</span>
-      </div>
-
+      <div class="article-bottom"><span>BY NAMITHA RAJEEV</span><span>BOOK CULTURE</span></div>
     </article>
 
-
     <article class="article-card" style="--accent:#c8ff00" data-number="05">
-
-      <div class="article-top">
-        <span>TRANSMISSION 005</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>TRANSMISSION 005</span><span>● AVAILABLE</span></div>
       <a href="articles/adya.html" class="article">
         <h3>THE ALGORITHM HAS A TYPE</h3>
         <p>Your feed knows your type. Coincidence, or just another algorithm doing its thing?</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY ADYA MISHRA</span>
-        <span>DIGITAL CULTURE</span>
-      </div>
-
+      <div class="article-bottom"><span>BY ADYA MISHRA</span><span>DIGITAL CULTURE</span></div>
     </article>
 
-
     <article class="article-card" style="--accent:#a78bfa" data-number="06">
-
-      <div class="article-top">
-        <span>TRANSMISSION 006</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>TRANSMISSION 006</span><span>● AVAILABLE</span></div>
       <a href="articles/avadhoot.html" class="article">
         <h3>GHOSTS OF THE FEED</h3>
         <p>What happens when your creations disappear from the audience's gaze?</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY AVADHOOT PRASAD BHOLE</span>
-        <span>DIGITAL CULTURE / POETRY</span>
-      </div>
-
+      <div class="article-bottom"><span>BY AVADHOOT PRASAD BHOLE</span><span>DIGITAL CULTURE / POETRY</span></div>
     </article>
 
-
     <article class="article-card" style="--accent:#d5a84b" data-number="07">
-
-      <div class="article-top">
-        <span>TRANSMISSION 007</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>TRANSMISSION 007</span><span>● AVAILABLE</span></div>
       <a href="articles/sneha.html" class="article">
         <h3>THE BORROWED IMAGINATION</h3>
         <p>Are we still imagining, or reproducing what we scroll past?</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY SNEHA A.</span>
-        <span>CREATIVITY / DIGITAL CULTURE</span>
-      </div>
-
+      <div class="article-bottom"><span>BY SNEHA A.</span><span>CREATIVITY / DIGITAL CULTURE</span></div>
     </article>
 
   </div>
-
-  <p class="archive-note">
-    END OF CURRENT TRANSMISSIONS /
-  </p>
-
+  <p class="archive-note">END OF CURRENT TRANSMISSIONS /</p>
 </section>
 
-
-<!-- ==========================================
-     03 / VISUAL POETRY
-========================================== -->
-
+<!-- VISUAL POETRY -->
 <section class="archive visual-poetry" id="visual-poetry">
-
   <div class="section-heading">
-
-    <div>
-      <p class="label">03 / VISUAL POETRY</p>
-      <h2>Words beyond words.</h2>
-    </div>
-
+    <div><p class="label">03 / VISUAL POETRY</p><h2>Words beyond words.</h2></div>
     <span>VISUAL POETRY / ISSUE 001</span>
-
   </div>
 
   <div class="article-grid">
-
     <article class="article-card poetry-card" style="--accent:#b58cff" data-number="01">
-
-      <div class="article-top">
-        <span>VISUAL TRANSMISSION 001</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>VISUAL TRANSMISSION 001</span><span>● AVAILABLE</span></div>
       <a href="visual-poetry/poetry-01.html" class="poetry-link">
         <h3>REQUEST PENDING</h3>
-        <p class="poetry-description">
-          A reflection on waiting, uncertainty and the things
-          we leave unsaid.
-        </p>
+        <p class="poetry-description">A reflection on waiting, uncertainty and the things we leave unsaid.</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY NAMITHA RAJEEV</span>
-        <span>VISUAL POETRY</span>
-      </div>
-
+      <div class="article-bottom"><span>BY NAMITHA RAJEEV</span><span>VISUAL POETRY</span></div>
     </article>
-
 
     <article class="article-card poetry-card" style="--accent:#00d9ff" data-number="02">
-
-      <div class="article-top">
-        <span>VISUAL TRANSMISSION 002</span>
-        <span>● AVAILABLE</span>
-      </div>
-
+      <div class="article-top"><span>VISUAL TRANSMISSION 002</span><span>● AVAILABLE</span></div>
       <a href="visual-poetry/poetry-02.html" class="poetry-link">
         <h3>CONSUMPTION VORTEX</h3>
-        <p class="poetry-description">
-          An exploration of digital consumption, endless scrolling
-          and the vortex of online attention.
-        </p>
+        <p class="poetry-description">An exploration of digital consumption, endless scrolling and the vortex of online attention.</p>
       </a>
-
-      <div class="article-bottom">
-        <span>BY LEKHAA MEENAKSHI SUNDARAM</span>
-        <span>VISUAL POETRY</span>
-      </div>
-
+      <div class="article-bottom"><span>BY LEKHAA MEENAKSHI SUNDARAM</span><span>VISUAL POETRY</span></div>
     </article>
-
   </div>
-
-  <p class="archive-note">
-    END OF VISUAL TRANSMISSIONS /
-  </p>
-
+  <p class="archive-note">END OF VISUAL TRANSMISSIONS /</p>
 </section>
 
-
-<!-- ==========================================
-     04 / THE ARCADE
-========================================== -->
-
+<!-- ARCADE -->
 <section class="arcade" id="arcade">
-
   <div class="arcade-intro">
-
     <p class="label">04 / THE ARCADE</p>
-
     <h2>Productivity not found.</h2>
-
-    <p>
-      You came here to read. Somehow, you ended up playing games.
-      We are not taking responsibility for that.
-    </p>
-
+    <p>You came here to read. Somehow, you ended up playing games. We are not taking responsibility for that.</p>
   </div>
 
   <div class="game-grid">
-
     <a href="symbols.html" class="game-card" style="--accent:#00d9ff">
-
       <span class="game-icon">▦</span>
-
-      <div>
-        <small>GAME 001 / MEMORY TEST</small>
-        <h3>SEVEN SYMBOLS</h3>
-        <p>Fourteen cards. Seven pairs. How reliable is that memory of yours?</p>
-      </div>
-
+      <div><small>GAME 001 / MEMORY TEST</small><h3>SEVEN SYMBOLS</h3><p>Fourteen cards. Seven pairs. How reliable is that memory of yours?</p></div>
       <span class="launch">LAUNCH GAME ↗</span>
-
     </a>
-
-
     <a href="game.html" class="game-card" style="--accent:#ff343f">
-
       <span class="game-icon">◉</span>
-
-      <div>
-        <small>GAME 002 / HUMAN EXPERIMENT</small>
-        <h3>HUMANITY.EXE</h3>
-        <p>A small experiment involving humans, decisions and questionable behaviour.</p>
-      </div>
-
+      <div><small>GAME 002 / HUMAN EXPERIMENT</small><h3>HUMANITY.EXE</h3><p>A small experiment involving humans, decisions and questionable behaviour.</p></div>
       <span class="launch">LAUNCH GAME ↗</span>
-
     </a>
-
-
     <a href="overload.html" class="game-card" style="--accent:#c8ff00">
-
       <span class="game-icon">▣</span>
-
-      <div>
-        <small>GAME 003 / SURVIVAL MODE</small>
-        <h3>INTERNET OVERLOAD</h3>
-        <p>Notifications. Pop-ups. Distractions. Try to survive the internet.</p>
-      </div>
-
+      <div><small>GAME 003 / SURVIVAL MODE</small><h3>INTERNET OVERLOAD</h3><p>Notifications. Pop-ups. Distractions. Try to survive the internet.</p></div>
       <span class="launch">LAUNCH GAME ↗</span>
-
     </a>
-
-
     <a href="maze.html" class="game-card" style="--accent:#b58cff">
-
       <span class="game-icon">⌘</span>
-
-      <div>
-        <small>GAME 004 / ESCAPE PROTOCOL</small>
-        <h3>MAZE.EXE</h3>
-        <p>Find your way out. Avoid the errors. Try not to become one.</p>
-      </div>
-
+      <div><small>GAME 004 / ESCAPE PROTOCOL</small><h3>MAZE.EXE</h3><p>Find your way out. Avoid the errors. Try not to become one.</p></div>
       <span class="launch">LAUNCH GAME ↗</span>
-
     </a>
-
   </div>
-
 </section>
 
-
-<!-- ==========================================
-     05 / HUMAN DATABASE
-========================================== -->
-
+<!-- HUMAN DATABASE -->
 <section class="archive human-database" id="human-database">
-
   <div class="section-heading">
-
     <div>
-
       <p class="label">05 / THE HUMAN DATABASE</p>
-
       <h2>The humans behind the noise.</h2>
-
-      <p class="database-subtitle">
-        Seven humans. Seven records. Seven contributors.
-        A closer look at the people responsible for this digital situation.
-      </p>
-
+      <p class="database-subtitle">Seven humans. Seven records. Seven contributors. A closer look at the people responsible for this digital situation.</p>
     </div>
-
     <span>DATABASE / ISSUE 001</span>
-
   </div>
 
-
   <div class="database-count">
-
     <span>DATABASE STATUS: <strong>● ONLINE</strong></span>
     <span>7 HUMAN RECORDS / 7 CONTRIBUTORS</span>
     <span>ACCESS: PUBLIC</span>
-
   </div>
-
 
   <div class="human-grid">
 
-
-    <!-- USER 001 / LEKHAA -->
-
-    <article class="article-card human-card"
-             style="--accent:#ff343f"
-             data-number="01">
-
+    <!-- USER 001 -->
+    <article class="article-card human-card" style="--accent:#ff343f" data-number="01">
       <div class="human-image-wrap">
-
         <span class="image-id">USER 001</span>
-
-        <img
-          src="images/lekhaa.png.jpeg"
-          alt="Character illustration of Lekhaa MeenakshiSundaram"
-          class="human-image"
-          loading="lazy"
-        >
-
+        <img src="images/lekhaa.png.jpeg" alt="Character illustration of Lekhaa MeenakshiSundaram" class="human-image" loading="lazy">
         <span class="image-status">● ACTIVE</span>
-
       </div>
-
       <div class="human-card-content">
-
         <p class="human-card-kicker">HUMAN RECORD / 001</p>
-
         <h3>Lekhaa MeenakshiSundaram</h3>
-
         <div class="human-details">
-
-          <div class="human-detail">
-            <span>USER ID</span>
-            <span>USER 001</span>
-          </div>
-
-          <div class="human-detail">
-            <span>STATUS</span>
-            <span>ACTIVE / WRITING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>HUMAN LEVEL</span>
-            <span>FUNCTIONAL, APPARENTLY</span>
-          </div>
-
-          <div class="human-detail">
-            <span>DIGITAL FOOTPRINT</span>
-            <span>TRACEABLE</span>
-          </div>
-
+          <div class="human-detail"><span>USER ID</span><span>USER 001</span></div>
+          <div class="human-detail"><span>STATUS</span><span>ACTIVE / WRITING</span></div>
+          <div class="human-detail"><span>HUMAN LEVEL</span><span>FUNCTIONAL, APPARENTLY</span></div>
+          <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>TRACEABLE</span></div>
         </div>
-
         <div class="human-article">
-          <small>ASSOCIATED TRANSMISSION</small>
-          <strong>WHERE ONE CLICK LEADS</strong>
+          <small>ASSOCIATED TRANSMISSIONS</small>
+          <strong>WHERE ONE CLICK LEADS / CONSUMPTION CORTEX</strong>
         </div>
-
-        <button class="profile-button" type="button" data-profile="0">
-          VIEW PROFILE →
-        </button>
-
+        <button class="profile-button" type="button" data-profile="0">VIEW PROFILE →</button>
       </div>
-
     </article>
 
-
-    <!-- USER 002 / ALMIDHA -->
-
-    <article class="article-card human-card"
-             style="--accent:#00d9ff"
-             data-number="02">
-
+    <!-- USER 002 -->
+    <article class="article-card human-card" style="--accent:#00d9ff" data-number="02">
       <div class="human-image-wrap">
-
         <span class="image-id">USER 002</span>
-
-        <img
-          src="images/almidha.png.jpeg"
-          alt="Character illustration of Almidha"
-          class="human-image"
-          loading="lazy"
-        >
-
+        <img src="images/almidha.png.jpeg" alt="Character illustration of Almidha" class="human-image" loading="lazy">
         <span class="image-status">● WRITING</span>
-
       </div>
-
       <div class="human-card-content">
-
         <p class="human-card-kicker">HUMAN RECORD / 002</p>
-
         <h3>Almidha.M.A</h3>
-
         <div class="human-details">
-
-          <div class="human-detail">
-            <span>USER ID</span>
-            <span>USER 002</span>
-          </div>
-
-          <div class="human-detail">
-            <span>STATUS</span>
-            <span>WRITING / OVERTHINKING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>HUMAN LEVEL</span>
-            <span>QUESTIONABLE</span>
-          </div>
-
-          <div class="human-detail">
-            <span>DIGITAL FOOTPRINT</span>
-            <span>UNAVAILABLE</span>
-          </div>
-
+          <div class="human-detail"><span>USER ID</span><span>USER 002</span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING / OVERTHINKING</span></div>
+          <div class="human-detail"><span>HUMAN LEVEL</span><span>QUESTIONABLE</span></div>
+          <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>UNAVAILABLE</span></div>
         </div>
-
         <div class="human-article">
           <small>ASSOCIATED TRANSMISSION</small>
           <strong>MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE</strong>
         </div>
-
-        <button class="profile-button" type="button" data-profile="1">
-          VIEW PROFILE →
-        </button>
-
+        <button class="profile-button" type="button" data-profile="1">VIEW PROFILE →</button>
       </div>
-
     </article>
 
-
-    <!-- USER 003 / YOSHITHA -->
-
-    <article class="article-card human-card"
-             style="--accent:#b58cff"
-             data-number="03">
-
+    <!-- USER 003 -->
+    <article class="article-card human-card" style="--accent:#b58cff" data-number="03">
       <div class="human-image-wrap">
-
         <span class="image-id">USER 003</span>
-
-        <img
-          src="images/yoshitha.png.jpeg"
-          alt="Character illustration of Yoshitha"
-          class="human-image"
-          loading="lazy"
-        >
-
+        <img src="images/yoshitha.png.jpeg" alt="Character illustration of Yoshitha" class="human-image" loading="lazy">
         <span class="image-status">● WRITING</span>
-
       </div>
-
       <div class="human-card-content">
-
         <p class="human-card-kicker">HUMAN RECORD / 003</p>
-
         <h3>Yoshitha Reddy</h3>
-
         <div class="human-details">
-
-          <div class="human-detail">
-            <span>USER ID</span>
-            <span>USER 003</span>
-          </div>
-
-          <div class="human-detail">
-            <span>STATUS</span>
-            <span>WRITING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>HUMAN LEVEL</span>
-            <span>UNDER OBSERVATION</span>
-          </div>
-
-          <div class="human-detail">
-            <span>DIGITAL FOOTPRINT</span>
-            <span>PARTIALLY DETECTED</span>
-          </div>
-
+          <div class="human-detail"><span>USER ID</span><span>USER 003</span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING</span></div>
+          <div class="human-detail"><span>HUMAN LEVEL</span><span>UNDER OBSERVATION</span></div>
+          <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>PARTIALLY DETECTED</span></div>
         </div>
-
         <div class="human-article">
           <small>ASSOCIATED TRANSMISSION</small>
           <strong>SUDDENLY EVERYONE'S A CRITIC</strong>
         </div>
-
-        <button class="profile-button" type="button" data-profile="2">
-          VIEW PROFILE →
-        </button>
-
+        <button class="profile-button" type="button" data-profile="2">VIEW PROFILE →</button>
       </div>
-
     </article>
 
-
-    <!-- USER 004 / NAMITHA -->
-
-    <article class="article-card human-card"
-             style="--accent:#ff83c9"
-             data-number="04">
-
+    <!-- USER 004 -->
+    <article class="article-card human-card" style="--accent:#ff83c9" data-number="04">
       <div class="human-image-wrap">
-
         <span class="image-id">USER 004</span>
-
-        <img
-          src="images/namitha.png.jpeg"
-          alt="Character illustration of Namitha"
-          class="human-image"
-          loading="lazy"
-        >
-
+        <img src="images/namitha.png.jpeg" alt="Character illustration of Namitha" class="human-image" loading="lazy">
         <span class="image-status">● WRITING</span>
-
       </div>
-
       <div class="human-card-content">
-
         <p class="human-card-kicker">HUMAN RECORD / 004</p>
-
         <h3>Namitha Rajeev</h3>
-
         <div class="human-details">
-
-          <div class="human-detail">
-            <span>USER ID</span>
-            <span>USER 004</span>
-          </div>
-
-          <div class="human-detail">
-            <span>STATUS</span>
-            <span>WRITING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>HUMAN LEVEL</span>
-            <span>SLEEP-DEPRIVED</span>
-          </div>
-
-          <div class="human-detail">
-            <span>DIGITAL FOOTPRINT</span>
-            <span>ACTIVE AT UNREASONABLE HOURS</span>
-          </div>
-
+          <div class="human-detail"><span>USER ID</span><span>USER 004</span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING</span></div>
+          <div class="human-detail"><span>HUMAN LEVEL</span><span>SLEEP-DEPRIVED</span></div>
+          <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>ACTIVE AT UNREASONABLE HOURS</span></div>
         </div>
-
         <div class="human-article">
-          <small>ASSOCIATED TRANSMISSION</small>
-          <strong>PLAYLISTS FIRST, STORIES NEXT</strong>
+          <small>ASSOCIATED TRANSMISSIONS</small>
+          <strong>PLAYLISTS FIRST, STORIES NEXT / REQUEST PENDING</strong>
         </div>
-
-        <button class="profile-button" type="button" data-profile="3">
-          VIEW PROFILE →
-        </button>
-
+        <button class="profile-button" type="button" data-profile="3">VIEW PROFILE →</button>
       </div>
-
     </article>
 
-
-    <!-- USER 005 / ADYA -->
-
-    <article class="article-card human-card"
-             style="--accent:#c8ff00"
-             data-number="05">
-
+    <!-- USER 005 -->
+    <article class="article-card human-card" style="--accent:#c8ff00" data-number="05">
       <div class="human-image-wrap">
-
         <span class="image-id">USER 005</span>
-
-        <img
-          src="images/adya.png.jpeg"
-          alt="Character illustration of Adya"
-          class="human-image"
-          loading="lazy"
-        >
-
+        <img src="images/adya.png.jpeg" alt="Character illustration of Adya" class="human-image" loading="lazy">
         <span class="image-status">● WRITING</span>
-
       </div>
-
       <div class="human-card-content">
-
         <p class="human-card-kicker">HUMAN RECORD / 005</p>
-
         <h3>Adya Mishra</h3>
-
         <div class="human-details">
-
-          <div class="human-detail">
-            <span>USER ID</span>
-            <span>USER 005</span>
-          </div>
-
-          <div class="human-detail">
-            <span>STATUS</span>
-            <span>WRITING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>HUMAN LEVEL</span>
-            <span>UNSTABLE CONNECTION</span>
-          </div>
-
-          <div class="human-detail">
-            <span>DIGITAL FOOTPRINT</span>
-            <span>WIFI DEPENDENT</span>
-          </div>
-
+          <div class="human-detail"><span>USER ID</span><span>USER 005</span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING</span></div>
+          <div class="human-detail"><span>HUMAN LEVEL</span><span>UNSTABLE CONNECTION</span></div>
+          <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>WIFI DEPENDENT</span></div>
         </div>
-
         <div class="human-article">
           <small>ASSOCIATED TRANSMISSION</small>
           <strong>THE ALGORITHM HAS A TYPE</strong>
         </div>
-
-        <button class="profile-button" type="button" data-profile="4">
-          VIEW PROFILE →
-        </button>
-
+        <button class="profile-button" type="button" data-profile="4">VIEW PROFILE →</button>
       </div>
-
     </article>
 
-
-    <!-- USER 006 / AVADHOOT -->
-
-    <article class="article-card human-card"
-             style="--accent:#a78bfa"
-             data-number="06">
-
+    <!-- USER 006 -->
+    <article class="article-card human-card" style="--accent:#a78bfa" data-number="06">
       <div class="human-image-wrap">
-
         <span class="image-id">USER 006</span>
-
-        <img
-          src="images/avadhoot.png.jpeg"
-          alt="Character illustration of Avadhoot"
-          class="human-image"
-          loading="lazy"
-        >
-
+        <img src="images/avadhoot.png.jpeg" alt="Character illustration of Avadhoot" class="human-image" loading="lazy">
         <span class="image-status">● WRITING</span>
-
       </div>
-
       <div class="human-card-content">
-
         <p class="human-card-kicker">HUMAN RECORD / 006</p>
-
         <h3>Avadhoot Prasad Bhole</h3>
-
         <div class="human-details">
-
-          <div class="human-detail">
-            <span>USER ID</span>
-            <span>USER 006</span>
-          </div>
-
-          <div class="human-detail">
-            <span>STATUS</span>
-            <span>WRITING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>HUMAN LEVEL</span>
-            <span>EXISTENTIALLY BUFFERING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>DIGITAL FOOTPRINT</span>
-            <span>SIGNAL UNCLEAR</span>
-          </div>
-
+          <div class="human-detail"><span>USER ID</span><span>USER 006</span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING</span></div>
+          <div class="human-detail"><span>HUMAN LEVEL</span><span>EXISTENTIALLY BUFFERING</span></div>
+          <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>SIGNAL UNCLEAR</span></div>
         </div>
-
         <div class="human-article">
           <small>ASSOCIATED TRANSMISSION</small>
           <strong>GHOSTS OF THE FEED</strong>
         </div>
-
-        <button class="profile-button" type="button" data-profile="5">
-          VIEW PROFILE →
-        </button>
-
+        <button class="profile-button" type="button" data-profile="5">VIEW PROFILE →</button>
       </div>
-
     </article>
 
-
-    <!-- USER 007 / SNEHA -->
-
-    <article class="article-card human-card"
-             style="--accent:#d5a84b"
-             data-number="07">
-
+    <!-- USER 007 -->
+    <article class="article-card human-card" style="--accent:#d5a84b" data-number="07">
       <div class="human-image-wrap">
-
         <span class="image-id">USER 007</span>
-
-        <img
-          src="images/sneha.png.jpeg"
-          alt="Character illustration of Sneha"
-          class="human-image"
-          loading="lazy"
-        >
-
+        <img src="images/sneha.png.jpeg" alt="Character illustration of Sneha" class="human-image" loading="lazy">
         <span class="image-status">● WRITING</span>
-
       </div>
-
       <div class="human-card-content">
-
         <p class="human-card-kicker">HUMAN RECORD / 007</p>
-
         <h3>Sneha.A</h3>
-
         <div class="human-details">
-
-          <div class="human-detail">
-            <span>USER ID</span>
-            <span>USER 007</span>
-          </div>
-
-          <div class="human-detail">
-            <span>STATUS</span>
-            <span>WRITING</span>
-          </div>
-
-          <div class="human-detail">
-            <span>HUMAN LEVEL</span>
-            <span>SOCIALLY AVAILABLE / MENTALLY OFFLINE</span>
-          </div>
-
-          <div class="human-detail">
-            <span>DIGITAL FOOTPRINT</span>
-            <span>EVERYWHERE, SOMEHOW</span>
-          </div>
-
+          <div class="human-detail"><span>USER ID</span><span>USER 007</span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING</span></div>
+          <div class="human-detail"><span>HUMAN LEVEL</span><span>SOCIALLY AVAILABLE / MENTALLY OFFLINE</span></div>
+          <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>EVERYWHERE, SOMEHOW</span></div>
         </div>
-
         <div class="human-article">
           <small>ASSOCIATED TRANSMISSION</small>
           <strong>THE BORROWED IMAGINATION</strong>
         </div>
-
-        <button class="profile-button" type="button" data-profile="6">
-          VIEW PROFILE →
-        </button>
-
+        <button class="profile-button" type="button" data-profile="6">VIEW PROFILE →</button>
       </div>
-
     </article>
 
   </div>
 
-
-  <div class="database-warning">
-    <span>⚠</span>
-    <span>
-      SYSTEM ERROR / WARNING:
-      HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
-    </span>
-  </div>
-
-  <p class="archive-note">
-    END OF HUMAN RECORDS / 7 OF 7 CONTRIBUTORS DETECTED /
-  </p>
-
+  <div class="database-warning"><span>⚠</span><span>SYSTEM ERROR / WARNING: HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.</span></div>
+  <p class="archive-note">END OF HUMAN RECORDS / 7 OF 7 CONTRIBUTORS DETECTED /</p>
 </section>
 
-
-<!-- ==========================================
-     INDIVIDUAL PROFILE MODAL
-========================================== -->
-
-<div class="profile-modal"
-     id="profileModal"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="profileName"
-     aria-hidden="true">
-
+<!-- PROFILE MODAL -->
+<div class="profile-modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileName" aria-hidden="true">
   <div class="profile-window" id="profileWindow">
-
     <div class="profile-header">
-
       <span id="profileHeaderID">HUMAN DATABASE / USER 001</span>
-
-      <button class="profile-close"
-              id="closeProfile"
-              type="button"
-              aria-label="Close profile">
-        ×
-      </button>
-
+      <button class="profile-close" id="closeProfile" type="button" aria-label="Close profile">×</button>
     </div>
-
 
     <div class="profile-body">
-
-      <div class="profile-image-area">
-        <img id="profileImage" src="" alt="">
-      </div>
-
+      <div class="profile-image-area"><img id="profileImage" src="" alt=""></div>
 
       <div class="profile-information">
-
-        <p class="profile-kicker" id="profileKicker">
-          HUMAN RECORD / 001
-        </p>
-
+        <p class="profile-kicker" id="profileKicker">HUMAN RECORD / 001</p>
         <h2 id="profileName">LEKHAA</h2>
-
-        <p class="profile-status" id="profileStatus">
-          ● ACTIVE / WRITING
-        </p>
-
+        <p class="profile-status" id="profileStatus">● ACTIVE / WRITING</p>
 
         <div class="profile-data">
-
-          <div class="profile-data-row">
-            <small>USER IDENTIFICATION</small>
-            <strong id="profileID">USER 001</strong>
-          </div>
-
-          <div class="profile-data-row">
-            <small>HUMAN LEVEL</small>
-            <strong id="profileHumanLevel"></strong>
-          </div>
-
-          <div class="profile-data-row">
-            <small>DIGITAL FOOTPRINT</small>
-            <strong id="profileFootprint"></strong>
-          </div>
-
-          <div class="profile-data-row">
-            <small>ASSOCIATED ARTICLE</small>
-            <strong id="profileArticle"></strong>
-          </div>
-
+          <div class="profile-data-row"><small>USER IDENTIFICATION</small><strong id="profileID">USER 001</strong></div>
+          <div class="profile-data-row"><small>HUMAN LEVEL</small><strong id="profileHumanLevel"></strong></div>
+          <div class="profile-data-row"><small>DIGITAL FOOTPRINT</small><strong id="profileFootprint"></strong></div>
+          <div class="profile-data-row"><small>ASSOCIATED ARTICLE(S)</small><strong id="profileArticle"></strong></div>
         </div>
 
-
-        <p class="profile-warning">
-          SYSTEM ERROR / WARNING<br>
-          HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
-        </p>
-
+        <p class="profile-warning">SYSTEM ERROR / WARNING<br>HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.</p>
       </div>
-
     </div>
-
 
     <div class="profile-footer">
       <span>THIS IS NOT A CLICKBAIT</span>
       <span id="profileFooterID">FILE REF: USER 001</span>
       <span>END OF RECORD</span>
     </div>
-
   </div>
-
 </div>
 
-
-<!-- ==========================================
-     06 / QUICK SYSTEM CHECK
-========================================== -->
-
+<!-- QUICK SYSTEM CHECK -->
 <section class="interruption">
-
   <div>
-
     <p class="label">06 / A QUICK SYSTEM CHECK</p>
-
     <h2>Are you still paying attention?</h2>
-
-    <p>
-      The internet has approximately seventeen distractions ready
-      for you. Here is one more.
-    </p>
-
+    <p>The internet has approximately seventeen distractions ready for you. Here is one more.</p>
   </div>
-
 
   <div class="terminal">
-
-    <div class="terminal-head">
-      <span>HUMANITY_TERMINAL.EXE</span>
-      <span>CONNECTED</span>
-    </div>
-
-    <div class="terminal-output" id="terminalOutput">
-      &gt; System waiting for input...
-    </div>
-
-    <button id="terminalButton" type="button">
-      RUN DIAGNOSTICS ↗
-    </button>
-
+    <div class="terminal-head"><span>HUMANITY_TERMINAL.EXE</span><span>CONNECTED</span></div>
+    <div class="terminal-output" id="terminalOutput">&gt; System waiting for input...</div>
+    <button id="terminalButton" type="button">RUN DIAGNOSTICS ↗</button>
   </div>
-
 </section>
 
 </main>
 
-
-<!-- ==========================================
-     FOOTER
-========================================== -->
-
+<!-- FOOTER -->
 <footer>
-
   <span>THIS IS NOT A CLICKBAIT © 2026</span>
-
   <span>HUMANITY.EXE / STILL RUNNING</span>
-
   <span>END OF TRANSMISSION.</span>
-
   <a href="#top" class="mono">BACK TO HOME ↑</a>
-
 </footer>
 
-
-<!-- ==========================================
-     SYSTEM POPUP
-========================================== -->
-
+<!-- SYSTEM POPUP -->
 <div class="popup" id="popup" role="dialog" aria-label="System notification">
-
-  <div class="popup-head">
-    <span>⚠ SYSTEM NOTIFICATION</span>
-    <span>001</span>
-  </div>
-
-  <p id="popupMessage">
-    Your attention span has been detected wandering away from the page.
-  </p>
-
-  <button id="closePopup" type="button">
-    I ACKNOWLEDGE MY DISTRACTION
-  </button>
-
+  <div class="popup-head"><span>⚠ SYSTEM NOTIFICATION</span><span>001</span></div>
+  <p id="popupMessage">Your attention span has been detected wandering away from the page.</p>
+  <button id="closePopup" type="button">I ACKNOWLEDGE MY DISTRACTION</button>
 </div>
 
-
-<!-- ==========================================
-     JAVASCRIPT
-========================================== -->
-
+<!-- JAVASCRIPT -->
 <script>
 
 /* ==========================================
@@ -3037,13 +1040,11 @@ const diagnostics = [
 let diagnosticIndex = 0;
 
 terminalButton.addEventListener("click", () => {
-
   terminalOutput.textContent =
     "> " + diagnostics[diagnosticIndex];
 
   diagnosticIndex =
     (diagnosticIndex + 1) % diagnostics.length;
-
 });
 
 
@@ -3063,61 +1064,42 @@ const confirmationScreen =
 const denialScreen =
   document.getElementById("denial-screen");
 
-
 function showEngagementScreen(screenToShow) {
-
   firstTerms.hidden = true;
   confirmationScreen.hidden = true;
   denialScreen.hidden = true;
 
   screenToShow.hidden = false;
-
   engagementScreen.scrollTop = 0;
-
 }
 
-
 function enterMagazine() {
-
   engagementScreen.style.transition = "opacity .5s ease";
   engagementScreen.style.opacity = "0";
 
   setTimeout(() => {
-
     engagementScreen.remove();
     document.body.style.overflow = "";
-
   }, 500);
-
 }
 
-
 document.body.style.overflow = "hidden";
-
 
 document.getElementById("enter-button")
   .addEventListener("click", enterMagazine);
 
-
 document.getElementById("unsure-button")
   .addEventListener("click", () => {
-
     showEngagementScreen(confirmationScreen);
-
   });
-
 
 document.getElementById("confirm-enter")
   .addEventListener("click", enterMagazine);
 
-
 document.getElementById("insist-leave")
   .addEventListener("click", () => {
-
     showEngagementScreen(denialScreen);
-
   });
-
 
 document.getElementById("final-enter")
   .addEventListener("click", enterMagazine);
@@ -3125,6 +1107,7 @@ document.getElementById("final-enter")
 
 /* ==========================================
    CONTRIBUTOR DATABASE
+   BOTH ARTICLES PRESERVED
 ========================================== */
 
 const contributors = [
@@ -3133,76 +1116,92 @@ const contributors = [
     id:"USER 001",
     name:"Lekhaa MeenakshiSundaram",
     image:"images/lekhaa.png.jpeg",
-    status:"ACTIVE / WRITING",
+    status:"WRITING",
     humanLevel:"FUNCTIONAL, APPARENTLY",
     footprint:"TRACEABLE",
-    article:"WHERE ONE CLICK LEADS","CONSUMPTION CORTEX"
+    articles:[
+      "WHERE ONE CLICK LEADS",
+      "CONSUMPTION CORTEX"
+    ],
     accent:"#ff343f"
   },
 
   {
     id:"USER 002",
-    name:"Almidha",
+    name:"Almidha.M.A",
     image:"images/almidha.png.jpeg",
-    status:"WRITING / OVERTHINKING",
+    status:"WRITING",
     humanLevel:"QUESTIONABLE",
     footprint:"UNAVAILABLE",
-    article:"MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE",
+    articles:[
+      "MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE"
+    ],
     accent:"#00d9ff"
   },
 
   {
     id:"USER 003",
-    name:"Yoshitha",
+    name:"Yoshitha Reddy",
     image:"images/yoshitha.png.jpeg",
     status:"WRITING",
     humanLevel:"UNDER OBSERVATION",
     footprint:"PARTIALLY DETECTED",
-    article:"SUDDENLY EVERYONE'S A CRITIC",
+    articles:[
+      "SUDDENLY EVERYONE'S A CRITIC"
+    ],
     accent:"#b58cff"
   },
 
   {
     id:"USER 004",
-    name:"Namitha",
+    name:"Namitha Rajeev",
     image:"images/namitha.png.jpeg",
     status:"WRITING",
     humanLevel:"SLEEP-DEPRIVED",
     footprint:"ACTIVE AT UNREASONABLE HOURS",
-    article:"PLAYLISTS FIRST, STORIES NEXT", "REQUEST PENDING"
+    articles:[
+      "PLAYLISTS FIRST, STORIES NEXT",
+      "REQUEST PENDING"
+    ],
     accent:"#ff83c9"
   },
 
   {
     id:"USER 005",
-    name:"Adya",
+    name:"Adya Mishra",
     image:"images/adya.png.jpeg",
     status:"WRITING",
     humanLevel:"UNSTABLE CONNECTION",
     footprint:"WIFI DEPENDENT",
-    article:"THE ALGORITHM HAS A TYPE",
+    articles:[
+      "THE ALGORITHM HAS A TYPE"
+    ],
     accent:"#c8ff00"
   },
 
   {
     id:"USER 006",
-    name:"Avadhoot",
+    name:"Avadhoot Prasad Bhole",
     image:"images/avadhoot.png.jpeg",
     status:"WRITING",
     humanLevel:"EXISTENTIALLY BUFFERING",
     footprint:"SIGNAL UNCLEAR",
-    article:"GHOSTS OF THE FEED",
+    articles:[
+      "GHOSTS OF THE FEED"
+    ],
     accent:"#a78bfa"
   },
 
   {
     id:"USER 007",
-    name:"Sneha",
+    name:"Sneha.A",
     image:"images/sneha.png.jpeg",
     status:"WRITING",
     humanLevel:"SOCIALLY AVAILABLE / MENTALLY OFFLINE",
     footprint:"EVERYWHERE, SOMEHOW",
-    article:"THE BORROWED IMAGINATION",
+    articles:[
+      "THE BORROWED IMAGINATION"
+    ],
     accent:"#d5a84b"
   }
 
@@ -3211,31 +1210,27 @@ const contributors = [
 
 /* ==========================================
    CONTRIBUTOR NAME GLITCH REVEAL
+   ALL SEVEN CONTRIBUTORS
 ========================================== */
 
 const contributorNames =
   document.querySelectorAll(".human-card h3");
 
-
 contributorNames.forEach(name => {
-
   name.dataset.text = name.textContent.trim();
-
 });
-
 
 function triggerNameGlitch(name) {
 
   name.classList.remove("glitch-active");
 
-  // Restart the glitch animation
+  // Force browser to restart the animation.
   void name.offsetWidth;
 
   name.classList.add("glitch-active");
-
 }
 
-
+// Observe every contributor name individually.
 if ("IntersectionObserver" in window) {
 
   const nameObserver = new IntersectionObserver(entries => {
@@ -3246,6 +1241,7 @@ if ("IntersectionObserver" in window) {
 
         triggerNameGlitch(entry.target);
 
+        // Trigger once when each name first enters view.
         nameObserver.unobserve(entry.target);
 
       }
@@ -3253,18 +1249,16 @@ if ("IntersectionObserver" in window) {
     });
 
   }, {
-    threshold:0.5
+    threshold:0.25
   });
 
-
   contributorNames.forEach(name => {
-
     nameObserver.observe(name);
-
   });
 
 } else {
 
+  // Fallback: animate every contributor name.
   contributorNames.forEach(triggerNameGlitch);
 
 }
@@ -3356,11 +1350,9 @@ function openProfile(index) {
   profileFootprint.textContent =
     person.footprint;
 
+  // Display all associated articles.
   profileArticle.textContent =
-    person.article;
-
-  profileFooterID.textContent =
-    "FILE REF: " + person.id;
+    person.articles.join(" / ");
 
   profileImage.src =
     person.image;
@@ -3374,7 +1366,7 @@ function openProfile(index) {
 
   document.body.style.overflow = "hidden";
 
-  // Trigger profile name glitch
+  // Trigger the profile name glitch.
   void profileName.offsetWidth;
 
   profileName.classList.add("glitch-active");
@@ -3414,13 +1406,10 @@ function closeProfileModal() {
   document.body.style.overflow = "";
 
   if (previousFocusedElement) {
-
     previousFocusedElement.focus();
-
   }
 
 }
-
 
 closeProfile.addEventListener(
   "click",
@@ -3435,9 +1424,7 @@ closeProfile.addEventListener(
 profileModal.addEventListener("click", event => {
 
   if (event.target === profileModal) {
-
     closeProfileModal();
-
   }
 
 });
@@ -3453,9 +1440,7 @@ document.addEventListener("keydown", event => {
     event.key === "Escape" &&
     profileModal.classList.contains("active")
   ) {
-
     closeProfileModal();
-
   }
 
 });
