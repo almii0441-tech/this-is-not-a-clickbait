@@ -432,121 +432,52 @@ section {
   line-height:1.8;
 }
   
-  /* 03 / VISUAL POETRY */
+  
+/* 03 / VISUAL POETRY */
 
-.visual-poetry-section {
-  padding: 85px 6%;
-  border-top: 1px solid rgba(255,255,255,0.16);
+.visual-poetry {
+  border-top: 1px solid var(--line);
 }
 
-.visual-poetry-section .section-top {
+.poetry-card {
+  min-height: 340px;
+}
+
+.poetry-preview {
+  min-height: 125px;
   display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--green, #c8ff00);
-}
-
-.visual-poetry-intro {
-  margin: 55px 0 40px;
-}
-
-.visual-poetry-intro h2 {
-  font-size: clamp(38px, 7vw, 82px);
-  line-height: 0.98;
-  letter-spacing: -3px;
-}
-
-.visual-poetry-intro h2 span {
-  color: var(--purple, #b58cff);
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-}
-
-.visual-poetry-intro p {
-  max-width: 420px;
-  margin-top: 22px;
-  color: #aaa;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.visual-poetry-preview {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.visual-poem-link {
-  display: block;
-  padding: 22px;
-  border: 1px solid #414141;
-  background: #111;
-  color: #f3f0eb;
-  text-decoration: none;
-  transition: 0.3s ease;
-}
-
-.visual-poem-link:hover {
-  border-color: var(--purple, #b58cff);
-  transform: translateY(-5px);
-}
-
-.visual-poem-link > span {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: var(--green, #c8ff00);
-}
-
-.visual-poem-preview-art {
-  min-height: 180px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(35px, 5vw, 60px);
-  line-height: 0.95;
-  font-style: italic;
-  color: var(--blue, #00d9ff);
-}
-
-.visual-poem-preview-art.second {
-  color: var(--purple, #b58cff);
-  font-style: normal;
-}
-
-.visual-poem-info {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  border-top: 1px solid #333;
-  padding-top: 18px;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.visual-poem-info h3 {
-  font-size: 15px;
+.poetry-preview span {
+  color: var(--accent);
+  font: 700 clamp(30px, 4vw, 48px)/.95 'Playfair Display', serif;
+  letter-spacing: -1.5px;
+  transition: transform .3s ease;
 }
 
-.visual-poem-info span {
-  font-family: 'Space Mono', monospace;
-  font-size: 9px;
-  color: var(--green, #c8ff00);
+.poetry-preview i {
+  color: var(--white);
 }
 
-@media (max-width: 600px) {
-  .visual-poetry-section {
-    padding: 60px 5%;
-  }
+.poetry-two span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -2px;
+}
 
-  .visual-poetry-preview {
-    grid-template-columns: 1fr;
-  }
+.poetry-card:hover .poetry-preview span {
+  transform: scale(1.05);
+}
 
-  .visual-poetry-section .section-top {
-    flex-wrap: wrap;
+@media(max-width:700px) {
+  .poetry-card {
+    min-height: 320px;
   }
 }
 
@@ -1057,50 +988,82 @@ footer {
   </p>
 </section>
 
-  <!-- 03 / VISUAL POETRY -->
+  
+<!-- 03 / VISUAL POETRY -->
 
-<section class="visual-poetry-section" id="visual-poetry">
+<section class="archive visual-poetry" id="visual-poetry">
 
   <div class="section-heading">
     <div>
       <p class="label">03 / VISUAL POETRY</p>
-      <h2>A little poetry.<br>A little visual confusion.</h2>
+      <h2>Words beyond words.</h2>
     </div>
-    <span>WORDS / IMAGES / EXPERIMENTS</span>
+    <span>VISUAL EXPERIMENTS / 2026</span>
   </div>
 
-  <p class="visual-poetry-description">
-    Two ways of playing with words, images and meaning.
-    Because apparently, putting everything in a paragraph
-    wasn't enough.
+  <div class="article-grid">
+
+    <a href="visual-poetry/poetry-01.html"
+       class="article-card poetry-card"
+       style="--accent:#00d9ff"
+       data-number="01">
+
+      <div class="article-top">
+        <span>VISUAL TRANSMISSION 001</span>
+        <span>● AVAILABLE</span>
+      </div>
+
+      <div class="poetry-preview poetry-one">
+        <span>the world<br>between<br><i>the words.</i></span>
+      </div>
+
+      <div>
+        <h3>VISUAL POEM ONE</h3>
+        <p>A visual experiment in language, imagery and everything that exists between the lines.</p>
+      </div>
+
+      <div class="article-bottom">
+        <span>VISUAL POETRY</span>
+        <span>EXPLORE ↗</span>
+      </div>
+
+    </a>
+
+
+    <a href="visual-poetry/poetry-02.html"
+       class="article-card poetry-card"
+       style="--accent:#b58cff"
+       data-number="02">
+
+      <div class="article-top">
+        <span>VISUAL TRANSMISSION 002</span>
+        <span>● AVAILABLE</span>
+      </div>
+
+      <div class="poetry-preview poetry-two">
+        <span>NOTHING<br>IS EVER<br><i>JUST WORDS.</i></span>
+      </div>
+
+      <div>
+        <h3>VISUAL POEM TWO</h3>
+        <p>An exploration of thoughts transformed into visual forms and unexpected meanings.</p>
+      </div>
+
+      <div class="article-bottom">
+        <span>VISUAL POETRY</span>
+        <span>EXPLORE ↗</span>
+      </div>
+
+    </a>
+
+  </div>
+
+  <p class="archive-note">
+    END OF VISUAL TRANSMISSIONS /
   </p>
 
-  <div class="visual-poetry-content">
-
-    <a href="visual-poetry/poetry-01.html" class="visual-poetry-item">
-      <div class="visual-poetry-number">01</div>
-      <div class="visual-poetry-details">
-        <span>VISUAL POEM / 001</span>
-        <h3>VISUAL POEM ONE</h3>
-        <p>The first visual poetry experiment.</p>
-      </div>
-      <span class="visual-poetry-arrow">↗</span>
-    </a>
-
-    <a href="visual-poetry/poetry-02.html" class="visual-poetry-item">
-      <div class="visual-poetry-number">02</div>
-      <div class="visual-poetry-details">
-        <span>VISUAL POEM / 002</span>
-        <h3>VISUAL POEM TWO</h3>
-        <p>The second visual poetry experiment.</p>
-      </div>
-      <span class="visual-poetry-arrow">↗</span>
-    </a>
-
-  </div>
-
-</section>
-
+</section> 
+  
 <section class="arcade" id="arcade">
   <div class="arcade-intro">
     <p class="label">04 / THE ARCADE</p>
