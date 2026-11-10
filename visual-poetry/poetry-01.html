@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Pending | This Is Not a Clickbait</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;800&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,500&display=swap">
+
+<style id="page-styles">
+:root{--bg:#0d0e12;--ink:#f4f1ec;--dim:#9a9aa0;--line:#23252d;--cy:#19d4ff;--red:#ff5a4d;
+  --mono:"Space Mono",ui-monospace,Menlo,Consolas,monospace;--sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6}
+a{color:inherit}
+.nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 40px;border-bottom:1px solid var(--line);font:13px var(--mono);letter-spacing:.06em}
+.nav a{text-decoration:none;font-weight:700}.nav span{color:var(--cy)}
+.page{max-width:1200px;margin:0 auto;padding:36px 24px 0}
+.grid{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(120deg,#17121a,#1d1317 55%,#12212a);background-size:40px 40px,40px 40px,auto;border:1px solid #3a2a30;border-radius:24px}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;padding:56px 64px}
+.kicker,.label{font:13px var(--mono);letter-spacing:.16em;color:var(--cy)}
+h1{margin:18px 0;font-weight:800;font-size:clamp(40px,9vw,118px);line-height:.95;letter-spacing:-.035em}
+h1 b{color:var(--red);text-shadow:-3px 0 var(--cy),5px 5px 0 #6b1d2a}
+.sub{margin:0 0 20px;font:italic 500 clamp(19px,3vw,25px)/1.4 "Playfair Display",Georgia,serif;color:#e9e4de;max-width:520px}
+.by{font:12px var(--mono);letter-spacing:.1em;color:#b9b4ae;margin-bottom:20px}
+.pill{display:inline-block;border:1px solid #6a6f7c;border-radius:6px;padding:9px 14px;font:12px var(--mono);color:var(--cy);letter-spacing:.06em}
+.mascot{position:relative;width:250px;justify-self:end}
+.bubble{position:absolute;left:-120px;top:70px;width:140px;background:var(--ink);color:#1a1417;font-weight:800;font-size:14px;line-height:1.35;padding:11px 16px;border-radius:12px;box-shadow:3px 3px 0 #c9bfb4}
+.mascot svg{display:block;animation:rp-float 3.2s ease-in-out infinite}
+@keyframes rp-float{50%{transform:translateY(-8px)}}
+.halo{transform-origin:120px 34px;animation:rp-spin 1.4s linear infinite}
+.block{padding:56px 0 8px}
+h2{font-size:clamp(30px,6vw,56px);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:10px 0 12px}
+h2 b{color:var(--red);text-shadow:-2px 0 var(--cy)}
+.block p{max-width:580px;color:#c9c4be;font-size:18px;margin:0 0 26px}
+.end{padding:48px 0 24px}
+.foot{max-width:1200px;margin:0 auto;padding:28px 24px 52px;border-top:1px solid var(--line);font:12px var(--mono);letter-spacing:.05em;color:var(--dim);display:grid;gap:8px;justify-items:start}
+@media(max-width:900px){.hero{padding:40px 28px}.mascot{width:200px}.mascot svg{width:200px;height:auto}.bubble{left:-100px;top:50px;width:120px;font-size:12px;padding:9px 12px}}
+@media(max-width:640px){.hero{grid-template-columns:1fr}.mascot{justify-self:center;margin-top:56px}.bubble{left:-10px;top:-50px;width:150px;font-size:14px}.nav{padding:16px 20px}}
+</style>
+
+<style id="poem-styles">
+.rp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.rp-head button{font:12px "Space Mono",ui-monospace,monospace;letter-spacing:.06em;color:#9a9aa0;background:none;border:1px solid #2c2c2e;padding:6px 12px;border-radius:6px;cursor:pointer}
+.rp-head button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.rp-stage{padding:36px 16px 18px;min-height:420px}
+.rp-log{max-width:560px;margin:0 auto}
+.rp-win{background:#1c1c1e;border:1px solid #2c2c2e;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.45);margin-bottom:18px;overflow:hidden;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;animation:rp-pop .18s ease-out}
+@keyframes rp-pop{from{transform:scale(.97);opacity:0}to{transform:none;opacity:1}}
+.rp-bar{background:#2a2a2d;padding:8px 14px;font-size:12px;color:#9a9aa0}
+.rp-q{padding:14px 18px 0;font-size:12px;color:#9a9aa0}
+.rp-ask{padding:2px 18px 10px;font-size:19px;font-weight:600;line-height:1.3;min-height:1.6em}
+.rp-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 18px 14px;min-height:3.2em}
+.rp-st{display:flex;align-items:center;gap:8px;font-size:13.5px;color:#9a9aa0;min-width:0}
+.rp-st i{width:16px;height:16px;border-radius:50%;display:inline-grid;place-items:center;font:700 10px system-ui,sans-serif;color:#000;font-style:normal;flex:none}
+.rp-denied .rp-st i{background:#ff4d5e}.rp-accepted .rp-st i{background:#3ddc84}
+.rp-denied .rp-st,.rp-accepted .rp-st{color:#f4f1ec}
+.rp-btns{display:flex;gap:8px;font-size:13px;flex:none}
+.rp-btns span{padding:6px 16px;border-radius:7px;background:#3a3a3d;transition:transform .12s,opacity .4s,filter .12s}
+.rp-btns .rp-allow{background:#0a64d8}
+.rp-pressed{transform:scale(.94);filter:brightness(.85);outline:2px solid #fff;outline-offset:-2px}
+.rp-faded{opacity:.35}
+.rp-dots{display:inline-block;animation:rp-stretch 2.2s ease-in infinite}
+@keyframes rp-stretch{0%{letter-spacing:0;opacity:1}85%{letter-spacing:.9em;opacity:.15}100%{letter-spacing:.9em;opacity:0}}
+.rp-final{border-color:#ff5a4d;margin-bottom:0;animation:rp-pop .18s ease-out,rp-glow 2.4s ease-in-out .2s infinite}
+@keyframes rp-glow{0%,100%{box-shadow:-7px 0 0 rgba(25,212,255,.55),7px 0 0 rgba(255,42,85,.55),0 0 40px rgba(255,90,77,.25)}50%{box-shadow:-3px 0 0 rgba(25,212,255,.55),3px 0 0 rgba(255,42,85,.55),0 0 80px rgba(255,90,77,.5)}}
+.rp-final .rp-st{font:clamp(18px,4.4vw,26px) "Space Mono",ui-monospace,monospace;color:#fff;gap:14px}
+.rp-final .rp-row{padding-bottom:20px}
+.rp-glitch{position:relative;display:inline-block;color:#fff}
+.rp-glitch::before,.rp-glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden}
+.rp-glitch::before{color:#ff2a55;animation:rp-g1 1.7s infinite steps(1)}
+.rp-glitch::after{color:#19d4ff;animation:rp-g2 1.3s infinite steps(1)}
+@keyframes rp-g1{0%{clip-path:inset(0 0 85% 0);transform:translate(-4px,0)}12%{clip-path:inset(40% 0 40% 0);transform:translate(5px,0)}30%{clip-path:inset(0 0 0 0);transform:translate(-2px,0)}45%{clip-path:inset(70% 0 5% 0);transform:translate(6px,1px)}60%{clip-path:inset(15% 0 60% 0);transform:translate(-5px,0)}80%{clip-path:inset(0 0 0 0);transform:translate(2px,0)}100%{clip-path:inset(50% 0 30% 0);transform:translate(-3px,0)}}
+@keyframes rp-g2{0%{clip-path:inset(60% 0 10% 0);transform:translate(4px,0)}20%{clip-path:inset(5% 0 75% 0);transform:translate(-6px,0)}40%{clip-path:inset(0 0 0 0);transform:translate(2px,0)}55%{clip-path:inset(30% 0 45% 0);transform:translate(5px,-1px)}75%{clip-path:inset(80% 0 0 0);transform:translate(-4px,0)}100%{clip-path:inset(0 0 0 0);transform:translate(3px,0)}}
+.rp-ring{width:20px;height:20px;border:3px solid #3a3a3d;border-top-color:#fff;border-radius:50%;animation:rp-spin 1s linear infinite;flex:none}
+@keyframes rp-spin{to{transform:rotate(360deg)}}
+.rp-cur{display:inline-block;width:.5em;height:1em;background:#fff;vertical-align:-2px;animation:rp-blink 1s steps(1) infinite}
+@keyframes rp-blink{50%{opacity:0}}
+.rp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:520px){.rp-row{flex-direction:column;align-items:flex-start}.rp-btns{align-self:flex-end}}
+@media(prefers-reduced-motion:reduce){
+  .rp-win,.rp-btns span{transition:none;animation:none}
+  .rp-dots,.rp-glitch::before,.rp-glitch::after,.rp-ring,.rp-cur,.mascot svg,.halo{animation:none}
+  .rp-glitch::before,.rp-glitch::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="https://almii0441-tech.github.io/this-is-not-a-clickbait/index.html">THIS IS NOT A CLICKBAIT</a>
+  <span>TRANSMISSION 008 / ARCHIVE</span>
+</div>
+
+<div class="page">
+  <header class="hero grid">
+    <div>
+      <div class="kicker">DIGITAL CULTURE / PERMISSIONS / 008</div>
+      <h1>REQUEST<br><b>PENDING.</b></h1>
+      <p class="sub">Some permissions are granted instantly. Others stay pending.</p>
+      <div class="by">BY NAMITHA RAJEEV &nbsp;&nbsp;&nbsp; POETRY / DIGITAL LIFE</div>
+      <div class="pill">RESPONSE STATUS: PENDING...</div>
+    </div>
+    <div class="mascot">
+      <div class="bubble">Request received. Please wait...</div>
+      <svg viewBox="0 0 240 266" width="250" role="img" aria-label="PENDING_008, a permission window character with a loading halo">
+        <g class="halo"><ellipse cx="120" cy="34" rx="46" ry="11" fill="none" stroke="#19d4ff" stroke-width="5" stroke-dasharray="64 80" stroke-linecap="round"/></g>
+        <rect x="49" y="66" width="160" height="140" rx="22" fill="#19d4ff" opacity=".5"/>
+        <rect x="31" y="66" width="160" height="140" rx="22" fill="#ff2a55" opacity=".5"/>
+        <rect x="40" y="66" width="160" height="140" rx="22" fill="#f4f1ec"/>
+        <rect x="40" y="66" width="160" height="30" rx="22" fill="#ff5a4d"/><rect x="40" y="82" width="160" height="14" fill="#ff5a4d"/>
+        <circle cx="60" cy="81" r="4" fill="#f4f1ec"/><circle cx="74" cy="81" r="4" fill="#f4f1ec"/><circle cx="88" cy="81" r="4" fill="#f4f1ec"/>
+        <ellipse cx="95" cy="133" rx="8" ry="11" fill="#1a1417"/><ellipse cx="145" cy="133" rx="8" ry="11" fill="#1a1417"/>
+        <circle cx="98" cy="128" r="3" fill="#fff"/><circle cx="148" cy="128" r="3" fill="#fff"/>
+        <ellipse cx="76" cy="154" rx="9" ry="5" fill="#ff9aa8" opacity=".75"/><ellipse cx="164" cy="154" rx="9" ry="5" fill="#ff9aa8" opacity=".75"/>
+        <path d="M108 171h24" stroke="#1a1417" stroke-width="4" stroke-linecap="round"/>
+        <rect x="68" y="206" width="38" height="14" rx="7" fill="#3a3a3d"/><rect x="134" y="206" width="38" height="14" rx="7" fill="#0a64d8"/>
+        <text x="120" y="254" text-anchor="middle" font-family="Space Mono,monospace" font-size="13" letter-spacing="2" fill="#19d4ff">PENDING_008</text>
+      </svg>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="label">INTERACTIVE FILE / 008-A</div>
+    <h2>PERMISSION <b>REQUIRED.</b></h2>
+    <p>Thinking, writing, drawing. Every act of making now seems to need approval. Press play and watch what gets through.</p>
+    <div class="rp-head"><span class="label">RECOVERED TEXT / POEM 008</span><button id="rp-replay" type="button">REPLAY ↻</button></div>
+    <div class="grid rp-stage" id="rp-stage" aria-hidden="true"><div class="rp-log" id="rp-log"></div></div>
+    <p class="rp-sr">Request: Permission to think for a day. Request denied. Request: Permission to write for a day. Request denied. Request: Permission to draw for a day. Request denied. Request: Swallow me as a whole. Request accepted. Request: To come back out. Request pending..</p>
+  </section>
+
+  <section class="end">
+    <div class="label">END OF FILE / 008</div>
+    <h2>Some requests never <b>resolve.</b></h2>
+    <p style="margin:0">Consuming is approved in an instant. Creating waits for permission that never arrives.</p>
+  </section>
+</div>
+
+<footer class="foot">
+  <span>THIS IS NOT A CLICKBAIT</span>
+  <span>ARTICLE 008 / REQUEST PENDING</span>
+  <span>HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.</span>
+  <a href="https://almii0441-tech.github.io/this-is-not-a-clickbait/index.html">← RETURN TO HOMEPAGE</a>
+</footer>
+
+<script>
+(function(){
+  var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var stage = document.getElementById("rp-stage");
+  var log = document.getElementById("rp-log");
+  var run = 0, started = false;
+  var steps = [
+    {ask:"Permission to think for a day", end:"Request denied", cls:"rp-denied", icon:"\u2715", pick:"deny"},
+    {ask:"Permission to write for a day", end:"Request denied", cls:"rp-denied", icon:"\u2715", pick:"deny"},
+    {ask:"Permission to draw for a day", end:"Request denied", cls:"rp-denied", icon:"\u2715", pick:"deny"},
+    {ask:"Swallow me as a whole.", end:"Request accepted.", cls:"rp-accepted", icon:"\u2713", pick:"allow"}
+  ];
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r, RM ? Math.min(ms, 60) : ms); }); }
+  function el(tag, cls, text){ var e = document.createElement(tag); if(cls) e.className = cls; if(text) e.textContent = text; return e; }
+  function show(node){ node.scrollIntoView({behavior: RM ? "auto" : "smooth", block:"nearest"}); }
+  async function type(node, text, id){
+    if(RM){ node.textContent = text; return; }
+    for(var i = 1; i <= text.length; i++){
+      if(id !== run) return;
+      node.textContent = text.slice(0, i);
+      await sleep(38);
+    }
+  }
+  function dialog(text, typed){
+    var w = el("section", "rp-win");
+    w.innerHTML = '<div class="rp-bar">Permission request</div><div class="rp-q">Request:</div><div class="rp-ask"></div>' +
+      '<div class="rp-row"><div class="rp-st"></div><div class="rp-btns"><span class="rp-deny">Deny</span><span class="rp-allow">Allow</span></div></div>';
+    if(!typed) w.querySelector(".rp-ask").textContent = text;
+    log.append(w);
+    show(w);
+    return w;
+  }
+  async function play(){
+    var id = ++run;
+    log.innerHTML = "";
+    await sleep(700);
+    for(var i = 0; i < steps.length; i++){
+      if(id !== run) return;
+      var s = steps[i], w = dialog(s.ask, false), st = w.querySelector(".rp-st");
+      await sleep(900);
+      st.textContent = "Request pending";
+      st.append(el("span", "rp-dots", ".."));
+      await sleep(1500);
+      if(id !== run) return;
+      var yes = w.querySelector(s.pick === "deny" ? ".rp-deny" : ".rp-allow");
+      var no = w.querySelector(s.pick === "deny" ? ".rp-allow" : ".rp-deny");
+      yes.classList.add("rp-pressed");
+      no.classList.add("rp-faded");
+      await sleep(220);
+      st.textContent = "";
+      st.append(el("i", "", s.icon), el("span", "", s.end));
+      w.classList.add(s.cls);
+      await sleep(1100);
+    }
+    if(id !== run) return;
+    await sleep(900);
+    if(id !== run) return;
+    var f = dialog("", true);
+    f.classList.add("rp-final");
+    await type(f.querySelector(".rp-ask"), "To come back out", id);
+    if(id !== run) return;
+    await sleep(700);
+    var st2 = f.querySelector(".rp-st");
+    var label = el("span", "", "Request ");
+    var g = el("span", "rp-glitch", "pending..");
+    g.setAttribute("data-text", "pending..");
+    label.append(g);
+    st2.append(el("span", "rp-ring"), label, el("span", "rp-cur"));
+    show(f);
+  }
+  document.getElementById("rp-replay").addEventListener("click", play);
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(entries, obs){
+      if(!started && entries[0].isIntersecting){ started = true; obs.disconnect(); play(); }
+    }, {threshold:0.3}).observe(stage);
+  } else { play(); }
+})();
+</script>
+</body>
+</html>
