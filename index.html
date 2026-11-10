@@ -331,6 +331,27 @@ section {scroll-margin-top:25px}
 .profile-button:hover {background:var(--accent);color:#080808}
 .database-warning {display:flex;align-items:center;gap:12px;margin-top:30px;padding:17px;border:1px solid #4a2529;background:#151012;color:var(--red);font:10px/1.7 'Space Mono',monospace;letter-spacing:1px;box-shadow:3px 3px 0 rgba(255,52,63,.15)}
 
+/* NEW: PERSONALITY INFORMATION ON CONTRIBUTOR CARDS */
+.human-system-log {
+  margin-top:12px;
+  padding:13px;
+  border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);
+  background:#0d0d11;
+}
+.human-system-log small {
+  display:block;
+  margin-bottom:7px;
+  color:var(--accent);
+  font:9px 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+.human-system-log p {
+  margin:0 0 10px;
+  color:#ccc;
+  font:10px/1.7 'Space Mono',monospace;
+}
+.human-system-log p:last-child {margin-bottom:0}
+
 /* PROFILE MODAL */
 .profile-modal {
   position:fixed;inset:0;z-index:100001;display:none;
@@ -358,6 +379,28 @@ section {scroll-margin-top:25px}
 .profile-data-row {padding:13px 0;border-bottom:1px solid #303035}
 .profile-data-row small {display:block;margin-bottom:6px;color:#777;font:9px 'Space Mono',monospace;letter-spacing:1px}
 .profile-data-row strong {color:#e2dfda;font:12px/1.6 'Space Grotesk',sans-serif;overflow-wrap:anywhere}
+
+/* NEW: PERSONALITY INFORMATION IN PROFILE MODAL */
+.profile-system-log {
+  margin-top:18px;
+  padding:15px;
+  border:1px solid var(--accent);
+  background:#0b0b0e;
+}
+.profile-system-log small {
+  display:block;
+  margin-bottom:7px;
+  color:var(--accent);
+  font:9px 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+.profile-system-log p {
+  margin-bottom:13px;
+  color:#d2d0cd;
+  font:11px/1.7 'Space Mono',monospace;
+}
+.profile-system-log p:last-child {margin-bottom:0}
+
 .profile-warning {margin-top:20px;color:var(--red);font:10px/1.8 'Space Mono',monospace;letter-spacing:1px}
 .profile-footer {display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:15px 20px;border-top:1px solid #303035;color:#777;font:9px 'Space Mono',monospace;letter-spacing:1px}
 
@@ -946,6 +989,18 @@ footer a:hover {color:var(--blue)}
           <div class="profile-data-row"><small>ASSOCIATED ARTICLE(S)</small><strong id="profileArticle"></strong></div>
         </div>
 
+        <!-- NEW: PERSONALITY DETAILS IN PROFILE MODAL -->
+        <div class="profile-system-log">
+          <small>01 / SYSTEM ERROR</small>
+          <p id="profileError"></p>
+
+          <small>02 / PERSONALITY STATUS</small>
+          <p id="profilePersonalityStatus"></p>
+
+          <small>03 / WARNING</small>
+          <p id="profileWarning"></p>
+        </div>
+
         <p class="profile-warning">SYSTEM ERROR / WARNING<br>HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.</p>
       </div>
     </div>
@@ -1107,7 +1162,8 @@ document.getElementById("final-enter")
 
 /* ==========================================
    CONTRIBUTOR DATABASE
-   BOTH ARTICLES PRESERVED
+   ORIGINAL INFORMATION PRESERVED
+   PERSONALITY DETAILS ADDED
 ========================================== */
 
 const contributors = [
@@ -1123,7 +1179,16 @@ const contributors = [
       "WHERE ONE CLICK LEADS",
       "CONSUMPTION CORTEX"
     ],
-    accent:"#ff343f"
+    accent:"#ff343f",
+
+    systemError:
+      "24 HOURS IN A DAY. INSUFFICIENT FOR THIS USER. MULTIPLE TASKS DETECTED. REST MODE NOT FOUND.",
+
+    personalityStatus:
+      "PRODUCTIVITY MODE: PERMANENTLY ON. CURRENTLY RUNNING ON DEADLINES, DETERMINATION AND A TO-DO LIST THAT NEVER ENDS.",
+
+    warning:
+      "May complete three tasks before everyone else has opened their to-do list, start two more before lunch, and somehow still wonder whether she's done enough."
   },
 
   {
@@ -1136,7 +1201,16 @@ const contributors = [
     articles:[
       "MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE"
     ],
-    accent:"#00d9ff"
+    accent:"#00d9ff",
+
+    systemError:
+      "BRAIN TABS: 47 OPEN. 46 ARE WHAT IF I SAID THE WRONG THING IN 2019.",
+
+    personalityStatus:
+      "EARPHONES IN. REALITY MUTED. DO NOT DISTURB. CURRENTLY ACCEPTING COMMUNICATION THROUGH PLAYLISTS ONLY.",
+
+    warning:
+      "Will replay one awkward sentence 300 times before sleeping, analyse conversations that ended years ago, but will instantly calm down if the right playlist starts."
   },
 
   {
@@ -1149,7 +1223,16 @@ const contributors = [
     articles:[
       "SUDDENLY EVERYONE'S A CRITIC"
     ],
-    accent:"#b58cff"
+    accent:"#b58cff",
+
+    systemError:
+      "COMMUTE MODE: EXTENDED EDITION. ARRIVAL IS A THEORETICAL CONCEPT. OUTSIDE WORLD DETECTED. PATIENCE RUNNING LOW.",
+
+    personalityStatus:
+      "WILL CHOOSE STAYING HOME OVER A ONE-HOUR COMMUTE AT THE FIRST OPPORTUNITY. HOME IS THE PREFERRED DESTINATION. ALL OTHER PLANS ARE UNDER REVIEW.",
+
+    warning:
+      "May agree to an outing, reconsider the entire decision during the commute, and spend the rest of the day wishing she had stayed home."
   },
 
   {
@@ -1163,7 +1246,16 @@ const contributors = [
       "PLAYLISTS FIRST, STORIES NEXT",
       "REQUEST PENDING"
     ],
-    accent:"#ff83c9"
+    accent:"#ff83c9",
+
+    systemError:
+      "FOOD SECURED. BEDTIME SCHEDULED. WORLD CAN WAIT. NON-FOOD-RELATED ACTIVITIES MAY BE POSTPONED.",
+
+    personalityStatus:
+      "OFFLINE BY 10 PM. AVAILABLE FOR SNACK-RELATED EMERGENCIES. CURRENTLY OPERATING ON A STRICT FOOD-AND-SLEEP SCHEDULE.",
+
+    warning:
+      "May disappear without notice when bedtime approaches, but will reappear immediately if someone mentions snacks. Sleep is important. Food is an exception."
   },
 
   {
@@ -1176,7 +1268,16 @@ const contributors = [
     articles:[
       "THE ALGORITHM HAS A TYPE"
     ],
-    accent:"#c8ff00"
+    accent:"#c8ff00",
+
+    systemError:
+      "TOO MUCH SPARK. ALGORITHM UNABLE TO KEEP UP. HAPPINESS LEVELS EXCEEDING STANDARD SYSTEM CAPACITY.",
+
+    personalityStatus:
+      "GOOD VIBES RUNNING. CREATIVITY IN PROGRESS. CURRENTLY FINDING SOMETHING INTERESTING IN PLACES THE REST OF THE SYSTEM HAS IGNORED.",
+
+    warning:
+      "May turn even the most familiar trend into something worth smiling about, make an ordinary moment feel exciting, and spread enthusiasm without even trying."
   },
 
   {
@@ -1189,7 +1290,16 @@ const contributors = [
     articles:[
       "GHOSTS OF THE FEED"
     ],
-    accent:"#a78bfa"
+    accent:"#a78bfa",
+
+    systemError:
+      "EXISTENTIAL QUESTIONS DETECTED. ANSWERS NOT INCLUDED. PHILOSOPHICAL PROCESSING HAS EXCEEDED THE RECOMMENDED LIMIT.",
+
+    personalityStatus:
+      "DEEP THOUGHTS LOADING. REALITY UNDER REVIEW. CURRENTLY QUESTIONING THINGS THAT WERE WORKING PERFECTLY WELL FIVE MINUTES AGO.",
+
+    warning:
+      "May turn a simple conversation into a documentary about the meaning of life, leave everyone with more questions than answers, and still not be finished thinking."
   },
 
   {
@@ -1202,10 +1312,70 @@ const contributors = [
     articles:[
       "THE BORROWED IMAGINATION"
     ],
-    accent:"#d5a84b"
+    accent:"#d5a84b",
+
+    systemError:
+      "CONNECTION ACTIVE. HUMAN RESPONSE NOT GUARANTEED. AVAILABILITY STATUS COULD NOT BE VERIFIED.",
+
+    personalityStatus:
+      "ONLINE STATUS: CLASSIFIED. NOTIFICATIONS RECEIVED. RESPONSE TIME SUBJECT TO UNKNOWN CONDITIONS.",
+
+    warning:
+      "May be online, offline, and unavailable simultaneously. Could see your message, forget to reply, remember it three hours later, and behave as though the system never notified her."
   }
 
 ];
+
+
+/* ==========================================
+   CONTRIBUTOR PERSONALITY DISPLAY
+   ALL SEVEN CONTRIBUTORS
+========================================== */
+
+document.querySelectorAll(".human-card").forEach((card, index) => {
+
+  const person = contributors[index];
+
+  if (!person) return;
+
+  const personalityLog = document.createElement("div");
+
+  personalityLog.className = "human-system-log";
+
+  const errorLabel = document.createElement("small");
+  errorLabel.textContent = "SYSTEM ERROR";
+
+  const errorText = document.createElement("p");
+  errorText.textContent = person.systemError;
+
+  const statusLabel = document.createElement("small");
+  statusLabel.textContent = "PERSONALITY STATUS";
+
+  const statusText = document.createElement("p");
+  statusText.textContent = person.personalityStatus;
+
+  const warningLabel = document.createElement("small");
+  warningLabel.textContent = "WARNING";
+
+  const warningText = document.createElement("p");
+  warningText.textContent = person.warning;
+
+  personalityLog.append(
+    errorLabel,
+    errorText,
+    statusLabel,
+    statusText,
+    warningLabel,
+    warningText
+  );
+
+  const article = card.querySelector(".human-article");
+
+  if (article) {
+    article.after(personalityLog);
+  }
+
+});
 
 
 /* ==========================================
@@ -1301,6 +1471,17 @@ const profileFootprint =
 const profileArticle =
   document.getElementById("profileArticle");
 
+// NEW: PERSONALITY MODAL ELEMENTS
+
+const profileError =
+  document.getElementById("profileError");
+
+const profilePersonalityStatus =
+  document.getElementById("profilePersonalityStatus");
+
+const profileWarning =
+  document.getElementById("profileWarning");
+
 const profileFooterID =
   document.getElementById("profileFooterID");
 
@@ -1353,6 +1534,17 @@ function openProfile(index) {
   // Display all associated articles.
   profileArticle.textContent =
     person.articles.join(" / ");
+
+  // NEW: DISPLAY ALL THREE PERSONALITY DETAILS.
+
+  profileError.textContent =
+    person.systemError;
+
+  profilePersonalityStatus.textContent =
+    person.personalityStatus;
+
+  profileWarning.textContent =
+    person.warning;
 
   profileImage.src =
     person.image;
