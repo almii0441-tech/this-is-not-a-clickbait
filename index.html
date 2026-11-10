@@ -29,14 +29,9 @@
   box-sizing:border-box;
 }
 
-html {
-  scroll-behavior:smooth;
-}
+html { scroll-behavior:smooth; }
 
 body {
-  
-
-
   background:var(--black);
   color:var(--white);
   font-family:'Space Grotesk',sans-serif;
@@ -68,9 +63,9 @@ button {
   color:var(--black);
 }
 
-.mono {
-  font-family:'Space Mono',monospace;
-}
+.mono { font-family:'Space Mono',monospace; }
+
+/* TOP BAR */
 
 .topbar {
   display:flex;
@@ -84,9 +79,7 @@ button {
   color:#aaa;
 }
 
-.status {
-  color:var(--green);
-}
+.status { color:var(--green); }
 
 .status::before {
   content:"●";
@@ -97,6 +90,8 @@ button {
 @keyframes blink {
   50% {opacity:.2;}
 }
+
+/* NAVIGATION */
 
 nav {
   display:flex;
@@ -120,13 +115,10 @@ nav {
   color:#aaa;
 }
 
-.navlinks a {
-  transition:color .2s;
-}
+.navlinks a { transition:color .2s; }
+.navlinks a:hover { color:var(--blue); }
 
-.navlinks a:hover {
-  color:var(--blue);
-}
+/* HERO */
 
 .hero {
   min-height:78vh;
@@ -248,9 +240,9 @@ nav {
   letter-spacing:2px;
 }
 
-.scroll {
-  color:var(--green);
-}
+.scroll { color:var(--green); }
+
+/* TICKER */
 
 .ticker {
   overflow:hidden;
@@ -271,6 +263,8 @@ nav {
   to {transform:translateX(-50%);}
 }
 
+/* SYSTEM STRIP */
+
 .system-strip {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -282,9 +276,7 @@ nav {
   border-right:1px solid var(--line);
 }
 
-.system-box:last-child {
-  border-right:0;
-}
+.system-box:last-child { border-right:0; }
 
 .system-box small {
   display:block;
@@ -303,9 +295,9 @@ nav {
 .system-box:nth-child(2) strong {color:var(--blue);}
 .system-box:nth-child(3) strong {color:var(--purple);}
 
-section {
-  scroll-margin-top:25px;
-}
+section { scroll-margin-top:25px; }
+
+/* INTRO */
 
 .intro {
   padding:100px 7%;
@@ -326,9 +318,9 @@ section {
   line-height:1.9;
 }
 
-.archive {
-  padding:95px 7%;
-}
+/* ARCHIVE AND SHARED CARDS */
+
+.archive { padding:95px 7%; }
 
 .section-heading {
   display:flex;
@@ -420,110 +412,48 @@ section {
   letter-spacing:1px;
 }
 
-.article-card.pending {
-  background:repeating-linear-gradient(135deg,#111114,#111114 12px,#151519 12px,#151519 24px);
-}
-
-.article-card.pending h3 {
-  color:#777;
-}
-
 .archive-note {
   margin-top:25px;
   color:#777;
   font:10px 'Space Mono',monospace;
   line-height:1.8;
 }
-  
-  
-/* 03 / VISUAL POETRY */
+
+/* VISUAL POETRY */
 
 .visual-poetry {
-  border-top: 1px solid var(--line);
+  border-top:1px solid var(--line);
 }
 
-.poetry-card {
-  min-height: 340px;
+.poetry-card { min-height:340px; }
+
+.poetry-link {
+  position:relative;
+  z-index:1;
+  display:block;
+  margin:28px 0 10px;
+  color:var(--white);
 }
 
-.poetry-preview {
-  min-height: 125px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
+.poetry-link h3 {
+  margin:0 0 10px;
+  font:700 clamp(25px,3.4vw,39px)/1.1 'Playfair Display',serif;
+  color:var(--white);
 }
 
-.poetry-preview span {
-  color: var(--accent);
-  font: 700 clamp(30px, 4vw, 48px)/.95 'Playfair Display', serif;
-  letter-spacing: -1.5px;
-  transition: transform .3s ease;
+.poetry-link:hover h3 {
+  color:var(--accent);
+  transition:color .25s;
 }
 
-.poetry-preview i {
-  color: var(--white);
+.poetry-description {
+  max-width:430px;
+  color:#999;
+  font:13px/1.7 'Space Grotesk',sans-serif;
 }
 
-.poetry-two span {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 600;
-  letter-spacing: -2px;
-}
+/* ARCADE */
 
-.poetry-card:hover .poetry-preview span {
-  transform: scale(1.05);
-}
-
-@media(max-width:700px) {
-  .poetry-card {
-    min-height: 320px;
-  }
-}
-
-/* 03 / VISUAL POETRY */
-
-/* Reuse the exact Archive card design */
-
-.visual-poetry .poetry-link {
-  position: relative;
-  z-index: 1;
-  display: block;
-  margin: 28px 0 10px;
-  color: var(--white);
-}
-
-.visual-poetry .poetry-description {
-  max-width: 430px;
-  margin-bottom: 12px;
-  color: #999;
-  font: 13px/1.7 'Space Grotesk', sans-serif;
-}
-
-.visual-poetry .poetry-link h3 {
-  margin: 0;
-  font: 700 clamp(25px, 3.4vw, 39px)/1.1 'Playfair Display', serif;
-  color: var(--white);
-}
-
-.visual-poetry .poetry-link:hover h3 {
-  color: var(--accent);
-  transition: color .25s;
-}
-.visual-poetry .poetry-link h3 {
-  margin: 0 0 10px;
-  font: 700 clamp(25px, 3.4vw, 39px)/1.1 'Playfair Display', serif;
-  color: var(--white);
-}
-
-.visual-poetry .poetry-description {
-  max-width: 430px;
-  color: #999;
-  font: 13px/1.7 'Space Grotesk', sans-serif;
-}
 .arcade {
   padding:90px 7%;
   border-top:1px solid var(--line);
@@ -570,9 +500,7 @@ section {
   box-shadow:5px 5px 0 var(--accent);
 }
 
-.game-card .game-icon {
-  font-size:30px;
-}
+.game-icon { font-size:30px; }
 
 .game-card small {
   color:var(--accent);
@@ -599,6 +527,428 @@ section {
   font:10px 'Space Mono',monospace;
   letter-spacing:2px;
 }
+
+/* ==========================================
+   05 / HUMAN DATABASE
+========================================== */
+
+.human-database {
+  position:relative;
+  border-top:1px solid var(--line);
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(0,217,255,.035),transparent 55%),
+    #080808;
+}
+
+.database-subtitle {
+  margin-top:18px;
+  max-width:650px;
+  color:#999;
+  font-size:15px;
+  line-height:1.8;
+}
+
+.database-count {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
+  padding:14px 16px;
+  border:1px solid var(--line);
+  background:#101014;
+  color:#888;
+  font:10px 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+.database-count strong {
+  color:var(--green);
+}
+
+/* THREE-COLUMN CONTRIBUTOR GRID */
+
+.human-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+
+/* CONTRIBUTOR CARD */
+
+.human-card {
+  min-width:0;
+  min-height:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  border:1px solid var(--line);
+  background:var(--panel);
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+
+.human-card:hover {
+  transform:translateY(-7px);
+  border-color:var(--accent);
+  box-shadow:5px 5px 0 color-mix(in srgb,var(--accent) 35%,transparent);
+}
+
+/* IMAGE */
+
+.human-image-wrap {
+  position:relative;
+  height:255px;
+  margin:12px 12px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border:1px solid #303035;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+    #0b0b0e;
+  background-size:22px 22px;
+}
+
+.human-image-wrap::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 4px,
+    rgba(255,255,255,.035) 5px
+  );
+}
+
+.human-image-wrap::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(0,0,0,.45)
+  );
+}
+
+.human-image {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  position:relative;
+  z-index:0;
+  transition:transform .4s;
+}
+
+.human-card:hover .human-image {
+  transform:scale(1.045);
+}
+
+.image-id {
+  position:absolute;
+  z-index:2;
+  top:10px;
+  left:10px;
+  padding:6px 9px;
+  border:1px solid var(--accent);
+  background:rgba(8,8,8,.85);
+  color:var(--accent);
+  font:9px 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+.image-status {
+  position:absolute;
+  z-index:2;
+  right:10px;
+  bottom:10px;
+  padding:6px 9px;
+  background:rgba(8,8,8,.85);
+  color:var(--green);
+  font:9px 'Space Mono',monospace;
+}
+
+/* CARD DETAILS */
+
+.human-card-content {
+  padding:19px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.human-card-kicker {
+  color:var(--accent);
+  font:9px 'Space Mono',monospace;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.human-card h3 {
+  margin:0 0 18px;
+  font:700 clamp(22px,2.2vw,30px)/1.1 'Playfair Display',serif;
+  color:var(--white);
+  overflow-wrap:anywhere;
+}
+
+.human-details {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  padding-top:15px;
+  border-top:1px solid #303035;
+}
+
+.human-detail {
+  display:grid;
+  grid-template-columns:105px minmax(0,1fr);
+  gap:9px;
+  align-items:start;
+}
+
+.human-detail span:first-child {
+  color:#777;
+  font:9px/1.6 'Space Mono',monospace;
+  letter-spacing:.5px;
+}
+
+.human-detail span:last-child {
+  color:#d2d0cd;
+  font:10px/1.6 'Space Mono',monospace;
+  overflow-wrap:anywhere;
+}
+
+.human-article {
+  margin-top:15px;
+  padding:12px;
+  border-left:2px solid var(--accent);
+  background:#17171b;
+}
+
+.human-article small {
+  display:block;
+  margin-bottom:7px;
+  color:#777;
+  font:9px 'Space Mono',monospace;
+}
+
+.human-article strong {
+  color:var(--accent);
+  font:12px/1.5 'Space Grotesk',sans-serif;
+}
+
+.profile-button {
+  width:100%;
+  margin-top:19px;
+  padding:13px 12px;
+  border:1px solid var(--accent);
+  background:transparent;
+  color:var(--accent);
+  font:10px 'Space Mono',monospace;
+  font-weight:bold;
+  letter-spacing:1.5px;
+  text-align:center;
+  transition:.25s;
+}
+
+.profile-button:hover {
+  background:var(--accent);
+  color:#080808;
+}
+
+/* DATABASE WARNING */
+
+.database-warning {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:30px;
+  padding:17px;
+  border:1px solid #4a2529;
+  background:#151012;
+  color:var(--red);
+  font:10px/1.7 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+/* ==========================================
+   INDIVIDUAL PROFILE MODAL
+========================================== */
+
+.profile-modal {
+  position:fixed;
+  inset:0;
+  z-index:100001;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.88);
+  backdrop-filter:blur(8px);
+  overflow-y:auto;
+}
+
+.profile-modal.active {
+  display:flex;
+}
+
+.profile-window {
+  position:relative;
+  width:100%;
+  max-width:850px;
+  max-height:90vh;
+  overflow-y:auto;
+  border:1px solid var(--accent);
+  background:#101014;
+  box-shadow:8px 8px 0 color-mix(in srgb,var(--accent) 35%,transparent);
+  animation:profile-appear .3s ease both;
+}
+
+@keyframes profile-appear {
+  from {
+    opacity:0;
+    transform:translateY(15px) scale(.98);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.profile-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding:16px 20px;
+  border-bottom:1px solid #303035;
+  color:var(--accent);
+  font:10px 'Space Mono',monospace;
+  letter-spacing:1.5px;
+}
+
+.profile-close {
+  width:34px;
+  height:34px;
+  border:1px solid #555;
+  background:transparent;
+  color:var(--white);
+  font-size:19px;
+  transition:.2s;
+}
+
+.profile-close:hover {
+  border-color:var(--red);
+  color:var(--red);
+}
+
+.profile-body {
+  display:grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap:28px;
+  padding:28px;
+}
+
+.profile-image-area {
+  min-height:370px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  border:1px solid #303035;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+    #080808;
+  background-size:22px 22px;
+}
+
+.profile-image-area img {
+  width:100%;
+  height:100%;
+  max-height:480px;
+  object-fit:contain;
+}
+
+.profile-information {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.profile-kicker {
+  color:var(--accent);
+  font:10px 'Space Mono',monospace;
+  letter-spacing:2px;
+}
+
+.profile-information h2 {
+  margin:15px 0 8px;
+  font:900 clamp(32px,5vw,54px)/1 'Playfair Display',serif;
+  overflow-wrap:anywhere;
+}
+
+.profile-status {
+  margin-bottom:22px;
+  color:var(--green);
+  font:10px 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+.profile-data {
+  border-top:1px solid #303035;
+}
+
+.profile-data-row {
+  padding:13px 0;
+  border-bottom:1px solid #303035;
+}
+
+.profile-data-row small {
+  display:block;
+  margin-bottom:6px;
+  color:#777;
+  font:9px 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+.profile-data-row strong {
+  color:#e2dfda;
+  font:12px/1.6 'Space Grotesk',sans-serif;
+  overflow-wrap:anywhere;
+}
+
+.profile-warning {
+  margin-top:20px;
+  color:var(--red);
+  font:10px/1.8 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+.profile-footer {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+  padding:15px 20px;
+  border-top:1px solid #303035;
+  color:#777;
+  font:9px 'Space Mono',monospace;
+  letter-spacing:1px;
+}
+
+/* INTERRUPTION */
 
 .interruption {
   padding:85px 7%;
@@ -659,6 +1009,8 @@ section {
   color:#080808;
 }
 
+/* FOOTER */
+
 footer {
   padding:35px 7%;
   display:flex;
@@ -670,6 +1022,8 @@ footer {
   font:9px 'Space Mono',monospace;
   letter-spacing:1px;
 }
+
+/* POPUP */
 
 .popup {
   position:fixed;
@@ -684,9 +1038,7 @@ footer {
   animation:popup-in .4s ease both;
 }
 
-.popup.hidden {
-  display:none;
-}
+.popup.hidden { display:none; }
 
 @keyframes popup-in {
   from {opacity:0;transform:translateY(20px);}
@@ -721,6 +1073,231 @@ footer {
   color:var(--red);
 }
 
+/* ==========================================
+   TERMS OF HUMAN ENGAGEMENT
+========================================== */
+
+.engagement-screen {
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  overflow-y:auto;
+  background:#050505;
+  color:#f3f0eb;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:35px 16px;
+  font-family:"Space Mono",monospace;
+  isolation:isolate;
+}
+
+.engagement-screen::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.13;
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(255,40,50,.18) 4px
+  );
+}
+
+.engagement-screen::after {
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:radial-gradient(
+    ellipse at center,
+    transparent 20%,
+    rgba(100,0,0,.22) 100%
+  );
+}
+
+.engagement-panel {
+  width:100%;
+  max-width:720px;
+  margin:auto;
+  padding:28px;
+  border:1px solid #ff343f;
+  background:rgba(12,8,9,.97);
+  box-shadow:0 0 12px rgba(255,52,63,.22),inset 0 0 25px rgba(255,52,63,.035);
+  animation:engagement-appear .65s ease both;
+}
+
+.engagement-panel[hidden] { display:none !important; }
+
+.engagement-topline,
+.engagement-footer {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  color:#ff555e;
+  font-size:10px;
+  letter-spacing:1.5px;
+}
+
+.engagement-status {
+  margin-top:42px;
+  color:#ff555e;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.status-light {
+  display:inline-block;
+  width:8px;
+  height:8px;
+  margin-right:8px;
+  border-radius:50%;
+  background:#ff343f;
+  box-shadow:0 0 10px #ff343f;
+  animation:status-blink 1.5s infinite;
+}
+
+.engagement-panel h1 {
+  margin:18px 0;
+  color:#ff343f;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(34px,7vw,64px);
+  font-weight:800;
+  line-height:.98;
+  letter-spacing:-2px;
+  text-shadow:0 0 16px rgba(255,52,63,.24);
+}
+
+.engagement-alert {
+  margin:22px 0 8px;
+  color:#ff555e;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+}
+
+.engagement-intro,
+.confirmation-copy {
+  color:#c9c3c3;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:15px;
+  line-height:1.7;
+}
+
+.engagement-terms {
+  margin-top:28px;
+  border-top:1px solid #542126;
+}
+
+.term {
+  padding:15px 0;
+  border-bottom:1px solid #542126;
+}
+
+.term-number {
+  color:#ff555e;
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.term p {
+  margin:7px 0 0;
+  color:#e1dada;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:14px;
+  line-height:1.55;
+}
+
+.engagement-decision { margin-top:30px; }
+
+.decision-label {
+  margin-bottom:16px;
+  color:#ff555e;
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:1.5px;
+}
+
+.engagement-button {
+  display:block;
+  width:100%;
+  min-height:52px;
+  margin-top:12px;
+  padding:14px 16px;
+  border:1px solid #ff343f;
+  background:#ff343f;
+  color:#090909;
+  font-family:"Space Mono",monospace;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:background .2s,color .2s,box-shadow .2s;
+}
+
+.engagement-button:hover {
+  background:#ff6670;
+  box-shadow:0 0 18px rgba(255,52,63,.4);
+}
+
+.engagement-button.secondary {
+  background:transparent;
+  color:#ff555e;
+}
+
+.engagement-button.secondary:hover {
+  background:rgba(255,52,63,.12);
+}
+
+.engagement-footer {
+  margin-top:30px;
+  padding-top:15px;
+  border-top:1px solid #542126;
+  font-size:9px;
+  color:#a34a50;
+}
+
+.confirmation-panel,
+.denial-panel {
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+.confirmation-copy { margin-top:20px; }
+
+.denial-message {
+  margin-top:25px;
+  color:#ff555e;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:19px;
+  font-weight:bold;
+  line-height:1.5;
+}
+
+@keyframes engagement-appear {
+  from {opacity:0;transform:translateY(12px);}
+  to {opacity:1;transform:translateY(0);}
+}
+
+@keyframes status-blink {
+  0%,100% {opacity:1;}
+  50% {opacity:.35;}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px) {
+  .human-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
 @media(max-width:700px) {
   .topbar {
     font-size:8px;
@@ -742,21 +1319,11 @@ footer {
     padding-top:70px;
   }
 
-  .hero h1 {
-    letter-spacing:-3px;
-  }
+  .hero h1 { letter-spacing:-3px; }
+  .hero::before { right:-280px; }
+  .hero::after { display:none; }
 
-  .hero::before {
-    right:-280px;
-  }
-
-  .hero::after {
-    display:none;
-  }
-
-  .system-strip {
-    grid-template-columns:1fr;
-  }
+  .system-strip { grid-template-columns:1fr; }
 
   .system-box {
     border-right:0;
@@ -777,17 +1344,52 @@ footer {
     grid-template-columns:1fr;
   }
 
-  .article-card {
-    min-height:210px;
+  .article-card { min-height:210px; }
+
+  .archive,.arcade { padding:70px 7%; }
+
+  .human-grid {
+    grid-template-columns:1fr;
   }
 
-  .archive,.arcade {
-    padding:70px 7%;
+  .human-image-wrap { height:300px; }
+
+  .profile-body {
+    grid-template-columns:1fr;
+    padding:18px;
+    gap:20px;
   }
 
-  footer {
-    flex-direction:column;
+  .profile-image-area {
+    min-height:280px;
+    max-height:350px;
   }
+
+  .profile-image-area img { max-height:330px; }
+
+  .profile-window { max-height:94vh; }
+
+  footer { flex-direction:column; }
+}
+
+@media(max-width:400px) {
+  .human-detail {
+    grid-template-columns:90px minmax(0,1fr);
+  }
+
+  .human-image-wrap { height:260px; }
+
+  .database-count { font-size:9px; }
+
+  .profile-header { padding:12px; }
+}
+
+@media(max-width:600px) {
+  .engagement-screen { padding:14px 10px; }
+  .engagement-panel { padding:20px 16px; }
+  .engagement-status { margin-top:30px; }
+  .engagement-panel h1 { letter-spacing:-1.5px; }
+  .term { padding:13px 0; }
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -798,266 +1400,13 @@ footer {
     transition-duration:.01ms !important;
   }
 }
-  
-/* ==================================
-   TERMS OF HUMAN ENGAGEMENT
-================================== */
-
-.engagement-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  overflow-y: auto;
-  background: #050505;
-  color: #f3f0eb;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 35px 16px;
-  font-family: "Space Mono", monospace;
-  isolation: isolate;
-}
-
-.engagement-screen::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.13;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(255, 40, 50, 0.18) 4px
-  );
-}
-
-.engagement-screen::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 20%,
-    rgba(100, 0, 0, 0.22) 100%
-  );
-}
-
-.engagement-panel {
-  width: 100%;
-  max-width: 720px;
-  margin: auto;
-  padding: 28px;
-  border: 1px solid #ff343f;
-  background: rgba(12, 8, 9, 0.97);
-  box-shadow:
-    0 0 12px rgba(255, 52, 63, 0.22),
-    inset 0 0 25px rgba(255, 52, 63, 0.035);
-  animation: engagement-appear 0.65s ease both;
-}
-
-.engagement-panel[hidden] {
-  display: none !important;
-}
-
-.engagement-topline,
-.engagement-footer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  color: #ff555e;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-}
-
-.engagement-status {
-  margin-top: 42px;
-  color: #ff555e;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
-.status-light {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: #ff343f;
-  box-shadow: 0 0 10px #ff343f;
-  animation: status-blink 1.5s infinite;
-}
-
-.engagement-panel h1 {
-  margin: 18px 0;
-  color: #ff343f;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(34px, 7vw, 64px);
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -2px;
-  text-shadow: 0 0 16px rgba(255, 52, 63, 0.24);
-}
-
-.engagement-alert {
-  margin: 22px 0 8px;
-  color: #ff555e;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-}
-
-.engagement-intro,
-.confirmation-copy {
-  color: #c9c3c3;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-.engagement-terms {
-  margin-top: 28px;
-  border-top: 1px solid #542126;
-}
-
-.term {
-  padding: 15px 0;
-  border-bottom: 1px solid #542126;
-}
-
-.term-number {
-  color: #ff555e;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.term p {
-  margin: 7px 0 0;
-  color: #e1dada;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.engagement-decision {
-  margin-top: 30px;
-}
-
-.decision-label {
-  margin-bottom: 16px;
-  color: #ff555e;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-}
-
-.engagement-button {
-  display: block;
-  width: 100%;
-  min-height: 52px;
-  margin-top: 12px;
-  padding: 14px 16px;
-  border: 1px solid #ff343f;
-  background: #ff343f;
-  color: #090909;
-  font-family: "Space Mono", monospace;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-
-.engagement-button:hover {
-  background: #ff6670;
-  box-shadow: 0 0 18px rgba(255, 52, 63, 0.4);
-}
-
-.engagement-button.secondary {
-  background: transparent;
-  color: #ff555e;
-}
-
-.engagement-button.secondary:hover {
-  background: rgba(255, 52, 63, 0.12);
-}
-
-.engagement-footer {
-  margin-top: 30px;
-  padding-top: 15px;
-  border-top: 1px solid #542126;
-  font-size: 9px;
-  color: #a34a50;
-}
-
-.confirmation-panel,
-.denial-panel {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.confirmation-copy {
-  margin-top: 20px;
-}
-
-.denial-message {
-  margin-top: 25px;
-  color: #ff555e;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 19px;
-  font-weight: bold;
-  line-height: 1.5;
-}
-
-@keyframes engagement-appear {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes status-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-
-@media (max-width: 600px) {
-  .engagement-screen {
-    padding: 14px 10px;
-  }
-
-  .engagement-panel {
-    padding: 20px 16px;
-  }
-
-  .engagement-status {
-    margin-top: 30px;
-  }
-
-  .engagement-panel h1 {
-    letter-spacing: -1.5px;
-  }
-
-  .term {
-    padding: 13px 0;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
 <!-- TERMS OF HUMAN ENGAGEMENT -->
+
 <div id="engagement-screen" class="engagement-screen">
 
   <div class="engagement-panel">
@@ -1075,6 +1424,7 @@ footer {
     <h1>TERMS OF<br>HUMAN ENGAGEMENT</h1>
 
     <p class="engagement-alert">HUMAN PRESENCE DETECTED.</p>
+
     <p class="engagement-intro">
       Welcome to <em>This Is Not Clickbait</em>. A few things before proceeding.
     </p>
@@ -1126,6 +1476,7 @@ footer {
   </div>
 
   <!-- CONFIRMATION SCREEN -->
+
   <div class="engagement-panel confirmation-panel" id="confirmation-screen" hidden>
 
     <div class="engagement-topline">
@@ -1163,6 +1514,7 @@ footer {
   </div>
 
   <!-- FINAL DENIAL SCREEN -->
+
   <div class="engagement-panel denial-panel" id="denial-screen" hidden>
 
     <div class="engagement-topline">
@@ -1201,7 +1553,9 @@ footer {
   </div>
 
 </div>
+
 <!-- END TERMS OF HUMAN ENGAGEMENT -->
+
 
 <div class="topbar">
   <span>INDEPENDENT DIGITAL PUBLICATION</span>
@@ -1211,17 +1565,23 @@ footer {
 
 <nav>
   <a href="#" class="logo">TINAC / 001</a>
+
   <div class="navlinks">
     <a href="#archive">ARCHIVE</a>
     <a href="#visual-poetry">VISUAL POETRY</a>
     <a href="#arcade">THE ARCADE</a>
+    <a href="#human-database">HUMAN DATABASE</a>
     <a href="#about">ABOUT</a>
   </div>
 </nav>
 
+
 <main>
 
+<!-- HERO -->
+
 <section class="hero">
+
   <p class="eyebrow">WELCOME TO THE GLITCH // HUMANITY.EXE</p>
 
   <h1>
@@ -1230,7 +1590,9 @@ footer {
     <span class="glitch-word">CLICKBAIT.</span>
   </h1>
 
-  <p class="tagline">Humanity currently experiencing technical difficulties.</p>
+  <p class="tagline">
+    Humanity currently experiencing technical difficulties.
+  </p>
 
   <div class="hero-actions">
     <a class="button" href="#archive">ENTER THE ARCHIVE ↗</a>
@@ -1241,7 +1603,11 @@ footer {
     <span>SEVEN VOICES. ONE UNSTABLE WORLD.</span>
     <span class="scroll">SCROLL TO EXPLORE ↓</span>
   </div>
+
 </section>
+
+
+<!-- TICKER -->
 
 <div class="ticker">
   <div class="ticker-track">
@@ -1252,22 +1618,33 @@ footer {
   </div>
 </div>
 
+
+<!-- SYSTEM STRIP -->
+
 <div class="system-strip">
+
   <div class="system-box">
     <small>01 / CURRENT STATUS</small>
     <strong>● SOMEWHAT FUNCTIONAL</strong>
   </div>
+
   <div class="system-box">
     <small>02 / HUMANITY LEVEL</small>
     <strong>UNDER INVESTIGATION</strong>
   </div>
+
   <div class="system-box">
     <small>03 / REALITY CHECK</small>
     <strong>FAILED SUCCESSFULLY</strong>
   </div>
+
 </div>
 
+
+<!-- ABOUT -->
+
 <section class="intro" id="about">
+
   <div>
     <p class="label">01 / WHAT IS THIS?</p>
     <h2>A little noise in an increasingly loud world.</h2>
@@ -1279,180 +1656,207 @@ footer {
     things that make up being human. No perfect answers.
     No particularly stable systems.
   </p>
+
 </section>
 
+
+<!-- 02 / ARCHIVE -->
+
 <section class="archive" id="archive">
+
   <div class="section-heading">
+
     <div>
       <p class="label">02 / THE ARCHIVE</p>
       <h2>Latest transmissions.</h2>
     </div>
+
     <span>ISSUE 001 / 2026</span>
+
   </div>
 
   <div class="article-grid">
 
-  <article class="article-card" style="--accent:#ff343f" data-number="01">
-  <div class="article-top">
-    <span>TRANSMISSION 001</span>
-    <span>● AVAILABLE</span>
-  </div>
+    <article class="article-card" style="--accent:#ff343f" data-number="01">
 
-  <a href="articles/lekhaa.html" class="article">
-    <div>
-      <h3>WHERE ONE CLICK LEADS</h3>
-      <p>A single click can send you down an endless digital rabbit hole.</p>
-    </div>
-  </a>
+      <div class="article-top">
+        <span>TRANSMISSION 001</span>
+        <span>● AVAILABLE</span>
+      </div>
 
-  <div class="article-bottom">
-    <span>BY LEKHAA MEENAKSHISUNDARAM</span>
-    <span>DIGITAL CULTURE</span>
-  </div>
-</article>
+      <a href="articles/lekhaa.html" class="article">
+        <div>
+          <h3>WHERE ONE CLICK LEADS</h3>
+          <p>A single click can send you down an endless digital rabbit hole.</p>
+        </div>
+      </a>
 
-<article class="article-card" style="--accent:#00d9ff" data-number="02">
-  <div class="article-top">
-    <span>TRANSMISSION 002</span>
-    <span>● AVAILABLE</span>
-  </div>
+      <div class="article-bottom">
+        <span>BY LEKHAA MEENAKSHISUNDARAM</span>
+        <span>DIGITAL CULTURE</span>
+      </div>
 
-  <a href="articles/almidha.html" class="article">
-    <div>
-      <h3>MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE</h3>
-      <p>Every December an app tells us who we are.</p>
-    </div>
-  </a>
+    </article>
 
-  <div class="article-bottom">
-    <span>BY ALMIDHA.M.A</span>
-    <span>DIGITAL CULTURE</span>
-  </div>
-</article>
+
+    <article class="article-card" style="--accent:#00d9ff" data-number="02">
+
+      <div class="article-top">
+        <span>TRANSMISSION 002</span>
+        <span>● AVAILABLE</span>
+      </div>
+
+      <a href="articles/almidha.html" class="article">
+        <div>
+          <h3>MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE</h3>
+          <p>Every December an app tells us who we are.</p>
+        </div>
+      </a>
+
+      <div class="article-bottom">
+        <span>BY ALMIDHA M.A.</span>
+        <span>DIGITAL CULTURE</span>
+      </div>
+
+    </article>
+
 
     <article class="article-card" style="--accent:#b58cff" data-number="03">
-  <div class="article-top">
-    <span>TRANSMISSION 003</span>
-    <span>● AVAILABLE</span>
-  </div>
 
-  <a href="articles/yoshitha.html" class="article">
-    <div>
-      <h3>SUDDENLY EVERYONE'S A CRITIC</h3>
-      <p>Reflex vs. Reflection in Media.</p>
-    </div>
-  </a>
+      <div class="article-top">
+        <span>TRANSMISSION 003</span>
+        <span>● AVAILABLE</span>
+      </div>
 
-  <div class="article-bottom">
-    <span>BY YOSHITHA REDDY</span>
-    <span>MEDIA / CULTURE</span>
-  </div>
-</article>
+      <a href="articles/yoshitha.html" class="article">
+        <div>
+          <h3>SUDDENLY EVERYONE'S A CRITIC</h3>
+          <p>Reflex vs. Reflection in Media.</p>
+        </div>
+      </a>
 
-   <article class="article-card" style="--accent:#ff83c9" data-number="04">
-  <div class="article-top">
-    <span>TRANSMISSION 004</span>
-    <span>● AVAILABLE</span>
-  </div>
+      <div class="article-bottom">
+        <span>BY YOSHITHA REDDY</span>
+        <span>MEDIA / CULTURE</span>
+      </div>
 
-  <a href="articles/namitha.html" class="article">
-    <div>
-      <h3>PLAYLISTS FIRST, STORIES NEXT</h3>
-      <p>Reading is no longer just about the story. It's about the entire experience.</p>
-    </div>
-  </a>
+    </article>
 
-  <div class="article-bottom">
-    <span>BY NAMITHA RAJEEV</span>
-    <span>BOOK CULTURE</span>
-  </div>
-</article>
 
-  <article class="article-card" style="--accent:#c8ff45" data-number="05">
-  <div class="article-top">
-    <span>TRANSMISSION 005</span>
-    <span>● AVAILABLE</span>
-  </div>
+    <article class="article-card" style="--accent:#ff83c9" data-number="04">
 
-  <a href="articles/adya.html" class="article">
-    <div>
-      <h3>HOW SOCIAL MEDIA IS EAVESDROPPING ON US</h3>
-      <p>Are Our Phones Listening?</p>
-    </div>
-  </a>
+      <div class="article-top">
+        <span>TRANSMISSION 004</span>
+        <span>● AVAILABLE</span>
+      </div>
 
-  <div class="article-bottom">
-    <span>BY ADYA MISHRA</span>
-    <span>DIGITAL CULTURE</span>
-  </div>
-</article>
-    
+      <a href="articles/namitha.html" class="article">
+        <div>
+          <h3>PLAYLISTS FIRST, STORIES NEXT</h3>
+          <p>Reading is no longer just about the story. It's about the entire experience.</p>
+        </div>
+      </a>
+
+      <div class="article-bottom">
+        <span>BY NAMITHA RAJEEV</span>
+        <span>BOOK CULTURE</span>
+      </div>
+
+    </article>
+
+
+    <article class="article-card" style="--accent:#c8ff45" data-number="05">
+
+      <div class="article-top">
+        <span>TRANSMISSION 005</span>
+        <span>● AVAILABLE</span>
+      </div>
+
+      <a href="articles/adya.html" class="article">
+        <div>
+          <h3>HOW SOCIAL MEDIA IS EAVESDROPPING ON US</h3>
+          <p>Are Our Phones Listening?</p>
+        </div>
+      </a>
+
+      <div class="article-bottom">
+        <span>BY ADYA MISHRA</span>
+        <span>DIGITAL CULTURE</span>
+      </div>
+
+    </article>
+
+
     <article class="article-card" style="--accent:#a78bfa" data-number="06">
-  <div class="article-top">
-    <span>TRANSMISSION 006</span>
-    <span>● AVAILABLE</span>
-  </div>
 
-  <a href="articles/avadhoot.html" class="article">
-    <div>
-      <h3>GHOSTS OF THE FEED</h3>
-      <p>What happens when your creations disappear from the audience's gaze?</p>
-    </div>
-  </a>
+      <div class="article-top">
+        <span>TRANSMISSION 006</span>
+        <span>● AVAILABLE</span>
+      </div>
 
-  <div class="article-bottom">
-    <span>BY AVADHOOT PRASAD BHOLE</span>
-    <span>DIGITAL CULTURE / POETRY</span>
-  </div>
-</article>
+      <a href="articles/avadhoot.html" class="article">
+        <div>
+          <h3>GHOSTS OF THE FEED</h3>
+          <p>What happens when your creations disappear from the audience's gaze?</p>
+        </div>
+      </a>
+
+      <div class="article-bottom">
+        <span>BY AVADHOOT PRASAD BHOLE</span>
+        <span>DIGITAL CULTURE / POETRY</span>
+      </div>
+
+    </article>
+
 
     <article class="article-card" style="--accent:#d5a84b" data-number="07">
-  <div class="article-top">
-    <span>TRANSMISSION 007</span>
-    <span>● AVAILABLE</span>
-  </div>
 
-  <a href="articles/sneha.html" class="article">
-    <div>
-      <h3>THE BORROWED IMAGINATION</h3>
-      <p>Are we still imagining, or reproducing what we scroll past?</p>
-    </div>
-  </a>
+      <div class="article-top">
+        <span>TRANSMISSION 007</span>
+        <span>● AVAILABLE</span>
+      </div>
 
-  <div class="article-bottom">
-    <span>BY SNEHA A.</span>
-    <span>CREATIVITY / DIGITAL CULTURE</span>
-  </div>
-</article>
+      <a href="articles/sneha.html" class="article">
+        <div>
+          <h3>THE BORROWED IMAGINATION</h3>
+          <p>Are we still imagining, or reproducing what we scroll past?</p>
+        </div>
+      </a>
+
+      <div class="article-bottom">
+        <span>BY SNEHA A.</span>
+        <span>CREATIVITY / DIGITAL CULTURE</span>
+      </div>
+
+    </article>
 
   </div>
 
   <p class="archive-note">
     END OF CURRENT TRANSMISSIONS /
   </p>
+
 </section>
 
-  
 
 <!-- 03 / VISUAL POETRY -->
 
 <section class="archive visual-poetry" id="visual-poetry">
 
   <div class="section-heading">
+
     <div>
       <p class="label">03 / VISUAL POETRY</p>
       <h2>Words beyond words.</h2>
     </div>
+
     <span>VISUAL POETRY / ISSUE 001</span>
+
   </div>
 
   <div class="article-grid">
 
-    <!-- POEM 001 -->
-
-    <article class="article-card"
-             style="--accent:#b58cff"
-             data-number="01">
+    <article class="article-card" style="--accent:#b58cff" data-number="01">
 
       <div class="article-top">
         <span>VISUAL TRANSMISSION 001</span>
@@ -1460,12 +1864,12 @@ footer {
       </div>
 
       <a href="visual-poetry/poetry-01.html" class="poetry-link">
-  <h3>REQUEST PENDING</h3>
-  <p class="poetry-description">
-    A reflection on waiting, uncertainty and the things
-    we leave unsaid.
-  </p>
-</a>
+        <h3>REQUEST PENDING</h3>
+        <p class="poetry-description">
+          A reflection on waiting, uncertainty and the things
+          we leave unsaid.
+        </p>
+      </a>
 
       <div class="article-bottom">
         <span>BY NAMITHA RAJEEV</span>
@@ -1475,25 +1879,21 @@ footer {
     </article>
 
 
-    <!-- POEM 002 -->
-
-    <article class="article-card"
-             style="--accent:#00d9ff"
-             data-number="02">
+    <article class="article-card" style="--accent:#00d9ff" data-number="02">
 
       <div class="article-top">
         <span>VISUAL TRANSMISSION 002</span>
         <span>● AVAILABLE</span>
       </div>
 
-     <a href="visual-poetry/poetry-02.html" class="poetry-link">
-  <h3>CONSUMPTION VORTEX</h3>
-  <p class="poetry-description">
-    An exploration of digital consumption, endless scrolling
-    and the vortex of online attention.
-  </p>
-</a>
-      
+      <a href="visual-poetry/poetry-02.html" class="poetry-link">
+        <h3>CONSUMPTION VORTEX</h3>
+        <p class="poetry-description">
+          An exploration of digital consumption, endless scrolling
+          and the vortex of online attention.
+        </p>
+      </a>
+
       <div class="article-bottom">
         <span>BY LEKHAA MEENAKSHI SUNDARAM</span>
         <span>VISUAL POETRY</span>
@@ -1509,7 +1909,11 @@ footer {
 
 </section>
 
+
+<!-- 04 / THE ARCADE -->
+
 <section class="arcade" id="arcade">
+
   <div class="arcade-intro">
     <p class="label">04 / THE ARCADE</p>
     <h2>Productivity not found.</h2>
@@ -1522,90 +1926,761 @@ footer {
   <div class="game-grid">
 
     <a href="symbols.html" class="game-card" style="--accent:#00d9ff">
+
       <span class="game-icon">▦</span>
+
       <div>
         <small>GAME 001 / MEMORY TEST</small>
         <h3>SEVEN SYMBOLS</h3>
         <p>Fourteen cards. Seven pairs. How reliable is that memory of yours?</p>
       </div>
+
       <span class="launch">LAUNCH GAME ↗</span>
+
     </a>
 
+
     <a href="game.html" class="game-card" style="--accent:#ff343f">
+
       <span class="game-icon">◉</span>
+
       <div>
         <small>GAME 002 / HUMAN EXPERIMENT</small>
         <h3>HUMANITY.EXE</h3>
         <p>A small experiment involving humans, decisions and questionable behaviour.</p>
       </div>
+
       <span class="launch">LAUNCH GAME ↗</span>
+
     </a>
 
+
     <a href="overload.html" class="game-card" style="--accent:#c8ff00">
+
       <span class="game-icon">▣</span>
+
       <div>
         <small>GAME 003 / SURVIVAL MODE</small>
         <h3>INTERNET OVERLOAD</h3>
         <p>Notifications. Pop-ups. Distractions. Try to survive the internet.</p>
       </div>
+
       <span class="launch">LAUNCH GAME ↗</span>
+
     </a>
 
+
     <a href="maze.html" class="game-card" style="--accent:#b58cff">
+
       <span class="game-icon">⌘</span>
+
       <div>
         <small>GAME 004 / ESCAPE PROTOCOL</small>
         <h3>MAZE.EXE</h3>
         <p>Find your way out. Avoid the errors. Try not to become one.</p>
       </div>
+
       <span class="launch">LAUNCH GAME ↗</span>
+
     </a>
 
   </div>
+
 </section>
 
+
+<!-- ========================================
+     05 / THE HUMAN DATABASE
+======================================== -->
+
+<section class="archive human-database" id="human-database">
+
+  <div class="section-heading">
+
+    <div>
+      <p class="label">05 / THE HUMAN DATABASE</p>
+      <h2>The humans behind the noise.</h2>
+
+      <p class="database-subtitle">
+        Seven humans. Seven records. Seven contributors.
+        A closer look at the people responsible for this digital situation.
+      </p>
+    </div>
+
+    <span>DATABASE / ISSUE 001</span>
+
+  </div>
+
+
+  <div class="database-count">
+    <span>DATABASE STATUS: <strong>● ONLINE</strong></span>
+    <span>7 HUMAN RECORDS / 7 CONTRIBUTORS</span>
+    <span>ACCESS: PUBLIC</span>
+  </div>
+
+
+  <div class="human-grid">
+
+
+    <!-- USER 001 / LEKHAA -->
+
+    <article class="article-card human-card"
+             style="--accent:#ff343f"
+             data-number="01">
+
+      <div class="human-image-wrap">
+
+        <span class="image-id">USER 001</span>
+
+        <img
+          src="images/lekhaa.png.jpeg"
+          alt="Character illustration of Lekhaa MeenakshiSundaram"
+          class="human-image"
+          loading="lazy"
+        >
+
+        <span class="image-status">● ACTIVE</span>
+
+      </div>
+
+      <div class="human-card-content">
+
+        <p class="human-card-kicker">HUMAN RECORD / 001</p>
+
+        <h3>Lekhaa MeenakshiSundaram</h3>
+
+        <div class="human-details">
+
+          <div class="human-detail">
+            <span>USER ID</span>
+            <span>USER 001</span>
+          </div>
+
+          <div class="human-detail">
+            <span>STATUS</span>
+            <span>ACTIVE / WRITING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>HUMAN LEVEL</span>
+            <span>FUNCTIONAL, APPARENTLY</span>
+          </div>
+
+          <div class="human-detail">
+            <span>DIGITAL FOOTPRINT</span>
+            <span>TRACEABLE</span>
+          </div>
+
+        </div>
+
+        <div class="human-article">
+          <small>ASSOCIATED TRANSMISSION</small>
+          <strong>WHERE ONE CLICK LEADS</strong>
+        </div>
+
+        <button class="profile-button"
+                type="button"
+                data-profile="0">
+          VIEW PROFILE →
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- USER 002 / ALMIDHA -->
+
+    <article class="article-card human-card"
+             style="--accent:#00d9ff"
+             data-number="02">
+
+      <div class="human-image-wrap">
+
+        <span class="image-id">USER 002</span>
+
+        <img
+          src="images/almidha.png.jpeg"
+          alt="Character illustration of Almidha"
+          class="human-image"
+          loading="lazy"
+        >
+
+        <span class="image-status">● WRITING</span>
+
+      </div>
+
+      <div class="human-card-content">
+
+        <p class="human-card-kicker">HUMAN RECORD / 002</p>
+
+        <h3>Almidha</h3>
+
+        <div class="human-details">
+
+          <div class="human-detail">
+            <span>USER ID</span>
+            <span>USER 002</span>
+          </div>
+
+          <div class="human-detail">
+            <span>STATUS</span>
+            <span>WRITING / OVERTHINKING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>HUMAN LEVEL</span>
+            <span>QUESTIONABLE</span>
+          </div>
+
+          <div class="human-detail">
+            <span>DIGITAL FOOTPRINT</span>
+            <span>UNAVAILABLE</span>
+          </div>
+
+        </div>
+
+        <div class="human-article">
+          <small>ASSOCIATED TRANSMISSION</small>
+          <strong>MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE</strong>
+        </div>
+
+        <button class="profile-button"
+                type="button"
+                data-profile="1">
+          VIEW PROFILE →
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- USER 003 / YOSHITHA -->
+
+    <article class="article-card human-card"
+             style="--accent:#b58cff"
+             data-number="03">
+
+      <div class="human-image-wrap">
+
+        <span class="image-id">USER 003</span>
+
+        <img
+          src="images/yoshitha.png.jpeg"
+          alt="Character illustration of Yoshitha"
+          class="human-image"
+          loading="lazy"
+        >
+
+        <span class="image-status">● WRITING</span>
+
+      </div>
+
+      <div class="human-card-content">
+
+        <p class="human-card-kicker">HUMAN RECORD / 003</p>
+
+        <h3>Yoshitha</h3>
+
+        <div class="human-details">
+
+          <div class="human-detail">
+            <span>USER ID</span>
+            <span>USER 003</span>
+          </div>
+
+          <div class="human-detail">
+            <span>STATUS</span>
+            <span>WRITING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>HUMAN LEVEL</span>
+            <span>UNDER OBSERVATION</span>
+          </div>
+
+          <div class="human-detail">
+            <span>DIGITAL FOOTPRINT</span>
+            <span>PARTIALLY DETECTED</span>
+          </div>
+
+        </div>
+
+        <div class="human-article">
+          <small>ASSOCIATED TRANSMISSION</small>
+          <strong>SUDDENLY EVERYONE'S A CRITIC</strong>
+        </div>
+
+        <button class="profile-button"
+                type="button"
+                data-profile="2">
+          VIEW PROFILE →
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- USER 004 / NAMITHA -->
+
+    <article class="article-card human-card"
+             style="--accent:#ff83c9"
+             data-number="04">
+
+      <div class="human-image-wrap">
+
+        <span class="image-id">USER 004</span>
+
+        <img
+          src="images/namitha.png.jpeg"
+          alt="Character illustration of Namitha"
+          class="human-image"
+          loading="lazy"
+        >
+
+        <span class="image-status">● WRITING</span>
+
+      </div>
+
+      <div class="human-card-content">
+
+        <p class="human-card-kicker">HUMAN RECORD / 004</p>
+
+        <h3>Namitha</h3>
+
+        <div class="human-details">
+
+          <div class="human-detail">
+            <span>USER ID</span>
+            <span>USER 004</span>
+          </div>
+
+          <div class="human-detail">
+            <span>STATUS</span>
+            <span>WRITING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>HUMAN LEVEL</span>
+            <span>SLEEP-DEPRIVED</span>
+          </div>
+
+          <div class="human-detail">
+            <span>DIGITAL FOOTPRINT</span>
+            <span>ACTIVE AT UNREASONABLE HOURS</span>
+          </div>
+
+        </div>
+
+        <div class="human-article">
+          <small>ASSOCIATED TRANSMISSION</small>
+          <strong>PLAYLISTS FIRST, STORIES NEXT</strong>
+        </div>
+
+        <button class="profile-button"
+                type="button"
+                data-profile="3">
+          VIEW PROFILE →
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- USER 005 / ADYA -->
+
+    <article class="article-card human-card"
+             style="--accent:#c8ff00"
+             data-number="05">
+
+      <div class="human-image-wrap">
+
+        <span class="image-id">USER 005</span>
+
+        <img
+          src="images/adya.png.jpeg"
+          alt="Character illustration of Adya"
+          class="human-image"
+          loading="lazy"
+        >
+
+        <span class="image-status">● WRITING</span>
+
+      </div>
+
+      <div class="human-card-content">
+
+        <p class="human-card-kicker">HUMAN RECORD / 005</p>
+
+        <h3>Adya</h3>
+
+        <div class="human-details">
+
+          <div class="human-detail">
+            <span>USER ID</span>
+            <span>USER 005</span>
+          </div>
+
+          <div class="human-detail">
+            <span>STATUS</span>
+            <span>WRITING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>HUMAN LEVEL</span>
+            <span>UNSTABLE CONNECTION</span>
+          </div>
+
+          <div class="human-detail">
+            <span>DIGITAL FOOTPRINT</span>
+            <span>WIFI DEPENDENT</span>
+          </div>
+
+        </div>
+
+        <div class="human-article">
+          <small>ASSOCIATED TRANSMISSION</small>
+          <strong>HOW SOCIAL MEDIA IS EAVESDROPPING ON US</strong>
+        </div>
+
+        <button class="profile-button"
+                type="button"
+                data-profile="4">
+          VIEW PROFILE →
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- USER 006 / AVADHOOT -->
+
+    <article class="article-card human-card"
+             style="--accent:#a78bfa"
+             data-number="06">
+
+      <div class="human-image-wrap">
+
+        <span class="image-id">USER 006</span>
+
+        <img
+          src="images/avadhoot.png.jpeg"
+          alt="Character illustration of Avadhoot"
+          class="human-image"
+          loading="lazy"
+        >
+
+        <span class="image-status">● WRITING</span>
+
+      </div>
+
+      <div class="human-card-content">
+
+        <p class="human-card-kicker">HUMAN RECORD / 006</p>
+
+        <h3>Avadhoot</h3>
+
+        <div class="human-details">
+
+          <div class="human-detail">
+            <span>USER ID</span>
+            <span>USER 006</span>
+          </div>
+
+          <div class="human-detail">
+            <span>STATUS</span>
+            <span>WRITING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>HUMAN LEVEL</span>
+            <span>EXISTENTIALLY BUFFERING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>DIGITAL FOOTPRINT</span>
+            <span>SIGNAL UNCLEAR</span>
+          </div>
+
+        </div>
+
+        <div class="human-article">
+          <small>ASSOCIATED TRANSMISSION</small>
+          <strong>GHOSTS OF THE FEED</strong>
+        </div>
+
+        <button class="profile-button"
+                type="button"
+                data-profile="5">
+          VIEW PROFILE →
+        </button>
+
+      </div>
+
+    </article>
+
+
+    <!-- USER 007 / SNEHA -->
+
+    <article class="article-card human-card"
+             style="--accent:#d5a84b"
+             data-number="07">
+
+      <div class="human-image-wrap">
+
+        <span class="image-id">USER 007</span>
+
+        <img
+          src="images/sneha.png.jpeg"
+          alt="Character illustration of Sneha"
+          class="human-image"
+          loading="lazy"
+        >
+
+        <span class="image-status">● WRITING</span>
+
+      </div>
+
+      <div class="human-card-content">
+
+        <p class="human-card-kicker">HUMAN RECORD / 007</p>
+
+        <h3>Sneha</h3>
+
+        <div class="human-details">
+
+          <div class="human-detail">
+            <span>USER ID</span>
+            <span>USER 007</span>
+          </div>
+
+          <div class="human-detail">
+            <span>STATUS</span>
+            <span>WRITING</span>
+          </div>
+
+          <div class="human-detail">
+            <span>HUMAN LEVEL</span>
+            <span>SOCIALLY AVAILABLE / MENTALLY OFFLINE</span>
+          </div>
+
+          <div class="human-detail">
+            <span>DIGITAL FOOTPRINT</span>
+            <span>EVERYWHERE, SOMEHOW</span>
+          </div>
+
+        </div>
+
+        <div class="human-article">
+          <small>ASSOCIATED TRANSMISSION</small>
+          <strong>THE BORROWED IMAGINATION</strong>
+        </div>
+
+        <button class="profile-button"
+                type="button"
+                data-profile="6">
+          VIEW PROFILE →
+        </button>
+
+      </div>
+
+    </article>
+
+
+  </div>
+
+
+  <div class="database-warning">
+    <span>⚠</span>
+    <span>
+      SYSTEM ERROR / WARNING:
+      HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+    </span>
+  </div>
+
+  <p class="archive-note">
+    END OF HUMAN RECORDS / 7 OF 7 CONTRIBUTORS DETECTED /
+  </p>
+
+</section>
+
+
+<!-- ========================================
+     INDIVIDUAL PROFILE MODAL
+======================================== -->
+
+<div class="profile-modal"
+     id="profileModal"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="profileName"
+     aria-hidden="true">
+
+  <div class="profile-window" id="profileWindow">
+
+    <div class="profile-header">
+
+      <span id="profileHeaderID">HUMAN DATABASE / USER 001</span>
+
+      <button class="profile-close"
+              id="closeProfile"
+              type="button"
+              aria-label="Close profile">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="profile-body">
+
+      <div class="profile-image-area">
+        <img id="profileImage" src="" alt="">
+      </div>
+
+
+      <div class="profile-information">
+
+        <p class="profile-kicker" id="profileKicker">
+          HUMAN RECORD / 001
+        </p>
+
+        <h2 id="profileName">LEKHAA</h2>
+
+        <p class="profile-status" id="profileStatus">
+          ● ACTIVE / WRITING
+        </p>
+
+
+        <div class="profile-data">
+
+          <div class="profile-data-row">
+            <small>USER IDENTIFICATION</small>
+            <strong id="profileID">USER 001</strong>
+          </div>
+
+          <div class="profile-data-row">
+            <small>HUMAN LEVEL</small>
+            <strong id="profileHumanLevel"></strong>
+          </div>
+
+          <div class="profile-data-row">
+            <small>DIGITAL FOOTPRINT</small>
+            <strong id="profileFootprint"></strong>
+          </div>
+
+          <div class="profile-data-row">
+            <small>ASSOCIATED ARTICLE</small>
+            <strong id="profileArticle"></strong>
+          </div>
+
+        </div>
+
+
+        <p class="profile-warning">
+          SYSTEM ERROR / WARNING<br>
+          HUMANITY CURRENTLY EXPERIENCING TECHNICAL DIFFICULTIES.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="profile-footer">
+      <span>THIS IS NOT A CLICKBAIT</span>
+      <span id="profileFooterID">FILE REF: USER 001</span>
+      <span>END OF RECORD</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- 06 / QUICK SYSTEM CHECK -->
+
 <section class="interruption">
+
   <div>
-    <p class="label">05 / A QUICK SYSTEM CHECK</p>
+    <p class="label">06 / A QUICK SYSTEM CHECK</p>
+
     <h2>Are you still paying attention?</h2>
+
     <p>
       The internet has approximately seventeen distractions ready
       for you. Here is one more.
     </p>
   </div>
 
+
   <div class="terminal">
+
     <div class="terminal-head">
       <span>HUMANITY_TERMINAL.EXE</span>
       <span>CONNECTED</span>
     </div>
+
     <div class="terminal-output" id="terminalOutput">
       &gt; System waiting for input...
     </div>
-    <button id="terminalButton" type="button">RUN DIAGNOSTICS ↗</button>
+
+    <button id="terminalButton" type="button">
+      RUN DIAGNOSTICS ↗
+    </button>
+
   </div>
+
 </section>
 
 </main>
 
+
+<!-- FOOTER -->
+
 <footer>
+
   <span>THIS IS NOT A CLICKBAIT © 2026</span>
+
   <span>HUMANITY.EXE / STILL RUNNING</span>
+
   <span>END OF TRANSMISSION.</span>
+
+  <a href="#top" class="mono">BACK TO HOME ↑</a>
+
 </footer>
 
+
+<!-- POPUP -->
+
 <div class="popup" id="popup" role="dialog" aria-label="System notification">
+
   <div class="popup-head">
     <span>⚠ SYSTEM NOTIFICATION</span>
     <span>001</span>
   </div>
+
   <p id="popupMessage">
     Your attention span has been detected wandering away from the page.
   </p>
-  <button id="closePopup" type="button">I ACKNOWLEDGE MY DISTRACTION</button>
+
+  <button id="closePopup" type="button">
+    I ACKNOWLEDGE MY DISTRACTION
+  </button>
+
 </div>
 
+
 <script>
+
+/* ==========================================
+   RANDOM SYSTEM NOTIFICATIONS
+========================================== */
+
 const messages = [
   "Your attention span has left the chat.",
   "Human behaviour detected. Proceed with caution.",
@@ -1623,6 +2698,17 @@ closePopup.addEventListener("click", () => {
   popup.classList.add("hidden");
 });
 
+const randomMessage = messages[
+  Math.floor(Math.random() * messages.length)
+];
+
+popupMessage.textContent = randomMessage;
+
+
+/* ==========================================
+   TERMINAL DIAGNOSTICS
+========================================== */
+
 const terminalOutput = document.getElementById("terminalOutput");
 const terminalButton = document.getElementById("terminalButton");
 
@@ -1638,62 +2724,343 @@ const diagnostics = [
 let diagnosticIndex = 0;
 
 terminalButton.addEventListener("click", () => {
+
   terminalOutput.textContent =
     "> " + diagnostics[diagnosticIndex];
 
-  diagnosticIndex = (diagnosticIndex + 1) % diagnostics.length;
+  diagnosticIndex =
+    (diagnosticIndex + 1) % diagnostics.length;
+
 });
 
-const randomMessage = messages[
-  Math.floor(Math.random() * messages.length)
-];
 
-popupMessage.textContent = randomMessage;
+/* ==========================================
+   TERMS OF HUMAN ENGAGEMENT
+========================================== */
 
+const engagementScreen =
+  document.getElementById("engagement-screen");
 
-/* TERMS OF HUMAN ENGAGEMENT */
+const firstTerms =
+  engagementScreen.querySelector(".engagement-panel:not([id])");
 
-const engagementScreen = document.getElementById("engagement-screen");
-const firstTerms = engagementScreen.querySelector(".engagement-panel:not([id])");
-const confirmationScreen = document.getElementById("confirmation-screen");
-const denialScreen = document.getElementById("denial-screen");
+const confirmationScreen =
+  document.getElementById("confirmation-screen");
+
+const denialScreen =
+  document.getElementById("denial-screen");
+
 
 function showEngagementScreen(screenToShow) {
+
   firstTerms.hidden = true;
   confirmationScreen.hidden = true;
   denialScreen.hidden = true;
 
   screenToShow.hidden = false;
+
   engagementScreen.scrollTop = 0;
+
 }
 
+
 function enterMagazine() {
+
   engagementScreen.style.transition = "opacity 0.5s ease";
   engagementScreen.style.opacity = "0";
 
   setTimeout(() => {
+
     engagementScreen.remove();
     document.body.style.overflow = "";
+
   }, 500);
+
 }
+
 
 document.body.style.overflow = "hidden";
 
-document.getElementById("enter-button").addEventListener("click", enterMagazine);
 
-document.getElementById("unsure-button").addEventListener("click", () => {
-  showEngagementScreen(confirmationScreen);
+document.getElementById("enter-button")
+  .addEventListener("click", enterMagazine);
+
+
+document.getElementById("unsure-button")
+  .addEventListener("click", () => {
+
+    showEngagementScreen(confirmationScreen);
+
+  });
+
+
+document.getElementById("confirm-enter")
+  .addEventListener("click", enterMagazine);
+
+
+document.getElementById("insist-leave")
+  .addEventListener("click", () => {
+
+    showEngagementScreen(denialScreen);
+
+  });
+
+
+document.getElementById("final-enter")
+  .addEventListener("click", enterMagazine);
+
+
+/* ==========================================
+   HUMAN DATABASE / CONTRIBUTOR INFORMATION
+========================================== */
+
+const contributors = [
+
+  {
+    id: "USER 001",
+    name: "Lekhaa MeenakshiSundaram",
+    image: "images/lekhaa.png.jpeg",
+    status: "ACTIVE / WRITING",
+    humanLevel: "FUNCTIONAL, APPARENTLY",
+    footprint: "TRACEABLE",
+    article: "WHERE ONE CLICK LEADS",
+    accent: "#ff343f"
+  },
+
+  {
+    id: "USER 002",
+    name: "Almidha",
+    image: "images/almidha.png.jpeg",
+    status: "WRITING / OVERTHINKING",
+    humanLevel: "QUESTIONABLE",
+    footprint: "UNAVAILABLE",
+    article: "MAYBE YOU JUST HAVEN'T SEEN ANYTHING ELSE",
+    accent: "#00d9ff"
+  },
+
+  {
+    id: "USER 003",
+    name: "Yoshitha",
+    image: "images/yoshitha.png.jpeg",
+    status: "WRITING",
+    humanLevel: "UNDER OBSERVATION",
+    footprint: "PARTIALLY DETECTED",
+    article: "SUDDENLY EVERYONE'S A CRITIC",
+    accent: "#b58cff"
+  },
+
+  {
+    id: "USER 004",
+    name: "Namitha",
+    image: "images/namitha.png.jpeg",
+    status: "WRITING",
+    humanLevel: "SLEEP-DEPRIVED",
+    footprint: "ACTIVE AT UNREASONABLE HOURS",
+    article: "PLAYLISTS FIRST, STORIES NEXT",
+    accent: "#ff83c9"
+  },
+
+  {
+    id: "USER 005",
+    name: "Adya",
+    image: "images/adya.png.jpeg",
+    status: "WRITING",
+    humanLevel: "UNSTABLE CONNECTION",
+    footprint: "WIFI DEPENDENT",
+    article: "HOW SOCIAL MEDIA IS EAVESDROPPING ON US",
+    accent: "#c8ff00"
+  },
+
+  {
+    id: "USER 006",
+    name: "Avadhoot",
+    image: "images/avadhoot.png.jpeg",
+    status: "WRITING",
+    humanLevel: "EXISTENTIALLY BUFFERING",
+    footprint: "SIGNAL UNCLEAR",
+    article: "GHOSTS OF THE FEED",
+    accent: "#a78bfa"
+  },
+
+  {
+    id: "USER 007",
+    name: "Sneha",
+    image: "images/sneha.png.jpeg",
+    status: "WRITING",
+    humanLevel: "SOCIALLY AVAILABLE / MENTALLY OFFLINE",
+    footprint: "EVERYWHERE, SOMEHOW",
+    article: "THE BORROWED IMAGINATION",
+    accent: "#d5a84b"
+  }
+
+];
+
+
+/* ==========================================
+   OPEN INDIVIDUAL PROFILE MODALS
+========================================== */
+
+const profileModal =
+  document.getElementById("profileModal");
+
+const profileWindow =
+  document.getElementById("profileWindow");
+
+const closeProfile =
+  document.getElementById("closeProfile");
+
+const profileImage =
+  document.getElementById("profileImage");
+
+const profileHeaderID =
+  document.getElementById("profileHeaderID");
+
+const profileKicker =
+  document.getElementById("profileKicker");
+
+const profileName =
+  document.getElementById("profileName");
+
+const profileStatus =
+  document.getElementById("profileStatus");
+
+const profileID =
+  document.getElementById("profileID");
+
+const profileHumanLevel =
+  document.getElementById("profileHumanLevel");
+
+const profileFootprint =
+  document.getElementById("profileFootprint");
+
+const profileArticle =
+  document.getElementById("profileArticle");
+
+const profileFooterID =
+  document.getElementById("profileFooterID");
+
+
+let previousFocusedElement = null;
+
+
+function openProfile(index) {
+
+  const person = contributors[index];
+
+  if (!person) return;
+
+  previousFocusedElement = document.activeElement;
+
+  profileModal.style.setProperty("--accent", person.accent);
+
+  profileHeaderID.textContent =
+    "HUMAN DATABASE / " + person.id;
+
+  profileKicker.textContent =
+    "HUMAN RECORD / " + person.id;
+
+  profileName.textContent =
+    person.name.toUpperCase();
+
+  profileStatus.textContent =
+    "● " + person.status;
+
+  profileID.textContent =
+    person.id;
+
+  profileHumanLevel.textContent =
+    person.humanLevel;
+
+  profileFootprint.textContent =
+    person.footprint;
+
+  profileArticle.textContent =
+    person.article;
+
+  profileFooterID.textContent =
+    "FILE REF: " + person.id;
+
+  profileImage.src = person.image;
+
+  profileImage.alt =
+    "Character illustration of " + person.name;
+
+  profileModal.classList.add("active");
+
+  profileModal.setAttribute("aria-hidden", "false");
+
+  document.body.style.overflow = "hidden";
+
+  closeProfile.focus();
+
+}
+
+
+/* OPEN BUTTONS */
+
+document.querySelectorAll("[data-profile]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const index = Number(button.dataset.profile);
+
+    openProfile(index);
+
+  });
+
 });
 
-document.getElementById("confirm-enter").addEventListener("click", enterMagazine);
 
-document.getElementById("insist-leave").addEventListener("click", () => {
-  showEngagementScreen(denialScreen);
+/* CLOSE MODAL */
+
+function closeProfileModal() {
+
+  profileModal.classList.remove("active");
+
+  profileModal.setAttribute("aria-hidden", "true");
+
+  document.body.style.overflow = "";
+
+  if (previousFocusedElement) {
+    previousFocusedElement.focus();
+  }
+
+}
+
+
+closeProfile.addEventListener("click", closeProfileModal);
+
+
+/* CLICK OUTSIDE THE PROFILE */
+
+profileModal.addEventListener("click", event => {
+
+  if (event.target === profileModal) {
+
+    closeProfileModal();
+
+  }
+
 });
 
-document.getElementById("final-enter").addEventListener("click", enterMagazine);
+
+/* ESCAPE KEY */
+
+document.addEventListener("keydown", event => {
+
+  if (
+    event.key === "Escape" &&
+    profileModal.classList.contains("active")
+  ) {
+
+    closeProfileModal();
+
+  }
+
+});
+
+
 </script>
 
-  
 </body>
 </html>
