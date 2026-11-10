@@ -34,6 +34,9 @@ html {
 }
 
 body {
+  
+
+
   background:var(--black);
   color:var(--white);
   font-family:'Space Grotesk',sans-serif;
@@ -795,10 +798,410 @@ footer {
     transition-duration:.01ms !important;
   }
 }
+  
+/* ==================================
+   TERMS OF HUMAN ENGAGEMENT
+================================== */
+
+.engagement-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  overflow-y: auto;
+  background: #050505;
+  color: #f3f0eb;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 35px 16px;
+  font-family: "Space Mono", monospace;
+  isolation: isolate;
+}
+
+.engagement-screen::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.13;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(255, 40, 50, 0.18) 4px
+  );
+}
+
+.engagement-screen::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 20%,
+    rgba(100, 0, 0, 0.22) 100%
+  );
+}
+
+.engagement-panel {
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+  padding: 28px;
+  border: 1px solid #ff343f;
+  background: rgba(12, 8, 9, 0.97);
+  box-shadow:
+    0 0 12px rgba(255, 52, 63, 0.22),
+    inset 0 0 25px rgba(255, 52, 63, 0.035);
+  animation: engagement-appear 0.65s ease both;
+}
+
+.engagement-panel[hidden] {
+  display: none !important;
+}
+
+.engagement-topline,
+.engagement-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #ff555e;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.engagement-status {
+  margin-top: 42px;
+  color: #ff555e;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.status-light {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #ff343f;
+  box-shadow: 0 0 10px #ff343f;
+  animation: status-blink 1.5s infinite;
+}
+
+.engagement-panel h1 {
+  margin: 18px 0;
+  color: #ff343f;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(34px, 7vw, 64px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -2px;
+  text-shadow: 0 0 16px rgba(255, 52, 63, 0.24);
+}
+
+.engagement-alert {
+  margin: 22px 0 8px;
+  color: #ff555e;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.engagement-intro,
+.confirmation-copy {
+  color: #c9c3c3;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.engagement-terms {
+  margin-top: 28px;
+  border-top: 1px solid #542126;
+}
+
+.term {
+  padding: 15px 0;
+  border-bottom: 1px solid #542126;
+}
+
+.term-number {
+  color: #ff555e;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.term p {
+  margin: 7px 0 0;
+  color: #e1dada;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.engagement-decision {
+  margin-top: 30px;
+}
+
+.decision-label {
+  margin-bottom: 16px;
+  color: #ff555e;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.engagement-button {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 12px;
+  padding: 14px 16px;
+  border: 1px solid #ff343f;
+  background: #ff343f;
+  color: #090909;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.engagement-button:hover {
+  background: #ff6670;
+  box-shadow: 0 0 18px rgba(255, 52, 63, 0.4);
+}
+
+.engagement-button.secondary {
+  background: transparent;
+  color: #ff555e;
+}
+
+.engagement-button.secondary:hover {
+  background: rgba(255, 52, 63, 0.12);
+}
+
+.engagement-footer {
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #542126;
+  font-size: 9px;
+  color: #a34a50;
+}
+
+.confirmation-panel,
+.denial-panel {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.confirmation-copy {
+  margin-top: 20px;
+}
+
+.denial-message {
+  margin-top: 25px;
+  color: #ff555e;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+@keyframes engagement-appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (max-width: 600px) {
+  .engagement-screen {
+    padding: 14px 10px;
+  }
+
+  .engagement-panel {
+    padding: 20px 16px;
+  }
+
+  .engagement-status {
+    margin-top: 30px;
+  }
+
+  .engagement-panel h1 {
+    letter-spacing: -1.5px;
+  }
+
+  .term {
+    padding: 13px 0;
+  }
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- TERMS OF HUMAN ENGAGEMENT -->
+<div id="engagement-screen" class="engagement-screen">
+
+  <div class="engagement-panel">
+
+    <div class="engagement-topline">
+      <span>SYSTEM ACCESS / 001</span>
+      <span>HUMAN INTERACTION</span>
+    </div>
+
+    <div class="engagement-status">
+      <span class="status-light"></span>
+      SYSTEM INITIALISED
+    </div>
+
+    <h1>TERMS OF<br>HUMAN ENGAGEMENT</h1>
+
+    <p class="engagement-alert">HUMAN PRESENCE DETECTED.</p>
+    <p class="engagement-intro">
+      Welcome to <em>This Is Not Clickbait</em>. A few things before proceeding.
+    </p>
+
+    <div class="engagement-terms">
+
+      <div class="term">
+        <span class="term-number">01 / HUMAN CONTENT</span>
+        <p>Created by actual humans. Opinions are their own. We accept no responsibility for their thoughts.</p>
+      </div>
+
+      <div class="term">
+        <span class="term-number">02 / YOUR PRIVACY</span>
+        <p>Your browser history remains confidential. We have our own problems.</p>
+      </div>
+
+      <div class="term">
+        <span class="term-number">03 / BEFORE YOU SCROLL</span>
+        <p>You may question your habits, your devices, or your seventeenth Instagram visit today.</p>
+      </div>
+
+      <div class="term">
+        <span class="term-number">04 / NO PROMISE OF NORMALITY</span>
+        <p>No sensible answers, predictable experiences, or functional attention spans guaranteed.</p>
+      </div>
+
+      <div class="term">
+        <span class="term-number">05 / THE PEOPLE RESPONSIBLE</span>
+        <p>Seven humans are responsible for what follows. Curiosity is welcome. Complaints may go unanswered.</p>
+      </div>
+
+    </div>
+
+    <div class="engagement-decision">
+      <p class="decision-label">DO YOU WISH TO PROCEED?</p>
+      <button class="engagement-button" id="enter-button">
+        YES. LET ME IN. ↗
+      </button>
+      <button class="engagement-button secondary" id="unsure-button">
+        NO. I'M NOT SURE.
+      </button>
+    </div>
+
+    <div class="engagement-footer">
+      YOUR RESPONSE WILL BE RECORDED.
+      <span>REF: HUMAN-001</span>
+    </div>
+
+  </div>
+
+  <!-- CONFIRMATION SCREEN -->
+  <div class="engagement-panel confirmation-panel" id="confirmation-screen" hidden>
+
+    <div class="engagement-topline">
+      <span>SYSTEM RESPONSE / 002</span>
+      <span>EXIT PROTOCOL</span>
+    </div>
+
+    <div class="engagement-status">
+      <span class="status-light"></span>
+      RESPONSE RECEIVED
+    </div>
+
+    <h1>ARE YOU<br>SURE?</h1>
+
+    <p class="engagement-alert">YOUR DECISION HAS BEEN NOTED.</p>
+
+    <p class="confirmation-copy">
+      You've made it this far. Leaving now would be an interesting choice.
+    </p>
+
+    <div class="engagement-decision">
+      <button class="engagement-button" id="confirm-enter">
+        FINE. LET ME IN. ↗
+      </button>
+      <button class="engagement-button secondary" id="insist-leave">
+        I STILL WANT TO LEAVE.
+      </button>
+    </div>
+
+    <div class="engagement-footer">
+      PLEASE CONFIRM YOUR CONFIRMATION.
+      <span>REF: HUMAN-002</span>
+    </div>
+
+  </div>
+
+  <!-- FINAL DENIAL SCREEN -->
+  <div class="engagement-panel denial-panel" id="denial-screen" hidden>
+
+    <div class="engagement-topline">
+      <span>SYSTEM RESPONSE / 003</span>
+      <span>ACCESS CONTROL</span>
+    </div>
+
+    <div class="engagement-status">
+      <span class="status-light"></span>
+      EXIT REQUEST RECEIVED
+    </div>
+
+    <h1>REQUEST<br>DENIED.</h1>
+
+    <p class="engagement-alert">YOUR PREFERENCE HAS BEEN ACKNOWLEDGED.</p>
+
+    <p class="confirmation-copy">
+      It has not been acted upon.
+    </p>
+
+    <p class="denial-message">
+      Curiosity has already been detected. You're coming in anyway.
+    </p>
+
+    <div class="engagement-decision">
+      <button class="engagement-button" id="final-enter">
+        ALRIGHT, LET ME IN. ↗
+      </button>
+    </div>
+
+    <div class="engagement-footer">
+      EXIT PROTOCOL TERMINATED.
+      <span>REF: HUMAN-003</span>
+    </div>
+
+  </div>
+
+</div>
+<!-- END TERMS OF HUMAN ENGAGEMENT -->
 
 <div class="topbar">
   <span>INDEPENDENT DIGITAL PUBLICATION</span>
@@ -1246,7 +1649,51 @@ const randomMessage = messages[
 ];
 
 popupMessage.textContent = randomMessage;
+
+
+/* TERMS OF HUMAN ENGAGEMENT */
+
+const engagementScreen = document.getElementById("engagement-screen");
+const firstTerms = engagementScreen.querySelector(".engagement-panel:not([id])");
+const confirmationScreen = document.getElementById("confirmation-screen");
+const denialScreen = document.getElementById("denial-screen");
+
+function showEngagementScreen(screenToShow) {
+  firstTerms.hidden = true;
+  confirmationScreen.hidden = true;
+  denialScreen.hidden = true;
+
+  screenToShow.hidden = false;
+  engagementScreen.scrollTop = 0;
+}
+
+function enterMagazine() {
+  engagementScreen.style.transition = "opacity 0.5s ease";
+  engagementScreen.style.opacity = "0";
+
+  setTimeout(() => {
+    engagementScreen.remove();
+    document.body.style.overflow = "";
+  }, 500);
+}
+
+document.body.style.overflow = "hidden";
+
+document.getElementById("enter-button").addEventListener("click", enterMagazine);
+
+document.getElementById("unsure-button").addEventListener("click", () => {
+  showEngagementScreen(confirmationScreen);
+});
+
+document.getElementById("confirm-enter").addEventListener("click", enterMagazine);
+
+document.getElementById("insist-leave").addEventListener("click", () => {
+  showEngagementScreen(denialScreen);
+});
+
+document.getElementById("final-enter").addEventListener("click", enterMagazine);
 </script>
 
+  
 </body>
 </html>
