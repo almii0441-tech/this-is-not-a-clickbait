@@ -479,6 +479,35 @@ section {
   .poetry-card {
     min-height: 320px;
   }
+
+/* 03 / VISUAL POETRY */
+
+/* Reuse the exact Archive card design */
+
+.visual-poetry .poetry-link {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 28px 0 10px;
+  color: var(--white);
+}
+
+.visual-poetry .poetry-description {
+  max-width: 430px;
+  margin-bottom: 12px;
+  color: #999;
+  font: 13px/1.7 'Space Grotesk', sans-serif;
+}
+
+.visual-poetry .poetry-link h3 {
+  margin: 0;
+  font: 700 clamp(25px, 3.4vw, 39px)/1.1 'Playfair Display', serif;
+  color: var(--white);
+}
+
+.visual-poetry .poetry-link:hover h3 {
+  color: var(--accent);
+  transition: color .25s;
 }
 
 .arcade {
@@ -989,6 +1018,7 @@ footer {
 </section>
 
   
+
 <!-- 03 / VISUAL POETRY -->
 
 <section class="archive visual-poetry" id="visual-poetry">
@@ -998,65 +1028,73 @@ footer {
       <p class="label">03 / VISUAL POETRY</p>
       <h2>Words beyond words.</h2>
     </div>
-    <span>VISUAL EXPERIMENTS / 2026</span>
+    <span>VISUAL POETRY / ISSUE 001</span>
   </div>
 
   <div class="article-grid">
 
-    <a href="visual-poetry/poetry-01.html"
-       class="article-card poetry-card"
-       style="--accent:#00d9ff"
-       data-number="01">
+    <!-- POEM 001 -->
+
+    <article class="article-card"
+             style="--accent:#b58cff"
+             data-number="01">
 
       <div class="article-top">
         <span>VISUAL TRANSMISSION 001</span>
         <span>● AVAILABLE</span>
       </div>
 
-      <div class="poetry-preview poetry-one">
-        <span>the world<br>between<br><i>the words.</i></span>
-      </div>
+      <a href="visual-poetry/poetry-01.html" class="poetry-link">
+        <p class="poetry-description">
+          A reflection on waiting, uncertainty and the things
+          we leave unsaid.
+        </p>
 
-      <div>
-        <h3>VISUAL POEM ONE</h3>
-        <p>A visual experiment in language, imagery and everything that exists between the lines.</p>
-      </div>
+        <h3>REQUEST PENDING</h3>
+      </a>
 
       <div class="article-bottom">
+        <span>BY NAMITHA RAJEEV</span>
         <span>VISUAL POETRY</span>
-        <span>EXPLORE ↗</span>
       </div>
 
-    </a>
+    </article>
 
 
-    <a href="visual-poetry/poetry-02.html"
-       class="article-card poetry-card"
-       style="--accent:#b58cff"
-       data-number="02">
+    <!-- POEM 002 -->
+
+    <article class="article-card"
+             style="--accent:#00d9ff"
+             data-number="02">
 
       <div class="article-top">
         <span>VISUAL TRANSMISSION 002</span>
         <span>● AVAILABLE</span>
       </div>
 
-      <div class="poetry-preview poetry-two">
-        <span>NOTHING<br>IS EVER<br><i>JUST WORDS.</i></span>
-      </div>
+      <a href="visual-poetry/poetry-02.html" class="poetry-link">
+        <p class="poetry-description">
+          An exploration of digital consumption, endless scrolling
+          and the vortex of online attention.
+        </p>
 
-      <div>
-        <h3>VISUAL POEM TWO</h3>
-        <p>An exploration of thoughts transformed into visual forms and unexpected meanings.</p>
-      </div>
+        <h3>CONSUMPTION VORTEX</h3>
+      </a>
 
       <div class="article-bottom">
+        <span>BY LEKHAA MEENAKSHI SUNDARAM</span>
         <span>VISUAL POETRY</span>
-        <span>EXPLORE ↗</span>
       </div>
 
-    </a>
+    </article>
 
   </div>
+
+  <p class="archive-note">
+    END OF VISUAL TRANSMISSIONS /
+  </p>
+
+</section>
 
   <p class="archive-note">
     END OF VISUAL TRANSMISSIONS /
