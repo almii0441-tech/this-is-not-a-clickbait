@@ -431,6 +431,124 @@ section {
   font:10px 'Space Mono',monospace;
   line-height:1.8;
 }
+  
+  /* 03 / VISUAL POETRY */
+
+.visual-poetry-section {
+  padding: 85px 6%;
+  border-top: 1px solid rgba(255,255,255,0.16);
+}
+
+.visual-poetry-section .section-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--green, #c8ff00);
+}
+
+.visual-poetry-intro {
+  margin: 55px 0 40px;
+}
+
+.visual-poetry-intro h2 {
+  font-size: clamp(38px, 7vw, 82px);
+  line-height: 0.98;
+  letter-spacing: -3px;
+}
+
+.visual-poetry-intro h2 span {
+  color: var(--purple, #b58cff);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+.visual-poetry-intro p {
+  max-width: 420px;
+  margin-top: 22px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.visual-poetry-preview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.visual-poem-link {
+  display: block;
+  padding: 22px;
+  border: 1px solid #414141;
+  background: #111;
+  color: #f3f0eb;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.visual-poem-link:hover {
+  border-color: var(--purple, #b58cff);
+  transform: translateY(-5px);
+}
+
+.visual-poem-link > span {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--green, #c8ff00);
+}
+
+.visual-poem-preview-art {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(35px, 5vw, 60px);
+  line-height: 0.95;
+  font-style: italic;
+  color: var(--blue, #00d9ff);
+}
+
+.visual-poem-preview-art.second {
+  color: var(--purple, #b58cff);
+  font-style: normal;
+}
+
+.visual-poem-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #333;
+  padding-top: 18px;
+}
+
+.visual-poem-info h3 {
+  font-size: 15px;
+}
+
+.visual-poem-info span {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--green, #c8ff00);
+}
+
+@media (max-width: 600px) {
+  .visual-poetry-section {
+    padding: 60px 5%;
+  }
+
+  .visual-poetry-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-poetry-section .section-top {
+    flex-wrap: wrap;
+  }
+}
 
 .arcade {
   padding:90px 7%;
@@ -935,13 +1053,74 @@ footer {
   </div>
 
   <p class="archive-note">
-    END OF CURRENT TRANSMISSIONS // MORE FILES WILL BE ADDED AS THEY ARRIVE.
+    END OF CURRENT TRANSMISSIONS /
   </p>
+</section>
+
+  <!-- 03 / VISUAL POETRY -->
+<section class="visual-poetry" id="visual-poetry">
+
+  <div class="visual-poetry-intro">
+
+    <p class="label">03 / VISUAL POETRY</p>
+
+    <h2>A little poetry. A little visual confusion.</h2>
+
+    <p class="visual-poetry-description">
+      Words, images, shapes and spaces.
+      Two visual experiments that let poetry exist
+      in more ways than one.
+    </p>
+
+  </div>
+
+  <div class="visual-poetry-content">
+
+    <a href="visual-poetry/poetry-01.html" class="visual-poetry-card">
+      <div class="visual-poetry-card-top">
+        <span>VP_001</span>
+        <span>EXPERIMENT 01</span>
+      </div>
+
+      <div class="visual-poetry-art art-one">
+        <span>01</span>
+      </div>
+
+      <div class="visual-poetry-card-bottom">
+        <div>
+          <h3>VISUAL POEM 01</h3>
+          <p>The first visual poetry experiment.</p>
+        </div>
+        <span class="visual-poetry-arrow">↗</span>
+      </div>
+    </a>
+
+    <a href="visual-poetry/poetry-02.html" class="visual-poetry-card">
+      <div class="visual-poetry-card-top">
+        <span>VP_002</span>
+        <span>EXPERIMENT 02</span>
+      </div>
+
+      <div class="visual-poetry-art art-two">
+        <span>02</span>
+      </div>
+
+      <div class="visual-poetry-card-bottom">
+        <div>
+          <h3>VISUAL POEM 02</h3>
+          <p>The second visual poetry experiment.</p>
+        </div>
+        <span class="visual-poetry-arrow">↗</span>
+      </div>
+    </a>
+
+  </div>
+
 </section>
 
 <section class="arcade" id="arcade">
   <div class="arcade-intro">
-    <p class="label">03 / THE ARCADE</p>
+    <p class="label">04 / THE ARCADE</p>
     <h2>Productivity not found.</h2>
     <p>
       You came here to read. Somehow, you ended up playing games.
