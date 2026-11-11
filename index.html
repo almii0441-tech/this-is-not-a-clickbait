@@ -331,7 +331,7 @@ section {scroll-margin-top:25px}
 .profile-button:hover {background:var(--accent);color:#080808}
 .database-warning {display:flex;align-items:center;gap:12px;margin-top:30px;padding:17px;border:1px solid #4a2529;background:#151012;color:var(--red);font:10px/1.7 'Space Mono',monospace;letter-spacing:1px;box-shadow:3px 3px 0 rgba(255,52,63,.15)}
 
-/* NEW: PERSONALITY INFORMATION ON CONTRIBUTOR CARDS */
+/* PERSONALITY INFORMATION ON CONTRIBUTOR CARDS */
 .human-system-log {
   margin-top:12px;
   padding:13px;
@@ -380,7 +380,7 @@ section {scroll-margin-top:25px}
 .profile-data-row small {display:block;margin-bottom:6px;color:#777;font:9px 'Space Mono',monospace;letter-spacing:1px}
 .profile-data-row strong {color:#e2dfda;font:12px/1.6 'Space Grotesk',sans-serif;overflow-wrap:anywhere}
 
-/* NEW: PERSONALITY INFORMATION IN PROFILE MODAL */
+/* PERSONALITY INFORMATION IN PROFILE MODAL */
 .profile-system-log {
   margin-top:18px;
   padding:15px;
@@ -464,6 +464,17 @@ footer a:hover {color:var(--blue)}
 .confirmation-copy {margin-top:20px}
 .denial-message {margin-top:25px;color:#ff555e;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:bold;line-height:1.5}
 
+/* EXIT INTERRUPTION */
+#exit-screen[hidden] {
+  display:none !important;
+}
+#exit-screen {
+  z-index:100000;
+}
+#exit-screen .engagement-panel {
+  margin:auto;
+}
+
 /* RESPONSIVE */
 @media(max-width:950px) {
   .human-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -518,14 +529,14 @@ footer a:hover {color:var(--blue)}
 <body id="top">
 
 <!-- TERMS OF HUMAN ENGAGEMENT -->
-<div id="engagement-screen" class="engagement-screen">
+<div id="engagement-screen" class="engagement-screen" role="dialog" aria-modal="true" aria-labelledby="engagement-title">
   <div class="engagement-panel" id="first-terms">
     <div class="engagement-topline">
       <span>SYSTEM ACCESS / 001</span>
       <span>HUMAN INTERACTION</span>
     </div>
     <div class="engagement-status"><span class="status-light"></span>SYSTEM INITIALISED</div>
-    <h1>TERMS OF<br>HUMAN ENGAGEMENT</h1>
+    <h1 id="engagement-title">TERMS OF<br>HUMAN ENGAGEMENT</h1>
     <p class="engagement-alert">HUMAN PRESENCE DETECTED.</p>
     <p class="engagement-intro">Welcome to <em>This Is Not Clickbait</em>. A few things before proceeding.</p>
 
@@ -797,14 +808,14 @@ footer a:hover {color:var(--blue)}
       <div class="human-image-wrap">
         <span class="image-id">USER 001</span>
         <img src="images/lekhaa.png.jpeg" alt="Character illustration of Lekhaa MeenakshiSundaram" class="human-image" loading="lazy">
-        <span class="image-status">● ACTIVE</span>
+        <span class="image-status">● WRITING</span>
       </div>
       <div class="human-card-content">
         <p class="human-card-kicker">HUMAN RECORD / 001</p>
         <h3>Lekhaa MeenakshiSundaram</h3>
         <div class="human-details">
           <div class="human-detail"><span>USER ID</span><span>USER 001</span></div>
-          <div class="human-detail"><span>STATUS</span><span>/WRITING</span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING</span></div>
           <div class="human-detail"><span>HUMAN LEVEL</span><span>FUNCTIONAL, APPARENTLY</span></div>
           <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>TRACEABLE</span></div>
         </div>
@@ -828,7 +839,7 @@ footer a:hover {color:var(--blue)}
         <h3>Almidha.M.A</h3>
         <div class="human-details">
           <div class="human-detail"><span>USER ID</span><span>USER 002</span></div>
-          <div class="human-detail"><span>STATUS</span><span>WRITING/span></div>
+          <div class="human-detail"><span>STATUS</span><span>WRITING</span></div>
           <div class="human-detail"><span>HUMAN LEVEL</span><span>QUESTIONABLE</span></div>
           <div class="human-detail"><span>DIGITAL FOOTPRINT</span><span>UNAVAILABLE</span></div>
         </div>
@@ -989,7 +1000,6 @@ footer a:hover {color:var(--blue)}
           <div class="profile-data-row"><small>ASSOCIATED ARTICLE(S)</small><strong id="profileArticle"></strong></div>
         </div>
 
-        <!-- NEW: PERSONALITY DETAILS IN PROFILE MODAL -->
         <div class="profile-system-log">
           <small>01 / SYSTEM ERROR</small>
           <p id="profileError"></p>
@@ -1043,6 +1053,52 @@ footer a:hover {color:var(--blue)}
   <div class="popup-head"><span>⚠ SYSTEM NOTIFICATION</span><span>001</span></div>
   <p id="popupMessage">Your attention span has been detected wandering away from the page.</p>
   <button id="closePopup" type="button">I ACKNOWLEDGE MY DISTRACTION</button>
+</div>
+
+<!-- EXIT INTERRUPTION -->
+<div class="engagement-screen" id="exit-screen" role="dialog" aria-modal="true" aria-labelledby="exit-title" hidden>
+
+  <div class="engagement-panel">
+
+    <div class="engagement-topline">
+      <span>SYSTEM ALERT / 004</span>
+      <span>EXIT PROTOCOL</span>
+    </div>
+
+    <div class="engagement-status">
+      <span class="status-light"></span>
+      EXIT REQUEST DETECTED
+    </div>
+
+    <h1 id="exit-title">WAIT.<br>ALREADY?</h1>
+
+    <p class="engagement-alert">
+      YOUR ATTENTION IS REQUESTING AN EXIT.
+    </p>
+
+    <p class="engagement-intro">
+      Humanity still has unresolved issues.
+      Surely you have another minute.
+    </p>
+
+    <div class="engagement-decision">
+
+      <button class="engagement-button" id="stay-button" type="button">
+        FINE. I'LL STAY. ↗
+      </button>
+
+      <button class="engagement-button secondary" id="leave-button" type="button">
+        I HAVE THINGS TO DO.
+      </button>
+
+    </div>
+
+    <div class="engagement-footer">
+      EXIT REQUEST PENDING.
+      <span>REF: HUMAN-004</span>
+    </div>
+
+  </div>
 </div>
 
 <!-- JAVASCRIPT -->
@@ -1394,13 +1450,11 @@ function triggerNameGlitch(name) {
 
   name.classList.remove("glitch-active");
 
-  // Force browser to restart the animation.
   void name.offsetWidth;
 
   name.classList.add("glitch-active");
 }
 
-// Observe every contributor name individually.
 if ("IntersectionObserver" in window) {
 
   const nameObserver = new IntersectionObserver(entries => {
@@ -1411,7 +1465,6 @@ if ("IntersectionObserver" in window) {
 
         triggerNameGlitch(entry.target);
 
-        // Trigger once when each name first enters view.
         nameObserver.unobserve(entry.target);
 
       }
@@ -1428,7 +1481,6 @@ if ("IntersectionObserver" in window) {
 
 } else {
 
-  // Fallback: animate every contributor name.
   contributorNames.forEach(triggerNameGlitch);
 
 }
@@ -1470,8 +1522,6 @@ const profileFootprint =
 
 const profileArticle =
   document.getElementById("profileArticle");
-
-// NEW: PERSONALITY MODAL ELEMENTS
 
 const profileError =
   document.getElementById("profileError");
@@ -1531,11 +1581,8 @@ function openProfile(index) {
   profileFootprint.textContent =
     person.footprint;
 
-  // Display all associated articles.
   profileArticle.textContent =
     person.articles.join(" / ");
-
-  // NEW: DISPLAY ALL THREE PERSONALITY DETAILS.
 
   profileError.textContent =
     person.systemError;
@@ -1558,7 +1605,6 @@ function openProfile(index) {
 
   document.body.style.overflow = "hidden";
 
-  // Trigger the profile name glitch.
   void profileName.offsetWidth;
 
   profileName.classList.add("glitch-active");
@@ -1634,6 +1680,123 @@ document.addEventListener("keydown", event => {
   ) {
     closeProfileModal();
   }
+
+});
+
+
+/* ==========================================
+   EXIT INTERRUPTION
+   EXTERNAL NAVIGATION
+========================================== */
+
+const exitScreen =
+  document.getElementById("exit-screen");
+
+const stayButton =
+  document.getElementById("stay-button");
+
+const leaveButton =
+  document.getElementById("leave-button");
+
+let pendingExitUrl = null;
+let previousExitFocus = null;
+
+// Detect external links clicked by the visitor.
+document.addEventListener("click", event => {
+
+  // Ignore clicks that are not ordinary left-clicks.
+  if (
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  ) {
+    return;
+  }
+
+  const link = event.target.closest("a");
+
+  if (!link) return;
+
+  // Do not interrupt links opening in a new tab.
+  if (
+    link.target === "_blank" ||
+    link.hasAttribute("download")
+  ) {
+    return;
+  }
+
+  const destination = new URL(link.href, location.href);
+
+  // Ignore mail, telephone and other non-web links.
+  if (
+    destination.protocol !== "http:" &&
+    destination.protocol !== "https:"
+  ) {
+    return;
+  }
+
+  // Internal website navigation should continue normally.
+  if (destination.origin === location.origin) {
+    return;
+  }
+
+  event.preventDefault();
+
+  pendingExitUrl = destination.href;
+
+  previousExitFocus = document.activeElement;
+
+  exitScreen.hidden = false;
+
+  exitScreen.scrollTop = 0;
+
+  document.body.style.overflow = "hidden";
+
+  stayButton.focus();
+
+});
+
+
+// Visitor decides to remain on the website.
+stayButton.addEventListener("click", () => {
+
+  exitScreen.hidden = true;
+
+  pendingExitUrl = null;
+
+  document.body.style.overflow = "";
+
+  if (
+    previousExitFocus &&
+    previousExitFocus.isConnected
+  ) {
+    previousExitFocus.focus();
+  }
+
+});
+
+
+// Visitor confirms that they want to leave.
+leaveButton.addEventListener("click", () => {
+
+  if (!pendingExitUrl) {
+
+    exitScreen.hidden = true;
+
+    document.body.style.overflow = "";
+
+    return;
+
+  }
+
+  const destination = pendingExitUrl;
+
+  pendingExitUrl = null;
+
+  window.location.assign(destination);
 
 });
 
